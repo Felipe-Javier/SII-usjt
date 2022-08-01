@@ -1,0 +1,44 @@
+#cont-pag {
+	font-family: serif;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+#cont-pag h6.titulo-1 {
+	background-color: rgba(0, 100, 167,.9);
+	color: #17202A;
+}
+
+#cont-pag button {
+	text-transform: uppercase;
+}
+
+.table-periodo {
+	background-color: rgba(0, 100, 167,.9);
+	color: #17202A;
+	font-weight:lighter;
+}
+
+.table-boleta {
+	color: #17202A;
+	font-weight:lighter;
+}
+
+.table-periodo .thead-periodo, .table-boleta .thead-boleta {
+	background-color: rgba(0, 100, 167,.9);
+	
+}
+
+.table-periodo .tbody-periodo, .table-boleta .tbody-boleta {
+	background-color: #FFFFFF;
+}
+
+.table-boleta .thead-boleta #titulo-table-boleta {
+	background-color: rgba(0, 100, 167,.9)!important;
+	
+}
+
+.table-boleta .thead-boleta #titulo-table-boleta h6.titulo-2 {
+	color: #17202A;
+	font-weight:bold;
+}
