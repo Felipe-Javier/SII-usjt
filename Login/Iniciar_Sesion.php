@@ -21,6 +21,8 @@
     <link rel="shortcut icon" href="../img/usjt-logo.png" type="image/x-icon">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="../js/login.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
 </head>
 <body>
@@ -31,13 +33,14 @@
     <section class="container-fluid login">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-4">
-                <form action="Iniciar_Sesion.php" method="post" class="form-container" >
+                <form action="Iniciar_Sesion.php" method="post" class="form-container needs-validation" id="loguear" novalidate>
                     <div class="text-center mb-3"><i class="fas fa-user fa-5x"></i></div>
-                    <div class="row" id="result"></div>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="result">
+                    </div> 
                     <div class="form-group">
                         <label for="InputUser">¿Eres docente o eres alumno?</label>
-                        <select class="form-control text-center status" name="rol_usuario" id="rol_usuario">
-                            <option selected disabled>SELECCIONA...</option>
+                        <select class="custom-select text-center status" name="rol_usuario" id="rol_usuario" required>
+                            <option value="" >SELECCIONA...</option>
                             <option value="DOCENTE">DOCENTE</option>
                             <option value="ALUMNO">ALUMNO</option>
                         </select>
@@ -45,13 +48,13 @@
 
                     <div class="form-group">
                         <label for="InputUser">Usuario</label>
-                        <input type="text" class="form-control" id="usuario" placeholder="Usuario"> 
+                        <input type="text" class="form-control" id="usuario" placeholder="Usuario" required> 
                     </div>
                     <div class="form-group">
                         <label for="InputPasswordAlumno">Contraseña</label>
-                        <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                        <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" id="button_entrar">Entrar</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="button_entrar">Entrar</button>
                     <div class="form-footer">
                         <p><a href="/" class="">¿Olvidó su contraseña?</a></p>
                     </div>
@@ -61,3 +64,8 @@
     </section>
 </body>
 </html>
+<!-- ALUMNO 210210002  Julio2022  CORRECTO
+     DOCENTE   CECYJFRANCO   8029b18aed464257eb0420751e0272d4   INACTIVO
+     DOCENTE   LEIDY         96424f1a0060097c2a004bfc80b46832   BLOQUEADO
+
+-->

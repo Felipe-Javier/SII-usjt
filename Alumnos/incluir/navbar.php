@@ -24,7 +24,7 @@
           <i class="icon-user fas fa-user "></i>Bienvenido!, <?php echo $_SESSION['Rol'] ?>
         </a>
         <div class="no-hover dropdown-menu" aria-labelledby="navbarDropdown" >
-          <a class="dropdown-item text-center" href="#">Cerrar Sesion</a>
+          <a class="dropdown-item text-center" href="incluir/logout.php" id="logout">Cerrar Sesion</a>
         </div>
       </li>
     </ul>

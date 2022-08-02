@@ -24,7 +24,7 @@
                 $_SESSION['Usuario'] = $data->Usuario;
                 $_SESSION['Rol'] = $data->Rol;
 
-                $output .= json_encode($result->fetchObject(), JSON_UNESCAPED_UNICODE);
+                $output .= json_encode($data);
                 echo $output;
             } elseif ($result->errorInfo()) {
                 $msg = $result->errorInfo();
@@ -32,7 +32,7 @@
                     $output .= '¡Atención: Usuario inactivo!';
                 } else {
                     if ($msg[2]=='[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Usuario inactivo.') {
-                        $output .= '¡Atención: Usuario bloqueado!>';
+                        $output .= '¡Atención: Usuario bloqueado!';
                     } else {
                         if ($msg[2]=='[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Datos de incio de sesion incorrectos.') {
                                 $output .= '¡Atención: Datos de incio de sesion incorrectos!';

@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
     /*$("#rol_usuario").on("change", function(){
@@ -17,7 +18,26 @@ $(document).ready(function() {
         }
     });*/
 
-    $("#button_entrar").on("click", function() {
+    var formsUIT = $('#loguear.needs-validation');
+    var validation_UIT = Array.prototype.filter.call(formsUIT, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() == false) {
+            event.preventDefault();
+            event.stopPropagation();
+            form.classList.add('was-validated');
+            $("#result").html("Atencion: Ingrese los datos de inicio de sesion para continuar");
+          } else {
+            if (form.checkValidity() == true) {
+              event.preventDefault();
+              event.stopPropagation();
+              form.classList.add('was-validated');
+              Iniciar_Sesion();
+            }
+          }
+        }, false);
+    });
+
+    function Iniciar_Sesion() {
         var rol_usuario = $("form .form-group #rol_usuario").val();
         var usuario = $("form .form-group #usuario").val();
         var contraseña = $("form .form-group #password").val();
@@ -33,22 +53,22 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
                 var output = "";
-                if (response=='¡Usuario inactivo!' || response=='¡Usuario bloqueado!' || response=='¡Datos de incio de sesion incorrectos!') {
-                    output = '<div class="col-12">'+
-                                    '<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
-                                        '<strong>¡Atención: '+response+'!</strong></strong>'+
-                                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-                                            '<span aria-hidden="true">&times;</span>'+
-                                        '</button>'+
-                                    '</div>'+
-                                '</div>';
+                if (response=='¡Atención: Usuario inactivo!' || response=='¡Atención: Usuario bloqueado!' || response=='¡Atención: Datos de incio de sesion incorrectos!') {
+                    output =  response;
+                                //'<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alerta">'+ 
+                                  //'<button data-dismiss="alert" type="button" class="close"  aria-label="Close"> <span aria-hidden="true">&times;</span> </button>'+
+                                    //'<strong>'+response+'</strong>'+
+                                //'</div>';
+                            
                     $("#result").html(output);
                 } else {
                     var info = JSON.parse(response);
                     if (info.Rol == 'DOCENTE') {
                         location.href = '../Docentes/Inicio.php';
                     } else {
-                        location.href = '../Alumnos/Inicio.php';
+                        if (info.Rol == 'ALUMNO') {
+                            location.href = '../Alumnos/Inicio.php';
+                        }
                     }
                 }
             },
@@ -57,6 +77,15 @@ $(document).ready(function() {
                 $("#result").html(error);
             }
         });
+    }
+    
+    $(document).ready(function() {
+        $("#result").hide();
+        $("#button_entrar").click(function showAlert() {
+            $("#result").fadeTo(2000, 500).slideUp(500, function() {
+            $("#result").slideUp(500);
+            });
+        });
     });
-
+      
 })
