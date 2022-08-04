@@ -67,8 +67,8 @@
                 <tr id="titulo-table-boleta">
                   <th scope="row" colspan="3">
                     <div class="row">
-                      <h6 class="col-sm-2 text-left mt-auto mb-auto titulo-2">Calificaciones</h6>
-                      <h6 class="col-sm-10 text-right mt-auto mb-auto titulo-2">Mayo - Agosto 2022</h6>
+                      <h6 class="col-sm-6  mt-auto mb-auto titulo-2">Calificaciones</h6>
+                      <h6 class="col-sm-6  mt-auto mb-auto titulo-2">Mayo - Agosto 2022</h6>
                     </div>
                   </th>
                 </tr>

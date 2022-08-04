@@ -1,4 +1,5 @@
 <?php
+
     session_start();
     if (!empty($_SESSION['active'])) {
 		if ($_SESSION['Rol'] == 'DOCENTE') {
@@ -35,8 +36,7 @@
             <section class="col-12 col-sm-6 col-md-4">
                 <form action="Iniciar_Sesion.php" method="post" class="form-container needs-validation" id="loguear" novalidate>
                     <div class="text-center mb-3"><i class="fas fa-user fa-5x"></i></div>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="result">
-                    </div> 
+                    <div class="alert alert-danger fade show text-center" role="alert" id="result"></div> 
                     <div class="form-group">
                         <label for="InputUser">¿Eres docente o eres alumno?</label>
                         <select class="custom-select text-center status" name="rol_usuario" id="rol_usuario" required>

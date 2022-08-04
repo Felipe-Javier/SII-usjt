@@ -1,8 +1,10 @@
 <?php
+    
     include("../class/login.php");
     $iniciar_sesion = new iniciar_sesion();
     
     session_start();
+    sleep(3);
 
     $rol_usuario = "";
     $usuario = "";
@@ -23,7 +25,7 @@
                 $_SESSION['IdUsuario'] = $data->IdUsuario;
                 $_SESSION['Usuario'] = $data->Usuario;
                 $_SESSION['Rol'] = $data->Rol;
-
+                
                 $output .= json_encode($data);
                 echo $output;
             } elseif ($result->errorInfo()) {
@@ -45,4 +47,5 @@
         } else {
             echo 'error';
         }
+        
 ?>

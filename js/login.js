@@ -50,15 +50,16 @@ $(document).ready(function() {
             data: {rol_usuario: rol_usuario, usuario: usuario, contraseña: contraseña},
             async: true,
 
+           /* beforeSend:function(){
+                $("#result").html("<div> iniciando sesion </div>");
+
+            },*/
+ 
             success: function(response) {
                 console.log(response);
                 var output = "";
                 if (response=='¡Atención: Usuario inactivo!' || response=='¡Atención: Usuario bloqueado!' || response=='¡Atención: Datos de incio de sesion incorrectos!') {
                     output =  response;
-                                //'<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alerta">'+ 
-                                  //'<button data-dismiss="alert" type="button" class="close"  aria-label="Close"> <span aria-hidden="true">&times;</span> </button>'+
-                                    //'<strong>'+response+'</strong>'+
-                                //'</div>';
                             
                     $("#result").html(output);
                 } else {
@@ -72,10 +73,11 @@ $(document).ready(function() {
                     }
                 }
             },
-    
+            
             error: function(error) {
                 $("#result").html(error);
             }
+            
         });
     }
     

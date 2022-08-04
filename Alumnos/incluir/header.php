@@ -15,7 +15,7 @@
         <div class="col-sm-4 mt-auto mb-auto text-center">
             <div class="row">
                 <div id="logo-usjt-tamps" class="col-sm-4 mr-auto  ">
-                    <img class="bg-body" src="img/logo-usjt-tamps.png">
+                    <img class="bg-body" src="img/logo-tamps.png">
                 </div>
             </div>
         </div>
