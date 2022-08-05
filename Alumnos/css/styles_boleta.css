@@ -1,5 +1,5 @@
 #cont-pag {
-	font-family: serif;
+	font-family: sans-serif;
 	text-transform: uppercase;
 	font-size: 12px;
 }
@@ -41,4 +41,8 @@
 .table-boleta .thead-boleta #titulo-table-boleta h6.titulo-2 {
 	color: #17202A;
 	font-weight:bold;
+}
+
+.table-periodo .tbody-periodo a.periodo {
+	text-decoration: none;
 }

@@ -1,9 +1,9 @@
 <?php
-    
-    include("../class/login.php");
+    include("../clases/login.php");
     $iniciar_sesion = new iniciar_sesion();
     
     session_start();
+
     sleep(3);
 
     $rol_usuario = "";
@@ -25,19 +25,19 @@
                 $_SESSION['IdUsuario'] = $data->IdUsuario;
                 $_SESSION['Usuario'] = $data->Usuario;
                 $_SESSION['Rol'] = $data->Rol;
-                
-                $output .= json_encode($data);
+
+                $output .= json_encode($result->fetchObject(), JSON_UNESCAPED_UNICODE);
                 echo $output;
             } elseif ($result->errorInfo()) {
                 $msg = $result->errorInfo();
-                if ($msg[2]=='[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Usuario bloqueado.') {
-                    $output .= '¡Atención: Usuario inactivo!';
+                if ($msg[2]=='[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Usuario inactivo.') {
+                    $output .= 'Usuario inactivo';
                 } else {
-                    if ($msg[2]=='[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Usuario inactivo.') {
-                        $output .= '¡Atención: Usuario bloqueado!';
+                    if ($msg[2]=='[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Usuario bloqueado.') {
+                        $output .= 'Usuario bloqueado';
                     } else {
                         if ($msg[2]=='[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Datos de incio de sesion incorrectos.') {
-                                $output .= '¡Atención: Datos de incio de sesion incorrectos!';
+                                $output .= 'Datos de incio de sesion incorrectos';
                         }
                     }
                 }
@@ -47,5 +47,4 @@
         } else {
             echo 'error';
         }
-        
 ?>

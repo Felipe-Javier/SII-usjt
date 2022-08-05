@@ -3,7 +3,7 @@
         <div class="col-sm-4 mt-auto mb-auto text-center">
             <div class="row">
                 <div id="logo-usjt" class="col-sm-4 ml-auto mr-auto">
-                    <img class="bg-body" src="../img/usjt-logo.png" >
+                    <img class="bg-body" src="img/logo-usjt.png" >
                 </div>
             </div>
         </div>
@@ -14,8 +14,8 @@
         </div>
         <div class="col-sm-4 mt-auto mb-auto text-center">
             <div class="row">
-                <div id="logo-usjt-tamps" class="col-sm-4 mr-auto  ">
-                    <img class="bg-body" src="../img/logo-tamps.png">
+                <div id="logo-tamps" class="col-sm-4 mr-auto  ">
+                    <img class="bg-body" src="img/logo-tamps.png">
                 </div>
             </div>
         </div>

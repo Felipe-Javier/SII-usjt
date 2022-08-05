@@ -7,28 +7,29 @@ body {
 #contenido h4 {
 	text-transform: uppercase;
 	font-weight: bold;
-	font-family: serif;
+	font-family: sans-serif;
 	color: #0064a7;
-	font-size: 18px;
+	font-size: 14px;
 }
 
-#logo-usjt-tamps img {
+#logo-tamps img {
+    width: 130px;
 	height: 110px;
 }
 
 #logo-usjt img {
-	width: 150px;
-	height: 120px;
+	width: 140px;
+	height: 110px;
 }
 
 
 #titulos-sistema {
-	font-family: serif;
+	font-family: sans-serif;
 }
 
 #titulos-sistema h6 {
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 	color: #333;
 	margin-top: 10px;
 	margin-bottom: 10px;

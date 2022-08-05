@@ -17,6 +17,7 @@
 		  	try {
 				$this->CONN = new PDO("sqlsrv:Server=$this->HOST,$this->PORT;Database=$this->DB_NAME",$this->USERNAME,$this->PASSWORD);
 				$this->CONN->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				date_default_timezone_set('America/Monterrey');
 			  //echo 'Se ha conectado correctamente a la base de datos: "'.$this->DB_NAME.'"';
 		  	} catch (PDOException $exp) {
 			  echo 'No se ha podido conectar a la base de datos: "'.$this->DB_NAME.'". '.$exp;

@@ -1,0 +1,58 @@
+
+body {
+    font-family: sans-serif;
+    background-color: rgba(186, 186, 186, .8);
+}
+
+#logo-tamps img {
+    width: 130px;
+	height: 110px;
+}
+
+#logo-usjt img {
+	width: 140px;
+	height: 110px;
+}
+
+#titulos-sistema {
+	font-family: sans-serif;
+}
+
+#titulos-sistema h6 {
+	font-weight: bold;
+	font-size: 14px;
+	color: #333;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.login {
+    padding-top: 5vh;
+}
+
+form {
+    background: #fff;
+}
+
+.btn-primary {
+    background-color: #0064a7;
+}
+
+.form-container {
+    margin-top: 10px;
+    border-top: solid 10px #0c5286;
+    border-right: solid 10px #0c5286;
+    border-bottom: solid 40px #0c5286;
+    border-left: solid 10px #0c5286;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.form-footer {
+    padding-top: 15px;
+}
+
+.status{
+    border: solid 3px #0c5286;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
