@@ -103,7 +103,7 @@
       }
 
       $promedio = doubleval($suma / $num_filas);
-      $prom = array('PROMEDIO FINAL:', $promedio);
+      $prom = array('PROMEDIO FINAL:', round($promedio,2));
       foreach($prom as $col_prom) {
         if ($col_prom != 'PROMEDIO FINAL:') {
           $pdf->SetFont('Times', '', 9);

@@ -30,7 +30,7 @@
     <body>
         <?php
             $inicio = "active";
-            $subir_calificaciones = "";
+            $registrar_calificaciones = "";
 
             include("incluir/header.php");
             include("incluir/navbar.php");

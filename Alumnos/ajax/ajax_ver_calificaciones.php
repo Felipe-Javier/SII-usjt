@@ -9,7 +9,7 @@
   $output = '';
   $num_filas = 0;
   $suma = 0;
-  $promedio = 0.00;
+  $promedio = 0;
 
   if(isset($_POST) && !empty($_POST)) {
     $Matricula = strval($_POST['Matricula']);
@@ -32,9 +32,9 @@
                           </th>
                         </tr>
                         <tr>
-                          <th scope="col" style="width: 15px;">Matricula</th>
-                          <th scope="col" style="width: 60px;">Alumno</th>
-                          <th scope="col" style="width: 25px;">Carrera</th>
+                          <th scope="col" style="width: 25%;">Matricula</th>
+                          <th scope="col" style="width: 25%;">Alumno</th>
+                          <th scope="col" style="width: 55%;">Carrera</th>
                         </tr>
                       </thead>
                       <thead class="tbody-boleta">
@@ -62,7 +62,7 @@
           $promedio = doubleval($suma / $num_filas);
           $output .=  '<tr>
                           <th scope="col" colspan="2">PROMEDIO</th>
-                          <td scope="col">'.$promedio.'</th>
+                          <td scope="col">'.round($promedio,2).'</th>
                         </tr>
                       </tbody>
                     </table>

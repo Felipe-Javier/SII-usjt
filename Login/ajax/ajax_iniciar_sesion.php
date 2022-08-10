@@ -23,10 +23,18 @@
 
                 $_SESSION['active'] = true;
                 $_SESSION['IdUsuario'] = $data->IdUsuario;
-                $_SESSION['Usuario'] = $data->Usuario;
-                $_SESSION['Rol'] = $data->Rol;
+                if ($data->Rol == 'ALUMNO') {
+                    $_SESSION['Usuario'] = $data->Usuario;
+                    $_SESSION['Rol'] = $data->Rol;
+                } elseif ($data->Rol == 'DOCENTE') {
+                    $_SESSION['IdPersona'] = $data->IdPersona;
+                    $_SESSION['IdInstructor'] = $data->IdInstructor;
+                    $_SESSION['Empledo'] = $data->EMPLEDO;
+                    $_SESSION['Usuario'] = $data->Usuario;
+                    $_SESSION['Rol'] = $data->Rol;
+                }
 
-                $output .= json_encode($result->fetchObject(), JSON_UNESCAPED_UNICODE);
+                $output .= json_encode($data);
                 echo $output;
             } elseif ($result->errorInfo()) {
                 $msg = $result->errorInfo();
