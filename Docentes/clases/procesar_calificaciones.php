@@ -37,12 +37,18 @@
 			}
 		}
 
-		public function consultar_calificaciones ($IdGrupo, $IdInstructor) {
+		public function registrar_calificaciones ($Matricula, $IdRelGrupoAlumno, $Calificacion, $IdTipoCorte, $IdTipoCalificacion,
+		                                          $IdPlanMateria, $IdUsuario) {
 			try {
-				$query = "EXEC spTraerAlumnosPorGrupoDocente ?, ?";
-				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-				$result->bindValue(1, $IdGrupo, PDO::PARAM_INT);
-				$result->bindValue(2, $IdInstructor, PDO::PARAM_INT);
+				$query = "EXEC spGuardarCalificacionesMateriasAlumnoMatricula ?, ?, ?, ?, ?, ?, ?";
+				$result = $this->connection->connect_db()->prepare($query);
+				$result->bindValue(1, $Matricula, PDO::PARAM_STR);
+				$result->bindValue(2, $IdRelGrupoAlumno, PDO::PARAM_INT);
+				$result->bindValue(3, $Calificacion, PDO::PARAM_INT);
+				$result->bindValue(4, $IdTipoCorte, PDO::PARAM_INT);
+				$result->bindValue(5, $IdTipoCalificacion, PDO::PARAM_INT);
+				$result->bindValue(6, $IdPlanMateria, PDO::PARAM_INT);
+				$result->bindValue(7, $IdUsuario, PDO::PARAM_INT);
 				$result->execute();
 					
 				return $result;

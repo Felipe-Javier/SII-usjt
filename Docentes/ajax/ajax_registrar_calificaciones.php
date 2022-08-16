@@ -3,7 +3,7 @@
 
   $procesar_calificaciones = new procesar_calificaciones();
 
-  $Matricula= '';
+  $Matricula = '';
   $IdRelGrupoAlumno= '';
   $Calificacion= '';
   $IdTipoCorte= '';
@@ -15,36 +15,30 @@
   $output = '';
 
     if(isset($_POST) && !empty($_POST)) {
-        $Matricula = strval($_POST['Matricula']);
-        $IdRelGrupoAlumno = $_POST['IdRelGrupoAlumno'];
-        $Calificacion = intval($_POST['Calificacion']);
-        $IdTipoCorte = intval($_POST['IdTipoCorte']);
-        $IdTipoCalificacion = intval($_POST['IdTipoCalificacion']);
+        $Matriculas = $_POST['Matriculas'];
+        $IdsRelsGruposAlumnos = $_POST['IdsRelsGruposAlumnos'];
+        $Calificaciones = $_POST['Calificaciones'];
+        $IdsTiposCortes = $_POST['IdsTiposCortes'];
+        $IdsTiposCalificaciones = $_POST['IdsTiposCalificaciones'];
         $IdPlanMateria = intval($_POST['IdPlanMateria']);
         $IdUsuario = intval($_POST['IdUsuario']);
 
-        $result = $procesar_calificaciones->resgistrar_calificaciones($Matricula, $IdRelGrupoAlumno, $Calificacion, $IdTipoCorte, $IdTipoCalificacion,
-        $IdPlanMateria, $IdUsuario);
-        
-        if ($result != false) {
-            $count = $result->rowCount();
-            if ($count > 0) {
-                $arr = array();
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $arr[] = ($row);
-                }
-                $output .= json_encode($arr, JSON_UNESCAPED_UNICODE);
-                echo $output;
-            } else {
-                $output .= 'No se encontraron grupos asignados';
-                echo $output;
-            }
-        } else {
-            $output .= 'No se han podido registrar las calificaciones de los alumnos';
-            echo $output;
+        $count = count($Matriculas, COUNT_RECURSIVE);
+        for ($i=0; $i<$count; $i++) { 
+            $result = $procesar_calificaciones->registrar_calificaciones(strval($Matriculas[$i]), intval($IdsRelsGruposAlumnos[$i]), 
+            intval($Calificaciones[$i]), intval($IdsTiposCortes[$i]), intval($IdsTiposCalificaciones[$i]), $IdPlanMateria, $IdUsuario);
         }
+
+        if ($result == true) {
+            $output .= 'Las calificaciones de los alumnos han sido registradas exitosamente';
+        } elseif ($result == false) {
+            $output .= 'No se han podido registrar las calificaciones de los alumnos';
+        }
+
+        echo $output;
+        exit;
     } else {
-        $output = 'Ingrese los datos de usuario para ver los grupos asignados';
+        $output = 'Es necesario ingresar los datos requeridos para continuar';
         echo $output;
         exit;
     }

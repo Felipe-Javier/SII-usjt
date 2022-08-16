@@ -32,6 +32,14 @@
 	font-size: 15px;
 }
 
+#contenido-cuerpo #table-grupos .thead-grupos {
+	background-color: rgba(0, 100, 167,.9);
+}
+
+#contenido-cuerpo #table-grupos .tbody-grupos {
+	background-color: #EEEDED;
+}
+
 #contenido-cuerpo #table-subir-cal {
 	color: #17202A;
 	text-transform: uppercase;
@@ -71,3 +79,51 @@
 	color: #0064a7;
 	line-height: 20px;
 }
+
+.ciclos {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.grupos-ciclos {
+	background-color: #0064a7;
+	height: 40px;
+	width: 100%;
+	font-family: sans-serif;
+	color: #fff;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 20px;
+	padding-top: 10px;
+	
+}
+
+.sidebar .has-submenu .submenu{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	padding-right: 1rem;
+	padding-left: 1rem;
+}
+
+.sidebar ul .nav-link {
+	color: #17202A;
+}
+
+.sidebar .nav-item .nav-link:hover {
+	background-color: #0064a7;
+	color: #fff;
+	
+}
+
+ul .nav-link.selected {
+	background-color: #0064a7;
+	color: #FFF;
+}
+
+
+
+
+
+
+  
