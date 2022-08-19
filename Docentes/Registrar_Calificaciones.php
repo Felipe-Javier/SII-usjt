@@ -46,69 +46,21 @@
 	    				</span>
 	    			</span>
 	    		</div>
-	    		<div class="col text-right">
+	    		<!--<div class="col text-right">
 					<span class="text-bold">Grupo:</span>
 	    		</div>
 				<div class="mr-2">
 					<select name="" id="grupos" class="custom-select custom-select-sm">
 						<option value="" selected="true" disabled>-- Seleccione --</option>
 					</select>
-				</div>
+				</div>-->
 	  		</div>
 		</div>
 	    <div class="container-fluid mt-3" id="contenido-cuerpo">
 	    	<div class="row">
 				<div class="col-sm-3">
-					<div class="modal-content">
-						<div class="text-center grupos-ciclos">GRUPOS</div>
-						<nav class="sidebar card py-2 mb-4 ">
-							<ul class="nav flex-column"  id="">
-								<li class="nav-item has-submenu">
-									<a class="ciclos nav-link"> 2020  </a>
-									<ul class="submenu collapse">
-										<li class="nav-item has-submenu">
-											<a class="nav-link">Enero - Abril </a>
-											<ul class="submenu collapse">
-												<li class="nav-item">
-													<a class="nav-link" id="" href="#" >Grupo1 </a>
-												</li>
-												<li class="nav-item ">
-													<a class="nav-link" id="" href="#">Grupo2 </a>
-												</li>
-												<li class="nav-item">
-													<a class="nav-link" id="" href="#">Grupo3 </a>
-												</li>
-											</ul>
-										</li>
-										<li class="nav-item has-submenu">
-											<a class="nav-link" href="#">Mayo - Agosto </a>
-											<ul class="submenu collapse">
-												<li><a class="nav-link" id="" href="#" >Grupo 1 </a></li>
-												<li><a class="nav-link" id="" href="#" >Grupo2 </a></li>
-												<li><a class="nav-link" id="" href="#" >Grupo3 </a></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li class="nav-item has-submenu">
-									<a class="ciclos nav-link" href="#"> 2021  </a>
-									<ul class="submenu collapse">
-										<li class="nav-item has-submenu">
-											<a class="nav-link" href="#">Enero - Abril </a>
-											<ul class="submenu collapse">
-												<li><a class="nav-link" href="#">Grupo 1 </a></li>
-											</ul>
-										</li>
-										<li class="nav-item has-submenu">
-											<a class="nav-link" href="#">Mayo - Agosto </a>
-											<ul class="submenu collapse">
-												<li><a class="nav-link" href="#">Grupo 1 </a></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</nav>
+					<div class="modal-content" id="grupos">
+					
 					</div>
 				</div>  
 				
@@ -121,45 +73,3 @@
 		</div>
 	</body>
 </html>
-<script> 
-	document.addEventListener("DOMContentLoaded", function(){
-		document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
-			
-			element.addEventListener('click', function (e) {
-				let nextEl = element.nextElementSibling;
-				let parentEl  = element.parentElement;	
-
-				if(nextEl) {
-					e.preventDefault();	
-					let mycollapse = new bootstrap.Collapse(nextEl);
-					
-					if(nextEl.classList.contains('show')){
-						$('.nav-item .nav-item .nav-item a').removeClass('active');
-						mycollapse.hide();
-					} else {
-						mycollapse.show();
-						// find other submenus with class=show
-						var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
-						// if it exists, then close all of them
-						if(opened_submenu){
-							$('.nav-item .nav-item .nav-item a').removeClass('active');
-							new bootstrap.Collapse(opened_submenu);
-						}
-					}
-				}
-			}); // addEventListener
-		}) // forEach
-	});
-
-	$('ul .nav-link').click(function() {
-		/*$('.nav-item .nav-item .nav-item').css('background-color', '#fff');
-		$('.nav-item .nav-item .nav-item').css('color', '#17202A');
-		$('.nav-item .nav-item .nav-item a').css('background-color', '#fff');
-		$('.nav-item .nav-item .nav-item a').css('color', '#17202A');
-		$(this).css('background-color', '#0064a7');
-		$(this).css('color', '#fff');*/
-		$('.nav-item .nav-link').removeClass('selected');
-		$(this).addClass('selected');
-	});
-
-</script>

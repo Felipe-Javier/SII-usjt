@@ -10,10 +10,11 @@
   $output = '';
 
     if(isset($_POST) && !empty($_POST)) {
-        $IdGrupo = intval($_POST['IdGrupo']);
         $IdInstructor = intval($_POST['IdInstructor']);
+        $IdGrupo = intval($_POST['IdGrupo']);
+        $IdPlanMateria = intval($_POST['IdPlanMateria']);
 
-        $result = $procesar_calificaciones->consultar_alumnos($IdGrupo, $IdInstructor);
+        $result = $procesar_calificaciones->consultar_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria);
 
         if ($result != false) {
             $count = $result->rowCount();

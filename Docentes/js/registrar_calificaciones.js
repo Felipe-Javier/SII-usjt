@@ -1,24 +1,191 @@
 $(document).ready(function () {
+
+    "use strict";
+
     var IdPersona = $("#barra #datos-usuario").attr("IdPersona");
     var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
 
-    load_grupos(IdPersona, IdInstructor);
+    load_años_por_grupos(IdPersona, IdInstructor);
 
-    function load_grupos(IdPersona, IdInstructor) {
+    function load_años_por_grupos(IdPersona, IdInstructor) {
         $.ajax({
             url: "ajax/ajax_ver_grupos.php",
             method: "POST",
             async: true,
             data: {
+                Action: 'Consultar_Años_Por_Grupos',
                 IdPersona: IdPersona,
                 IdInstructor: IdInstructor
             },
 
             success: function (response) {
+                console.log(response);
                 var output = "";
-                if (response == 'Ingrese los datos de usuario para ver los grupos asignados' || response == 'No se ha podido consultar los grupos asignados') {
+                if (response == 'Error al consultar los grupos asignados' ||
+                    response == 'No se ha podido consultar los grupos asignados') {
+                    output = '<div class="text-center grupos-ciclos">GRUPOS</div>'+
+                                '<nav class="sidebar card py-2 mb-4">'+
+                                    '<ul class="nav flex-column">'+
+                                        '<li class="nav-item has-submenu">'+
+                                            '<a class="ciclos nav-link">'+response+'</a>'+
+                                        '</li>'+
+                                    '</ul>'+
+                                '</nav>';
+                } else {
+                    output = response;
+                    $("#contenido-cuerpo #grupos").html(output);
+                    /*$("ul .nav-item .ciclos.nav-link").each(function() {
+                        var Año = $(this).attr('IdAño');
+                        console.log(Año);
+                        load_cuatrimestres_por_años(IdPersona, IdInstructor, Año);
+                    });*/
+                }
+            },
+
+            error: function (error) {
+                $("#contenido-cuerpo #grupos").html(error);
+            }
+        });
+    }
+
+    setTimeout(function() {
+        $("ul .nav-item .ciclos.nav-link").each(function() {
+            var Año = $(this).attr('IdAño');
+            console.log(Año);
+            load_cuatrimestres_por_años(IdPersona, IdInstructor, Año);
+        });
+    }, 400);
+
+    function load_cuatrimestres_por_años(IdPersona, IdInstructor, Año) {
+        $.ajax({
+            url: "ajax/ajax_ver_grupos.php",
+            method: "POST",
+            async: true,
+            data: {
+                Action: 'Consultar_Cuatrimestres_Por_Años',
+                IdPersona: IdPersona,
+                IdInstructor: IdInstructor,
+                Año: Año
+            },
+
+            success: function (response) {
+                console.log(response);
+                var output = "";
+                if (response == 'Error al consultar los grupos asignados' ||
+                    response == 'No se ha podido consultar los periodos cargados') {
+                        var output  =   '<ul class="submenu collapse" id="CuatrimestresAño-'+Año+'">'+
+                                            '<li class="nav-item has-submenu">'+
+                                                '<a class="nav-item has-submenu">'+response+'</a>'+
+                                            '<li>'+
+                                        '<ul>';
+                        $("#contenido-cuerpo #grupos #Año-"+Año).append(output);
+                } else {
+                    output = response;
+                    $("#contenido-cuerpo #grupos #Año-"+Año).append(output);
+                }
+            },
+
+            error: function (error) {
+                var output  =   '<ul class="submenu collapse" id="CuatrimestresAño-'+Año+'">'+
+                                    +'<li class="nav-item has-submenu">'+
+                                        +'<a class="nav-item has-submenu">No tiene periodos cargados.'+error+'</a>'+
+                                    +'<li>'+
+                                '<ul>';
+                $("#contenido-cuerpo #grupos #Año-"+Año).append(output);
+            }
+        });
+    }
+
+    setTimeout(function() {
+        $("ul .nav-item .nav-item .cuatrimestres.nav-link").each(function() {
+            var IdCuatrimestre = $(this).attr('IdCuatrimestre');
+            console.log(IdCuatrimestre);
+            load_grupos_por_cuatrimestre(IdPersona, IdInstructor, IdCuatrimestre);
+        });
+    }, 500);
+
+    function load_grupos_por_cuatrimestre(IdPersona, IdInstructor, IdCuatrimestre) {
+        $.ajax({
+            url: "ajax/ajax_ver_grupos.php",
+            method: "POST",
+            async: true,
+            data: {
+                Action: 'Consultar_Grupos_Por_Cuatrimestre',
+                IdPersona: IdPersona,
+                IdInstructor: IdInstructor,
+                IdCuatrimestre: IdCuatrimestre
+            },
+
+            success: function (response) {
+                console.log(response);
+                var output = "";
+                if (response == 'Error al consultar los grupos asignados' ||
+                    response == 'No se ha podido consultar los grupos asignados') {
+                        var output = '<ul class="submenu collapse" id="GruposCuatrimestre-'+IdCuatrimestre+'">'+
+                                        +'<li class="nav-item has-submenu">'+
+                                            +'<a class="nav-item has-submenu">'+response+'</a>'+
+                                        +'<li>'+
+                                    '<ul>';
+                    $("#contenido-cuerpo #grupos #Cuatrimestre-"+IdCuatrimestre).append(output);
+                } else {
+                    output = response;
+                    $("#contenido-cuerpo #grupos #Cuatrimestre-"+IdCuatrimestre).append(output);
+                }
+            },
+
+            error: function (error) {
+                var output  =   '<ul class="submenu collapse" id="GruposCuatrimestre-'+IdCuatrimestre+'">'+
+                                    +'<li class="nav-item has-submenu">'+
+                                        +'<a class="nav-item has-submenu">Error al consultar los grupos asignados.'+error+'</a>'+
+                                    +'<li>'+
+                                '<ul>';
+                $("#contenido-cuerpo #grupos #Cuatrimestre-"+IdCuatrimestre).append(output);
+            }
+        });
+    }
+
+    setTimeout(function() {
+        $("ul .nav-item .nav-item .grupos.nav-link").each(function() {
+            var IdGrupo = $(this).attr('IdGrupo');
+            console.log(IdGrupo);
+            load_materias_por_grupos(IdPersona, IdInstructor, IdGrupo);
+        });
+    }, 600);
+
+    function load_materias_por_grupos(IdPersona, IdInstructor, IdGrupo) {
+        $.ajax({
+            url: "ajax/ajax_ver_grupos.php",
+            method: "POST",
+            async: true,
+            data: {
+                Action: 'Consultar_Materias_Por_Grupo',
+                IdPersona: IdPersona,
+                IdInstructor: IdInstructor,
+                IdGrupo: IdGrupo
+            },
+
+            success: function (response) {
+                console.log(response);
+                var output = "";
+                if (response == 'Error al consultar los grupos asignados' || 
+                    response == 'No se ha podido consultar las materias asignadas') {
+                        var output = '<ul class="submenu collapse" id="MateriasGrupo-'+$IdGrupo+'">'+
+                                        +'<li class="nav-item has-submenu">'+
+                                            +'<a class="nav-item has-submenu">'+response+'</a>'+
+                                        +'<li>'+
+                                    '<ul>';
+                        $("#contenido-cuerpo #grupos #Grupo-"+IdGrupo).append(output);
+                } else {
+                    output = response;
+                    $("#contenido-cuerpo #grupos #Grupo-"+IdGrupo).append(output);
+                    
+                }
+            },
+
+            error: function (error) {
+                if (error == 'Error al consultar las materias asignadas') {
                     $.confirm({
-                        title: 'Consultando grupos asignados',
+                        title: 'Consultando grupos asignados. '+error,
                         content: response,
                         type: 'red',
                         typeAnimated: true,
@@ -34,50 +201,36 @@ $(document).ready(function () {
                             }
                         }
                     });
-                } else {
-                    if (response == 'No se encontraron grupos asignados') {
-                        output = '<option value="" selected>' + response + '</option>';
-                        $("#barra #grupos").append(output);
-                    } else {
-                        var info = JSON.parse(response);
-                        var array = [];
-                        array = info;
-                        var numRows = array.length;
-                        for (var i = 0; i < numRows; i++) {
-                            output = '<option value="' + array[i].IDGRUPO + '" idplanmateria="' + array[i].IDPLANMATERIA + '"' +
-                                'materia="' + array[i].MATERIA + '">' + array[i].GRUPO + '</option>';
-                            $("#barra #grupos").append(output);
-                        }
-                    }
                 }
-            },
-
-            error: function (error) {
-                $("#result").html(error);
             }
         });
     }
 
-    $("#barra #grupos").on("change", function (event) {
-        event.preventDefault();
+    $('body').on('click', 'ul .nav-item .nav-link', function() {
+		$('body ul .nav-item .nav-link').removeClass('selected');
+		$(this).addClass('selected');
+	});
 
+    $("body").on("click", "ul .nav-item .materias.nav-link", function () {
         var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
-        var IdGrupo = $("#barra #grupos").val();
-        var IdPlanMateria = $("#barra #grupos option:selected").attr("idplanmateria");
-        var Materia = $("#barra #grupos option:selected").attr("materia");
-
+        var IdGrupo = $(this).attr("IdGrupo");
+        var IdPlanMateria = $(this).attr("IdPlanMateria");
+        var Materia = $(this).html();
+        console.log(IdInstructor, IdGrupo, IdPlanMateria, Materia);
         $.ajax({
             url: "ajax/ajax_ver_alumnos.php",
             method: "POST",
             async: true,
             data: {
+                IdInstructor: IdInstructor,
                 IdGrupo: IdGrupo,
-                IdInstructor: IdInstructor
+                IdPlanMateria: IdPlanMateria
             },
 
             success: function (response) {
                 var output = "";
-                if (response == 'Ingrese los datos de usuario para ver los grupos asignados' || response == 'No se ha podido consutar los alumnos registrados') {
+                if (response == 'Ingrese los datos de usuario para ver los grupos asignados' || 
+                    response == 'No se ha podido consutar los alumnos registrados') {
                     $.confirm({
                         title: 'Consultando alumnos de este grupo',
                         content: response,
