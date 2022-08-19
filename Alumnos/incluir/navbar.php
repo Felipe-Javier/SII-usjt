@@ -13,9 +13,9 @@
       <li class="nav-item">
         <a class="nav-link <?php echo $subir_calificaciones; ?>" href="Boleta_Calificaciones.php">Boleta de Calificaciones</a>
       </li>
-      <li class="nav-item ">
+      <!--<li class="nav-item ">
         <a class="nav-link" href="#">otro boton </a>
-      </li>
+      </li>-->
     </ul>
 
     <ul class="navbar-nav ml-auto text-center">

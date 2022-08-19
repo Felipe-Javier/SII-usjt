@@ -24,6 +24,7 @@
                 $_SESSION['active'] = true;
                 $_SESSION['IdUsuario'] = $data->IdUsuario;
                 if ($data->Rol == 'ALUMNO') {
+                    $_SESSION['Alumno'] = $data->Alumno;
                     $_SESSION['Usuario'] = $data->Usuario;
                     $_SESSION['Rol'] = $data->Rol;
                 } elseif ($data->Rol == 'DOCENTE') {
