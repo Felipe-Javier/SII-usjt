@@ -45,4 +45,19 @@
 
 .table-periodo .tbody-periodo a.periodo {
 	text-decoration: none;
+	color: #333;
+	height: 40px;
+	width: 100%;
+	padding: 12px;
 }
+
+.table-periodo .tbody-periodo td:hover {
+	background-color: #e9ecef;
+}
+
+.table-periodo .tbody-periodo td{
+	height: 100%;
+	width: 100%;
+	padding: 0;
+}
+

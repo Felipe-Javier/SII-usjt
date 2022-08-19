@@ -35,7 +35,22 @@
             include("incluir/header.php");
             include("incluir/navbar.php");
         ?>
-        <div class="container mt-4 text-center" id="contenido">
+        
+        <div  class="row justify-content-center mt-4">
+            <div class="cuadroBienvenida col-sm-6 text-center p-5">
+                <p class="msjBienvenida">Bienvenido</p>
+                <p class="nomDocente" id="datos-usuario" 
+                        IdUsuario="<?php echo $_SESSION['IdUsuario'] ?>" 
+                        IdPersona="<?php echo $_SESSION['IdPersona'] ?>"
+                        IdInstructor="<?php echo $_SESSION['IdInstructor'] ?>">
+                        <?php echo $_SESSION['Empledo'] ?>
+                </p>
+            </div>
+        </div>
+
+    </body>
+</html>
+<!--<div class="container mt-4 text-center" id="contenido">
             <div class="row">
                 <div class="col-sm-12">
                     <h4>Bienvenido(a)</h4>
@@ -69,6 +84,4 @@
                     <p>A</p>
                 </div>
             </div>
-        </div>
-    </body>
-</html>
+        </div>-->

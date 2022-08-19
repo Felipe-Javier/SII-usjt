@@ -7,15 +7,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav text-center ml-auto" id="nav">
-      <li class="nav-item ">
+      <li class="nav-item">
         <a class="nav-link <?php echo $inicio; ?>" href="Inicio.php">Inicio </a>
       </li>
       <li class="nav-item">
         <a class="nav-link <?php echo $registrar_calificaciones; ?>" href="Registrar_Calificaciones.php">Registrar Calificaciones</a>
       </li>
-      <li class="nav-item ">
+      <!--<li class="nav-item ">
         <a class="nav-link" href="#">otro boton </a>
-      </li>
+      </li>-->
     </ul>
 
     <ul class="navbar-nav ml-auto text-center">

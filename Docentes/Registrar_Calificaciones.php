@@ -36,7 +36,7 @@
 	        include("incluir/header.php");
 	        include("incluir/navbar.php");
 	    ?>
-		<div class="container-fluid" id="contenido-barra" >
+		<!--<div class="container-fluid" id="contenido-barra" >
 	  		<div class="row pt-3 pb-3" id="barra">
 	    		<div class="col text-left">
 	    			<span class="text-bold">Docente: 
@@ -55,7 +55,7 @@
 					</select>
 				</div>-->
 	  		</div>
-		</div>
+		</div> --> 
 	    <div class="container-fluid mt-3" id="contenido-cuerpo">
 	    	<div class="row">
 				<div class="col-sm-3">
