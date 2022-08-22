@@ -50,14 +50,13 @@ body {
 	font-weight: bold;
 	font-size: 13px;
 	color: #FFFFFF !important;
-	/*color: #333 !important;*/
 	text-transform: uppercase;
 	background: #0064a7;
 	padding: 1rem !important;
 }
 
 .navbar a.active {
-	color: #000 !important;
+	color: #333 !important;
 	height: 100%;
 	background-color:rgba(228, 223, 222,1.0);
 	border-radius: 2px;
@@ -65,7 +64,7 @@ body {
 
 
 .no-hover a{
-	color: #000;
+	color: #333 !important;
 	background: #fff;
 }
 
@@ -101,8 +100,3 @@ a.dropdown-item {
 	margin-top: 0px;
 }
 
-.submenu {
-	background-color: #FFFFFF !important;
-	color: #000 !important;
-	z-index: 100 !important;
-}
