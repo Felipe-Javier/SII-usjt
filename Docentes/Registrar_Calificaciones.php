@@ -46,14 +46,6 @@
 	    				</span>
 	    			</span>
 	    		</div>
-	    		<!--<div class="col text-right">
-					<span class="text-bold">Grupo:</span>
-	    		</div>
-				<div class="mr-2">
-					<select name="" id="grupos" class="custom-select custom-select-sm">
-						<option value="" selected="true" disabled>-- Seleccione --</option>
-					</select>
-				</div>-->
 	  		</div>
 		</div> --> 
 	    <div class="container-fluid mt-3" id="contenido-cuerpo">
