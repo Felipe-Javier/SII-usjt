@@ -18,11 +18,11 @@
       </li>-->
     </ul>
     <ul class="navbar-nav ml-auto text-center">
-      <li class="nav-item dropdown ml-auto mr-auto">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="icon-user fas fa-user mr-2"></i>Bienvenido!,<span class="ml-2"><?php echo $_SESSION['Rol']; ?></span>
+      <li class="dropdown nav-item  ml-auto mr-auto ">
+        <a class="nav-link dropdown-toggler dropdown-toggle" href="#" role="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false"  aria-label="Toggle navigation">
+          <i class="icon-user fas fa-user "></i>Bienvenido!, <?php echo $_SESSION['Rol'] ?>
         </a>
-        <div class="no-hover collapse dropdown-menu" aria-labelledby="navbarDropdown" >
+        <div class="no-hover dropdown-menu" id="navbarDropdown" role="menu" aria-labelledby="navbarDropdown" aria-expanded="false">
           <a class="dropdown-item text-center" href="../Login/ajax/ajax_cerrar_sesion.php">Cerrar Sesion</a>
         </div>
       </li>
