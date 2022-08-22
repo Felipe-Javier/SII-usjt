@@ -43,53 +43,38 @@
 
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $output .= 
-                '<tr>
+                    '<tr>
                         <td class="th-td-mat">'.$row['MATRICULA'].'</td>
                         <td class="th-td-nom">'.$row['NOMBREALUMNO'].'</td>
-                        <td class="th-td-p1 td-data" IdTipoCorte="2842">
+                        <td class="th-td-p1 td-data" IdTipoCorte="">
                             <input type="number" min="0" max="100" class="form-control form-control-sm text-center input-cal" 
                               name="Cal_Par1_A1" id="Cal_Par1_A1" value="'.$row['PARCIAL1'].'" IdRelGrupoAlumno="'.$row['IDRELGRUPOALUMNO'].'" 
-                              IdTipoCorte="2842">
+                              IdTipoCorte="">
                             <div id="filters" style="margin-top: 5px;">
-                            <select name="" id="" class="custom-select custom-select-sm tipo-cal" IdTipoCorte="2842">
-                                <option value="">-- Tipo de evaluacion --</option>
-                                <option value="4988" >Ordinario</option>
-                                <option value="4987">ExtraOrdinario</option>
-                                <option value="4990">Repetición</option>
-                                <option value="4991">Equivalencia</option>
-                                <option value="4989">No Aprobo</option>
-                            </select>
-                        </div>
-                        </td>
-                        <td class="th-td-p2 td-data" IdTipoCorte="2843">
-                            <input type="number" min="0" max="100" class="form-control form-control-sm text-center input-cal"
-                            name="Cal_Par1_A1" id="Cal_Par1_A1" value="'.$row['PARCIAL2'].'" IdRelGrupoAlumno="'.$row['IDRELGRUPOALUMNO'].'"
-                            IdTipoCorte="2843">
-                            <div id="filters" style="margin-top: 5px;">
-                                <select name="" id="" class="custom-select custom-select-sm tipo-cal" IdTipoCorte="2843">
+                                <select name="" id="" class="custom-select custom-select-sm tipo-cal" IdTipoCorte="" TipoCal="'.$row['TIPOCALIFICACION1'].'">
                                     <option value="">-- Tipo de evaluacion --</option>
-                                    <option value="4988" >Ordinario</option>
-                                    <option value="4987" >ExtraOrdinario</option>
-                                    <option value="4990">Repetición</option>
-                                    <option value="4991">Equivalencia</option>
-                                    <option value="4989">No Aprobo</option>
                                 </select>
                             </div>
                         </td>
-                        <td class="th-td-p3 td-data" IdTipoCorte="2844">
+                        <td class="th-td-p2 td-data" IdTipoCorte="">
+                            <input type="number" min="0" max="100" class="form-control form-control-sm text-center input-cal"
+                            name="Cal_Par1_A1" id="Cal_Par1_A1" value="'.$row['PARCIAL2'].'" IdRelGrupoAlumno="'.$row['IDRELGRUPOALUMNO'].'"
+                            IdTipoCorte="">
+                            <div id="filters" style="margin-top: 5px;">
+                                <select name="" id="" class="custom-select custom-select-sm tipo-cal" IdTipoCorte="" TipoCal="'.$row['TIPOCALIFICACION2'].'">
+                                    <option value="">-- Tipo de evaluacion --</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td class="th-td-p3 td-data" IdTipoCorte="">
                             <input type="number" min="0" max="100" class="form-control form-control-sm text-center input-cal"
                              name="Cal_Par1_A1" id="Cal_Par1_A1" value="'.$row['FINAL'].'" IdRelGrupoAlumno="'.$row['IDRELGRUPOALUMNO'].'"
-                             IdTipoCorte="2844">
+                             IdTipoCorte="">
                             <div id="filters" style="margin-top: 5px;">
-                            <select name="" id="" class="custom-select custom-select-sm tipo-cal" IdTipoCorte="2844">
-                                <option value="">-- Tipo de evaluacion --</option>
-                                <option value="4988">Ordinario</option>
-                                <option value="4987">ExtraOrdinario</option>
-                                <option value="4990">Repetición</option>
-                                <option value="4991">Equivalencia</option>
-                                <option value="4989">No Aprobo</option>
-                            </select>
-                        </div>
+                                <select name="" id="" class="custom-select custom-select-sm tipo-cal" IdTipoCorte="" TipoCal="'.$row['TIPOCALIFICACION3'].'">
+                                    <option value="">-- Tipo de evaluacion --</option>
+                                </select>
+                            </div>
                         </td>
                     </tr>';
                 }

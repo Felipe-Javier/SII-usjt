@@ -68,20 +68,6 @@
 			}
 		}
 
-	 	public function consultar_grupos ($IdInstructor, $IdPersona) {
-			try {	
-			    $query = "EXEC spTraerGruposPorDocente ?, ?";
-				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-				$result->bindValue(1, $IdInstructor, PDO::PARAM_INT);
-				$result->bindValue(2, $IdPersona, PDO::PARAM_INT);
-				$result->execute();
-
-				return $result;
-			} catch(PDOException $exp) {
-				return false;
-			}
-		}
-
 		public function consultar_alumnos ($IdInstructor, $IdGrupo, $IdPlanMateria) {
 			try {
 				$query = "EXEC spTraerAlumnosPorGrupoMateriaDocente ?, ?, ?";
@@ -89,6 +75,30 @@
 				$result->bindValue(1, $IdInstructor, PDO::PARAM_INT);
 				$result->bindValue(2, $IdGrupo, PDO::PARAM_INT);
 				$result->bindValue(3, $IdPlanMateria, PDO::PARAM_INT);
+				$result->execute();
+					
+				return $result;
+			} catch(PDOException $exp) {
+				return false;
+			}
+		}
+
+		public function consultar_CatTipoCorte () {
+			try {
+				$query = "EXEC spTraerCatTipoCorte";
+				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+				$result->execute();
+					
+				return $result;
+			} catch(PDOException $exp) {
+				return false;
+			}
+		}
+
+		public function consultar_CatTipoCalificacion () {
+			try {
+				$query = "EXEC spTraerCatTipoCalificacion";
+				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 				$result->execute();
 					
 				return $result;

@@ -19,7 +19,6 @@ $(document).ready(function () {
             },
 
             success: function (response) {
-                console.log(response);
                 var output = "";
                 if (response == 'Error al consultar los grupos asignados' ||
                     response == 'No se ha podido consultar los grupos asignados') {
@@ -51,7 +50,6 @@ $(document).ready(function () {
     setTimeout(function() {
         $("ul .nav-item .ciclos.nav-link").each(function() {
             var Año = $(this).attr('IdAño');
-            console.log(Año);
             load_cuatrimestres_por_años(IdPersona, IdInstructor, Año);
         });
     }, 400);
@@ -69,7 +67,6 @@ $(document).ready(function () {
             },
 
             success: function (response) {
-                console.log(response);
                 var output = "";
                 if (response == 'Error al consultar los grupos asignados' ||
                     response == 'No se ha podido consultar los periodos cargados') {
@@ -99,7 +96,6 @@ $(document).ready(function () {
     setTimeout(function() {
         $("ul .nav-item .nav-item .cuatrimestres.nav-link").each(function() {
             var IdCuatrimestre = $(this).attr('IdCuatrimestre');
-            console.log(IdCuatrimestre);
             load_grupos_por_cuatrimestre(IdPersona, IdInstructor, IdCuatrimestre);
         });
     }, 500);
@@ -117,7 +113,6 @@ $(document).ready(function () {
             },
 
             success: function (response) {
-                console.log(response);
                 var output = "";
                 if (response == 'Error al consultar los grupos asignados' ||
                     response == 'No se ha podido consultar los grupos asignados') {
@@ -147,7 +142,6 @@ $(document).ready(function () {
     setTimeout(function() {
         $("ul .nav-item .nav-item .grupos.nav-link").each(function() {
             var IdGrupo = $(this).attr('IdGrupo');
-            console.log(IdGrupo);
             load_materias_por_grupos(IdPersona, IdInstructor, IdGrupo);
         });
     }, 600);
@@ -165,7 +159,6 @@ $(document).ready(function () {
             },
 
             success: function (response) {
-                console.log(response);
                 var output = "";
                 if (response == 'Error al consultar los grupos asignados' || 
                     response == 'No se ha podido consultar las materias asignadas') {
@@ -216,7 +209,7 @@ $(document).ready(function () {
         var IdGrupo = $(this).attr("IdGrupo");
         var IdPlanMateria = $(this).attr("IdPlanMateria");
         var Materia = $(this).html();
-        console.log(IdInstructor, IdGrupo, IdPlanMateria, Materia);
+        
         $.ajax({
             url: "ajax/ajax_ver_alumnos.php",
             method: "POST",
@@ -257,6 +250,8 @@ $(document).ready(function () {
                         $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria", IdPlanMateria);
                         $("#contenido-cuerpo #Nombre_Materia").html(Materia);
                     }
+                    load_CatTipoCorte();
+                    load_CatTipoCalificacion();
                 }
             },
 
@@ -265,6 +260,193 @@ $(document).ready(function () {
             }
         });
     });
+
+    function load_CatTipoCorte() {
+        $.ajax({
+            url: "ajax/ajax_ver_CatTipoCorte_CatTipoCalificacion.php",
+            method: "POST",
+            async: true,
+            data: {
+                Action: 'VerCatTipoCorte'
+            },
+
+            success: function (response) {
+                console.log(response);
+                var output = "";
+                if (response == 'Error al realizar la consulta' || response == 'No se ha podido realizar la consulta') {
+                    $.confirm({
+                        title: 'Consultando los tipos de corte',
+                        content: response,
+                        type: 'red',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-danger',
+                                action: function () {
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    if (response == 'No hay tipos de corte para mostrar') {
+                        $.confirm({
+                            title: 'Consultando los tipos de corte',
+                            content: response,
+                            type: 'orange',
+                            typeAnimated: true,
+                            draggable: true,
+                            dragWindowBorder: false,
+                            buttons: {
+                                aceptar: {
+                                    text: 'Aceptar',
+                                    btnClass: 'btn btn-warning',
+                                    action: function () {
+                                        $(this).fadeOut();
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        var array = [];
+                        var info = JSON.parse(response);
+                        array = info;
+                        var numRows = array.length;
+                        $("body #contenido-cuerpo #table-subir-cal tbody").each(function() {
+                            for (var i=0; i<numRows; i++) {
+                                output = array[i].IdElementoInternoDetalle;
+                                if (output == 2842) {
+                                    $(this)+$(" .th-td-p1").attr('IdTipocorte',output);
+                                    $(this)+$(" .th-td-p1 .input-cal").attr('IdTipocorte',output);
+                                    $(this)+$(" .th-td-p1 .tipo-cal").attr('IdTipocorte',output);
+                                } else {
+                                    if (output == 2843) {
+                                        $(this)+$(" .th-td-p2").attr('IdTipocorte',output);
+                                        $(this)+$(" .th-td-p2 .input-cal").attr('IdTipocorte',output);
+                                        $(this)+$(" .th-td-p2 .tipo-cal").attr('IdTipocorte',output);
+                                    } else {
+                                        if (output == 2844) {
+                                            $(this)+$(" .th-td-p3").attr('IdTipocorte',output);
+                                            $(this)+$(" .th-td-p3 .input-cal").attr('IdTipocorte',output);
+                                            $(this)+$(" .th-td-p3 .tipo-cal").attr('IdTipocorte',output);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            },
+
+            error: function (error) {
+                $.confirm({
+                    title: 'Consultando los tipos de corte',
+                    content: 'Error al realizar la consulta. '+error,
+                    type: 'orange',
+                    typeAnimated: true,
+                    draggable: true,
+                    dragWindowBorder: false,
+                    buttons: {
+                        aceptar: {
+                            text: 'Aceptar',
+                            btnClass: 'btn btn-warning',
+                            action: function () {
+                                $(this).fadeOut();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function load_CatTipoCalificacion() {
+        $.ajax({
+            url: "ajax/ajax_ver_CatTipoCorte_CatTipoCalificacion.php",
+            method: "POST",
+            async: true,
+            data: {
+                Action: 'VerCatTipoCalificacion'
+            },
+
+            success: function (response) {
+                var output = "";
+                if (response == 'Error al realizar la consulta' || response == 'No se ha podido realizar la consulta') {
+                    $.confirm({
+                        title: 'Consultando los tipos de calificacion',
+                        content: response,
+                        type: 'red',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-danger',
+                                action: function () {
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    if (response == 'No hay tipos de corte para mostrar') {
+                        $.confirm({
+                            title: 'Consultando los tipos de calificacion',
+                            content: response,
+                            type: 'orange',
+                            typeAnimated: true,
+                            draggable: true,
+                            dragWindowBorder: false,
+                            buttons: {
+                                aceptar: {
+                                    text: 'Aceptar',
+                                    btnClass: 'btn btn-warning',
+                                    action: function () {
+                                        $(this).fadeOut();
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        var array = [];
+                        var info = JSON.parse(response);
+                        array = info;
+                        var numRows = array.length;
+                        $("body #contenido-cuerpo #table-subir-cal .tipo-cal").each(function() {
+                            for (var i=0; i<numRows; i++) {
+                                output = '<option value="'+array[i].IdElementoInternoDetalle+'">'+array[i].ElementoCatalogo+'</option>';
+                                $(this).append(output);
+                            }
+                        });
+                    }   
+                }
+            },
+
+            error: function (error) {
+                $.confirm({
+                    title: 'Consultando los tipos de calificacion',
+                    content: 'Error al realizar la consulta. '+error,
+                    type: 'orange',
+                    typeAnimated: true,
+                    draggable: true,
+                    dragWindowBorder: false,
+                    buttons: {
+                        aceptar: {
+                            text: 'Aceptar',
+                            btnClass: 'btn btn-warning',
+                            action: function () {
+                                $(this).fadeOut();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    }
 
     $("body").on("click", "#contenido-cuerpo #result #btn-reg-cal", function (event) {
         event.preventDefault();
