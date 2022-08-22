@@ -21,7 +21,7 @@
             
             if ($count > 0) {
                 
-                $output .= '<div class="row">
+                $output .= '<div class="row ">
                     <div class="col text-left">
                         <span class="text-bold">Lista de calificaciones</span>
                     </div>
@@ -29,7 +29,8 @@
                         <span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia" IdPlanMateria=""></span></span>
                     </div>
                 </div>
-                <table class="table table-bordered text-center table-responsive" id="table-subir-cal">
+                <div class="">
+                <table class=" table table-bordered text-center table-responsive" id="table-subir-cal">
                     <thead class="thead-subir-cal text-light">
                         <tr>
                             <th class="th-td-mat">Matricula</th>
@@ -96,6 +97,7 @@
                 
                 $output .= '</tbody>
                             </table>
+                            </div>
                             <div class="row justify-content-center">
                                 <div class="col-sm-3">
                                     <button class="btn btn-primary btn-block" id="btn-reg-cal">Guardar</button>

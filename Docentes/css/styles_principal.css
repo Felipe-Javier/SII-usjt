@@ -65,7 +65,17 @@ body {
 
 .no-hover a{
 	color: #000;
-	background: #f2f2f2;
+	background: #fff;
+}
+
+.no-hover {
+	margin-top: -10px;
+	margin-left: 30px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+}
+
+.no-hover a:hover {
+	color: #0064a7 !important;
 }
 
 .navbar-light{
@@ -87,6 +97,7 @@ body {
 a.dropdown-item {
 	height: 30px;
 	padding: 7px !important;
+	margin-top: 0px;
 }
 
 

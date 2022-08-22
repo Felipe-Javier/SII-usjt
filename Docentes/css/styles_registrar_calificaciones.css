@@ -32,6 +32,10 @@
 	font-size: 15px;
 }
 
+
+/* TABLA */
+
+
 #contenido-cuerpo #table-grupos .thead-grupos {
 	background-color: rgba(0, 100, 167,.9);
 }
@@ -47,10 +51,17 @@
 
 #contenido-cuerpo #table-subir-cal .thead-subir-cal {
 	background-color: rgba(0, 100, 167,.9);
+	width: 100%;
+	display: table;
 }
 
 #contenido-cuerpo #table-subir-cal .tbody-subir-cal {
 	background-color: #EEEDED;
+	height: 70vh;
+	overflow-y: auto;
+	display: block;
+	width: 100%;
+
 }
 
 #contenido-cuerpo #table-subir-cal .th-td-mat, #contenido-cuerpo #table-subir-cal .th-td-p1, 
