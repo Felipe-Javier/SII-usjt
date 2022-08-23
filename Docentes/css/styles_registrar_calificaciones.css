@@ -45,7 +45,7 @@
 }
 
 #contenido-cuerpo #table-subir-cal {
-	color: #17202A;
+	color: #333;
 	text-transform: uppercase;
 }
 
@@ -54,6 +54,7 @@
 	width: 100%;
 	display: table;
 }
+
 
 #contenido-cuerpo #table-subir-cal .tbody-subir-cal {
 	background-color: #EEEDED;
@@ -101,7 +102,7 @@
 	height: 40px;
 	width: 100%;
 	font-family: sans-serif;
-	color: #fff;
+	color: #f2f2f2;
 	font-weight: bold;
 	font-size: 15px;
 	line-height: 20px;
@@ -118,18 +119,18 @@
 }
 
 .sidebar ul .nav-link {
-	color: #17202A;
+	color: #333;
 }
 
 .sidebar .nav-item .nav-link:hover {
 	background-color: #0064a7;
-	color: #fff;
+	color: #f2f2f2;
 	
 }
 
 ul .nav-link.selected {
 	background-color: #0064a7;
-	color: #FFF;
+	color: #f2f2f2;
 }
 
 

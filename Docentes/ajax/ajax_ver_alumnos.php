@@ -29,8 +29,8 @@
                         <span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia" IdPlanMateria=""></span></span>
                     </div>
                 </div>
-                <div class="">
-                <table class=" table table-bordered text-center table-responsive" id="table-subir-cal">
+                <div class=" table-responsive">
+                <table class=" table table-bordered text-center" id="table-subir-cal">
                     <thead class="thead-subir-cal text-light">
                         <tr>
                             <th class="th-td-mat">Matricula</th>
