@@ -460,7 +460,7 @@ $(document).ready(function () {
         var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
 
         $("#contenido-cuerpo #table-subir-cal tbody .th-td-mat").each(function () {
-            if ($(this).html != "") {
+            if ($(this).html() != "") {
                 Matriculas.push($(this).html());
             }
         });

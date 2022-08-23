@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class=" table-responsive">
-                <table class=" table table-bordered text-center" id="table-subir-cal">
+                <table class=" table text-center" id="table-subir-cal">
                     <thead class="thead-subir-cal text-light">
                         <tr>
                             <th class="th-td-mat">Matricula</th>
