@@ -136,7 +136,13 @@
                                                 data-target="#MG-'.$row_materias_grupo['IDPLANMATERIA'].'" 
                                                 aria-controls="MG-'.$row_materias_grupo['IDPLANMATERIA'].'" aria-expanded="false"
                                                 aria-label="Toggle navigation" IdPlanMateria="'.$row_materias_grupo['IDPLANMATERIA'].'"
-                                                IdGrupo="'.$row_materias_grupo['IDGRUPO'].'">'
+                                                IdGrupo="'.$row_materias_grupo['IDGRUPO'].'"
+                                                FIE_P1="'.$row_materias_grupo['FECHAINICIOEVALUACION_PARCIAL1'].'"
+                                                FTE_P1="'.$row_materias_grupo['FECHATERMINOEVALUACION_PARCIAL1'].'"
+                                                FIE_P2="'.$row_materias_grupo['FECHAINICIOEVALUACION_PARCIAL2'].'"
+                                                FTE_P2="'.$row_materias_grupo['FECHATERMINOEVALUACION_PARCIAL2'].'"
+                                                FIE_F="'.$row_materias_grupo['FECHAINICIOEVALUACION_FINAL'].'"
+                                                FTE_F="'.$row_materias_grupo['FECHATERMINOEVALUACION_FINAL'].'">'
                                                 .$row_materias_grupo['MATERIA'].'</a>
                                             </li>';
                             }

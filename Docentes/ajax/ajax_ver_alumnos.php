@@ -45,7 +45,9 @@
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $output .= 
                     '<tr>
-                        <td class="th-td-mat">'.$row['MATRICULA'].'</td>
+                        <td class="th-td-mat">
+                            <label class="mat" matricula="'.$row['MATRICULA'].'">'.$row['MATRICULA'].'</label>
+                        </td>
                         <td class="th-td-nom">'.$row['NOMBREALUMNO'].'</td>
                         <td class="th-td-p1 td-data" IdTipoCorte="">
                             <input type="number" min="0" max="100" class="form-control form-control-sm text-center input-cal" 
