@@ -6,7 +6,7 @@
 
 #cont-pag h6.titulo-1 {
 	background-color: rgba(0, 100, 167,.9);
-	color: #17202A;
+	color: #333;
 }
 
 #cont-pag button {
@@ -15,12 +15,12 @@
 
 .table-periodo {
 	background-color: rgba(0, 100, 167,.9);
-	color: #17202A;
+	color: #333;
 	font-weight:lighter;
 }
 
 .table-boleta {
-	color: #17202A;
+	color: #333;
 	font-weight:lighter;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .table-periodo .tbody-periodo, .table-boleta .tbody-boleta {
-	background-color: #FFFFFF;
+	background-color: #f2f2f2;
 }
 
 .table-boleta .thead-boleta #titulo-table-boleta {
@@ -39,7 +39,7 @@
 }
 
 .table-boleta .thead-boleta #titulo-table-boleta h6.titulo-2 {
-	color: #17202A;
+	color: #333;
 	font-weight:bold;
 }
 

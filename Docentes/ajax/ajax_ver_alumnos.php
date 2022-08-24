@@ -22,15 +22,15 @@
             if ($count > 0) {
                 
                 $output .= '<div class="row ">
-                    <div class="col text-left">
+                    <div class="col-sm-6 mb-2 text-center">
                         <span class="text-bold">Lista de calificaciones</span>
                     </div>
-                    <div class="col text-right">
-                        <span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia" IdPlanMateria=""></span></span>
+                    <div class="col-sm-6 mb-2 text-center">
+                        <span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia" IdPlanMateria=""></span>
                     </div>
                 </div>
-                <div class="">
-                <table class=" table table-bordered text-center table-responsive" id="table-subir-cal">
+                <div class=" table-responsive">
+                <table class=" table text-center" id="table-subir-cal">
                     <thead class="thead-subir-cal text-light">
                         <tr>
                             <th class="th-td-mat">Matricula</th>
@@ -95,10 +95,10 @@
             } else {
                 $output .= 
                 '<div class="row">
-                    <div class="col text-left">
+                    <div class="col-sm-6 mb-2 text-center">
                         <span class="text-bold">Lista de calificaciones</span>
                     </div>
-                    <div class="col text-right">
+                    <div class="col-sm-6 mb-2 text-center">
                         <span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia"></span></span>
                     </div>
                 </div>

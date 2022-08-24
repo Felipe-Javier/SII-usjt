@@ -36,7 +36,7 @@
         include("incluir/header.php");
         include("incluir/navbar.php");
     ?>
-    <div  class="row justify-content-center mt-4">
+    <div class="row justify-content-center m-0 mt-4 mb-4">   
         <div class="cuadroBienvenida col-sm-6 text-center p-5">
             <p class="msjBienvenida">Bienvenido</p>
             <p class="nomAlumno"> 
@@ -50,37 +50,3 @@
     </div>
 </body>
 </html>    
-<!--<div class="container mt-4 text-center" id="contenido">
-        <div class="row">
-            <div class="col-sm-12">
-                <h4>Bienvenido(a)</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <h4>Alumno(a): </h4>
-            </div> 
-            <div class="col-sm-12">
-                <p>Luis Cabrera Benito</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <h4>Matrícula: </h4>
-            </div>
-            <div class="col-sm-12">
-                <p>12345</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <h4>Grado:</h4>
-                <p>4</p>
-            </div>
-
-            <div class="col-sm-6">
-                <h4>Grupo:</h4>
-                <p>A</p>
-            </div>
-        </div>
-    </div>-->

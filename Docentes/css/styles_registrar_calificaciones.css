@@ -45,7 +45,7 @@
 }
 
 #contenido-cuerpo #table-subir-cal {
-	color: #17202A;
+	color: #333;
 	text-transform: uppercase;
 }
 
@@ -55,10 +55,11 @@
 	display: table;
 }
 
+
 #contenido-cuerpo #table-subir-cal .tbody-subir-cal {
 	background-color: #EEEDED;
 	height: 70vh;
-	overflow-y: auto;
+	overflow-y: overlay;
 	display: block;
 	width: 100%;
 
@@ -73,16 +74,16 @@
 	width: 40%;
 }
 
-#contenido-cuerpo #table-subir-cal td.th-td-mat, #contenido-cuerpo #table-subir-cal td.th-td-nom{
-	padding: 20px 0px 0px 0px;
-}
-
 #contenido-cuerpo #table-subir-cal td input, #contenido-cuerpo #table-subir-cal td select {
 	border: solid 2px #0c5286;
 	border-radius: 5px;
-	/*font-size: 11px;*/
 	text-transform: uppercase;
 }
+
+.table td {
+	vertical-align: middle;
+}
+
 
 .msj{
 	font-weight: bold;
@@ -90,6 +91,8 @@
 	color: #0064a7;
 	line-height: 20px;
 }
+
+/* SIDEBAR */
 
 .ciclos {
 	font-size: 15px;
@@ -101,12 +104,16 @@
 	height: 40px;
 	width: 100%;
 	font-family: sans-serif;
-	color: #fff;
+	color: #f2f2f2;
 	font-weight: bold;
 	font-size: 15px;
 	line-height: 20px;
 	padding-top: 10px;
 	
+}
+
+.sidebar {
+	overflow: overlay;
 }
 
 .sidebar .has-submenu .submenu{
@@ -118,18 +125,18 @@
 }
 
 .sidebar ul .nav-link {
-	color: #17202A;
+	color: #333;
 }
 
 .sidebar .nav-item .nav-link:hover {
 	background-color: #0064a7;
-	color: #fff;
+	color: #f2f2f2;
 	
 }
 
 ul .nav-link.selected {
 	background-color: #0064a7;
-	color: #FFF;
+	color: #f2f2f2;
 }
 
 
