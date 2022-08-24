@@ -57,7 +57,7 @@
 				</div>  
 				
 	    		<div class="col-sm-9">
-	    			<div class="modal-content" id="result">
+	    			<div class="modal-content mb-4" id="result">
 	    				<p class="msj text-center">selecciona un grupo</p>
 					</div>
 				</div>

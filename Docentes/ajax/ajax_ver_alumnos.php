@@ -22,11 +22,11 @@
             if ($count > 0) {
                 
                 $output .= '<div class="row ">
-                    <div class="col text-left">
+                    <div class="col-sm-6 mb-2 text-center">
                         <span class="text-bold">Lista de calificaciones</span>
                     </div>
-                    <div class="col text-right">
-                        <span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia" IdPlanMateria=""></span></span>
+                    <div class="col-sm-6 mb-2 text-center">
+                        <span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia" IdPlanMateria=""></span>
                     </div>
                 </div>
                 <div class=" table-responsive">
@@ -93,10 +93,10 @@
             } else {
                 $output .= 
                 '<div class="row">
-                    <div class="col text-left">
+                    <div class="col-sm-6 mb-2 text-center">
                         <span class="text-bold">Lista de calificaciones</span>
                     </div>
-                    <div class="col text-right">
+                    <div class="col-sm-6 mb-2 text-center">
                         <span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia"></span></span>
                     </div>
                 </div>
