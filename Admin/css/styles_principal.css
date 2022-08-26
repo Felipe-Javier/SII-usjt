@@ -1,0 +1,102 @@
+body {
+	font-family: sans-serif;
+	font-size: 12px;
+	background-color: rgba(186, 186, 186, .8);
+	color: #333;
+}
+
+/* HEADER */
+
+#contenido h4 {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: sans-serif;
+	color: #0064a7;
+	font-size: 14px;
+}
+
+#logo-tamps img {
+    width: 130px;
+	height: 110px;
+}
+
+#logo-usjt img {
+	width: 140px;
+	height: 110px;
+}
+
+
+#titulos-sistema {
+	font-family: sans-serif;
+}
+
+#titulos-sistema h6 {
+	font-weight: bold;
+	font-size: 14px;
+	color: #333;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* NAVBAR*/
+
+.navbar {
+	background-color: #0064a7;
+	padding: 0 16px !important; 
+}
+
+.navbar a {
+	height: 50px;
+	font-family:sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	color: #f2f2f2 !important;
+	text-transform: uppercase;
+	background: #0064a7;
+	padding: 1rem !important;
+}
+
+.navbar a.active {
+	color: #333 !important;
+	height: 100%;
+	background-color:rgba(228, 223, 222,1.0);
+	border-radius: 2px;
+}
+
+
+.no-hover a{
+	color: #333 !important;
+	background: #f2f2f2;
+}
+
+.no-hover {
+	margin-top: -10px;
+	margin-left: 30px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+}
+
+.no-hover a:hover {
+	color: #0064a7 !important;
+}
+
+.navbar-light{
+	background-color: #0064a7;
+}
+
+.icon-user {
+	margin-right: 5px;
+}
+
+.fluid {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+a.dropdown-item {
+	height: 30px;
+	padding: 7px !important;
+	margin-top: 0px;
+}
