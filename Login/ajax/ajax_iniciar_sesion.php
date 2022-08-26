@@ -26,6 +26,7 @@
                 if ($data->Rol == 'ALUMNO') {
                     $_SESSION['Alumno'] = $data->Alumno;
                     $_SESSION['Usuario'] = $data->Usuario;
+                    //$_SESSION['ContraseniaTemp'] = $data->ContraseniaTemp;
                     $_SESSION['Rol'] = $data->Rol;
                 } elseif ($data->Rol == 'DOCENTE') {
                     $_SESSION['IdPersona'] = $data->IdPersona;

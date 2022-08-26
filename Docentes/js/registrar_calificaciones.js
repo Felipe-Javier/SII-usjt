@@ -467,7 +467,7 @@ $(document).ready(function () {
 
     function deshabilitar_habilitar_por_fechas(FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F) {
         $("body #contenido-cuerpo #table-subir-cal tbody tr").each(function() {
-            let DateTime = new Date();
+            let DateTime = new Date('2020-04-26 17:35:20.000');
             let mxDateTime = DateTime.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
 
             let DateTimeFIE_P1 = new Date(FIE_P1);
@@ -505,37 +505,6 @@ $(document).ready(function () {
         });
     }
 
-    /*$("body #contenido-cuerpo #table-subir-cal tbody").each(function() {
-        let DateTime = new Date();
-        let mxDateTime = DateTime.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-        console.log(mxDateTime);
-        if (mxDateTime > '23/8/2022, 10:18:01') {
-            $(this).find(".th-td-p2 .input-cal").attr('disabled', true);
-            $(this).find(".th-td-p2 .tipo-cal").attr('disabled', true);
-            $(this).find(".th-td-p3 .input-cal").attr('disabled', true);
-            $(this).find(".th-td-p3 .tipo-cal").attr('disabled', true);
-        }
-    });*/
-
-    /*setTimeout(function() {
-        console.log('Hola');
-        $("body #contenido-cuerpo #table-subir-cal tbody").each(function() {
-            let DateTime = new Date();
-            let mxDateTime = DateTime.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-            console.log(mxDateTime);
-            if (mxDateTime > '23/8/2022, 10:18:01') {
-                $(this)+$(" .th-td-p1 .input-cal").attr('disabled', 'true');
-                $(this)+$(" .th-td-p1 .tipo-cal").attr('disabled', 'true');
-            }
-        });
-    }, 250);
-
-    function loadDateTime() {
-        let DateTime = new Date();
-        let mxDateTime = DateTime.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-        return mxDateTime;
-    }*/
-
     $("body").on("click", "#contenido-cuerpo #result #btn-reg-cal", function (event) {
         event.preventDefault();
 
@@ -548,54 +517,150 @@ $(document).ready(function () {
         var IdUsuario = "";
         
         $("#contenido-cuerpo #table-subir-cal tbody tr").each(function () {
-            if ($(this).find(".th-td-mat .mat").attr("matricula") != "" && $(this).find("td .input-cal").val() != "" 
-                && $(this).find('td .input-cal[disabled=false]') && $(this).find("td .tipo-cal").val() != "" &&
-                $(this).find('td .tipo-cal[disabled=false]')) {
+            if ($(this).find(".th-td-mat .mat").attr("matricula") != "" && $(this).find(".th-td-p1 .input-cal").val() != "" 
+                && $(this).find('.th-td-p1 .input-cal').prop('disabled')==false && $(this).find(".th-td-p1 .tipo-cal").val() != "" &&
+                $(this).find('.th-td-p1 .tipo-cal').prop('disabled')==false) {
                 Matriculas.push($(this).find(".th-td-mat .mat").attr("matricula"));
-            }
-        });
-
-        $("#contenido-cuerpo #table-subir-cal tbody tr").each(function () {
-            if ($(this).find("td .input-cal").val() != "" && $(this).find("td .input-cal").attr("IdTipoCorte") == "2842" 
-                && $(this).find('td .input-cal[disabled=false]') && $(this).find("td .tipo-cal").val() != "" &&
-                $(this).find('td .tipo-cal[disabled=false]')) {
-                Calificaciones.push($(this).find("td .input-cal").val());
-                IdsRelsGruposAlumnos.push($(this).find("td .input-cal").attr("IdRelGrupoAlumno"));
-                IdsTiposCortes.push($(this).find("td .input-cal").attr("IdTipoCorte"));
             } else {
-                if ($(this).find("td .input-cal").val() != "" && $(this).find("td .input-cal").attr("IdTipoCorte") == "2843" 
-                    && $(this).find('td .input-cal[disabled=false]') && $(this).find("td .tipo-cal").val() != "" &&
-                    $(this).find('td .tipo-cal[disabled=false]')) {
-                    Calificaciones.push($(this).find("td .input-cal").val());
-                    IdsRelsGruposAlumnos.push($(this).find("td .input-cal").attr("IdRelGrupoAlumno"));
-                    IdsTiposCortes.push($(this).find("td .input-cal").attr("IdTipoCorte"));
+                if($(this).find(".th-td-mat .mat").attr("matricula") != "" && $(this).find(".th-td-p2 .input-cal").val() != "" 
+                    && $(this).find('.th-td-p2 .input-cal').prop('disabled')==false && $(this).find(".th-td-p2 .tipo-cal").val() != "" &&
+                    $(this).find('.th-td-p2 .tipo-cal').prop('disabled')==false) {
+                    Matriculas.push($(this).find(".th-td-mat .mat").attr("matricula"));
                 } else {
-                    if ($(this).find("td .input-cal").val() != "" && $(this).find("td .input-cal").attr("IdTipoCorte") == "2844"
-                        && $(this).find('td .input-cal[disabled=false]') && $(this).find("td .tipo-cal").val() != "" &&
-                        $(this).find('td .tipo-cal[disabled=false]')) {
-                        Calificaciones.push($(this).find("td .input-cal").val());
-                        IdsRelsGruposAlumnos.push($(this).find("td .input-cal").attr("IdRelGrupoAlumno"));
-                        IdsTiposCortes.push($(this).find("td .input-cal").attr("IdTipoCorte"));
+                    if($(this).find(".th-td-mat .mat").attr("matricula") != "" && $(this).find(".th-td-p3 .input-cal").val() != "" 
+                        && $(this).find('.th-td-p3 .input-cal').prop('disabled')==false && $(this).find(".th-td-p3 .tipo-cal").val() != "" &&
+                        $(this).find('.th-td-p3 .tipo-cal').prop('disabled')==false) {
+                        Matriculas.push($(this).find(".th-td-mat .mat").attr("matricula"));
                     }
                 }
             }
         });
 
         $("#contenido-cuerpo #table-subir-cal tbody tr").each(function () {
-            if ($(this).find("td .input-cal").val() != "" && $(this).find('td .input-cal[disabled=false]') &&
-                $(this).find("td .tipo-cal").val() != "" && $(this).find("td .tipo-cal").attr("IdTipoCorte") == "2842" && 
-                $(this).find('td .tipo-cal[disabled=false]')) {
-                IdsTiposCalificaciones.push($(this).find("td .tipo-cal").val());
+            if ($(this).find(".th-td-p1 .input-cal").val() != "" && $(this).find(".th-td-p1 .input-cal").attr("IdTipoCorte") == "2842" 
+                && $(this).find('.th-td-p1 .input-cal').prop('disabled')==false && $(this).find(".th-td-p1 .tipo-cal").val() != "" &&
+                $(this).find('.th-td-p1 .tipo-cal').prop('disabled')==false) {
+                Calificaciones.push($(this).find(".th-td-p1 .input-cal").val());
+                IdsRelsGruposAlumnos.push($(this).find(".th-td-p1 .input-cal").attr("IdRelGrupoAlumno"));
+                IdsTiposCortes.push($(this).find(".th-td-p1 .input-cal").attr("IdTipoCorte"));
             } else {
-                if ($(this).find("td .input-cal").val() != "" && $(this).find('td .input-cal[disabled=false]') &&
-                    $(this).find("td .tipo-cal").val() != "" && $(this).find("td .tipo-cal").attr("IdTipoCorte") == "2843" && 
-                    $(this).find('td .tipo-cal[disabled=false]')) {
-                    IdsTiposCalificaciones.push($(this).find("td .tipo-cal").val());
+                if ($(this).find(".th-td-p1 .input-cal").val() != "" && $(this).find(".th-td-p1 .input-cal").attr("IdTipoCorte") == "2843" 
+                    && $(this).find('.th-td-p1 .input-cal').prop('disabled')==false && $(this).find(".th-td-p1 .tipo-cal").val() != "" &&
+                    $(this).find('.th-td-p1 .tipo-cal').prop('disabled')==false) {
+                    Calificaciones.push($(this).find(".th-td-p1 .input-cal").val());
+                    IdsRelsGruposAlumnos.push($(this).find(".th-td-p1 .input-cal").attr("IdRelGrupoAlumno"));
+                    IdsTiposCortes.push($(this).find(".th-td-p1 .input-cal").attr("IdTipoCorte"));
                 } else {
-                    if ($(this).find("td .input-cal").val() != "" && $(this).find('td .input-cal[disabled=false]') &&
-                        $(this).find("td .tipo-cal").val() != "" && $(this).find("td .tipo-cal").attr("IdTipoCorte") == "2844" && 
-                        $(this).find('td .tipo-cal[disabled=false]')) {
-                        IdsTiposCalificaciones.push($(this).find("td .tipo-cal").val());
+                    if ($(this).find(".th-td-p1 .input-cal").val() != "" && $(this).find(".th-td-p1 .input-cal").attr("IdTipoCorte") == "2844"
+                        && $(this).find('.th-td-p1 .input-cal').prop('disabled')==false && $(this).find(".th-td-p1 .tipo-cal").val() != "" &&
+                        $(this).find('.th-td-p1 .tipo-cal').prop('disabled')==false) {
+                        Calificaciones.push($(this).find(".th-td-p1 .input-cal").val());
+                        IdsRelsGruposAlumnos.push($(this).find(".th-td-p1 .input-cal").attr("IdRelGrupoAlumno"));
+                        IdsTiposCortes.push($(this).find(".th-td-p1 .input-cal").attr("IdTipoCorte"));
+                    }
+                }
+            }
+
+            if ($(this).find(".th-td-p2 .input-cal").val() != "" && $(this).find(".th-td-p2 .input-cal").attr("IdTipoCorte") == "2842" 
+                && $(this).find('.th-td-p2 .input-cal').prop('disabled')==false && $(this).find(".th-td-p2 .tipo-cal").val() != "" &&
+                $(this).find('.th-td-p2 .tipo-cal').prop('disabled')==false) {
+                Calificaciones.push($(this).find(".th-td-p2 .input-cal").val());
+                IdsRelsGruposAlumnos.push($(this).find(".th-td-p2 .input-cal").attr("IdRelGrupoAlumno"));
+                IdsTiposCortes.push($(this).find(".th-td-p2 .input-cal").attr("IdTipoCorte"));
+            } else {
+                if ($(this).find(".th-td-p2 .input-cal").val() != "" && $(this).find(".th-td-p2 .input-cal").attr("IdTipoCorte") == "2843" 
+                    && $(this).find('.th-td-p2 .input-cal').prop('disabled')==false && $(this).find(".th-td-p2 .tipo-cal").val() != "" &&
+                    $(this).find('.th-td-p2 .tipo-cal').prop('disabled')==false) {
+                    Calificaciones.push($(this).find(".th-td-p2 .input-cal").val());
+                    IdsRelsGruposAlumnos.push($(this).find(".th-td-p2 .input-cal").attr("IdRelGrupoAlumno"));
+                    IdsTiposCortes.push($(this).find(".th-td-p2 .input-cal").attr("IdTipoCorte"));
+                } else {
+                    if ($(this).find(".th-td-p2 .input-cal").val() != "" && $(this).find(".th-td-p2 .input-cal").attr("IdTipoCorte") == "2844"
+                        && $(this).find('.th-td-p2 .input-cal').prop('disabled')==false && $(this).find(".th-td-p2 .tipo-cal").val() != "" &&
+                        $(this).find('.th-td-p2 .tipo-cal').prop('disabled')==false) {
+                        Calificaciones.push($(this).find(".th-td-p2 .input-cal").val());
+                        IdsRelsGruposAlumnos.push($(this).find(".th-td-p2 .input-cal").attr("IdRelGrupoAlumno"));
+                        IdsTiposCortes.push($(this).find(".th-td-p2 .input-cal").attr("IdTipoCorte"));
+                    }
+                }
+            }
+
+            if ($(this).find(".th-td-p3 .input-cal").val() != "" && $(this).find(".th-td-p3 .input-cal").attr("IdTipoCorte") == "2842" 
+                && $(this).find('.th-td-p3 .input-cal').prop('disabled')==false && $(this).find(".th-td-p3 .tipo-cal").val() != "" &&
+                $(this).find('.th-td-p3 .tipo-cal').prop('disabled')==false) {
+                Calificaciones.push($(this).find(".th-td-p3 .input-cal").val());
+                IdsRelsGruposAlumnos.push($(this).find(".th-td-p3 .input-cal").attr("IdRelGrupoAlumno"));
+                IdsTiposCortes.push($(this).find(".th-td-p3 .input-cal").attr("IdTipoCorte"));
+            } else {
+                if ($(this).find(".th-td-p3 .input-cal").val() != "" && $(this).find(".th-td-p3 .input-cal").attr("IdTipoCorte") == "2843" 
+                    && $(this).find('.th-td-p3 .input-cal').prop('disabled')==false && $(this).find(".th-td-p3 .tipo-cal").val() != "" &&
+                    $(this).find('.th-td-p3 .tipo-cal').prop('disabled')==false) {
+                    Calificaciones.push($(this).find(".th-td-p3 .input-cal").val());
+                    IdsRelsGruposAlumnos.push($(this).find(".th-td-p3 .input-cal").attr("IdRelGrupoAlumno"));
+                    IdsTiposCortes.push($(this).find(".th-td-p3 .input-cal").attr("IdTipoCorte"));
+                } else {
+                    if ($(this).find(".th-td-p3 .input-cal").val() != "" && $(this).find(".th-td-p3 .input-cal").attr("IdTipoCorte") == "2844"
+                        && $(this).find('.th-td-p3 .input-cal').prop('disabled')==false && $(this).find(".th-td-p3 .tipo-cal").val() != "" &&
+                        $(this).find('.th-td-p3 .tipo-cal').prop('disabled')==false) {
+                        Calificaciones.push($(this).find(".th-td-p3 .input-cal").val());
+                        IdsRelsGruposAlumnos.push($(this).find(".th-td-p3 .input-cal").attr("IdRelGrupoAlumno"));
+                        IdsTiposCortes.push($(this).find(".th-td-p3 .input-cal").attr("IdTipoCorte"));
+                    }
+                }
+            }
+        });
+
+        $("#contenido-cuerpo #table-subir-cal tbody tr").each(function () {
+            if ($(this).find(".th-td-p1 .input-cal").val() != "" && $(this).find('.th-td-p1 .input-cal').prop('disabled')==false &&
+                $(this).find(".th-td-p1 .tipo-cal").val() != "" && $(this).find(".th-td-p1 .tipo-cal").attr("IdTipoCorte") == "2842" && 
+                $(this).find('.th-td-p1 .tipo-cal').prop('disabled')==false) {
+                IdsTiposCalificaciones.push($(this).find(".th-td-p1 .tipo-cal").val());
+            } else {
+                if ($(this).find(".th-td-p1 .input-cal").val() != "" && $(this).find('.th-td-p1 .input-cal').prop('disabled')==false &&
+                    $(this).find(".th-td-p1 .tipo-cal").val() != "" && $(this).find(".th-td-p1 .tipo-cal").attr("IdTipoCorte") == "2843" && 
+                    $(this).find('.th-td-p1 .tipo-cal').prop('disabled')==false) {
+                    IdsTiposCalificaciones.push($(this).find(".th-td-p1 .tipo-cal").val());
+                } else {
+                    if ($(this).find(".th-td-p1 .input-cal").val() != "" && $(this).find('.th-td-p1 .input-cal').prop('disabled')==false &&
+                        $(this).find(".th-td-p1 .tipo-cal").val() != "" && $(this).find(".th-td-p1 .tipo-cal").attr("IdTipoCorte") == "2844" && 
+                        $(this).find('.th-td-p1 .tipo-cal').prop('disabled')==false) {
+                        IdsTiposCalificaciones.push($(this).find(".th-td-p1 .tipo-cal").val());
+                    }
+                }
+            }
+
+            if ($(this).find(".th-td-p2 .input-cal").val() != "" && $(this).find('.th-td-p2 .input-cal').prop('disabled')==false &&
+                $(this).find(".th-td-p2 .tipo-cal").val() != "" && $(this).find(".th-td-p2 .tipo-cal").attr("IdTipoCorte") == "2842" && 
+                $(this).find('.th-td-p2 .tipo-cal').prop('disabled')==false) {
+                IdsTiposCalificaciones.push($(this).find(".th-td-p2 .tipo-cal").val());
+            } else {
+                if ($(this).find(".th-td-p2 .input-cal").val() != "" && $(this).find('.th-td-p2 .input-cal').prop('disabled')==false &&
+                    $(this).find(".th-td-p2 .tipo-cal").val() != "" && $(this).find(".th-td-p2 .tipo-cal").attr("IdTipoCorte") == "2843" && 
+                    $(this).find('.th-td-p2 .tipo-cal').prop('disabled')==false) {
+                    IdsTiposCalificaciones.push($(this).find(".th-td-p2 .tipo-cal").val());
+                } else {
+                    if ($(this).find(".th-td-p2 .input-cal").val() != "" && $(this).find('.th-td-p2 .input-cal').prop('disabled')==false &&
+                        $(this).find(".th-td-p2 .tipo-cal").val() != "" && $(this).find(".th-td-p2 .tipo-cal").attr("IdTipoCorte") == "2844" && 
+                        $(this).find('.th-td-p2 .tipo-cal').prop('disabled')==false) {
+                        IdsTiposCalificaciones.push($(this).find(".th-td-p2 .tipo-cal").val());
+                    }
+                }
+            }
+
+            if ($(this).find(".th-td-p3 .input-cal").val() != "" && $(this).find('.th-td-p3 .input-cal').prop('disabled')==false &&
+                $(this).find(".th-td-p3 .tipo-cal").val() != "" && $(this).find(".th-td-p3 .tipo-cal").attr("IdTipoCorte") == "2842" && 
+                $(this).find('.th-td-p3 .tipo-cal').prop('disabled')==false) {
+                IdsTiposCalificaciones.push($(this).find(".th-td-p3 .tipo-cal").val());
+            } else {
+                if ($(this).find(".th-td-p3 .input-cal").val() != "" && $(this).find('.th-td-p3 .input-cal').prop('disabled')==false &&
+                    $(this).find(".th-td-p3 .tipo-cal").val() != "" && $(this).find(".th-td-p3 .tipo-cal").attr("IdTipoCorte") == "2843" && 
+                    $(this).find('.th-td-p3 .tipo-cal').prop('disabled')==false) {
+                    IdsTiposCalificaciones.push($(this).find(".th-td-p3 .tipo-cal").val());
+                } else {
+                    if ($(this).find(".th-td-p3 .input-cal").val() != "" && $(this).find('.th-td-p3 .input-cal').prop('disabled')==false &&
+                        $(this).find(".th-td-p3 .tipo-cal").val() != "" && $(this).find(".th-td-p3 .tipo-cal").attr("IdTipoCorte") == "2844" && 
+                        $(this).find('.th-td-p3 .tipo-cal').prop('disabled')==false) {
+                        IdsTiposCalificaciones.push($(this).find(".th-td-p3 .tipo-cal").val());
                     }
                 }
             }
@@ -607,15 +672,15 @@ $(document).ready(function () {
             IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
         }
 
-        /*console.log(Matriculas);
+        console.log(Matriculas);
         console.log(IdsRelsGruposAlumnos);
         console.log(Calificaciones);
         console.log(IdsTiposCortes);
         console.log(IdsTiposCalificaciones);
         console.log(IdPlanMateria);
-        console.log(IdUsuario);*/
+        console.log(IdUsuario);
 
-        $.confirm({
+        /*$.confirm({
             title: 'Registrando calificaciones de los alumnos',
             content: 'Se registraran las calificaciones en el sistema. ¿Esta seguro que desea continuar?',
             type: 'blue',
@@ -719,7 +784,7 @@ $(document).ready(function () {
                     }
                 }
             }
-        });
+        });*/
     });
     
 })

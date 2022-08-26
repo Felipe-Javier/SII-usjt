@@ -65,9 +65,17 @@ $(document).ready(function() {
                 } else {
                     var info = JSON.parse(response);
                     if (info.Rol == 'DOCENTE') {
-                        location.href = '../Docentes/Inicio.php';
+                        if (info.ContraseniaTemp == 0) {
+                            location.href = '../Docentes/Inicio.php';
+                        } else if (info.ContraseniaTemp == 1) {
+                            location.href = '../Docentes/Cambio_de_contraseña_primera_vez.php';
+                        }
                     } else {
-                        location.href = '../Alumnos/Inicio.php';
+                        if (info.ContraseniaTemp == 0) {
+                            location.href = '../Alumnos/Inicio.php';
+                        } else if (info.ContraseniaTemp == 1) {
+                            location.href = '../Alumnos/Cambio_de_contraseña_primera_vez.php';
+                        }
                     }
                 }
             },
