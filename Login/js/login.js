@@ -71,10 +71,18 @@ $(document).ready(function() {
                             location.href = '../Docentes/Cambio_de_contraseña_primera_vez.php';
                         }
                     } else {
-                        if (info.ContraseniaTemp == 0) {
-                            location.href = '../Alumnos/Inicio.php';
-                        } else if (info.ContraseniaTemp == 1) {
-                            location.href = '../Alumnos/Cambio_de_contraseña_primera_vez.php';
+                        if (info.Rol == 'ALUMNO') {
+                            if (info.ContraseniaTemp == 0) {
+                                location.href = '../Alumnos/Inicio.php';
+                            } else if (info.ContraseniaTemp == 1) {
+                                location.href = '../Alumnos/Cambio_de_contraseña_primera_vez.php';
+                            }
+                        } else if (info.Rol == 'ADMINISTRADOR DE SISTEMAS') {
+                            if (info.ContraseniaTemp == 0) {
+                                location.href = '../Administrador/Inicio.php';
+                            } else if (info.ContraseniaTemp == 1) {
+                                location.href = '../Administrador/Cambio_de_contraseña_primera_vez.php';
+                            }
                         }
                     }
                 }

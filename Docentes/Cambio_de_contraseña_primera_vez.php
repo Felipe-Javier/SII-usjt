@@ -14,54 +14,63 @@
         <title>SII</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+        <link rel="shortcut icon" href="../img/usjt-logo.png" type="image/x-icon">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/css/jquery-confirm.css" integrity="sha256-rNsB/Blv2R973jYmX5UeZ9gY3mn1s1l+mjLL8AysROI=" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet"/>
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" type="text/css" href="css/styles_principal.css">
-        <link rel="stylesheet" type="text/css" href="css/styles_cambio_de_contraseña_primera_vez">
+        <link rel="stylesheet" type="text/css" href="css/styles_cambio_de_contraseña_primera_vez.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.js" integrity="sha256-ofvu/Oqhm74vuZGlfF1/b4OUWkK/fzlVlAWxkgHr+S4=" crossorigin="anonymous"></script>
-        <link rel="shortcut icon" href="../img/usjt-logo.png" type="image/x-icon">
-        
+        <script type="text/javascript" src="js/cambiar_contraseña.js"></script>
     </head>
     <body>
         <?php
-            $inicio = "active";
-            $registrar_calificaciones = "";
-
             include("incluir/header.php");
-            //include("incluir/navbar.php");
         ?>
-        
-        <div class="container-fluid" id="contenedor-cambio-passowrd">
+        <nav class="navbar navbar-expand-lg navbar-light" >
+            <a class="navbar-brand" href="#">En Linea</a>
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-center">
+                    <li class="dropdown nav-item  ml-auto mr-auto ">
+                        <a class="nav-link dropdown-toggler dropdown-toggle" href="#" role="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false"  aria-label="Toggle navigation">
+                            <i class="icon-user fas fa-user "></i>Bienvenido!, <?php echo $_SESSION['Rol'] ?>
+                        </a>
+                        <div class="no-hover dropdown-menu" id="navbarDropdown" role="menu" aria-labelledby="navbarDropdown" aria-expanded="false">
+                            <a class="dropdown-item text-center" href="../Login/ajax/ajax_cerrar_sesion.php">Cerrar Sesion</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
             <div  class="row justify-content-center">
-                <div class="fondo-general col-sm-4 p-4">
+                <div class="fondo-general col-sm-5 p-4">
                     <p class="msj-general">
                         La contraseña con la que inicio sesion es temporal, es necesario que cambie su contraseña para continuar
                     </p>
-                    <!--<p class="nomDocente" id="datos-usuario" 
-                            IdUsuario="<?php //echo $_SESSION['IdUsuario'] ?>" 
-                            IdPersona="<?php //echo $_SESSION['IdPersona'] ?>"
-                            IdInstructor="<?php //echo $_SESSION['IdInstructor'] ?>">
-                            <?php //echo $_SESSION['Empledo'] ?>
-                    </p>-->
-                    <form method="post" class="form-cambio-password mt-4">
+                    <form method="post" class="form-cambio-password mt-4 .needs-validation" id="cambio-contraseña-primera_vez" novalidate>
+                        <div class="row" id="alerta"></div>
                         <div class="form-group">
                             <label for="user-name">Nombre de usuario</label>
                             <input type="text" class="form-control text-center" id="user-name" value="<?php echo $_SESSION['Usuario'] ?>"
                             idusuario="<?php echo $_SESSION['IdUsuario'] ?>" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input type="password" class="form-control text-center" id="password" value="">
+                            <label for="password">Nueva contraseña</label>
+                            <input type="password" class="form-control text-center" id="password" value="" required>
                         </div>
                         <div class="form-group">
-                            <label for="password-confirm">Confirmar contraseña</label>
-                            <input type="password" class="form-control text-center" id="password-confirm" value="">
+                            <label for="password-confirm">Confirmar nueva contraseña</label>
+                            <input type="password" class="form-control text-center" id="password-confirm" value="" required>
                         </div>
                         <div class="form-group text-center mb-1">
                             <button type="submit" class="btn btn-primary" id="btn-continuar">Continuar</button>

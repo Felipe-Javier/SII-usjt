@@ -8,10 +8,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav text-center ml-auto" id="nav">
       <li class="nav-item ">
-        <a class="nav-link <?php echo $inicio; ?>" href="admin.php">Inicio </a>
+        <a class="nav-link <?php echo $inicio; ?>" href="Inicio.php">Inicio </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link <?php echo $registrar_usuario; ?>" href="registrar_usuario.php">registrar usuario</a>
+        <a class="nav-link <?php echo $registrar_usuario; ?>" href="Registrar_Usuario.php">registrar usuario</a>
       </li>
       <!--<li class="nav-item ">
         <a class="nav-link" href="#">otro boton </a>
