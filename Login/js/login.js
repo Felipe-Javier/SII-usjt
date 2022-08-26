@@ -67,7 +67,11 @@ $(document).ready(function() {
                     if (info.Rol == 'DOCENTE') {
                         location.href = '../Docentes/Inicio.php';
                     } else {
-                        location.href = '../Alumnos/Inicio.php';
+                        if (info.Rol == 'ALUMNO') {
+                            location.href = '../Alumnos/Inicio.php';
+                        } else {
+                            location.href = '../Admin/admin.php';
+                        }
                     }
                 }
             },

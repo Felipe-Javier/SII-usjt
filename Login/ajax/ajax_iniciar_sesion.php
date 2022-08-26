@@ -27,12 +27,21 @@
                     $_SESSION['Alumno'] = $data->Alumno;
                     $_SESSION['Usuario'] = $data->Usuario;
                     $_SESSION['Rol'] = $data->Rol;
-                } elseif ($data->Rol == 'DOCENTE') {
-                    $_SESSION['IdPersona'] = $data->IdPersona;
-                    $_SESSION['IdInstructor'] = $data->IdInstructor;
-                    $_SESSION['Empledo'] = $data->EMPLEDO;
-                    $_SESSION['Usuario'] = $data->Usuario;
-                    $_SESSION['Rol'] = $data->Rol;
+                } else {
+                    if ($data->Rol == 'DOCENTE') {
+                        $_SESSION['IdPersona'] = $data->IdPersona;
+                        $_SESSION['IdInstructor'] = $data->IdInstructor;
+                        $_SESSION['Empledo'] = $data->EMPLEDO;
+                        $_SESSION['Usuario'] = $data->Usuario;
+                        $_SESSION['Rol'] = $data->Rol;
+                    } else {
+                        if ($data->Rol == 'ADMINISTRADOR DE SISTEMAS') {
+                            $_SESSION['IdPersona'] = $data->IdPersona;
+                            $_SESSION['Empledo'] = $data->EMPLEDO;
+                            $_SESSION['Usuario'] = $data->Usuario;
+                            $_SESSION['Rol'] = $data->Rol;
+                        }
+                    }
                 }
 
                 $output .= json_encode($data);

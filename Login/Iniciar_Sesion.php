@@ -41,6 +41,7 @@
                             <option value="" selected disabled>SELECCIONA...</option>
                             <option value="DOCENTE">DOCENTE</option>
                             <option value="ALUMNO">ALUMNO</option>
+                            <option value="ADMINISTRADOR DE SISTEMAS">ADMINISTRADOR DE SISTEMAS</option>
                         </select>
                     </div>
 
