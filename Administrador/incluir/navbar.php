@@ -13,15 +13,15 @@
       <li class="nav-item">
         <a class="nav-link <?php echo $registrar_usuario; ?>" href="Registrar_Usuario.php">registrar usuario</a>
       </li>
-      <!--<li class="nav-item ">
-        <a class="nav-link" href="#">otro boton </a>
-      </li>-->
+      <li class="nav-item ">
+        <a class="nav-link" href="Recuperar_Contraseña">Recuperar Contraseña</a>
+      </li>
     </ul>
 
     <ul class="navbar-nav ml-auto text-center">
       <li class="dropdown nav-item ml-auto mr-auto">
         <a class="nav-link dropdown-toggler dropdown-toggle" href="#" role="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="icon-user fas fa-user "></i><?php echo $_SESSION['Rol'] ?>
+          <i class="icon-user fas fa-user"></i><?php echo $_SESSION['Rol'] ?>
         </a>
         <div class="no-hover dropdown-menu" id="navbarDropdown" role="menu" aria-labelledby="navbarDropdown" aria-expanded="false">
           <a class="dropdown-item text-center" href="../Login/ajax/ajax_cerrar_sesion.php">Cerrar Sesion</a>

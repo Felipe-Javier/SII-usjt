@@ -1,12 +1,12 @@
 <?php
-    session_start();
+    /*session_start();
     if (!isset($_SESSION['active'])) {
         header('location: ../Login/Iniciar_Sesion.php');
     } else {
         if ($_SESSION['Rol'] != 'ADMINISTRADOR DE SISTEMAS') {
             header('location: ../Login/Iniciar_Sesion.php');
         }
-    }
+    }*/
 ?>
 <!DOCTYPE html>
 <html>
