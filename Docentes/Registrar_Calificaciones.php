@@ -42,7 +42,7 @@
 	    			<span class="text-bold">Docente: 
 	    				<span id="datos-usuario" class="text-nobold" IdUsuario="<?php echo $_SESSION['IdUsuario'] ?>" 
 						  IdPersona="<?php echo $_SESSION['IdPersona'] ?>" IdInstructor="<?php echo $_SESSION['IdInstructor'] ?>">
-	    					<?php echo $_SESSION['Empledo'] ?>
+	    					<?php echo $_SESSION['Empleado'] ?>
 	    				</span>
 	    			</span>
 	    		</div>

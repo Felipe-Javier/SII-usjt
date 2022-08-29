@@ -38,8 +38,8 @@
  	<div class="row justify-content-center m-0 mt-4 mb-4">   
         <div class="cuadroBienvenida col-sm-6 text-center p-5">
             <p class="msjBienvenida">Bienvenido</p>
-            <p class="nomAlumno"> 
-                <!--<?php echo $_SESSION['Alumno'] ?>-->
+            <p class="nomEmpleado"> 
+                <?php echo $_SESSION['Empleado'] ?>
             </p>
         </div>
     </div>

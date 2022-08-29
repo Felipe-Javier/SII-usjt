@@ -16,7 +16,7 @@
             $usuario = $_POST['usuario'];
             $contraseña = strval($_POST['contraseña']);
 
-            $result = $iniciar_sesion->sing_in($rol_usuario, $usuario, $contraseña);
+            $result = $iniciar_sesion->sing_in($rol_usuario, $usuario, $iniciar_sesion->encriptar($contraseña));
             $count = $result->columnCount();
             if ($count >= 1) {
                 $data = $result->fetchObject();
@@ -31,13 +31,13 @@
                     if ($data->Rol == 'DOCENTE') {
                         $_SESSION['IdPersona'] = $data->IdPersona;
                         $_SESSION['IdInstructor'] = $data->IdInstructor;
-                        $_SESSION['Empledo'] = $data->EMPLEDO;
+                        $_SESSION['Empleado'] = $data->EMPLEDO;
                         $_SESSION['Usuario'] = $data->Usuario;
                         $_SESSION['Rol'] = $data->Rol;
                     } else {
                         if ($data->Rol == 'ADMINISTRADOR DE SISTEMAS') {
                             $_SESSION['IdPersona'] = $data->IdPersona;
-                            $_SESSION['Empledo'] = $data->EMPLEDO;
+                            $_SESSION['Empleado'] = $data->EMPLEDO;
                             $_SESSION['Usuario'] = $data->Usuario;
                             $_SESSION['Rol'] = $data->Rol;
                         }

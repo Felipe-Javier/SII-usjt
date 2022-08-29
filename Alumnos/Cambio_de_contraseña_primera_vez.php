@@ -3,7 +3,7 @@
     if (!isset($_SESSION['active'])) {
         header('location: ../Login/Iniciar_Sesion.php');
     } else {
-        if ($_SESSION['Rol'] != 'DOCENTE') {
+        if ($_SESSION['Rol'] != 'ALUMNO') {
             header('location: ../Login/Iniciar_Sesion.php');
         }
     }
