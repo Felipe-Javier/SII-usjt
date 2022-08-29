@@ -23,6 +23,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.js" integrity="sha256-ofvu/Oqhm74vuZGlfF1/b4OUWkK/fzlVlAWxkgHr+S4=" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="../css/fontawesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="css/styles_principal.css">
     <link rel="stylesheet" type="text/css" href="css/styles_inicio.css">
     <link rel="shortcut icon" href="../img/usjt-logo.png" type="image/x-icon">
@@ -36,7 +37,9 @@
       include("incluir/navbar.php");
     ?>
     <div class=" row justify-content-center m-0 mt-5 mb-4">
+		
 		<form class="needs-validation cuadroBienvenida" novalidate>
+		<p class="text-center mb-4 registrarUsuario">Registrar Usuario</p>
 		<div class="form-row">
 	    	<div class="col-md-4 mb-3">
 	      	<label for="validationCustom">Nombres</label>
@@ -56,40 +59,47 @@
 	      	<label for="validationCustom">Usuario</label>
 	      	<input type="text" class="form-control" id="validationCustom" placeholder="Usuario" required>
 	    	</div>
-	    	<div class="col-md-6 mb-3">
+	    	<div class="col-md-5 mb-3">
 	      	<label for="validationCustom">Contraseña</label>
-	      	<input type="text" class="form-control" id="validationCustom" placeholder="Contraseña" required>
+	      	<input type="password" class="form-control" name="paswword" id="password" placeholder="Contraseña" required>
 	    	</div>
+			<button class="col-sm-1 verPassword" type="button" onclick="mostrarContraseña()"><i class="fa fa-eye-slash fa-2x"></i></button>
 	  	</div>
 	  	<div class="form-row align-items-center">
-		    <div class="form-check col-md-4 mb-3 text-center">
-		      <input class="form-check-input" type="checkbox" id="gridCheck">
-		      <label class="form-check-label" for="gridCheck">
-		        Contraseña Temporal
-		      </label>
-		    </div>
+			<div class="form-check col-md-4 mb-3 text-center">
+		    	<div class="form-check">
+		      		<input class="form-check-input" type="checkbox" id="gridCheck">
+		      		<label class="form-check-label" for="gridCheck">
+		        		Contraseña Temporal
+		      		</label>
+		    	</div>
+			</div>
 			<div class="col-md-4 mb-3" >
-	      		<label >ROL</label >
+	      		<label >Rol</label >
 				<select class="custom-select my-1 mr-sm-2" required>
 					<option value="" selected disabled>Seleciona</option >
     				<option>Docente</option >
 				    <option>Alumno</option >
 				</select>
 			</div>
-			<div class="form-check col-md-4 text-center mb-3" required>
-	      		<label for="validationCustom03">Estatus</label>
+			<div class="form-check col-md-4 text-center mb-3" >
+	      		<label for="validationCustom">Estatus</label>
 			  	<div>
-				    <input class="form-check-input" type="checkbox" id="gridCheck" required>
-				    <label class="form-check-label" for="gridCheck">
-				      Activo
-				    </label>
-		  		</div>
-			  	<div>
-				    <input class="form-check-input" type="checkbox" id="gridCheck" required>
-				    <label class="form-check-label" for="gridCheck">
-				      Bloqueado
-				    </label>
-		  		</div>
+					<div class="custom-control custom-radio">
+						<input type="radio" class="custom-control-input" id="inputActivo" name="radio-stacked" required>
+						<label class="custom-control-label" for="inputActivo">Activo</label>
+					</div>
+					<div class="custom-control custom-radio">
+						<input type="radio" class="custom-control-input" id="inputInactivo" name="radio-stacked" required>
+						<label class="custom-control-label" for="inputInactivo">Inactivo</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="gridCheck">
+		      			<label class="form-check-label" for="gridCheck">
+		        			Bloqueado
+		      			</label>
+					</div>
+				</div>
 		    </div>
 	  	</div>
 	  	<div class="form-row justify-content-around">
@@ -110,13 +120,13 @@
 	</div>
 </body>
 <script>
-	// Example starter JavaScript for disabling form submissions if there are invalid fields
+	// deshabilitar el envío de formularios si hay campos no válidos
 	(function() {
 	  'use strict';
 	  window.addEventListener('load', function() {
-	    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+	    // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap 
 	    var forms = document.getElementsByClassName('needs-validation');
-	    // Loop over them and prevent submission
+	    // Bucle sobre ellos y evitar la presentación
 	    var validation = Array.prototype.filter.call(forms, function(form) {
 	      form.addEventListener('submit', function(event) {
 	        if (form.checkValidity() === false) {
@@ -128,5 +138,16 @@
 	    });
 	  }, false);
 	})();
+
+	// Boton para ver la contraseña
+
+	function mostrarContraseña(){
+		var tipo = document.getElementById("password");
+		if(tipo.type == "password"){
+			tipo.type = "text";
+		} else {
+			tipo.type = "password";
+		}
+	}
 </script>
 </html>
