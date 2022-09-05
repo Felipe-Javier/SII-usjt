@@ -9,6 +9,20 @@
 			$this->connection = $this;
 		}
 
+		public function buscar_empleado_alumno ($Clave, $TipoPersona) {
+			try {	
+			    $query = "EXEC spBuscarEmpleadoAlumno ?, ?";
+				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+				$result->bindValue(1, $Clave, PDO::PARAM_STR);
+				$result->bindValue(2, $TipoPersona, PDO::PARAM_STR);
+				$result->execute();
+
+				return $result;
+			} catch(PDOException $exp) {
+				return false;
+			}
+		}
+
 		public function actualizar_contraseña_usuario ($IdUsuario, $UserName, $Password, $PasswordTemp, $RolUsuario) {
 			try {	
 			    $query = "EXEC spActualizarContraseñaUsuarios ?, ?, ?, ?, ?";

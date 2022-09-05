@@ -2,9 +2,13 @@
 
     class connection {
 		//Establece los parametros de la conexion
-		private $HOST = '172.21.88.149';
+		/*private $HOST = '172.21.88.149';
 		private $USERNAME = 'MayraSalas';
 		private $PASSWORD = 'Tam2021!';
+		private $DB_NAME = 'USJT_20';*/
+		private $HOST = '10.8.155.252';
+		private $USERNAME = 'prueba';
+		private $PASSWORD = 'Usjt01';
 		private $DB_NAME = 'USJT_20';
 		private $PORT = '1433';
 		public $CONN = false;

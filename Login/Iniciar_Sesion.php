@@ -11,17 +11,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesion</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <?php
+        include("incluir/metas.php");
+        include("incluir/links.php");
+    ?>
     <link rel="stylesheet" href="css/styles_login.css">
-    <link rel="stylesheet" href="../css/fontawesome/css/all.css">
-    <link rel="shortcut icon" href="img/logo-usjt.png" type="image/x-icon">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <?php
+        include("incluir/scripts.php");
+    ?>
     <script type="text/javascript" src="js/login.js"></script>
-   
 </head>
 <body>
     <?php
