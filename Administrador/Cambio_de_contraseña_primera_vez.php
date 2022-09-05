@@ -58,8 +58,9 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
-            <div  class="row justify-content-center">
+
+        <div class="container mt-5">
+            <div  class="row justify-content-center align-items-center">
                 <div class="fondo-general col-sm-5 p-4">
                     <p class="msj-general">
                         La contraseña con la que inicio sesion es temporal, es necesario que cambie su contraseña para continuar
@@ -68,7 +69,7 @@
                         <div class="row" id="result"></div>
                         <div class="form-group">
                             <label for="user-name">Nombre de usuario</label>
-                            <input type="text" class="form-control text-center" id="user-name" value="<?php echo $_SESSION['Usuario'] ?>"
+                            <input type="text" class="form-control text-center" id="user-name"  value="<?php echo $_SESSION['Usuario'] ?>"
                             idusuario="<?php echo $_SESSION['IdUsuario'] ?>" disabled>
                         </div>
                         <div class="form-group">
@@ -85,6 +86,22 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> 
     </body>
+    <script>
+        $(document).ready(function() {
+            $("#show_password a").on('click', function(event) {
+                event.preventDefault();
+                if($('#show_password input').attr("type") == "text"){
+                    $('#show_password input').attr('type', 'password');
+                    $('#show_password i').addClass( "fa-eye-slash" );
+                    $('#show_password i').removeClass( "fa-eye" );
+                }else if($('#show_password input').attr("type") == "password"){
+                    $('#show_password input').attr('type', 'text');
+                    $('#show_password i').removeClass( "fa-eye-slash" );
+                    $('#show_password i').addClass( "fa-eye" );
+                }
+            });
+        });
+    </script>
 </html>

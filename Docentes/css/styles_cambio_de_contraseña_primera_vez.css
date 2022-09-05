@@ -52,3 +52,23 @@
 	font-weight: bold;
 	color: #333;
 }
+
+.verPassword {
+	border: solid 1px #d4d4d4;
+    outline: none;
+	cursor: default !important;
+	border-radius: 0px 3px 3px 0px;
+}
+
+.verPassword a {
+	color: #0064a7;
+	cursor: pointer;
+}
+
+.verPassword:active {
+	border: solid 1px #d4d4d4;
+}
+
+.verPassword:focus {
+	outline: none;
+}

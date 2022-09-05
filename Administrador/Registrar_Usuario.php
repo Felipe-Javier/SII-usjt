@@ -42,6 +42,7 @@
     <?php
       $inicio = "";
       $registrar_usuario = "active";
+      $recuperar_contraseña = "";
 
       include("incluir/header.php");
       include("incluir/navbar.php");
