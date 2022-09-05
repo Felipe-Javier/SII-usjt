@@ -32,6 +32,7 @@
     <?php
       $inicio = "";
       $registrar_usuario = "active";
+      $recuperar_contraseña = "";
 
       include("incluir/header.php");
       include("incluir/navbar.php");
@@ -59,12 +60,18 @@
 	      	<label for="validationCustom">Usuario</label>
 	      	<input type="text" class="form-control" id="validationCustom" placeholder="Usuario" required>
 	    	</div>
-	    	<div class="col-md-5 mb-3">
-	      	<label for="validationCustom">Contraseña</label>
-	      	<input type="password" class="form-control" name="paswword" id="password" placeholder="Contraseña" required>
+	    	<div class="col-md-6 mb-3">
+	      		<label for="validationCustom">Contraseña</label>
+				<div class="input-group" id="show_password">
+	      			<input type="password" class="form-control" placeholder="Contraseña" required>
+					<button type="button" class="verPassword input-group-addon">
+						<a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
+					</button>
+				</div>
 	    	</div>
-			<button class="col-sm-1 verPassword" type="button" onclick="mostrarContraseña()"><i class="fa fa-eye-slash fa-2x"></i></button>
+			
 	  	</div>
+
 	  	<div class="form-row align-items-center">
 			<div class="form-check col-md-4 mb-3 text-center">
 		    	<div class="form-check">
@@ -139,15 +146,19 @@
 	  }, false);
 	})();
 
-	// Boton para ver la contraseña
-
-	function mostrarContraseña(){
-		var tipo = document.getElementById("password");
-		if(tipo.type == "password"){
-			tipo.type = "text";
-		} else {
-			tipo.type = "password";
-		}
-	}
+	$(document).ready(function() {
+    $("#show_password a").on('click', function(event) {
+        event.preventDefault();
+        if($('#show_password input').attr("type") == "text"){
+            $('#show_password input').attr('type', 'password');
+            $('#show_password i').addClass( "fa-eye-slash" );
+            $('#show_password i').removeClass( "fa-eye" );
+        }else if($('#show_password input').attr("type") == "password"){
+            $('#show_password input').attr('type', 'text');
+            $('#show_password i').removeClass( "fa-eye-slash" );
+            $('#show_password i').addClass( "fa-eye" );
+        }
+    });
+});
 </script>
 </html>

@@ -1,0 +1,33 @@
+.btns_contraseñas {
+    background-color: #0064a7;
+    width: auto;
+    padding: 15px 25px;
+    font-size: 20px;
+    text-decoration: none;
+    outline: none;
+    color: #f2f2f2;
+    border: none;
+    box-shadow: 0 9px #999;
+    border-radius: 5px;
+}
+
+.btns_contraseñas:hover {
+    background-color: #007fd3;
+}
+
+.btns_contraseñas:active {
+    transform: translateY(4px);
+    box-shadow: 0 5px #666;
+}
+
+.btns_contraseñas:focus {
+    outline: none;
+}
+
+#cambiar {
+    display: none;
+}
+
+#buscar {
+    display: none;
+}

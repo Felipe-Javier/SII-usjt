@@ -11,10 +11,10 @@
         <a class="nav-link <?php echo $inicio; ?>" href="Inicio.php">Inicio </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link <?php echo $registrar_usuario; ?>" href="Registrar_Usuario.php">registrar usuario</a>
+        <a class="nav-link <?php echo $registrar_usuario; ?>" href="Registrar_Usuario.php">Registrar usuario</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="Recuperar_Contraseña">Recuperar Contraseña</a>
+        <a class="nav-link <?php echo $recuperar_contraseña; ?>" href="Recuperar_Contraseña">Recuperar Contraseña</a>
       </li>
     </ul>
 

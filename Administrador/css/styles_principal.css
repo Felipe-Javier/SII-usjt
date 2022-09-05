@@ -116,18 +116,19 @@ form label {
 }
 
 .verPassword {
+	border: solid 1px #d4d4d4;
+    outline: none;
+	cursor: default !important;
+	border-radius: 0px 3px 3px 0px;
+}
+
+.verPassword a {
 	color: #0064a7;
-	outline: none;
-    padding: 30px 0px 15px 0px;
-	border: none;
-	background-color: transparent;
-	margin-left: -10px;
+	cursor: pointer;
 }
 
 .verPassword:active {
-	border: none;
-	background-color: transparent;
-  	transform: translateY(4px);
+	border: solid 1px #d4d4d4;
 }
 
 .verPassword:focus {

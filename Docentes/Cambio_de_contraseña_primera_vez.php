@@ -51,7 +51,7 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
+        <div class="container mt-5">
             <div  class="row justify-content-center">
                 <div class="fondo-general col-sm-5 p-4">
                     <p class="msj-general">
@@ -64,9 +64,14 @@
                             <input type="text" class="form-control text-center" id="user-name" value="<?php echo $_SESSION['Usuario'] ?>"
                             idusuario="<?php echo $_SESSION['IdUsuario'] ?>" disabled>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Nueva contraseña</label>
-                            <input type="password" class="form-control text-center" id="password" value="" required>
+                        <div class="mb-3">
+                            <label for="validationCustom">Contraseña</label>
+                            <div class="input-group" id="show_password">
+                                <input type="password" class="form-control" placeholder="Contraseña" required>
+                                <button type="button" class="verPassword input-group-addon">
+                                    <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password-confirm">Confirmar nueva contraseña</label>
@@ -80,4 +85,20 @@
             </div>
         </div>
     </body>
+    <script>
+        $(document).ready(function() {
+            $("#show_password a").on('click', function(event) {
+                event.preventDefault();
+                if($('#show_password input').attr("type") == "text"){
+                    $('#show_password input').attr('type', 'password');
+                    $('#show_password i').addClass( "fa-eye-slash" );
+                    $('#show_password i').removeClass( "fa-eye" );
+                }else if($('#show_password input').attr("type") == "password"){
+                    $('#show_password input').attr('type', 'text');
+                    $('#show_password i').removeClass( "fa-eye-slash" );
+                    $('#show_password i').addClass( "fa-eye" );
+                }
+            });
+        });
+    </script>
 </html>
