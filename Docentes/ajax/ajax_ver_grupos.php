@@ -3,35 +3,41 @@
 
     $procesar_calificaciones = new procesar_calificaciones();
 
+    $Opcion = '';
     $IdInstructor = '';
     $IdPersona = '';
     $result = false;
+    $row = '';
     $count = 0;
     $output = '';
 
     if (isset($_POST) && !empty($_POST)) {
-        $Action = strval($_POST['Action']);
-        $IdInstructor = intval($_POST['IdInstructor']);
-        $IdPersona = intval($_POST['IdPersona']);
+        $Opcion = $procesar_calificaciones->sanitize($_POST['Opcion']);
+        $IdInstructor = $procesar_calificaciones->sanitize($_POST['IdInstructor']);
+        $IdPersona = $procesar_calificaciones->sanitize($_POST['IdPersona']);
+        //echo $Opcion;
+        if ($Opcion == 'Traer_anios_por_grupos') {
+            $Anio = NULL; $IdCiclo = NULL; $IdGrupo = NULL;
 
-        if ($Action == 'Consultar_Años_Por_Grupos') {
-            $result_años_grupos = $procesar_calificaciones->consultar_años_por_grupos($IdInstructor, $IdPersona);
-
-            if ($result_años_grupos != false) {
-                $count = $result_años_grupos->rowCount();
-
+            $result = $procesar_calificaciones->consultar_grupos_por_docente($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo);
+            
+            if ($result != false) {
+                $it = new IteratorIterator($result);
+                $count = iterator_count($it);
+                
                 if ($count > 0) {
+                    $result->execute();
                     $output .= '<div class="text-center grupos-ciclos">GRUPOS</div>
                                     <nav class="sidebar card py-2 mb-4">
                                         <ul class="nav flex-column">';
                     
-                    while ($row_años_grupos = $result_años_grupos->fetch(PDO::FETCH_ASSOC)) {
-                        $output .= '<li class="nav-item has-submenu" id="Año-'.$row_años_grupos['AÑODEINICIO'].'">
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        $output .= '<li class="nav-item has-submenu" id="Año-'.$row['ANIOESCOLAR'].'">
                                         <a class="ciclos nav-link" href="#" class="navbar-toggler" type="button" data-toggle="collapse" 
-                                        data-target="#CuatrimestresAño-'.$row_años_grupos['AÑODEINICIO'].'" 
-                                        aria-controls="CuatrimestresAño-'.$row_años_grupos['AÑODEINICIO'].'" 
-                                        aria-expanded="false" aria-label="Toggle navigation" IdAño="'.$row_años_grupos['AÑODEINICIO'].'">'
-                                        .$row_años_grupos['AÑODEINICIO'].'</a>
+                                        data-target="#CuatrimestresAnio-'.$row['ANIOESCOLAR'].'" 
+                                        aria-controls="CuatrimestresAnio-'.$row['ANIOESCOLAR'].'" 
+                                        aria-expanded="false" aria-label="Toggle navigation" Anio="'.$row['ANIOESCOLAR'].'">'
+                                        .$row['ANIOESCOLAR'].'</a>
                                     </li>';
                     }
                     $output .= '</ul>
@@ -53,23 +59,25 @@
                 echo $output;
             }
         } else {
-            if ($Action == 'Consultar_Cuatrimestres_Por_Años') {
-                $Año = strval($_POST['Año']);
+            if ($Opcion == 'Traer_cuatrimestres_por_anio') {
+                $Anio = $procesar_calificaciones->sanitize($_POST['Anio']);
+                $IdCiclo = NULL; $IdGrupo = NULL;
+                $result = $procesar_calificaciones->consultar_grupos_por_docente($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo);
 
-                $result_cuatrimestres_años = $procesar_calificaciones->consultar_cuatrimestres_por_años($IdInstructor, $IdPersona, $Año);
-
-                if ($result_cuatrimestres_años != false) {
-                    $count = $result_cuatrimestres_años->rowCount();
+                if ($result != false) {
+                    $it = new IteratorIterator($result);
+                    $count = iterator_count($it);
 
                     if ($count > 0) {
-                        $output .= '<ul class="submenu collapse" id="CuatrimestresAño-'.$Año.'">';                    
-                        while ($row_cuatrimestres_años = $result_cuatrimestres_años->fetch(PDO::FETCH_ASSOC)) {
-                            $output .= '<li class="nav-item has-submenu" id="Cuatrimestre-'.$row_cuatrimestres_años['IDCUATRIMESTRE'].'">
+                        $result->execute();
+                        $output .= '<ul class="submenu collapse" id="CuatrimestresAnio-'.$Anio.'">';                    
+                        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                            $output .= '<li class="nav-item has-submenu" id="Cuatrimestre-'.$row['IDCUATRIMESTRE'].'">
                                             <a class="cuatrimestres nav-link" href="#" class="navbar-toggler" type="button" data-toggle="collapse" 
-                                            data-target="#GruposCuatrimestre-'.$row_cuatrimestres_años['IDCUATRIMESTRE'].'" 
-                                            aria-controls="GruposCuatrimestre-'.$row_cuatrimestres_años['IDCUATRIMESTRE'].'" aria-expanded="false"
-                                            aria-label="Toggle navigation" IdCuatrimestre="'.$row_cuatrimestres_años['IDCUATRIMESTRE'].'">'
-                                            .$row_cuatrimestres_años['CUATRIMESTRE'].'</a>
+                                            data-target="#GruposCuatrimestre-'.$row['IDCUATRIMESTRE'].'" 
+                                            aria-controls="GruposCuatrimestre-'.$row['IDCUATRIMESTRE'].'" aria-expanded="false"
+                                            aria-label="Toggle navigation" IdCuatrimestre="'.$row['IDCUATRIMESTRE'].'">'
+                                            .$row['CUATRIMESTRE'].'</a>
                                         </li>';
                         }
                         $output .= '</ul>';
@@ -87,29 +95,31 @@
                     echo $output;
                 }
             } else {
-                if ($Action == 'Consultar_Grupos_Por_Cuatrimestre') {
-                    $IdCuatrimestre = intval($_POST['IdCuatrimestre']);
+                if ($Opcion == 'Traer_grupos_por_cuatrimestre') {
+                    $IdCiclo = $procesar_calificaciones->sanitize($_POST['IdCuatrimestre']);
+                    $Anio = NULL; $IdGrupo = NULL;
+                    $result = $procesar_calificaciones->consultar_grupos_por_docente($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo);
 
-                    $result_grupos_cuatrimestre = $procesar_calificaciones->consultar_grupos_por_cuatrimestre($IdInstructor, $IdPersona, $IdCuatrimestre);
-
-                    if ($result_grupos_cuatrimestre != false) {
-                        $count = $result_grupos_cuatrimestre->rowCount();
+                    if ($result != false) {
+                        $it = new IteratorIterator($result);
+                        $count = iterator_count($it);
 
                         if ($count > 0) {
-                            $output .= '<ul class="submenu collapse" id="GruposCuatrimestre-'.$IdCuatrimestre.'">';                    
-                            while ($row_grupos_cuatrimestre = $result_grupos_cuatrimestre->fetch(PDO::FETCH_ASSOC)) {
-                                $output .= '<li class="nav-item has-submenu" id="Grupo-'.$row_grupos_cuatrimestre['IDGRUPO'].'">
+                            $result->execute();
+                            $output .= '<ul class="submenu collapse" id="GruposCuatrimestre-'.$IdCiclo.'">';                    
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                $output .= '<li class="nav-item has-submenu" id="Grupo-'.$row['IDGRUPO'].'">
                                                 <a class="grupos nav-link" href="#" class="navbar-toggler" type="button" data-toggle="collapse" 
-                                                data-target="#MateriasGrupo-'.$row_grupos_cuatrimestre['IDGRUPO'].'" 
-                                                aria-controls="MateriasGrupo-'.$row_grupos_cuatrimestre['IDGRUPO'].'" aria-expanded="false"
-                                                aria-label="Toggle navigation" IdGrupo="'.$row_grupos_cuatrimestre['IDGRUPO'].'">'
-                                                .$row_grupos_cuatrimestre['GRUPO'].'</a>
+                                                data-target="#MateriasGrupo-'.$row['IDGRUPO'].'" 
+                                                aria-controls="MateriasGrupo-'.$row['IDGRUPO'].'" aria-expanded="false"
+                                                aria-label="Toggle navigation" IdGrupo="'.$row['IDGRUPO'].'">'
+                                                .$row['GRUPO'].'</a>
                                             </li>';
                             }
                             $output .= '</ul>';
                             echo $output;
                         } else {
-                            $output .= '<ul class="submenu collapse" id="GruposCuatrimestre-'.$IdCuatrimestre.'">
+                            $output .= '<ul class="submenu collapse" id="GruposCuatrimestre-'.$IdCiclo.'">
                                             <li class="nav-item has-submenu">
                                                 <a class="nav-item has-submenu">No tiene grupos asignados</a>
                                             <li>
@@ -120,30 +130,33 @@
                         $output .= 'No se ha podido consultar los grupos asignados';
                         echo $output;
                     }
-                } elseif ($Action == 'Consultar_Materias_Por_Grupo') {
-                    $IdGrupo = intval($_POST['IdGrupo']);
+                } elseif ($Opcion == 'Traer_materias_por_grupo') {
+                    $IdGrupo = $procesar_calificaciones->sanitize($_POST['IdGrupo']);
+                    $Anio = NULL; $IdCiclo = NULL;
 
-                    $result_materias_grupo = $procesar_calificaciones->consultar_materias_por_grupo($IdInstructor, $IdPersona, $IdGrupo);
+                    $result = $procesar_calificaciones->consultar_grupos_por_docente($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo);
 
-                    if ($result_materias_grupo != false) {
-                        $count = $result_materias_grupo->rowCount();
+                    if ($result != false) {
+                        $it = new IteratorIterator($result);
+                        $count = iterator_count($it);
 
                         if ($count > 0) {
+                            $result->execute();
                             $output .= '<ul class="submenu collapse" id="MateriasGrupo-'.$IdGrupo.'">';                    
-                            while ($row_materias_grupo = $result_materias_grupo->fetch(PDO::FETCH_ASSOC)) {
-                                $output .= '<li class="nav-item has-submenu" id="IdMateria-'.$row_materias_grupo['IDPLANMATERIA'].'">
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                $output .= '<li class="nav-item has-submenu" id="IdMateria-'.$row['IDPLANMATERIA'].'">
                                                 <a class="materias nav-link" href="#" class="navbar-toggler" type="button" data-toggle="collapse" 
-                                                data-target="#MG-'.$row_materias_grupo['IDPLANMATERIA'].'" 
-                                                aria-controls="MG-'.$row_materias_grupo['IDPLANMATERIA'].'" aria-expanded="false"
-                                                aria-label="Toggle navigation" IdPlanMateria="'.$row_materias_grupo['IDPLANMATERIA'].'"
-                                                IdGrupo="'.$row_materias_grupo['IDGRUPO'].'"
-                                                FIE_P1="'.$row_materias_grupo['FECHAINICIOEVALUACION_PARCIAL1'].'"
-                                                FTE_P1="'.$row_materias_grupo['FECHATERMINOEVALUACION_PARCIAL1'].'"
-                                                FIE_P2="'.$row_materias_grupo['FECHAINICIOEVALUACION_PARCIAL2'].'"
-                                                FTE_P2="'.$row_materias_grupo['FECHATERMINOEVALUACION_PARCIAL2'].'"
-                                                FIE_F="'.$row_materias_grupo['FECHAINICIOEVALUACION_FINAL'].'"
-                                                FTE_F="'.$row_materias_grupo['FECHATERMINOEVALUACION_FINAL'].'">'
-                                                .$row_materias_grupo['MATERIA'].'</a>
+                                                data-target="#MG-'.$row['IDPLANMATERIA'].'" 
+                                                aria-controls="MG-'.$row['IDPLANMATERIA'].'" aria-expanded="false"
+                                                aria-label="Toggle navigation" IdPlanMateria="'.$row['IDPLANMATERIA'].'"
+                                                IdGrupo="'.$row['IDGRUPO'].'"
+                                                FIE_P1="'.$row['FECHAINICIOEVALUACION_PARCIAL1'].'"
+                                                FTE_P1="'.$row['FECHATERMINOEVALUACION_PARCIAL1'].'"
+                                                FIE_P2="'.$row['FECHAINICIOEVALUACION_PARCIAL2'].'"
+                                                FTE_P2="'.$row['FECHATERMINOEVALUACION_PARCIAL2'].'"
+                                                FIE_F="'.$row['FECHAINICIOEVALUACION_FINAL'].'"
+                                                FTE_F="'.$row['FECHATERMINOEVALUACION_FINAL'].'">'
+                                                .$row['MATERIA'].'</a>
                                             </li>';
                             }
                             $output .= '</ul>';

@@ -18,7 +18,7 @@
         $PasswordTemp = 0;
         $RolUsuario = 'PERSONAL';
 
-        $PassEncrypted = $seguridad_usuario->encriptar($Password);
+        $PassEncrypted = $seguridad_usuario->md5($Password);
         $result = $seguridad_usuario->actualizar_contraseña_usuario($IdUsuario, $UserName, $PassEncrypted, $PasswordTemp, $RolUsuario);
 
         if ($result == true) {

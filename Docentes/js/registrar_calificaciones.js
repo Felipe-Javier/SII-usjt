@@ -5,15 +5,18 @@ $(document).ready(function () {
     var IdPersona = $("#barra #datos-usuario").attr("IdPersona");
     var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
 
-    load_años_por_grupos(IdPersona, IdInstructor);
+    setTimeout(function() {
+        load_años_por_grupos(IdPersona, IdInstructor);
+    }, 100);
 
     function load_años_por_grupos(IdPersona, IdInstructor) {
+        var Opcion = 'Traer_anios_por_grupos';
         $.ajax({
             url: "ajax/ajax_ver_grupos.php",
             method: "POST",
             async: true,
             data: {
-                Action: 'Consultar_Años_Por_Grupos',
+                Opcion: Opcion,
                 IdPersona: IdPersona,
                 IdInstructor: IdInstructor
             },
@@ -30,6 +33,7 @@ $(document).ready(function () {
                                         '</li>'+
                                     '</ul>'+
                                 '</nav>';
+                    $("#contenido-cuerpo #grupos").html(output);
                 } else {
                     output = response;
                     $("#contenido-cuerpo #grupos").html(output);
@@ -48,47 +52,50 @@ $(document).ready(function () {
     }
 
     setTimeout(function() {
+        load_cuatrimestres_por_años(IdPersona, IdInstructor);
         $("ul .nav-item .ciclos.nav-link").each(function() {
-            var Año = $(this).attr('IdAño');
-            load_cuatrimestres_por_años(IdPersona, IdInstructor, Año);
+            var Anio = $(this).attr('Anio');
+            console.log(IdPersona, IdInstructor, Anio);
+            load_cuatrimestres_por_años(IdPersona, IdInstructor, Anio);
         });
     }, 200);
 
-    function load_cuatrimestres_por_años(IdPersona, IdInstructor, Año) {
+    function load_cuatrimestres_por_años(IdPersona, IdInstructor, Anio) {
+        var Opcion = 'Traer_cuatrimestres_por_anio';
         $.ajax({
             url: "ajax/ajax_ver_grupos.php",
             method: "POST",
             async: true,
             data: {
-                Action: 'Consultar_Cuatrimestres_Por_Años',
+                Opcion: Opcion,
                 IdPersona: IdPersona,
                 IdInstructor: IdInstructor,
-                Año: Año
+                Anio: Anio
             },
 
             success: function (response) {
                 var output = "";
                 if (response == 'Error al consultar los grupos asignados' ||
                     response == 'No se ha podido consultar los periodos cargados') {
-                        var output  =   '<ul class="submenu collapse" id="CuatrimestresAño-'+Año+'">'+
+                        var output  =   '<ul class="submenu collapse" id="CuatrimestresAño-'+Anio+'">'+
                                             '<li class="nav-item has-submenu">'+
                                                 '<a class="nav-item has-submenu">'+response+'</a>'+
                                             '<li>'+
                                         '<ul>';
-                        $("#contenido-cuerpo #grupos #Año-"+Año).append(output);
+                        $("#contenido-cuerpo #grupos #Año-"+Anio).append(output);
                 } else {
                     output = response;
-                    $("#contenido-cuerpo #grupos #Año-"+Año).append(output);
+                    $("#contenido-cuerpo #grupos #Año-"+Anio).append(output);
                 }
             },
 
             error: function (error) {
-                var output  =   '<ul class="submenu collapse" id="CuatrimestresAño-'+Año+'">'+
+                var output  =   '<ul class="submenu collapse" id="CuatrimestresAño-'+Anio+'">'+
                                     +'<li class="nav-item has-submenu">'+
                                         +'<a class="nav-item has-submenu">No tiene periodos cargados.'+error+'</a>'+
                                     +'<li>'+
                                 '<ul>';
-                $("#contenido-cuerpo #grupos #Año-"+Año).append(output);
+                $("#contenido-cuerpo #grupos #Año-"+Anio).append(output);
             }
         });
     }
@@ -101,12 +108,13 @@ $(document).ready(function () {
     }, 300);
 
     function load_grupos_por_cuatrimestre(IdPersona, IdInstructor, IdCuatrimestre) {
+        var Opcion = 'Traer_grupos_por_cuatrimestre';
         $.ajax({
             url: "ajax/ajax_ver_grupos.php",
             method: "POST",
             async: true,
             data: {
-                Action: 'Consultar_Grupos_Por_Cuatrimestre',
+                Opcion: Opcion,
                 IdPersona: IdPersona,
                 IdInstructor: IdInstructor,
                 IdCuatrimestre: IdCuatrimestre
@@ -147,12 +155,13 @@ $(document).ready(function () {
     }, 400);
 
     function load_materias_por_grupos(IdPersona, IdInstructor, IdGrupo) {
+        var Opcion = 'Traer_materias_por_grupo';
         $.ajax({
             url: "ajax/ajax_ver_grupos.php",
             method: "POST",
             async: true,
             data: {
-                Action: 'Consultar_Materias_Por_Grupo',
+                Opcion: Opcion,
                 IdPersona: IdPersona,
                 IdInstructor: IdInstructor,
                 IdGrupo: IdGrupo

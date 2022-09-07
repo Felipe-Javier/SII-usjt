@@ -16,7 +16,7 @@
             $usuario = $_POST['usuario'];
             $contraseña = strval($_POST['contraseña']);
 
-            $result = $iniciar_sesion->sing_in($rol_usuario, $usuario, $iniciar_sesion->encriptar($contraseña));
+            $result = $iniciar_sesion->sing_in($rol_usuario, $usuario, md5($contraseña));
             $count = $result->columnCount();
             if ($count >= 1) {
                 $data = $result->fetchObject();

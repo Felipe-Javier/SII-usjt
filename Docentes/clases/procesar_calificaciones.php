@@ -9,7 +9,12 @@
 			$this->connection = $this;
 		}
 
-		public function consultar_años_por_grupos ($IdInstructor, $IdPersona) {
+		public function sanitize ($Value) {
+			$result = filter_var($Value, FILTER_SANITIZE_STRING);
+			return $result;
+		}
+
+		/*public function consultar_años_por_grupos ($IdInstructor, $IdPersona) {
 			try {	
 			    $query = "EXEC spTraerAñosPorGruposDocente ?, ?";
 				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -21,9 +26,9 @@
 			} catch(PDOException $exp) {
 				return false;
 			}
-		}
+		}*/
 
-		public function consultar_cuatrimestres_por_años ($IdInstructor, $IdPersona, $Año) {
+		/*public function consultar_cuatrimestres_por_años ($IdInstructor, $IdPersona, $Año) {
 			try {	
 			    $query = "EXEC spTraerCuatrimestresPorAñoDocente ?, ?, ?";
 				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -65,6 +70,25 @@
 				return $result;
 			} catch(PDOException $exp) {
 				return false;
+			}
+		}*/
+
+		public function consultar_grupos_por_docente ($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo) {
+			try {	
+			    $query = "EXEC spTraerGruposPorDocente ?, ?, ?, ?, ?, ?";
+				$options = array(PDO::SQLSRV_ATTR_ENCODING => PDO::SQLSRV_ENCODING_SYSTEM);
+				$result = $this->connection->connect_db()->prepare($query, $options);
+				$result->bindValue(1, $Opcion, PDO::PARAM_STR);
+				$result->bindValue(2, $IdInstructor, PDO::PARAM_INT);
+				$result->bindValue(3, $IdPersona, PDO::PARAM_INT);
+				$result->bindValue(4, $Anio, PDO::PARAM_STR|PDO::PARAM_NULL);
+				$result->bindValue(5, $IdCiclo, PDO::PARAM_INT|PDO::PARAM_NULL);
+				$result->bindValue(6, $IdGrupo, PDO::PARAM_INT|PDO::PARAM_NULL);
+				$result->execute();
+
+				return $result;
+			} catch(PDOException $exp) {
+				return $exp;
 			}
 		}
 

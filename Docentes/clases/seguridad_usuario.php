@@ -25,16 +25,6 @@
 				return false;
 			}
 		}
-
-        public function encriptar($Password) {
-            $PassEncoded = base64_encode(openssl_encrypt('pruebaOficial', 'aes-128-cbc', md5('EncryptDecript20'), false, 'EncryptDecript20'));
-            return $PassEncoded;
-        }
-        
-        public function desencriptar($Password) {
-            $PassDecoded = rtrim(openssl_decrypt(base64_decode($PassEncoded), 'aes-128-cbc', md5('EncryptDecript20'), false, 'EncryptDecript20'), '\0');
-            return $PassDecoded;
-        }
     }
 
 ?>

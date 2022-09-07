@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputPasswordAlumno">Contraseña</label>
-                        <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
+                        <input type="text" class="form-control status text-center" id="password" placeholder="Contraseña" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block" id="button_entrar">Entrar</button>
                     <div class="form-footer">
