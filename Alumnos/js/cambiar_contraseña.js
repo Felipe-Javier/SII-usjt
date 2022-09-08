@@ -2,6 +2,31 @@ $(document).ready(function () {
 
     "use strict";
 
+    $("#show_password a").on('click', function(event) {
+        event.preventDefault();
+        if ($('#show_password input').attr("type") == "text"){
+            $('#show_password input').attr('type', 'password');
+            $('#show_password i').addClass( "fa-eye-slash" );
+            $('#show_password i').removeClass( "fa-eye" );
+        } else if ($('#show_password input').attr("type") == "password"){
+            $('#show_password input').attr('type', 'text');
+            $('#show_password i').removeClass( "fa-eye-slash" );
+            $('#show_password i').addClass( "fa-eye" );
+        }
+    });
+
+    $("#show_password_confirm a").on('click', function(event) {  
+        if ($('#show_password_confirm input').attr("type") == "text"){
+            $('#show_password_confirm input').attr('type', 'password');
+            $('#show_password_confirm i').addClass( "fa-eye-slash" );
+            $('#show_password_confirm i').removeClass( "fa-eye" );
+        } else if ($('#show_password_confirm input').attr("type") == "password"){
+                $('#show_password_confirm input').attr('type', 'text');
+                $('#show_password_confirm i').removeClass( "fa-eye-slash" );
+                $('#show_password_confirm i').addClass( "fa-eye" );
+        }
+    });
+
     var formCambioContraseñaPrimeraVez = $('#cambio-contraseña-primera-vez.needs-validation');
     
     var validation_CambioContraseñaPrimeraVez = Array.prototype.filter.call(formCambioContraseñaPrimeraVez, function(form) {

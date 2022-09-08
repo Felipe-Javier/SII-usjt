@@ -71,10 +71,10 @@
                             <input type="text" class="form-control text-center" id="user-name" value="<?php echo $_SESSION['Usuario'] ?>"
                             idusuario="<?php echo $_SESSION['IdUsuario'] ?>" disabled>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 form-group">
                             <label for="validationCustom">Contraseña</label>
                             <div class="input-group" id="show_password">
-                                <input type="password" class="form-control" placeholder="Contraseña" required>
+                                <input type="password" class="form-control text-center" id="password" value="" required>
                                 <button type="button" class="verPassword input-group-addon">
                                     <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
                                 </button>
@@ -82,7 +82,12 @@
                         </div>
                         <div class="form-group">
                             <label for="password-confirm">Confirmar nueva contraseña</label>
-                            <input type="password" class="form-control text-center" id="password-confirm" value="" required>
+                            <div class="input-group" id="show_password_confirm">
+                                <input type="password" class="form-control text-center" id="password-confirm" value="" required>
+                                <button type="button" class="verPassword input-group-addon">
+                                    <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group text-center mb-1">
                             <button type="submit" class="btn btn-primary" id="btn-continuar">Continuar</button>
@@ -92,20 +97,4 @@
             </div>
         </div>
     </body>
-    <script>
-        $(document).ready(function() {
-            $("#show_password a").on('click', function(event) {
-                event.preventDefault();
-                if($('#show_password input').attr("type") == "text"){
-                    $('#show_password input').attr('type', 'password');
-                    $('#show_password i').addClass( "fa-eye-slash" );
-                    $('#show_password i').removeClass( "fa-eye" );
-                }else if($('#show_password input').attr("type") == "password"){
-                    $('#show_password input').attr('type', 'text');
-                    $('#show_password i').removeClass( "fa-eye-slash" );
-                    $('#show_password i').addClass( "fa-eye" );
-                }
-            });
-        });
-    </script>
 </html>
