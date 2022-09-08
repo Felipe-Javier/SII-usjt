@@ -12,8 +12,8 @@
   $promedio = 0;
 
   if(isset($_POST) && !empty($_POST)) {
-    $Matricula = strval($_POST['Matricula']);
-    $IdCiclo = intval($_POST['IdCiclo']);
+    $Matricula = $boleta_calificaciones->sanitize_str($_POST['Matricula']);
+    $IdCiclo = $boleta_calificaciones->sanitize_int($_POST['IdCiclo']);
 
     $result = $boleta_calificaciones->consultar_calificaciones($Matricula, $IdCiclo);
 

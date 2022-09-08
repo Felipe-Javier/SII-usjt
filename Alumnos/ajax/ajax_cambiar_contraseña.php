@@ -12,11 +12,11 @@
   $output = '';
 
     if(isset($_POST) && !empty($_POST)) {
-        $IdUsuario = $_POST['IdUsuario'];
-        $UserName = $_POST['Usuario'];
-        $Password = $_POST['Contraseña'];
-        $PasswordTemp = 0;
-        $RolUsuario = 'ALUMNOS';
+        $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
+        $UserName = $seguridad_usuario->sanitize_str($_POST['Usuario']);
+        $Password = $seguridad_usuario->sanitize_str($_POST['Contraseña']);
+        $PasswordTemp = $seguridad_usuario->sanitize_int(0);
+        $RolUsuario = $seguridad_usuario->sanitize_str('ALUMNOS');
 
         $PassEncrypted = md5($Password);
         $result = $seguridad_usuario->actualizar_contraseña_usuario($IdUsuario, $UserName, $PassEncrypted, $PasswordTemp, $RolUsuario);

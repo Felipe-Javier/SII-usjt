@@ -10,7 +10,7 @@
   $numPeriodo = 1;
 
   if(isset($_POST) && !empty($_POST)) {
-    $Matricula = strval($_POST['Matricula']);
+    $Matricula = $boleta_calificaciones->sanitize_str($_POST['Matricula']);
 
     $result = $boleta_calificaciones->consultar_periodos($Matricula);
 

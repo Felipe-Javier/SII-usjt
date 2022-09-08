@@ -9,6 +9,16 @@
 			$this->connection = $this;
 		}
 
+		public function sanitize_str ($Value) {
+			$result = filter_var($Value, FILTER_SANITIZE_STRING);
+			return $result;
+		}
+
+		public function sanitize_int ($Value) {
+			$result = filter_var($Value, FILTER_SANITIZE_INT);
+			return $result;
+		}
+
 		public function actualizar_contraseña_usuario ($IdUsuario, $UserName, $Password, $PasswordTemp, $RolUsuario) {
 			try {	
 			    $query = "EXEC spActualizarContraseñaUsuarios ?, ?, ?, ?, ?";
