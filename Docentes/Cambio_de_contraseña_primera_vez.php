@@ -13,8 +13,8 @@
     <head>
         <title>SII</title>
         <?php
-			include("incluir/metas.php");
-			include("incluir/links.php");
+			include("../incluir/metas.php");
+			include("../incluir/links.php");
     	?>
         <!--<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
@@ -31,7 +31,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.js" integrity="sha256-ofvu/Oqhm74vuZGlfF1/b4OUWkK/fzlVlAWxkgHr+S4=" crossorigin="anonymous"></script>-->
         <?php
-        	include("incluir/scripts.php");
+        	include("../incluir/scripts.php");
     	?>
         <script type="text/javascript" src="js/cambiar_contraseña.js"></script>
     </head>

@@ -13,12 +13,12 @@
 <head>
     <title>Iniciar Sesion</title>
     <?php
-        include("incluir/metas.php");
-        include("incluir/links.php");
+        include("../incluir/metas.php");
+        include("../incluir/links.php");
     ?>
     <link rel="stylesheet" href="css/styles_login.css">
     <?php
-        include("incluir/scripts.php");
+        include("../incluir/scripts.php");
     ?>
     <script type="text/javascript" src="js/login.js"></script>
 </head>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputPasswordAlumno">Contraseña</label>
-                        <input type="text" class="form-control status text-center" id="password" placeholder="Contraseña" required>
+                        <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block" id="button_entrar">Entrar</button>
                     <div class="form-footer">

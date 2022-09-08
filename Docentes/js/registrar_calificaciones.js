@@ -230,6 +230,8 @@ $(document).ready(function () {
         console.log("FTE_P2: "+FTE_P2);
         console.log("FIE_F: "+FIE_F);
         console.log("FTE_F: "+FTE_F);
+        console.log(IdPlanMateria);
+        console.log(IdGrupo);
         
         $.ajax({
             url: "ajax/ajax_ver_alumnos.php",
