@@ -16,7 +16,7 @@
         $UserName = $_POST['Usuario'];
         $Password = $_POST['Contraseña'];
         $PasswordTemp = 0;
-        $RolUsuario = 'PERSONAL';
+        $RolUsuario = 'ALUMNOS';
 
         $PassEncrypted = md5($Password);
         $result = $seguridad_usuario->actualizar_contraseña_usuario($IdUsuario, $UserName, $PassEncrypted, $PasswordTemp, $RolUsuario);
