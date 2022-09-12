@@ -53,7 +53,7 @@
 				<input type="search" name="clave" id="clave" placeholder="Ingrese el número de empleado o la matricula segun sea el caso" 
 				class="form-control col-md-8"/>
 				<select name="tipo_persona" id="tipo_persona" class="form-control col-md-4">
-					<option value="">-- Tipo de persona --</option>
+					<option value="" selected disabled>-- Tipo de persona --</option>
 					<option value="PERSONAL">Personal de la institución</option>
 					<option value="ALUMNOS">Alumnos</option>
 				</select>
@@ -87,13 +87,13 @@
 					<input type="text" class="form-control" id="Usuario" value="" required>
 				</div>
 				<div class="col-md-6 mb-3">
-					<label for="Password">Contraseña</label>
-					<div class="form-inline">
-						<div class="input-group">
-							<input type="password" class="form-control" name="Password" id="Password" value="" required>
-							<button class="verPassword" type="button"><i class="fa fa-eye-slash fa-2x"></i></button>
-						</div>
-					</div>
+						<label for="InputPasswordAlumno">Contraseña</label>
+                        <div class="input-group" id="show_password">
+                            <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
+                            <button type="button" class="verPassword input-group-addon">
+                                <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
+                            </button>
+                        </div>
 				</div>
 			</div>
 			<div class="form-row align-items-center">
