@@ -9,10 +9,20 @@
 			$this->connection = $this;
 		}
 
+		public function sanitize_str ($Value) {
+			$result = filter_var($Value, FILTER_SANITIZE_STRING);
+			return $result;
+		}
+
+		public function sanitize_int ($Value) {
+			$result = filter_var($Value, FILTER_SANITIZE_NUMBER_INT);
+			return $result;
+		}
+
 		public function buscar_empleado_alumno ($Clave, $TipoPersona) {
 			try {	
 			    $query = "EXEC spBuscarEmpleadoAlumno ?, ?";
-				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+				$result = $this->connection->connect_db()->prepare($query);
 				$result->bindValue(1, $Clave, PDO::PARAM_STR);
 				$result->bindValue(2, $TipoPersona, PDO::PARAM_STR);
 				$result->execute();

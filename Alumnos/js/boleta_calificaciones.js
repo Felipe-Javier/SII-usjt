@@ -45,14 +45,20 @@ $(document).ready(function() {
             data: {Matricula: Matricula, IdCiclo: IdCiclo},
 
             success: function(response) {
+                console.log(response);
                 var output = "";
-                if (response=='Tus calificaciones aún no han sido registradas') {
-                    output = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
-                                '<strong id="alert-boleta">'+response+'</strong>'+
-                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-                                  '<span aria-hidden="true">&times;</span>'+
-                                '</button>'+
-                              '</div>';
+                if (response=='Error al consultar tu boleta de calificaciones' || 
+                    response=='Tu boleta de calificaciones aún no esta disponible') {
+                    output = '<div class="row align-items-center">'+
+                               '<div class="col-sm-12">'+
+                                    '<div class="justify-conten-center alert alert-danger alert-dismissible fade show" role="alert">'+
+                                        '<strong id="alert-boleta">'+response+'</strong>'+
+                                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                                            '<span aria-hidden="true">&times;</span>'+
+                                        '</button>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>';
                     $("#boleta").html(output);
                 } else {
                     output = response;

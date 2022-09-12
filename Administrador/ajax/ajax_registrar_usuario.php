@@ -6,28 +6,28 @@
   $TipoPersona = '';
   $Clave = false;
   $count = 0;
-  //$Array = array();
+  $Array = array();
   $output = '';
 
   if(isset($_POST) && !empty($_POST)) {
-    $Action = strval($_POST['Action']);
+    $Action = $seguridad_usuario->sanitize_str($_POST['Action']);
     if ($Action == 'Buscar empleado o alumno') {
-      $Clave = strval($_POST['Clave']);
-      $TipoPersona = strval($_POST['TipoPersona']);
-
+      $Clave = $seguridad_usuario->sanitize_str($_POST['Clave']);
+      $TipoPersona = $seguridad_usuario->sanitize_str($_POST['TipoPersona']);
+      
       $result = $seguridad_usuario->buscar_empleado_alumno($Clave, $TipoPersona);
 
-      if ($result != true) {
-        $count = $result->rowCount();
+      if ($result == true) {
+        $Array[] = $result->fetch(PDO::FETCH_ASSOC);
+        $count = count($Array, COUNT_NORMAL);
+        
         if ($count > 0) {
-          $row = $result->fetch(PDO::FETCH_ASSOC);
-          //$Array[] = $row;
-          $output .= json_encode($row, JSON_UNESCAPED_UNICODE);
+          $output .= json_encode($Array, JSON_UNESCAPED_UNICODE);
         } else {
-          $output .= 'No hay empleados/alumnos registrados con esa clave';
+          $output .= 'No se encontraron empleados/alumnos registrados con los datos ingresados';
         }
       } else {
-        $output .= 'Error al buscar el empleado/alumno';
+        $output .= 'No se ha podido buscar el empleado/alumno con los datos ingresados';
       }
       echo $output;
       exit;
@@ -35,7 +35,7 @@
 
     }
   } else {
-    $output .= 'Ingrese los datos de busqueda';
+    $output .= 'Error al buscar el empleado/alumno';
     echo $output;
     exit;
   }

@@ -12,9 +12,9 @@
     $output = "";
 
     if (isset($_POST) && !empty($_POST)) {
-            $rol_usuario = strval($_POST['rol_usuario']);
-            $usuario = $_POST['usuario'];
-            $contraseña = strval($_POST['contraseña']);
+            $rol_usuario = $iniciar_sesion->sanitize_str($_POST['rol_usuario']);
+            $usuario = $iniciar_sesion->sanitize_str($_POST['usuario']);
+            $contraseña = $iniciar_sesion->sanitize_str($_POST['contraseña']);
 
             $result = $iniciar_sesion->sing_in($rol_usuario, $usuario, md5($contraseña));
             $count = $result->columnCount();

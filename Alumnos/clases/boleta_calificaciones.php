@@ -14,13 +14,13 @@
 		}
 
 		public function sanitize_int ($Value) {
-			$result = filter_var($Value, FILTER_SANITIZE_INT);
+			$result = filter_var($Value, FILTER_SANITIZE_NUMBER_INT);
 			return $result;
 		}
 
 	 	public function consultar_periodos ($Matricula) {
 			$query = "EXEC spTraerCiclosEscolaresPorMatricula ?";
-            $result = $this->connection->connect_db()->prepare($query);
+            $result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 			$result->bindValue(1, $Matricula, PDO::PARAM_STR);
             $result->execute();
 
@@ -33,7 +33,7 @@
 
 		public function consultar_calificaciones ($Matricula, $IdCiclo) {
 			$query = "EXEC spTraerCalificacionesMateriasAlumnoMatricula ?, ?";
-            $result = $this->connection->connect_db()->prepare($query);
+            $result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 			$result->bindValue(1, $Matricula, PDO::PARAM_STR);
 			$result->bindValue(2, $IdCiclo, PDO::PARAM_INT);
             $result->execute();

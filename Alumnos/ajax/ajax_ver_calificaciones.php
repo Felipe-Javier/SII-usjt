@@ -17,7 +17,7 @@
 
     $result = $boleta_calificaciones->consultar_calificaciones($Matricula, $IdCiclo);
 
-    $count = $result->columnCount();
+    $count = $result->rowCount();
     if ($count > 0) {
       $result_2 = $boleta_calificaciones->consultar_calificaciones($Matricula, $IdCiclo);
       $rowh=$result_2->fetchObject();
@@ -73,11 +73,11 @@
                     </div>';
           echo $output;
         } else {
-            $output .= 'No se encontraron calificaciones registradas';
+            $output .= 'Tu boleta de calificaciones aún no esta disponible';
             echo $output;
         }
   } else {
-    $output = 'Ingrese la matricula para ver los periodos disponibles';
+    $output = 'Error al consultar tu boleta de calificaciones';
     echo $output;
     exit;
   }

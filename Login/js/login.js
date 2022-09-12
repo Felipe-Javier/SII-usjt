@@ -1,5 +1,20 @@
 $(document).ready(function() {
 
+    "use strict";
+
+    $("#show_password a").on('click', function(event) {
+        event.preventDefault();
+        if ($('#show_password input').attr("type") == "text"){
+            $('#show_password input').attr('type', 'password');
+            $('#show_password i').addClass( "fa-eye-slash" );
+            $('#show_password i').removeClass( "fa-eye" );
+        } else if ($('#show_password input').attr("type") == "password"){
+            $('#show_password input').attr('type', 'text');
+            $('#show_password i').removeClass( "fa-eye-slash" );
+            $('#show_password i').addClass( "fa-eye" );
+        }
+    });
+
     var formLogin = $('#login-SII.needs-validation');
 
     var validation_Login = Array.prototype.filter.call(formLogin, function(form) {
@@ -52,6 +67,7 @@ $(document).ready(function() {
             },
 
             success: function(response) {
+                console.log(response);
                 var output = "";
                 if (response=='Usuario inactivo' || response=='Usuario bloqueado' || response=='Datos de incio de sesion incorrectos') {
                     output = '<div class="col-12">'+
