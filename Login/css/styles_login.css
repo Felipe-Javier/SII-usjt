@@ -25,6 +25,7 @@ body {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
 .login {
     padding-top: 5vh;
 }
@@ -51,8 +52,43 @@ form {
     padding-top: 15px;
 }
 
+/* ver password */
+
 .status{
     border: solid 3px #0c5286;
     border-radius: 5px;
     margin-bottom: 10px;
+}
+
+.status:focus{
+    border-color: #0c5286;
+}
+.verPassword {
+    border-left: 0px !important;
+    border: solid 3px #0c5286;
+    outline: none;
+    cursor: default !important;
+    border-radius: 0px 5px 5px 0px;
+    background-color: #fff;
+}
+
+.verPassword a {
+	color: #0064a7;
+	cursor: pointer;
+}
+
+.verPassword:active {
+    border: solid 3px #0c5286;
+}
+
+.verPassword:focus {
+	outline: none;
+}
+
+#password {
+    border-right: 0px !important;
+}
+
+.form-control:focus {
+    box-shadow: none;
 }

@@ -50,7 +50,12 @@
                     </div>
                     <div class="form-group">
                         <label for="InputPasswordAlumno">Contraseña</label>
-                        <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
+                        <div class="input-group" id="show_password">
+                                <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
+                                <button type="button" class="verPassword input-group-addon">
+                                    <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
+                                </button>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block" id="button_entrar">Entrar</button>
                     <div class="form-footer">
