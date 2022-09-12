@@ -9,6 +9,16 @@
 			$this->connection = new connection();
 		}
 
+		public function sanitize_str ($Value) {
+			$result = filter_var($Value, FILTER_SANITIZE_STRING);
+			return $result;
+		}
+
+		public function sanitize_int ($Value) {
+			$result = filter_var($Value, FILTER_SANITIZE_NUMBER_INT);
+			return $result;
+		}
+
 	 	public function sing_in ($rol_usuario, $usuario, $contraseña) {
 			$query = "EXEC spIniciarSesionSistemaWeb '$rol_usuario', '$usuario', '$contraseña'";
             $result = $this->connection->connect_db()->prepare($query);

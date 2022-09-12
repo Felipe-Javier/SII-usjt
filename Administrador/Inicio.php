@@ -13,8 +13,8 @@
 <head>
 	<title>SII</title>
     <?php
-        include("incluir/metas.php");
-        include("incluir/links.php");
+        include("../incluir/metas.php");
+        include("../incluir/links.php");
     ?>
 	<!--<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" type="text/css" href="css/styles_principal.css">
     <link rel="stylesheet" type="text/css" href="css/styles_inicio.css">
     <?php
-        include("incluir/scripts.php");
+        include("../incluir/scripts.php");
     ?>
 </head>
 <body>

@@ -35,7 +35,7 @@
                     <div class="text-center mb-3"><i class="fas fa-user fa-5x"></i></div>
                     <div class="row" id="result"></div>
                     <div class="form-group">
-                        <label for="InputUser">¿Eres docente o eres alumno?</label>
+                        <label for="rol_usuario">¿Eres docente o eres alumno?</label>
                         <select class="custom-select status text-center" name="rol_usuario" id="rol_usuario" required>
                             <option value="" selected disabled>SELECCIONA...</option>
                             <option value="DOCENTE">DOCENTE</option>
@@ -43,18 +43,21 @@
                             <option value="ADMINISTRADOR DE SISTEMAS">ADMINISTRADOR DE SISTEMAS</option>
                         </select>
                     </div>
-
                     <div class="form-group">
-                        <label for="InputUser">Usuario</label>
+                        <label for="usuario">Usuario</label>
                         <input type="text" class="form-control status text-center" id="usuario" placeholder="Usuario" required> 
                     </div>
                     <div class="form-group">
-                        <label for="InputPasswordAlumno">Contraseña</label>
+
+                        <label for="password">Contraseña</label>
                         <div class="input-group" id="show_password">
-                                <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
-                                <button type="button" class="verPassword input-group-addon">
-                                    <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
-                                </button>
+                            <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
+                            <!--<button type="button" class="verPassword input-group-addon">-->
+                            <a type="button" class="verPassword status input-group-addon" href="">
+                                <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
+                            </a>
+                            </div>
+                            <!--</button>-->
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block" id="button_entrar">Entrar</button>

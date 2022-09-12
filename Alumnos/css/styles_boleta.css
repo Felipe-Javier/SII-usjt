@@ -13,6 +13,18 @@
 	text-transform: uppercase;
 }
 
+#cont-pag #boleta {
+	background-image: url('../img/logo-usjt.png');
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: center;
+	background-size: 200px;
+}
+
+#cont-pag #boleta .row {
+	height: 85%;
+}
+
 .table-periodo {
 	background-color: rgba(0, 100, 167,.9);
 	color: #333;
@@ -26,7 +38,7 @@
 
 .table-periodo .thead-periodo, .table-boleta .thead-boleta {
 	background-color: rgba(0, 100, 167,.9);
-	
+	color: #f2f2f2;	
 }
 
 .table-periodo .tbody-periodo, .table-boleta .tbody-boleta {

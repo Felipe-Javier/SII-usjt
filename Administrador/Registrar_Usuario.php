@@ -49,7 +49,7 @@
     ?>
 	<div class=" row justify-content-center m-0 mt-4 mb-2">
 		<div class="fondoGeneral">
-			<div class="input-group" id="search-autocomplete">
+			<div class="input-group" id="search">
 				<input type="search" name="clave" id="clave" placeholder="Ingrese el número de empleado o la matricula segun sea el caso" 
 				class="form-control col-md-8"/>
 				<select name="tipo_persona" id="tipo_persona" class="form-control col-md-4">
@@ -64,99 +64,92 @@
 		</div>
 	</div>
     <div class=" row justify-content-center m-0 mt-2 mb-4">
-		<form class="needs-validation fondoGeneral" novalidate>
+		<form id="form-reguser" class="needs-validation fondoGeneral" novalidate>
 			<p class="text-center mb-4 registrarUsuario">Registrar Usuario</p>
-			<div class="form-row">
+			<div class="form-row" id="row-nomcompleto">
 				<div class="col-md-4 mb-3">
-				<label for="validationCustomNS">Nombres</label>
-				<input type="text" class="form-control" id="validationCustomNS" placeholder="Nombres" required>
+					<label for="Nombres">Nombres</label>
+					<input type="text" class="form-control text-center" id="Nombres" value="" required>
 				</div>
 				<div class="col-md-4 mb-3">
-				<label for="validationCustomAP">Apellido Paterno</label>
-				<input type="text" class="form-control" id="validationCustomAP" placeholder="Apellido Paterno" required>
+					<label for="Apellido_Paterno">Apellido Paterno</label>
+					<input type="text" class="form-control text-center" id="Apellido_Paterno" value="" required>
 				</div>
 				<div class="col-md-4 mb-3">
-				<label for="validationCustomAM">Apellido Materno</label>
-				<input type="text" class="form-control" id="validationCustomAM" placeholder="Apellido Materno" required>
+					<label for="Apellido_Materno">Apellido Materno</label>
+					<input type="text" class="form-control text-center" id="Apellido_Materno" value="" required>
 				</div>
 			</div>
+			<div class="form-row justify-content-center" id="row-claves-persona"></div>
 			<div class="form-row">
 				<div class="col-md-6 mb-3">
-				<label for="validationCustomU">Usuario</label>
-				<input type="text" class="form-control" id="validationCustomU" placeholder="Usuario" required>
+					<label for="Usuario">Usuario</label>
+					<input type="text" class="form-control" id="Usuario" value="" required>
 				</div>
-				<div class="col-md-5 mb-3">
-				<label for="validationCustomP">Contraseña</label>
-				<input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
+				<div class="col-md-6 mb-3">
+					<label for="Password">Contraseña</label>
+					<div class="form-inline">
+						<div class="input-group">
+							<input type="password" class="form-control" name="Password" id="Password" value="" required>
+							<button class="verPassword" type="button"><i class="fa fa-eye-slash fa-2x"></i></button>
+						</div>
+					</div>
 				</div>
-				<button class="col-sm-1 verPassword" type="button"><i class="fa fa-eye-slash fa-2x"></i></button>
 			</div>
 			<div class="form-row align-items-center">
 				<div class="col-md-4 mb-3 text-center">
-					<label for="validationCustom">Contraseña Temporal</label>
-					<!--<div class="form-check">
-						<input class="form-check-input" type="checkbox" id="gridCheck">
-						<label class="form-check-label" for="gridCheck">Si</label>
-					</div>-->
+					<label for="ContTemp">Contraseña Temporal</label>
 					<div class="form-inline justify-content-center">
 						<div class="custom-control custom-radio">
-							<input type="radio" class="custom-control-input" id="inputCT1" name="inputCT" value="1" required>
-							<label class="custom-control-label" for="inputCT1">Sí</label>
+							<input type="radio" class="custom-control-input" name="ContTemp" id="ContTemp_1" value="1" required>
+							<label class="custom-control-label" for="ContTemp_1">Sí</label>
 						</div>
 						<div class="ml-5 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" id="inputCT0" name="inputCT" value="0" required>
-							<label class="custom-control-label" for="inputCT0">No</label>
+							<input type="radio" class="custom-control-input" name="ContTemp" id="ContTemp_0" value="0" required>
+							<label class="custom-control-label" for="ContTemp_0">No</label>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 mb-3" >
-					<label >Rol</label >
-					<select class="custom-select my-1 mr-sm-2" required>
+					<label for="rolusuario">Rol</label >
+					<select class="custom-select my-1 mr-sm-2" name="Rol_Usuario" id="Rol_Usuario" required>
 						<option value="" selected disabled>Seleciona</option >
 						<option>Docente</option >
 						<option>Alumno</option >
 					</select>
 				</div>
 				<div class="col-md-4 text-center mb-3">
-					<label for="validationCustom">Estatus</label>
+					<label for="status">Status</label>
 					<div class="form-inline justify-content-center">
-						<label class="text-left" for="inputActivo">Activo</label>
+						<label name="status" for="ActInact">Activo</label>
 						<div class="ml-3 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" id="inputActivo" name="inputActivo" value="1" required>
-							<label class="custom-control-label" for="inputActivo">Sí</label>
+							<input type="radio" class="custom-control-input" name="ActInact" id="Activo" value="1" required>
+							<label class="custom-control-label" for="Activo">Sí</label>
 						</div>
 						<div class="ml-3 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" id="inputInactivo" name="inputActivo" value="0" required>
-							<label class="custom-control-label" for="inputInactivo">No</label>
+							<input type="radio" class="custom-control-input" name="ActInact" id="Inactivo" value="0" required>
+							<label class="custom-control-label" for="Inactivo">No</label>
 						</div>
 					</div>
 					<div class="form-inline justify-content-center">
-						<label class="" for="inputBloqueado">Bloqueado</label>
+						<label name="status" for="BloqDesbloq">Bloqueado</label>
 						<div class="ml-3 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" id="inputBloqueado" name="inputBloqueado" value="1" required>
-							<label class="custom-control-label" for="inputBloqueado">Sí</label>
+							<input type="radio" class="custom-control-input" name="BloqDesbloq" id="Bloqueado" value="1" required>
+							<label class="custom-control-label" for="Bloqueado">Sí</label>
 						</div>
 						<div class="ml-3 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" id="inputDesbloqueado" name="inputBloqueado" value="0" required>
-							<label class="custom-control-label" for="inputDesbloqueado">No</label>
+							<input type="radio" class="custom-control-input" name="BloqDesbloq" id="Desbloqueado" value="0" required>
+							<label class="custom-control-label" for="Desbloqueado">No</label>
 						</div>
 					</div>
 				</div>
-						<!--<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="gridCheck">
-							<label class="form-check-label" for="gridCheck">Bloqueado</label>
-						</div>-->
 			</div>
 			<div class="form-row justify-content-around">
 				<div class="col-md-5 mb-3">
-					<label for="Usuario">Usuario que registra</label>
-					<input class="form-control" id="Usuario" type="text" value="<?php echo $_SESSION['Empleado'] ?>" 
-					  IdEmpleado="<?php echo $_SESSION['IdUsuario'] ?>" disabled>
+					<label for="UsuarioReg">Usuario que registra</label>
+					<input class="form-control" id="UsuarioReg" type="text" value="<?php echo $_SESSION['Empleado'] ?>" 
+					  IdUsuarioReg="<?php echo $_SESSION['IdUsuario'] ?>" disabled>
 				</div>
-				<!--<div class="col-md-4 mb-3">
-					<label for="FechaHoraActual">Fecha</label>
-					<input class="form-control" id="FechaHoraActual" type="text" value="" disabled>
-				</div>-->
 			</div>
 			<div class="form-row justify-content-center">
 				<button class="btn btn-primary" type="submit">Guardar</button>

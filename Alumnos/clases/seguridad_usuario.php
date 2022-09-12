@@ -15,7 +15,7 @@
 		}
 
 		public function sanitize_int ($Value) {
-			$result = filter_var($Value, FILTER_SANITIZE_INT);
+			$result = filter_var($Value, FILTER_SANITIZE_NUMBER_INT);
 			return $result;
 		}
 

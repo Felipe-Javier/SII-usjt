@@ -15,7 +15,8 @@ $(document).ready(function () {
         }
     });
 
-    $("#show_password_confirm a").on('click', function(event) {  
+    $("#show_password_confirm a").on('click', function(event) { 
+        event.preventDefault(); 
         if ($('#show_password_confirm input').attr("type") == "text"){
             $('#show_password_confirm input').attr('type', 'password');
             $('#show_password_confirm i').addClass( "fa-eye-slash" );
