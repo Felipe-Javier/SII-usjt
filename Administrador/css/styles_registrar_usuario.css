@@ -33,18 +33,30 @@ form label {
     border-radius: 10px;
 }
 
+/* ver password */
 .verPassword {
-	border: solid 1px #d4d4d4;
+	background-color: #fff;
+	border: 1px solid #ced4da;
+    border-radius: 0px 0.25rem 0.25rem 0px;
+    border-left: solid 0px;
     outline: none;
 	color: #0064a7;
 	cursor: pointer;
-	border-radius: 0px 0px 4px 0px;
 }
 
 .verPassword:active {
-	border: solid 1px #d4d4d4;
+    border: 1px solid #ced4da;
+	border-left: 0px;
 }
 
 .verPassword:focus {
 	outline: none;
+}
+
+#password {
+    border-right: 0px !important;
+}
+
+.form-control:focus {
+    box-shadow: none;
 }

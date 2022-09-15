@@ -11,6 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <title>Iniciar Sesion</title>
     <?php
         include("../incluir/metas.php");
@@ -20,7 +21,9 @@
     <?php
         include("../incluir/scripts.php");
     ?>
-    <script type="text/javascript" src="js/login.js"></script>
+    
+<script type= "text/javascript" src="js/login.js"></script>
+
 </head>
 <body>
     <?php
@@ -47,8 +50,7 @@
                         <input type="text" class="form-control status text-center" id="usuario" placeholder="Usuario" required> 
                     </div>
                     <div class="form-group">
-
-                        <label for="password">Contraseña</label>
+                        <label for="InputPasswordAlumno">Contraseña</label>
                         <div class="input-group" id="show_password">
                             <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
                             <button type="button" class="verPassword input-group-addon" id="btn_show_password">
@@ -66,5 +68,3 @@
     </section>
 </body>
 </html>
-<!-- JAGUIRRE pruebaD3  Docente 
-    210210002 Julio2022  alumno --> 

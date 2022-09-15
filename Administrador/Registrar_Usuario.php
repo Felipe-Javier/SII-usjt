@@ -50,10 +50,10 @@
 	<div class=" row justify-content-center m-0 mt-4 mb-2">
 		<div class="fondoGeneral">
 			<div class="input-group" id="search">
-				<input type="search" name="clave" id="clave" placeholder="Ingrese el número de empleado o la matricula segun sea el caso" 
-				class="form-control col-md-8"/>
+				<input name="clave" type="search" 
+				class="form-control col-md-8" id="clave" placeholder="Ingrese el número de empleado o la matricula segun sea el caso"/>
 				<select name="tipo_persona" id="tipo_persona" class="form-control col-md-4">
-					<option value="">-- Tipo de persona --</option>
+					<option value="" selected disabled>-- Tipo de persona --</option>
 					<option value="PERSONAL">Personal de la institución</option>
 					<option value="ALUMNOS">Alumnos</option>
 				</select>
@@ -89,9 +89,9 @@
 				<div class="col-md-6 mb-3">
 					<label for="Password">Contraseña</label>
 					<div class="form-inline">
-						<div class="input-group">
+						<div class="input-group" id="show_password">
 							<input type="password" class="form-control text-center" name="Password" id="Password" value="" required>
-							<button class="verPassword" type="button"><i class="fa fa-eye-slash fa-2x"></i></button>
+							<button type="button" class="verPassword input-group-addon"><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></button>
 						</div>
 					</div>
 				</div>
