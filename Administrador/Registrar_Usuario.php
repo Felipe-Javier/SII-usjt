@@ -64,8 +64,8 @@
 		</div>
 	</div>
     <div class=" row justify-content-center m-0 mt-2 mb-4">
-		<form id="form-reguser" class="needs-validation fondoGeneral" novalidate>
-			<p class="text-center mb-4 registrarUsuario">Registrar Usuario</p>
+		<form id="form-reguser" class="fondoGeneral needs-validation" novalidate>
+			<p class="text-center mb-4 registrarUsuario">Registro de Usuario</p>
 			<div class="form-row" id="row-nomcompleto">
 				<div class="col-md-4 mb-3">
 					<label for="Nombres">Nombres</label>
@@ -84,13 +84,13 @@
 			<div class="form-row">
 				<div class="col-md-6 mb-3">
 					<label for="Usuario">Usuario</label>
-					<input type="text" class="form-control" id="Usuario" value="" required>
+					<input type="text" class="form-control text-center" id="Usuario" value="" required>
 				</div>
 				<div class="col-md-6 mb-3">
 					<label for="Password">Contraseña</label>
 					<div class="form-inline">
 						<div class="input-group">
-							<input type="password" class="form-control" name="Password" id="Password" value="" required>
+							<input type="password" class="form-control text-center" name="Password" id="Password" value="" required>
 							<button class="verPassword" type="button"><i class="fa fa-eye-slash fa-2x"></i></button>
 						</div>
 					</div>
@@ -98,24 +98,22 @@
 			</div>
 			<div class="form-row align-items-center">
 				<div class="col-md-4 mb-3 text-center">
-					<label for="ContTemp">Contraseña Temporal</label>
+					<label for="PassTemp">Contraseña Temporal</label>
 					<div class="form-inline justify-content-center">
 						<div class="custom-control custom-radio">
-							<input type="radio" class="custom-control-input" name="ContTemp" id="ContTemp_1" value="1" required>
-							<label class="custom-control-label" for="ContTemp_1">Sí</label>
+							<input type="radio" class="custom-control-input PassTemp" name="PassTemp" id="PassTemp_1" value="1" required>
+							<label class="custom-control-label" for="PassTemp_1">Sí</label>
 						</div>
 						<div class="ml-5 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" name="ContTemp" id="ContTemp_0" value="0" required>
-							<label class="custom-control-label" for="ContTemp_0">No</label>
+							<input type="radio" class="custom-control-input PassTemp" name="PassTemp" id="PassTemp_0" value="0" required>
+							<label class="custom-control-label" for="PassTemp_0">No</label>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 mb-3" >
-					<label for="rolusuario">Rol</label >
+					<label for="Rol_Usuario">Rol</label >
 					<select class="custom-select my-1 mr-sm-2" name="Rol_Usuario" id="Rol_Usuario" required>
-						<option value="" selected disabled>Seleciona</option >
-						<option>Docente</option >
-						<option>Alumno</option >
+						<option value="" selected disabled>Seleciona</option>
 					</select>
 				</div>
 				<div class="col-md-4 text-center mb-3">
@@ -123,22 +121,22 @@
 					<div class="form-inline justify-content-center">
 						<label name="status" for="ActInact">Activo</label>
 						<div class="ml-3 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" name="ActInact" id="Activo" value="1" required>
+							<input type="radio" class="custom-control-input ActInact" name="ActInact" id="Activo" value="1" required>
 							<label class="custom-control-label" for="Activo">Sí</label>
 						</div>
 						<div class="ml-3 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" name="ActInact" id="Inactivo" value="0" required>
+							<input type="radio" class="custom-control-input ActInact" name="ActInact" id="Inactivo" value="0" required>
 							<label class="custom-control-label" for="Inactivo">No</label>
 						</div>
 					</div>
 					<div class="form-inline justify-content-center">
 						<label name="status" for="BloqDesbloq">Bloqueado</label>
 						<div class="ml-3 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" name="BloqDesbloq" id="Bloqueado" value="1" required>
+							<input type="radio" class="custom-control-input BloqDesbloq" name="BloqDesbloq" id="Bloqueado" value="1" required>
 							<label class="custom-control-label" for="Bloqueado">Sí</label>
 						</div>
 						<div class="ml-3 custom-control custom-radio">
-							<input type="radio" class="custom-control-input" name="BloqDesbloq" id="Desbloqueado" value="0" required>
+							<input type="radio" class="custom-control-input BloqDesbloq" name="BloqDesbloq" id="Desbloqueado" value="0" required>
 							<label class="custom-control-label" for="Desbloqueado">No</label>
 						</div>
 					</div>

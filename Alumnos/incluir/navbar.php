@@ -1,7 +1,8 @@
 
 <nav class="navbar navbar-expand-lg  navbar-light" >
   <a class="navbar-brand" href="#">En Linea</a>
-  <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+   aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -20,7 +21,8 @@
 
     <ul class="navbar-nav ml-auto text-center">
       <li class="dropdown nav-item ml-auto mr-auto">
-        <a class="nav-link dropdown-toggler dropdown-toggle" href="#" role="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="nav-link dropdown-toggler dropdown-toggle" href="#" role="button" data-toggle="collapse" data-target="#navbarDropdown"
+         aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation" IdRol="<?php echo $_SESSION['IdRol']; ?>">
           <i class="icon-user fas fa-user "></i>Bienvenido!, <?php echo $_SESSION['Rol'] ?>
         </a>
         <div class="no-hover dropdown-menu" id="navbarDropdown" role="menu" aria-labelledby="navbarDropdown" aria-expanded="false">

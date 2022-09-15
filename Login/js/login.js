@@ -2,27 +2,28 @@ $(document).ready(function() {
 
     "use strict";
 
-    $("#show_password a").on('click', function(event) {
-        event.preventDefault();
-        if ($('#show_password input').attr("type") == "text"){
-            $('#show_password input').attr('type', 'password');
-            $('#show_password i').addClass( "fa-eye-slash" );
-            $('#show_password i').removeClass( "fa-eye" );
-        } else if ($('#show_password input').attr("type") == "password"){
-            $('#show_password input').attr('type', 'text');
-            $('#show_password i').removeClass( "fa-eye-slash" );
-            $('#show_password i').addClass( "fa-eye" );
+    $("#show_password #btn_show_password").on('click', function() {
+        if ($('#show_password #password').attr("type") == "text"){
+            $('#show_password #password').attr('type', 'password');
+            $('#show_password #btn_show_password i').addClass( "fa-eye-slash" );
+            $('#show_password #btn_show_password i').removeClass( "fa-eye" );
+        } else if ($('#show_password #password').attr("type") == "password"){
+            $('#show_password #password').attr('type', 'text');
+            $('#show_password #btn_show_password i').removeClass( "fa-eye-slash" );
+            $('#show_password #btn_show_password i').addClass( "fa-eye" );
         }
     });
 
     var formLogin = $('#login-SII.needs-validation');
 
     var validation_Login = Array.prototype.filter.call(formLogin, function(form) {
-       form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function(event) {
             if (form.checkValidity() == false) {
                 event.preventDefault();
                 event.stopPropagation();
                 form.classList.add('was-validated');
+                $("#show_password #btn_show_password").removeClass("verPassword");
+                $("#show_password #btn_show_password").addClass("validate-btn-danger");
                 var output = "";
                 output = '<div class="col-12">'+
                             '<div class="alert alert-danger fade show text-center" role="alert">'+
@@ -37,6 +38,8 @@ $(document).ready(function() {
                     event.preventDefault();
                     event.stopPropagation();
                     form.classList.add('was-validated');
+                    $("#show_password #btn_show_password").removeClass("verPassword");
+                    $("#show_password #btn_show_password").addClass("validate-btn-success");
                     Iniciar_Sesion();
                 }
             }
@@ -44,14 +47,14 @@ $(document).ready(function() {
     });
 
     function Iniciar_Sesion () {
-        var rol_usuario = $("form .form-group #rol_usuario").val();
+        var tipo_identificacion = $("form .form-group #tipo_identificacion").val();
         var usuario = $("form .form-group #usuario").val();
         var contraseña = $("form .form-group #password").val();
         
         $.ajax({
             url: "ajax/ajax_iniciar_sesion.php",
             method: "POST",
-            data: {rol_usuario: rol_usuario, usuario: usuario, contraseña: contraseña},
+            data: {tipo_identificacion: tipo_identificacion, usuario: usuario, contraseña: contraseña},
             async: true,
 
             beforeSend: function() {
@@ -67,7 +70,6 @@ $(document).ready(function() {
             },
 
             success: function(response) {
-                console.log(response);
                 var output = "";
                 if (response=='Usuario inactivo' || response=='Usuario bloqueado' || response=='Datos de incio de sesion incorrectos') {
                     output = '<div class="col-12">'+

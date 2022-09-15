@@ -1,33 +1,75 @@
-.btns_contraseñas {
+.fondo-general {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+.fondo-general .recuperarPassword {
     background-color: #0064a7;
-    width: auto;
-    padding: 15px 25px;
-    font-size: 20px;
-    text-decoration: none;
-    outline: none;
+    border-radius: 10px;
     color: #f2f2f2;
-    border: none;
-    box-shadow: 0 9px #999;
-    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.btns_contraseñas:hover {
-    background-color: #007fd3;
-}
-
-.btns_contraseñas:active {
-    transform: translateY(4px);
-    box-shadow: 0 5px #666;
-}
-
-.btns_contraseñas:focus {
+#form-recpass .verPassword {
+    background-color: #fff;
+    border-radius: 0px 4px 4px 0px;
+	border: solid 1px #d4d4d4;
+    border-left: 0px;
+	color: #0064a7;
+	cursor: pointer;
     outline: none;
 }
 
-#cambiar {
-    display: none;
+#form-recpass .verPassword:active {
+	border: solid 1px #d4d4d4;
+    border-left: 0px;
 }
 
-#buscar {
-    display: none;
+#form-recpass .verPassword:focus {
+	outline: none;
+}
+
+#form-recpass #Pass, #PassConfirm {
+    border-right: 0px;
+}
+
+#form-recpass .title-input {
+	font-family: sans-serif;
+	font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#form-recpass .validate-btn-danger {
+    background-color: #fff;
+    border-radius: 0px 4px 4px 0px;
+    border: solid 1px #dc3545;
+    border-left: 0px;
+    color: #dc3545;
+    cursor: pointer;
+    outline: none;
+}
+
+#form-recpass .validate-btn-success {
+    background-color: #fff;
+    border-radius: 0px 4px 4px 0px;
+    border: solid 1px #28a745;
+    border-left: 0px;
+    color: #28a745;
+    cursor: pointer;
+    outline: none;
+}
+
+#form-recpass .validate-btn-danger:active {
+	border: solid 1px #dc3545;
+    border-left: 0px;
+}
+
+#form-recpass .validate-btn-success:active {
+	border: solid 1px #28a745;
+    border-left: 0px;
 }

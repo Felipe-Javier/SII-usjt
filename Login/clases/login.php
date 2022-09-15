@@ -19,8 +19,8 @@
 			return $result;
 		}
 
-	 	public function sing_in ($rol_usuario, $usuario, $contraseña) {
-			$query = "EXEC spIniciarSesionSistemaWeb '$rol_usuario', '$usuario', '$contraseña'";
+	 	public function sing_in ($tipo_identificacion, $usuario, $contraseña) {
+			$query = "EXEC spIniciarSesionSistemaWeb '$tipo_identificacion', '$usuario', '$contraseña'";
             $result = $this->connection->connect_db()->prepare($query);
 			/*$result->bindValue(1, $rol_usuario, PDO::PARAM_STR);
 			$result->bindValue(2, $usuario, PDO::PARAM_STR);

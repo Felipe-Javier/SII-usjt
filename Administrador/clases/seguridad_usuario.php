@@ -19,6 +19,18 @@
 			return $result;
 		}
 
+		public function consultar_roles_usuario () {
+			try {	
+			    $query = "EXEC spTraerRoles";
+				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+				$result->execute();
+
+				return $result;
+			} catch(PDOException $exp) {
+				return false;
+			}
+		}
+
 		public function buscar_empleado_alumno ($Clave, $TipoPersona) {
 			try {	
 			    $query = "EXEC spBuscarEmpleadoAlumno ?, ?";
@@ -27,6 +39,33 @@
 				$result->bindValue(2, $TipoPersona, PDO::PARAM_STR);
 				$result->execute();
 
+				return $result;
+			} catch(PDOException $exp) {
+				return false;
+			}
+		}
+
+		public function registrar_usuario($NumEmpleado, $IdPersona, $IdAlumno, $IdInstructor, $Nombres, $ApellidoPaterno, $ApellidoMaterno, 
+												 $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, $IdRolUsuario, $IdUsuarioRegistra) {
+			try {	
+				$query = "EXEC spRegistrarUsuarios ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
+				$result = $this->connection->connect_db()->prepare($query);
+				$result->bindValue(1, $NumEmpleado, PDO::PARAM_INT|PDO::PARAM_NULL);
+				$result->bindValue(2, $IdPersona, PDO::PARAM_INT);
+				$result->bindValue(3, $IdAlumno, PDO::PARAM_INT);
+				$result->bindValue(4, $IdInstructor, PDO::PARAM_INT|PDO::PARAM_NULL);
+				$result->bindValue(5, $Nombres, PDO::PARAM_STR);
+				$result->bindValue(6, $ApellidoPaterno, PDO::PARAM_STR);
+				$result->bindValue(7, $ApellidoMaterno, PDO::PARAM_STR);
+				$result->bindValue(8, $Usuario, PDO::PARAM_STR);
+				$result->bindValue(9, $Contrasenia, PDO::PARAM_STR);
+				$result->bindValue(10, $ContraseniaTemp, PDO::PARAM_INT);
+				$result->bindValue(11, $Activo, PDO::PARAM_INT);
+				$result->bindValue(12, $Bloqueado, PDO::PARAM_INT);
+				$result->bindValue(13, $IdRolUsuario, PDO::PARAM_INT);
+				$result->bindValue(14, $IdUsuarioRegistra, PDO::PARAM_INT);
+				$result->execute();
+										
 				return $result;
 			} catch(PDOException $exp) {
 				return false;
@@ -42,6 +81,25 @@
                 $result->bindValue(3, $Password, PDO::PARAM_STR);
                 $result->bindValue(4, $PasswordTemp, PDO::PARAM_STR);
                 $result->bindValue(5, $RolUsuario, PDO::PARAM_STR);
+				$result->execute();
+
+				return $result;
+			} catch(PDOException $exp) {
+				return false;
+			}
+		}
+
+		public function actrec_contraseña_usuario($IdUsuario, $Usuario, $Password, $PassTemp, $IdRolUsuario, $NumEmpleado, $IdUsuarioAct) {
+			try {	
+			    $query = "EXEC spActualizarRecuperarContraseniaUsuarios ?, ?, ?, ?, ?, ?, ?";
+				$result = $this->connection->connect_db()->prepare($query);
+				$result->bindValue(1, $IdUsuario, PDO::PARAM_INT|PDO::PARAM_NULL);
+				$result->bindValue(2, $Usuario, PDO::PARAM_STR);
+                $result->bindValue(3, $Password, PDO::PARAM_STR);
+                $result->bindValue(4, $PassTemp, PDO::PARAM_STR|PDO::PARAM_NULL);
+                $result->bindValue(5, $IdRolUsuario, PDO::PARAM_STR);
+				$result->bindValue(6, $NumEmpleado, PDO::PARAM_INT|PDO::PARAM_NULL);
+				$result->bindValue(7, $IdUsuarioAct, PDO::PARAM_INT);
 				$result->execute();
 
 				return $result;

@@ -36,11 +36,10 @@
                     <div class="row" id="result"></div>
                     <div class="form-group">
                         <label for="rol_usuario">¿Eres docente o eres alumno?</label>
-                        <select class="custom-select status text-center" name="rol_usuario" id="rol_usuario" required>
+                        <select class="custom-select status text-center" name="tipo_identificacion" id="tipo_identificacion" required>
                             <option value="" selected disabled>SELECCIONA...</option>
-                            <option value="DOCENTE">DOCENTE</option>
-                            <option value="ALUMNO">ALUMNO</option>
-                            <option value="ADMINISTRADOR DE SISTEMAS">ADMINISTRADOR DE SISTEMAS</option>
+                            <option value="PERSONAL">PERSONAL DE LA INSTITUCIÓN</option>
+                            <option value="ALUMNOS">ALUMNOS</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -52,12 +51,9 @@
                         <label for="password">Contraseña</label>
                         <div class="input-group" id="show_password">
                             <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
-                            <!--<button type="button" class="verPassword input-group-addon">-->
-                            <a type="button" class="verPassword status input-group-addon" href="">
+                            <button type="button" class="verPassword input-group-addon" id="btn_show_password">
                                 <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
-                            </a>
-                            </div>
-                            <!--</button>-->
+                            </button>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block" id="button_entrar">Entrar</button>

@@ -41,15 +41,17 @@
         ?>
         <nav class="navbar navbar-expand-lg navbar-light" >
             <a class="navbar-brand" href="#">En Linea</a>
-            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarContent"
+             aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ml-auto text-center">
                     <li class="dropdown nav-item  ml-auto mr-auto ">
-                        <a class="nav-link dropdown-toggler dropdown-toggle" href="#" role="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false"  aria-label="Toggle navigation">
-                            <i class="icon-user fas fa-user "></i>Bienvenido!, <?php echo $_SESSION['Rol'] ?>
+                        <a class="nav-link dropdown-toggler dropdown-toggle" href="#" role="button" data-toggle="collapse" data-target="#navbarDropdown"
+                         aria-controls="navbarDropdown" aria-expanded="false"  aria-label="Toggle navigation" IdRol="<?php echo $_SESSION['IdRol']; ?>">
+                            <i class="icon-user fas fa-user "></i>Bienvenido!, <?php echo $_SESSION['Rol']; ?>
                         </a>
                         <div class="no-hover dropdown-menu" id="navbarDropdown" role="menu" aria-labelledby="navbarDropdown" aria-expanded="false">
                             <a class="dropdown-item text-center" href="../Login/ajax/ajax_cerrar_sesion.php">Cerrar Sesion</a>
@@ -75,8 +77,8 @@
                             <label for="validationCustom">Contraseña</label>
                             <div class="input-group" id="show_password">
                                 <input type="password" class="form-control text-center" id="password" value="" required>
-                                <button type="button" class="verPassword input-group-addon">
-                                    <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
+                                <button type="button" class="verPassword input-group-addon" id="btn-show-Pass">
+                                    <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -84,8 +86,8 @@
                             <label for="password-confirm">Confirmar nueva contraseña</label>
                             <div class="input-group" id="show_password_confirm">
                                 <input type="password" class="form-control text-center" id="password-confirm" value="" required>
-                                <button type="button" class="verPassword input-group-addon">
-                                    <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
+                                <button type="button" class="verPassword input-group-addon" id="btn-show-passConfirm">
+                                    <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>

@@ -46,7 +46,7 @@
         <div class="cuadroBienvenida col-sm-6 text-center p-5">
             <p class="msjBienvenida">Bienvenido</p>
             <p class="nomEmpleado"> 
-                <?php echo $_SESSION['Empleado'] ?>
+                <?php echo $_SESSION['Empleado']; ?>
             </p>
         </div>
     </div>

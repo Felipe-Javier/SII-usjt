@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['active'])) {
+        header('location: ../Login/Iniciar_Sesion.php');
+    } else {
+        if ($_SESSION['Rol'] != 'ADMINISTRADOR DE SISTEMAS') {
+            header('location: ../Login/Iniciar_Sesion.php');
+        }
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +31,8 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.js" integrity="sha256-ofvu/Oqhm74vuZGlfF1/b4OUWkK/fzlVlAWxkgHr+S4=" crossorigin="anonymous"></script>-->
     <?php
         include("../incluir/scripts.php");
-    ?> 
+    ?>
+    <script type="text/javascript" src="js/recuperar_contraseña.js"></script>
 </head>
 <body>
     <?php
@@ -32,112 +43,49 @@
       include("incluir/header.php");
       include("incluir/navbar.php");
     ?>
-    <div class="row justify-content-center m-0 mt-5 mb-4">   
-        <div class="cuadroBienvenida col-sm-6 text-center p-5">
-            <p class="msjBienvenida mb-5">¿Que acción desea realizar?</p>
-            <div class="row justify-content-around">
-                <button  class="btns_contraseñas mb-5" onclick="cambiar()">Cambiar Contraseña</button>
-                <button class="btns_contraseñas mb-5" onclick="buscar()">Buscar Contraseña</button>
-            </div>
-
-            <div id="cambiar" class="col-sm-8 border p-3 mx-auto" >
-                <form >
-                    <p class="mb-4 registrarUsuario">Cambiar Contraseña</p>
-                    <div class="form">
-                        <div class=" mb-3">
-                            <label for="">Usuario</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class=" mb-3">
-                            <label for="">Nueva Contraseña</label>
-                            <div class="input-group" id="show_password">
-                                <input type="password" class="form-control" placeholder="Contraseña" required>
-                                <button type="button" class="verPassword input-group-addon">
-                                    <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
-                                </button>
-                            </div>
-                        </div>
-                        <div class=" mb-3">
-                            <label for="">Confirmar Contraseña</label>
-                            <input type="password" class="form-control">
-                        </div>
-                        <div class="form-row justify-content-center">
-	  	                    <button class="btn btn-primary" type="submit">Guardar</button>
-	  	                </div>
+    <div class="row justify-content-center m-0 mt-5 mb-4">
+        <div class="fondo-general col-sm-4 p-4">
+            <p class="text-center mb-4 recuperarPassword">Recuperación de contraseña</p>
+            <form id="form-recpass" class="needs-validation" novalidate>
+                <div class="form-group">
+                    <label class="title-input" for="Usuario">Usuario</label>
+                    <input type="text" class="form-control text-center" id="Usuario" value="" required>
+                </div>
+                <div class="form-group">
+                    <label class="title-input" for="RolUsuario">Rol de Usuario</label>
+                    <select class="custom-select my-1 mr-sm-2" name="RolUsuario" id="RolUsuario" required>
+						<option value="" selected disabled>Seleciona</option>
+					</select>
+                </div>
+                <div class="form-group" id="NumEmpleado"></div>
+                <div class="form-group">
+                    <label class="title-input" for="Pass">Nueva Contraseña</label>
+                    <div class="input-group" id="show_password">
+                        <input type="password" class="form-control text-center" id="Pass" value="" required>
+                        <button type="button" class="verPassword input-group-addon" id="btn-verPass">
+                            <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
+                        </button>
                     </div>
-                </form>
-            </div>
-
-            <div id="buscar" class="col-sm-8 border p-3 mx-auto">
-                <form >
-                    <p class="mb-4 registrarUsuario">Buscar Contraseña</p>
-                    <div class="form">
-                        <div class=" mb-3">
-                            <label for="">Tipo De Usuario</label>
-                            <select class="custom-select" >
-                                <option value="" selected disabled>Seleciona</option >
-                                <option>Personal</option >
-                                <option>Alumno</option >
-                            </select>
-                        </div>
-                        <div class=" mb-3">
-                            <label for="">Usuario</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class=" mb-3">
-                            <label for="" >Contraseña Actual</label>
-                            <input type="password" class="form-control" disabled>
-                        </div>
-                        <div class="form-row justify-content-center">
-	  	                    <button class="btn btn-primary" type="submit">Buscar</button>
-	  	                </div>
+                </div>
+                <div class="form-group">
+                    <label class="title-input" for="PassConfirm">Confirmar Contraseña</label>
+                    <div class="input-group" id="show_password_confirm">
+                        <input type="password" class="form-control text-center" id="PassConfirm" value="" required>
+                        <button type="button" class="verPassword input-group-addon" id="btn-verPassConfirm">
+                            <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
+                        </button>
                     </div>
-                </form>
-            </div>
-
-        </div>
+                </div>
+                <div class="form-group">
+                    <label class="title-input" for="UsuarioActualiza">Usuario que actualiza</label>
+                    <input type="text" class="form-control text-center" id="UsuarioActualiza" value="<?php echo $_SESSION['Empleado']; ?>" 
+                    IdUsuarioAct="<?php echo $_SESSION['IdUsuario'] ?>" required disabled>
+                </div>
+                <div class="form-group text-center mt-5">
+	  	            <button type="submit" class="btn btn-primary" id="btn-actualizar">Actualizar</button>
+                </div>
+            </form>
+        <div>
     </div>
 </body>
-<script>
-    //cambiar de contraseña
-    	function cambiar(){
-            let mostrarCambiar = document.getElementById('cambiar');
-            let mostrarBuscar = document.getElementById('buscar');
-            if (window.getComputedStyle(mostrarCambiar).display === 'none') {
-                mostrarCambiar.style.display = 'block';
-                mostrarBuscar.style.display = "none";
-            } else {
-                mostrarCambiar.style.display = 'none';
-            }
-	    }
-
-    // buscar la contraseña
-        function buscar(){
-            let mostrarCambiar = document.getElementById('cambiar');
-            let mostrarBuscar = document.getElementById('buscar');
-            if (window.getComputedStyle(mostrarBuscar).display === 'none'){
-                mostrarBuscar.style.display = "block";
-                mostrarCambiar.style.display = 'none';
-            } else {
-                mostrarBuscar.style.display = "none";
-            }
-        }
-
-    // ver la contraseña
-        $(document).ready(function() {
-            $("#show_password a").on('click', function(event) {
-                event.preventDefault();
-                if($('#show_password input').attr("type") == "text"){
-                    $('#show_password input').attr('type', 'password');
-                    $('#show_password i').addClass( "fa-eye-slash" );
-                    $('#show_password i').removeClass( "fa-eye" );
-                }else if($('#show_password input').attr("type") == "password"){
-                    $('#show_password input').attr('type', 'text');
-                    $('#show_password i').removeClass( "fa-eye-slash" );
-                    $('#show_password i').addClass( "fa-eye" );
-                }
-            });
-        });
-
-</script>
 </html>

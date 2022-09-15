@@ -5,21 +5,24 @@
 
   $Action = '';
   $IdUsuario=0;
-  $UserName= '';
+  $Usuario= '';
   $Password= '';
   $result = false;
   $count = 0;
   $output = '';
 
     if(isset($_POST) && !empty($_POST)) {
-        $IdUsuario = $_POST['IdUsuario'];
-        $UserName = $_POST['Usuario'];
-        $Password = $_POST['Contraseña'];
-        $PasswordTemp = 0;
-        $RolUsuario = 'PERSONAL';
+        $Action = $seguridad_usuario->sanitize_str('Actualizar_Contrasenia');
+        $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
+        $Usuario = $seguridad_usuario->sanitize_str($_POST['Usuario']);
+        $Password = md5($seguridad_usuario->sanitize_str($_POST['Contrasenia']));
+        $PasswordTemp = $seguridad_usuario->sanitize_int(0);
+        $IdRolUsuario = $seguridad_usuario->sanitize_str($_POST['IdRolUsuario']);
+        $NumEmpleado = NULL;
+        $IdUsuarioActualiza = $seguridad_usuario->sanitize_int(-1);
 
-        $PassEncrypted = md5($Password);
-        $result = $seguridad_usuario->actualizar_contraseña_usuario($IdUsuario, $UserName, $PassEncrypted, $PasswordTemp, $RolUsuario);
+        $result = $seguridad_usuario->actualizar_contraseña_usuario($Action, $IdUsuario, $Usuario, $Password, $PasswordTemp, $IdRolUsuario,
+                                                                    $NumEmpleado, $IdUsuarioActualiza);
 
         if ($result == true) {
             $output .= 'Su contraseña ha sido cambiada exitosamente';

@@ -2,28 +2,27 @@ $(document).ready(function () {
 
     "use strict";
 
-    $("#show_password a").on('click', function(event) {
-        event.preventDefault();
-        if ($('#show_password input').attr("type") == "text"){
-            $('#show_password input').attr('type', 'password');
-            $('#show_password i').addClass( "fa-eye-slash" );
-            $('#show_password i').removeClass( "fa-eye" );
-        } else if ($('#show_password input').attr("type") == "password"){
-            $('#show_password input').attr('type', 'text');
-            $('#show_password i').removeClass( "fa-eye-slash" );
-            $('#show_password i').addClass( "fa-eye" );
+    $("#show_password #btn-show-Pass").on('click', function() {
+        if ($('#show_password #password').attr("type") == "text"){
+            $('#show_password #password').attr('type', 'password');
+            $('#show_password #btn-show-Pass i').addClass( "fa-eye-slash" );
+            $('#show_password #btn-show-Pass i').removeClass( "fa-eye" );
+        } else if ($('#show_password #password').attr("type") == "password"){
+            $('#show_password #password').attr('type', 'text');
+            $('#show_password #btn-show-Pass i').removeClass( "fa-eye-slash" );
+            $('#show_password #btn-show-Pass i').addClass( "fa-eye" );
         }
     });
 
-    $("#show_password_confirm a").on('click', function(event) {  
-        if ($('#show_password_confirm input').attr("type") == "text"){
-            $('#show_password_confirm input').attr('type', 'password');
-            $('#show_password_confirm i').addClass( "fa-eye-slash" );
-            $('#show_password_confirm i').removeClass( "fa-eye" );
-        } else if ($('#show_password_confirm input').attr("type") == "password"){
-                $('#show_password_confirm input').attr('type', 'text');
-                $('#show_password_confirm i').removeClass( "fa-eye-slash" );
-                $('#show_password_confirm i').addClass( "fa-eye" );
+    $("#show_password_confirm #btn-show-passConfirm").on('click', function() {  
+        if ($('#show_password_confirm #password-confirm').attr("type") == "text"){
+            $('#show_password_confirm #password-confirm').attr('type', 'password');
+            $('#show_password_confirm #btn-show-passConfirm i').addClass( "fa-eye-slash" );
+            $('#show_password_confirm #btn-show-passConfirm i').removeClass( "fa-eye" );
+        } else if ($('#show_password_confirm #password-confirm').attr("type") == "password"){
+                $('#show_password_confirm #password-confirm').attr('type', 'text');
+                $('#show_password_confirm #btn-show-passConfirm i').removeClass( "fa-eye-slash" );
+                $('#show_password_confirm #btn-show-passConfirm i').addClass( "fa-eye" );
         }
     });
 
@@ -35,6 +34,10 @@ $(document).ready(function () {
                 event.preventDefault();
                 event.stopPropagation();
                 form.classList.add('was-validated');
+                $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").removeClass("verPassword");
+                $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").addClass("validate-btn-danger");
+                $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").removeClass("verPassword");
+                $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").addClass("validate-btn-danger");
                 var output = "";
                 output = '<div class="col-12">'+
                             '<div class="alert alert-danger fade show text-center" role="alert">'+
@@ -49,12 +52,16 @@ $(document).ready(function () {
                     event.preventDefault();
                     event.stopPropagation();
                     form.classList.add('was-validated');
-                    var pass = form.querySelector('#password').value;
-                    var pass_confirm = form.querySelector("#password-confirm").value;
-                    if (pass != pass_confirm) {
+                    var Pass = form.querySelector('#password').value;
+                    var Pass_Confirm = form.querySelector("#password-confirm").value;
+                    if (Pass != Pass_Confirm) {
                         form.classList.remove('was-validated');
                         form.querySelector('#password').classList.add('is-invalid');
                         form.querySelector('#password-confirm').classList.add('is-invalid');
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").removeClass("verPassword");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").addClass("validate-btn-danger");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").removeClass("verPassword");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").addClass("validate-btn-danger");
                         var output = '<div class="col-12">'+
                             '<div class="alert alert-danger fade show text-center" role="alert">'+
                                 '<strong>¡Las contraseñas no coinciden, verifiquelas y vuelva a intentarlo!</strong>'+
@@ -64,22 +71,26 @@ $(document).ready(function () {
                         $("#result .alert").fadeTo(2000, 500);
                         $("#result .alert").slideUp(500);
                     } else {
-                        var idusuario = form.querySelector('#user-name').getAttribute('idusuario');
-                        var username = form.querySelector('#user-name').value;
-                        //console.log(idusuario, username, pass_confirm);
-                        cambiar_contraseña_primera_vez(idusuario, username, pass_confirm);
-
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").removeClass("verPassword");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").addClass("validate-btn-success");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").removeClass("verPassword");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").addClass("validate-btn-success");
+                        var IdUsuario = form.querySelector('#user-name').getAttribute('idusuario');
+                        var Usuario = form.querySelector('#user-name').value;
+                        var IdRolUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdRol");
+                        console.log(IdUsuario+', '+Usuario+', '+Pass_Confirm+', '+IdRolUsuario);
+                        //cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario);
                     }
                 }
             }
         }, false);
     });
 
-    function cambiar_contraseña_primera_vez(idusuario, username, pass_confirm) {
+    function cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario) {
         $.ajax({
             url: "ajax/ajax_cambiar_contraseña.php",
             method: "POST",
-            data: {IdUsuario: idusuario, Usuario: username, Contraseña: pass_confirm},
+            data: {IdUsuario: IdUsuario, Usuario: Usuario, Contrasenia: Pass_Confirm, IdRolUsuario: IdRolUsuario},
             async: true,
 
             beforeSend: function() {
@@ -95,8 +106,6 @@ $(document).ready(function () {
             },
 
             success: function(response) {
-                console.log(response);
-                var output = "";
                 if (response=='Error al cambiar su contraseña' || response=='No se ha podido cambiar su contraseña') {
                     $.confirm({
                         title: 'Actualizando contraseña',

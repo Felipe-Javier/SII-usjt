@@ -63,18 +63,15 @@ form {
 .status:focus{
     border-color: #0c5286;
 }
+
 .verPassword {
+    background-color: #fff;
+    border-radius: 0px 5px 5px 0px;
     border-left: 0px !important;
     border: solid 3px #0c5286;
-    outline: none;
-    cursor: default !important;
-    border-radius: 0px 5px 5px 0px;
-    background-color: #fff;
-}
-
-.verPassword a {
-	color: #0064a7;
+    color: #0064a7;
 	cursor: pointer;
+    outline: none;
 }
 
 .verPassword:active {
@@ -91,4 +88,42 @@ form {
 
 .form-control:focus {
     box-shadow: none;
+}
+
+.validate-btn-danger {
+    background-color: #fff;
+    border-radius: 0px 4px 4px 0px;
+    border: solid 3px #dc3545;
+    border-left: 0px;
+    color: #dc3545;
+    cursor: pointer;
+    outline: none;
+}
+
+.validate-btn-success {
+    background-color: #fff;
+    border-radius: 0px 4px 4px 0px;
+    border: solid 3px #28a745;
+    border-left: 0px;
+    color: #28a745;
+    cursor: pointer;
+    outline: none;
+}
+
+.validate-btn-danger:active {
+    border: solid 3px #dc3545;
+    border-left: 0px;
+}
+
+.validate-btn-success:active {
+    border: solid 3px #28a745;
+    border-left: 0px;
+}
+
+.validate-btn-danger:focus {
+    outline: none;
+}
+
+.validate-btn-success:focus {
+    outline: none;
 }

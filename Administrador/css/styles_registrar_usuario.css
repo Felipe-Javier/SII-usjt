@@ -33,20 +33,12 @@ form label {
     border-radius: 10px;
 }
 
-#password {
-	border-radius: 0px 0px 0px 0px;
-}
-
 .verPassword {
 	border: solid 1px #d4d4d4;
     outline: none;
-	cursor: default !important;
-	border-radius: 0px 0px 3px 0px;
-}
-
-.verPassword a {
 	color: #0064a7;
 	cursor: pointer;
+	border-radius: 0px 0px 4px 0px;
 }
 
 .verPassword:active {

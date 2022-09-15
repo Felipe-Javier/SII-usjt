@@ -12,11 +12,11 @@
     $output = "";
 
     if (isset($_POST) && !empty($_POST)) {
-            $rol_usuario = $iniciar_sesion->sanitize_str($_POST['rol_usuario']);
+            $tipo_identificacion = $iniciar_sesion->sanitize_str($_POST['tipo_identificacion']);
             $usuario = $iniciar_sesion->sanitize_str($_POST['usuario']);
             $contraseña = $iniciar_sesion->sanitize_str($_POST['contraseña']);
 
-            $result = $iniciar_sesion->sing_in($rol_usuario, $usuario, md5($contraseña));
+            $result = $iniciar_sesion->sing_in($tipo_identificacion, $usuario, md5($contraseña));
             $count = $result->columnCount();
             if ($count >= 1) {
                 $data = $result->fetchObject();
@@ -26,6 +26,7 @@
                 if ($data->Rol == 'ALUMNO') {
                     $_SESSION['Alumno'] = $data->Alumno;
                     $_SESSION['Usuario'] = $data->Usuario;
+                    $_SESSION['IdRol'] = $data->IdRol;
                     $_SESSION['Rol'] = $data->Rol;
                 } else {
                     if ($data->Rol == 'DOCENTE') {
@@ -33,12 +34,14 @@
                         $_SESSION['IdInstructor'] = $data->IdInstructor;
                         $_SESSION['Empleado'] = $data->EMPLEDO;
                         $_SESSION['Usuario'] = $data->Usuario;
+                        $_SESSION['IdRol'] = $data->IdRol;
                         $_SESSION['Rol'] = $data->Rol;
                     } else {
                         if ($data->Rol == 'ADMINISTRADOR DE SISTEMAS') {
                             $_SESSION['IdPersona'] = $data->IdPersona;
                             $_SESSION['Empleado'] = $data->EMPLEDO;
                             $_SESSION['Usuario'] = $data->Usuario;
+                            $_SESSION['IdRol'] = $data->IdRol;
                             $_SESSION['Rol'] = $data->Rol;
                         }
                     }
