@@ -164,14 +164,14 @@ $(document).ready(function () {
     });
 
     function recuperar_contraseña(Usuario, IdRolUsuario, NumEmpleado, Pass_Confirm, IdUsuarioAct) {
-        var Action = "Actualizar_Contraseña";
+        var Action = "Recuperar_Contrasenia";
 
         $.ajax({
             url: "ajax/ajax_recuperar_contraseña.php",
             method: "POST",
+            async: true,
             data: {Action, Action, Usuario: Usuario, Password: Pass_Confirm, IdRolUsuario: IdRolUsuario, 
                    NumEmpleado: NumEmpleado, IdUsuarioAct: IdUsuarioAct},
-            async: true,
 
             beforeSend: function() {
                 $.confirm({
@@ -194,6 +194,7 @@ $(document).ready(function () {
             },
 
             success: function(response) {
+                console.log(response);
                 var output = "";
                 if (response=='Error al realizar la consulta' || response=='No se ha podido cambiar la contraseña') {
                     $.confirm({

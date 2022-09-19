@@ -78,8 +78,7 @@ $(document).ready(function () {
                         var IdUsuario = form.querySelector('#user-name').getAttribute('idusuario');
                         var Usuario = form.querySelector('#user-name').value;
                         var IdRolUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdRol");
-                        console.log(IdUsuario+', '+Usuario+', '+Pass_Confirm+', '+IdRolUsuario);
-                        //cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario);
+                        cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario);
                     }
                 }
             }

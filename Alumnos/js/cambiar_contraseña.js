@@ -50,9 +50,9 @@ $(document).ready(function () {
                     event.preventDefault();
                     event.stopPropagation();
                     form.classList.add('was-validated');
-                    var pass = form.querySelector('#password').value;
-                    var pass_confirm = form.querySelector("#password-confirm").value;
-                    if (pass != pass_confirm) {
+                    var Pass = form.querySelector('#password').value;
+                    var Pass_Confirm = form.querySelector("#password-confirm").value;
+                    if (Pass != Pass_Confirm) {
                         form.classList.remove('was-validated');
                         form.querySelector('#password').classList.add('is-invalid');
                         form.querySelector('#password-confirm').classList.add('is-invalid');
@@ -65,23 +65,22 @@ $(document).ready(function () {
                         $("#result .alert").fadeTo(2000, 500);
                         $("#result .alert").slideUp(500);
                     } else {
-                        var idusuario = form.querySelector('#user-name').getAttribute('idusuario');
-                        var username = form.querySelector('#user-name').value;
-                        //console.log(idusuario, username, pass_confirm);
-                        cambiar_contraseña_primera_vez(idusuario, username, pass_confirm);
-
+                        var IdUsuario = form.querySelector('#user-name').getAttribute('idusuario');
+                        var Usuario = form.querySelector('#user-name').value;
+                        var IdRolUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdRol");
+                        cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario);
                     }
                 }
             }
         }, false);
     });
 
-    function cambiar_contraseña_primera_vez(idusuario, username, pass_confirm) {
+    function cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario) {
         $.ajax({
             url: "ajax/ajax_cambiar_contraseña.php",
             method: "POST",
-            data: {IdUsuario: idusuario, Usuario: username, Contraseña: pass_confirm},
             async: true,
+            data: {IdUsuario: IdUsuario, Usuario: Usuario, Contrasenia: Pass_Confirm, IdRolUsuario: IdRolUsuario},
 
             beforeSend: function() {
                 var output = "";

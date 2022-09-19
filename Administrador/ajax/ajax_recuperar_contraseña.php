@@ -24,7 +24,7 @@
             }
             echo $output;
             exit;
-        } else if ($Action == 'Actualizar_Contraseña') {
+        } else if ($Action == 'Recuperar_Contrasenia') {
             $Usuario = $seguridad_usuario->sanitize_str($_POST['Usuario']);
             $Password = md5($seguridad_usuario->sanitize_str($_POST['Password']));
             $IdRolUsuario = $seguridad_usuario->sanitize_str($_POST['IdRolUsuario']);
@@ -33,7 +33,7 @@
             $IdUsuario = NULL;
             $PassTemp = NULL;
 
-            $result = $seguridad_usuario->actrec_contraseña_usuario($IdUsuario, $Usuario, $Password, $PassTemp, $IdRolUsuario, 
+            $result = $seguridad_usuario->actrec_contraseña_usuario($Action, $IdUsuario, $Usuario, $Password, $PassTemp, $IdRolUsuario, 
                                                                     $NumEmpleado, $IdUsuarioAct);
 
             if ($result == true) {

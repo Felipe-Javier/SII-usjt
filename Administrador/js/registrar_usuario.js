@@ -152,12 +152,15 @@ $(document).ready(function () {
         });
     });
 
-    $('#form-reguser .form-row .verPassword').on('click', function() {
-        var tipo = $('#form-reguser .form-row #Password').attr('type');
-        if (tipo == "password") {
-            $('#form-reguser .form-row #Password').attr('type', 'text');
-        } else {
-            $('#form-reguser .form-row #Password').attr('type', 'password');
+    $("#show_password #btn-showPassword").on('click', function() {
+        if ($('#show_password #Password').attr("type") == "text") {
+            $('#show_password #Password').attr('type', 'password');
+            $('#show_password #btn-showPassword i').addClass("fa-eye-slash");
+            $('#show_password #btn-showPassword i').removeClass("fa-eye");
+        } else if ($('#show_password #Password').attr("type") == "password") {
+            $('#show_password #Password').attr('type', 'text');
+            $('#show_password #btn-showPassword i').removeClass("fa-eye-slash");
+            $('#show_password #btn-showPassword i').addClass("fa-eye");
         }
     });
 
@@ -303,18 +306,5 @@ $(document).ready(function () {
             }
         });
     }
-
-    $("#show_password a").on('click', function(event) {
-        event.preventDefault();
-        if ($('#show_password input').attr("type") == "text"){
-            $('#show_password input').attr('type', 'password');
-            $('#show_password i').addClass( "fa-eye-slash" );
-            $('#show_password i').removeClass( "fa-eye" );
-        } else if ($('#show_password input').attr("type") == "password"){
-            $('#show_password input').attr('type', 'text');
-            $('#show_password i').removeClass( "fa-eye-slash" );
-            $('#show_password i').addClass( "fa-eye" );
-        }
-    });
 
 });

@@ -68,37 +68,39 @@
 			<p class="text-center mb-4 registrarUsuario">Registro de Usuario</p>
 			<div class="form-row" id="row-nomcompleto">
 				<div class="col-md-4 mb-3">
-					<label for="Nombres">Nombres</label>
+					<label class="label-titles" for="Nombres">Nombres</label>
 					<input type="text" class="form-control text-center" id="Nombres" value="" required>
 				</div>
 				<div class="col-md-4 mb-3">
-					<label for="Apellido_Paterno">Apellido Paterno</label>
+					<label class="label-titles" for="Apellido_Paterno">Apellido Paterno</label>
 					<input type="text" class="form-control text-center" id="Apellido_Paterno" value="" required>
 				</div>
 				<div class="col-md-4 mb-3">
-					<label for="Apellido_Materno">Apellido Materno</label>
+					<label class="label-titles" for="Apellido_Materno">Apellido Materno</label>
 					<input type="text" class="form-control text-center" id="Apellido_Materno" value="" required>
 				</div>
 			</div>
 			<div class="form-row justify-content-center" id="row-claves-persona"></div>
 			<div class="form-row">
 				<div class="col-md-6 mb-3">
-					<label for="Usuario">Usuario</label>
+					<label class="label-titles" for="Usuario">Usuario</label>
 					<input type="text" class="form-control text-center" id="Usuario" value="" required>
 				</div>
 				<div class="col-md-6 mb-3">
-					<label for="Password">Contraseña</label>
-					<div class="form-inline">
+					<label class="label-titles" for="Password">Contraseña</label>
+					<!--<div class="form-inline">-->
 						<div class="input-group" id="show_password">
 							<input type="password" class="form-control text-center" name="Password" id="Password" value="" required>
-							<button type="button" class="verPassword input-group-addon"><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></button>
+							<button type="button" class="verPassword input-group-addon" id="btn-showPassword">
+								<i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
+							</button>
 						</div>
-					</div>
+					<!--</div>-->
 				</div>
 			</div>
 			<div class="form-row align-items-center">
 				<div class="col-md-4 mb-3 text-center">
-					<label for="PassTemp">Contraseña Temporal</label>
+					<label class="label-titles" for="PassTemp">Contraseña Temporal</label>
 					<div class="form-inline justify-content-center">
 						<div class="custom-control custom-radio">
 							<input type="radio" class="custom-control-input PassTemp" name="PassTemp" id="PassTemp_1" value="1" required>
@@ -111,13 +113,13 @@
 					</div>
 				</div>
 				<div class="col-md-4 mb-3" >
-					<label for="Rol_Usuario">Rol</label >
+					<label class="label-titles" for="Rol_Usuario">Rol</label >
 					<select class="custom-select my-1 mr-sm-2" name="Rol_Usuario" id="Rol_Usuario" required>
 						<option value="" selected disabled>Seleciona</option>
 					</select>
 				</div>
 				<div class="col-md-4 text-center mb-3">
-					<label for="status">Status</label>
+					<label class="label-titles" for="status">Status</label>
 					<div class="form-inline justify-content-center">
 						<label name="status" for="ActInact">Activo</label>
 						<div class="ml-3 custom-control custom-radio">
@@ -144,7 +146,7 @@
 			</div>
 			<div class="form-row justify-content-around">
 				<div class="col-md-5 mb-3">
-					<label for="UsuarioReg">Usuario que registra</label>
+					<label class="label-titles" for="UsuarioReg">Usuario que registra</label>
 					<input class="form-control" id="UsuarioReg" type="text" value="<?php echo $_SESSION['Empleado'] ?>" 
 					  IdUsuarioReg="<?php echo $_SESSION['IdUsuario'] ?>" disabled>
 				</div>

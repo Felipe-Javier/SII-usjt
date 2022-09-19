@@ -1,4 +1,4 @@
-.fondoGeneral {
+.fondoGeneral, #form-reguser.fondoGeneral {
 	background-color: #fff;
 	width: 60%;
 	height: auto;
@@ -6,35 +6,24 @@
 	padding: 30px;
 }
 
-.msjGeneral {
-	font-family: sans-serif;
-	font-size: 20px;
-	color: #0064a7;
-	text-transform: uppercase;
-	font-weight: bold;
-}
-
-.nomEmpleado {
-	font-family: sans-serif;
-	font-size: 20px;
-	font-weight: bold;
-	color: #333;
-}
-
-form label {
+#form-reguser .label-titles {
 	font-family: sans-serif;
 	font-size: 14px;
+	font-weight: bold;
+    text-transform: uppercase;
 }
 
-.registrarUsuario {
-	font-size: 18px;
-    color: #f2f2f2;
-    background-color: #0064a7;
+#form-reguser .registrarUsuario {
+	background-color: #0064a7;
     border-radius: 10px;
+    color: #f2f2f2;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
 /* ver password */
-.verPassword {
+#form-reguser .verPassword {
 	background-color: #fff;
 	border: 1px solid #ced4da;
     border-radius: 0px 0.25rem 0.25rem 0px;
@@ -44,19 +33,19 @@ form label {
 	cursor: pointer;
 }
 
-.verPassword:active {
+#form-reguser .verPassword:active {
     border: 1px solid #ced4da;
 	border-left: 0px;
 }
 
-.verPassword:focus {
+#form-reguser .verPassword:focus {
 	outline: none;
 }
 
-#password {
+#form-reguser #Password {
     border-right: 0px !important;
 }
 
-.form-control:focus {
+#form-reguser .form-control:focus {
     box-shadow: none;
 }
