@@ -22,8 +22,8 @@ $(document).ready(function() {
                 event.preventDefault();
                 event.stopPropagation();
                 form.classList.add('was-validated');
-                $("#show_password #btn_show_password").removeClass("verPassword");
-                $("#show_password #btn_show_password").addClass("validate-btn-danger");
+                /*$("#show_password #btn_show_password").removeClass("verPassword");
+                $("#show_password #btn_show_password").addClass("validate-btn-danger");*/
                 var output = "";
                 output = '<div class="col-12">'+
                             '<div class="alert alert-danger fade show text-center" role="alert">'+
@@ -38,8 +38,8 @@ $(document).ready(function() {
                     event.preventDefault();
                     event.stopPropagation();
                     form.classList.add('was-validated');
-                    $("#show_password #btn_show_password").removeClass("verPassword");
-                    $("#show_password #btn_show_password").addClass("validate-btn-success");
+                    /*$("#show_password #btn_show_password").removeClass("verPassword");
+                    $("#show_password #btn_show_password").addClass("validate-btn-success");*/
                     Iniciar_Sesion();
                 }
             }
