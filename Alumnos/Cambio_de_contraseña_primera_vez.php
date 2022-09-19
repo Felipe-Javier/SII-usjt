@@ -77,8 +77,8 @@
                             <label for="validationCustom">Contraseña</label>
                             <div class="input-group" id="show_password">
                                 <input type="password" class="form-control text-center" id="password" value="" required>
-                                <button type="button" class="verPassword input-group-addon">
-                                    <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
+                                <button type="button" class="verPassword input-group-addon" id="btn-show-Pass">
+                                    <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -86,8 +86,8 @@
                             <label for="password-confirm">Confirmar nueva contraseña</label>
                             <div class="input-group" id="show_password_confirm">
                                 <input type="password" class="form-control text-center" id="password-confirm" value="" required>
-                                <button type="button" class="verPassword input-group-addon">
-                                    <a href=""><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></a>
+                                <button type="button" class="verPassword input-group-addon" id="btn-show-passConfirm">
+                                    <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
         if ($_SESSION['Rol'] != 'DOCENTE') {
             header('location: ../Login/Iniciar_Sesion.php');
         }
-    }
+    } 
 ?>
 <!DOCTYPE html>
 <html>

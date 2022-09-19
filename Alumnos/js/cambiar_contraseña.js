@@ -2,29 +2,27 @@ $(document).ready(function () {
 
     "use strict";
 
-    $("#show_password a").on('click', function(event) {
-        event.preventDefault();
-        if ($('#show_password input').attr("type") == "text"){
-            $('#show_password input').attr('type', 'password');
-            $('#show_password i').addClass( "fa-eye-slash" );
-            $('#show_password i').removeClass( "fa-eye" );
-        } else if ($('#show_password input').attr("type") == "password"){
-            $('#show_password input').attr('type', 'text');
-            $('#show_password i').removeClass( "fa-eye-slash" );
-            $('#show_password i').addClass( "fa-eye" );
+    $("#show_password #btn-show-Pass").on('click', function() {
+        if ($('#show_password #password').attr("type") == "text"){
+            $('#show_password #password').attr('type', 'password');
+            $('#show_password #btn-show-Pass i').addClass( "fa-eye-slash" );
+            $('#show_password #btn-show-Pass i').removeClass( "fa-eye" );
+        } else if ($('#show_password #password').attr("type") == "password"){
+            $('#show_password #password').attr('type', 'text');
+            $('#show_password #btn-show-Pass i').removeClass( "fa-eye-slash" );
+            $('#show_password #btn-show-Pass i').addClass( "fa-eye" );
         }
     });
 
-    $("#show_password_confirm a").on('click', function(event) {  
-        event.preventDefault();
-        if ($('#show_password_confirm input').attr("type") == "text"){
-            $('#show_password_confirm input').attr('type', 'password');
-            $('#show_password_confirm i').addClass( "fa-eye-slash" );
-            $('#show_password_confirm i').removeClass( "fa-eye" );
-        } else if ($('#show_password_confirm input').attr("type") == "password"){
-                $('#show_password_confirm input').attr('type', 'text');
-                $('#show_password_confirm i').removeClass( "fa-eye-slash" );
-                $('#show_password_confirm i').addClass( "fa-eye" );
+    $("#show_password_confirm #btn-show-passConfirm").on('click', function() {  
+        if ($('#show_password_confirm #password-confirm').attr("type") == "text"){
+            $('#show_password_confirm #password-confirm').attr('type', 'password');
+            $('#show_password_confirm #btn-show-passConfirm i').addClass( "fa-eye-slash" );
+            $('#show_password_confirm #btn-show-passConfirm i').removeClass( "fa-eye" );
+        } else if ($('#show_password_confirm #password-confirm').attr("type") == "password"){
+                $('#show_password_confirm #password-confirm').attr('type', 'text');
+                $('#show_password_confirm #btn-show-passConfirm i').removeClass( "fa-eye-slash" );
+                $('#show_password_confirm #btn-show-passConfirm i').addClass( "fa-eye" );
         }
     });
 

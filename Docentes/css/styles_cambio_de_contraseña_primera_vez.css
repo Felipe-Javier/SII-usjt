@@ -28,7 +28,7 @@
 }
 
 .form-cambio-password #user-name, .form-cambio-password #password, .form-cambio-password #password-confirm {
-	border: solid 3px #0c5286;
+	border: solid 1px #ced4da;
     margin-bottom: 10px;
 	color: #161616;
 	font-family: sans-serif;
@@ -60,9 +60,11 @@
 	color: #333;
 }
 
+/* ver password*/
+
 .verPassword {
 	background-color: #fff;
-	border: solid 3px #0c5286;
+	border: solid 1px #ced4da;
 	border-radius: 0px 5px 5px 0px;
 	border-left: 0px;
 	color: #0064a7;
@@ -72,14 +74,14 @@
 }
 
 .verPassword:active {
-	border: solid 3px #0c5286;
+	border: solid 1px #ced4da;
 	border-left: 0px;
 }
 
 .verPassword:focus {
 	outline: none;
 }
-
+/*
 .validate-btn-danger {
     background-color: #fff;
     border-radius: 0px 4px 4px 0px;
@@ -116,4 +118,4 @@
 
 .validate-btn-success:focus {
     outline: none;
-}
+}*/

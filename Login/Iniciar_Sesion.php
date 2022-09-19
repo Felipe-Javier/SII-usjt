@@ -47,12 +47,12 @@
                     </div>
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
-                        <input type="text" class="form-control status text-center" id="usuario" placeholder="Usuario" required> 
+                        <input type="text" class="form-control status text-center" id="usuario" placeholder="Usuario" autocomplete="username" required> 
                     </div>
                     <div class="form-group">
                         <label for="InputPasswordAlumno">Contraseña</label>
                         <div class="input-group" id="show_password">
-                            <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" required>
+                            <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" autocomplete="current-password" required>
                             <button type="button" class="verPassword input-group-addon" id="btn_show_password">
                                 <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                             </button>
