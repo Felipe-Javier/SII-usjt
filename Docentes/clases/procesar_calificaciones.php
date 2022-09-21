@@ -9,8 +9,13 @@
 			$this->connection = $this;
 		}
 
-		public function sanitize ($Value) {
+		public function sanitize_str ($Value) {
 			$result = filter_var($Value, FILTER_SANITIZE_STRING);
+			return $result;
+		}
+
+		public function sanitize_int ($Value) {
+			$result = filter_var($Value, FILTER_SANITIZE_NUMBER_INT);
 			return $result;
 		}
 
@@ -134,7 +139,7 @@
 		public function registrar_calificaciones ($Matricula, $IdRelGrupoAlumno, $Calificacion, $IdTipoCorte, $IdTipoCalificacion,
 		                                          $IdPlanMateria, $IdUsuario) {
 			try {
-				$query = "EXEC spGuardarCalificacionesMateriasAlumnoMatricula ?, ?, ?, ?, ?, ?, ?";
+				$query = "EXEC spGuardarModificarCalsMatsAlumsMat ?, ?, ?, ?, ?, ?, ?";
 				$result = $this->connection->connect_db()->prepare($query);
 				$result->bindValue(1, $Matricula, PDO::PARAM_STR);
 				$result->bindValue(2, $IdRelGrupoAlumno, PDO::PARAM_INT);

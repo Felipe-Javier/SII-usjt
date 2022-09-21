@@ -107,7 +107,14 @@ $(document).ready(function() {
             },
     
             error: function(error) {
-                $("#result").html(error);
+                output = '<div class="col-12">'+
+                                    '<div class="alert alert-danger fade show text-center" role="alert">'+
+                                        '<strong>¡Error. '+error+'!</strong>'+
+                                    '</div>'+
+                                '</div>';
+                $("#result").html(output);
+                $("#result .alert").fadeTo(2000, 500);
+                $("#result .alert").slideUp(500);
             }
         });
     }

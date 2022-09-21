@@ -24,6 +24,12 @@
         $result = $seguridad_usuario->actualizar_contraseña_usuario($Action, $IdUsuario, $Usuario, $Password, $PasswordTemp, $IdRolUsuario,
                                                                     $NumEmpleado, $IdUsuarioActualiza);
 
+        $TipoMovimiento = $seguridad_usuario->sanitize_str('ACTUALIZACIÓN');
+        $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ CAMBIO DE CONTRASEÑA DEL USUARIO '.$Usuario);
+        $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                    
+        $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
+
         if ($result == true) {
             $output .= 'Su contraseña ha sido cambiada exitosamente';
         } elseif ($result == false) {

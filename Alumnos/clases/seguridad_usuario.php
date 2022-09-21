@@ -39,6 +39,22 @@
 				return false;
 			}
 		}
+
+		public function registro_bitacora ($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema) {
+			try {
+				$query = "EXEC spRegistroBitacora ?, ?, ?, ?";
+				$result = $this->connection->connect_db()->prepare($query);
+				$result->bindValue(1, $IdUsuario, PDO::PARAM_INT);
+				$result->bindValue(2, $TipoMovimiento, PDO::PARAM_STR);
+				$result->bindValue(3, $Valor, PDO::PARAM_STR);
+				$result->bindValue(4, $TipoSistema, PDO::PARAM_STR);
+				$result->execute();
+
+            	return $result;
+			} catch (PDOException $exp) {
+				return false;
+			}
+		}
     }
 
 ?>

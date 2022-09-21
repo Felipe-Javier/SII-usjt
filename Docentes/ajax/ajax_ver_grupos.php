@@ -1,7 +1,9 @@
 <?php
     include("../clases/procesar_calificaciones.php");
+    include ("../clases/seguridad_usuario.php");
 
     $procesar_calificaciones = new procesar_calificaciones();
+    $seguridad_usuario = new seguridad_usuario();
 
     $Opcion = '';
     $IdInstructor = '';
@@ -12,9 +14,11 @@
     $output = '';
 
     if (isset($_POST) && !empty($_POST)) {
-        $Opcion = $procesar_calificaciones->sanitize($_POST['Opcion']);
-        $IdInstructor = $procesar_calificaciones->sanitize($_POST['IdInstructor']);
-        $IdPersona = $procesar_calificaciones->sanitize($_POST['IdPersona']);
+        $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
+        $Docente = $seguridad_usuario->sanitize_str($_POST['Docente']);
+        $Opcion = $procesar_calificaciones->sanitize_str($_POST['Opcion']);
+        $IdInstructor = $procesar_calificaciones->sanitize_int($_POST['IdInstructor']);
+        $IdPersona = $procesar_calificaciones->sanitize_int($_POST['IdPersona']);
         //echo $Opcion;
         if ($Opcion == 'Traer_anios_por_grupos') {
             $Anio = NULL; $IdCiclo = NULL; $IdGrupo = NULL;
@@ -42,6 +46,14 @@
                     }
                     $output .= '</ul>
                             </nav>';
+
+                    $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+                    $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS GRUPOS ASIGNADOS Y LAS MATERIAS ASIGNADAS AL DOCENTE: '.
+                                                               $Docente);
+                    $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                        
+                    $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
+
                     echo $output;
                 } else {
                     $output .= '<div class="text-center grupos-ciclos">GRUPOS</div> 
@@ -60,7 +72,7 @@
             }
         } else {
             if ($Opcion == 'Traer_cuatrimestres_por_anio') {
-                $Anio = $procesar_calificaciones->sanitize($_POST['Anio']);
+                $Anio = $procesar_calificaciones->sanitize_str($_POST['Anio']);
                 $IdCiclo = NULL; $IdGrupo = NULL;
                 $result = $procesar_calificaciones->consultar_grupos_por_docente($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo);
 
@@ -96,7 +108,7 @@
                 }
             } else {
                 if ($Opcion == 'Traer_grupos_por_cuatrimestre') {
-                    $IdCiclo = $procesar_calificaciones->sanitize($_POST['IdCuatrimestre']);
+                    $IdCiclo = $procesar_calificaciones->sanitize_int($_POST['IdCuatrimestre']);
                     $Anio = NULL; $IdGrupo = NULL;
                     $result = $procesar_calificaciones->consultar_grupos_por_docente($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo);
 
@@ -131,7 +143,7 @@
                         echo $output;
                     }
                 } elseif ($Opcion == 'Traer_materias_por_grupo') {
-                    $IdGrupo = $procesar_calificaciones->sanitize($_POST['IdGrupo']);
+                    $IdGrupo = $procesar_calificaciones->sanitize_int($_POST['IdGrupo']);
                     $Anio = NULL; $IdCiclo = NULL;
 
                     $result = $procesar_calificaciones->consultar_grupos_por_docente($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo);

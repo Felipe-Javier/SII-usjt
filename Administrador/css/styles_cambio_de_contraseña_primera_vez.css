@@ -28,14 +28,21 @@
 }
 
 .form-cambio-password #user-name, .form-cambio-password #password, .form-cambio-password #password-confirm {
+	color: #161616;
 	font-family: sans-serif;
 	font-size: 12px;
-	color: #161616;
 	font-weight: bold;
 }
 
 .form-cambio-password #user-name {
+	border: solid 1px #ced4da;
 	text-transform: uppercase;
+}
+
+.form-cambio-password .border-input {
+	border: solid 1px #ced4da;
+	border-radius: 5px 0px 0px 5px;
+	border-right: 0px;
 }
 
 .form-cambio-password #btn-continuar {
@@ -44,11 +51,4 @@
 	color: #fcfcfc;
 	text-transform: uppercase;
 	font-weight: bold;
-}
-
-.nomDocente {
-	font-family: sans-serif;
-	font-size: 20px;
-	font-weight: bold;
-	color: #333;
 }

@@ -1,13 +1,18 @@
 $(document).ready(function() {
-    var matricula = $("#Matricula").attr("mat");
-    load_periodos(matricula);
 
-    function load_periodos(matricula) {
+    "use strict";
+
+    var IdUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdUsuario");
+    var Matricula = $("#Matricula").attr("mat");
+
+    load_periodos(IdUsuario, Matricula);
+
+    function load_periodos(IdUsuario, Matricula) {
         $.ajax({
             url: "ajax/ajax_ver_periodos_disponibles.php",
             method: "POST",
             async: true,
-            data: {Matricula: matricula},
+            data: {IdUsuario: IdUsuario, Matricula: Matricula},
 
             success: function(response) {
                 var output = "";
@@ -35,17 +40,18 @@ $(document).ready(function() {
 
     $("body").on("click", ".table-periodo .tbody-periodo a.periodo", function(event) {
         event.preventDefault();
+        var IdUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdUsuario");
         var Matricula = $("#Matricula").attr("mat");
         var IdCiclo = $(this).attr("id");
+        var Ciclo = $(this).html();
         
         $.ajax({
             url: "ajax/ajax_ver_calificaciones.php",
             method: "POST",
             async: true,
-            data: {Matricula: Matricula, IdCiclo: IdCiclo},
+            data: {IdUsuario: IdUsuario, Matricula: Matricula, IdCiclo: IdCiclo, Ciclo: Ciclo},
 
             success: function(response) {
-                console.log(response);
                 var output = "";
                 if (response=='Error al consultar tu boleta de calificaciones' || 
                     response=='Tu boleta de calificaciones aún no esta disponible') {
@@ -75,14 +81,16 @@ $(document).ready(function() {
 
     $("body").on("click", "#btn-imprimir", function(event) {
         event.preventDefault();
+        var IdUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdUsuario");
         var Matricula = $("#Matricula").attr("mat");
         var IdCiclo = $("body #boleta .table-boleta").attr("IdCiclo");
+        var Ciclo = $('body #boleta .table-boleta .thead-boleta #ciclo-escolar').html();
         
         $.ajax({
             url: "ajax/ajax_imprimir_boleta.php",
             method: "POST",
             async: true,
-            data: {Matricula: Matricula, IdCiclo: IdCiclo},
+            data: {IdUsuario: IdUsuario, Matricula: Matricula, IdCiclo: IdCiclo, Ciclo: Ciclo},
 
             success: function(response) {
                 var output = "";

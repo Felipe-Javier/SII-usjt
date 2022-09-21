@@ -1,7 +1,9 @@
 <?php
   include ("../clases/boleta_calificaciones.php");
+  include ("../clases/seguridad_usuario.php");
 
   $boleta_calificaciones = new boleta_calificaciones();
+  $seguridad_usuario = new seguridad_usuario();
 
   $Matricula = '';
   $result = false;
@@ -12,8 +14,10 @@
   $promedio = 0;
 
   if(isset($_POST) && !empty($_POST)) {
+    $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
     $Matricula = $boleta_calificaciones->sanitize_str($_POST['Matricula']);
     $IdCiclo = $boleta_calificaciones->sanitize_int($_POST['IdCiclo']);
+    $Ciclo = $boleta_calificaciones->sanitize_str($_POST['Ciclo']);
 
     $result = $boleta_calificaciones->consultar_calificaciones($Matricula, $IdCiclo);
 
@@ -27,7 +31,7 @@
                           <th scope="row" colspan="3">
                             <div class="row">
                               <h6 class="col-sm-6 mt-auto mb-auto titulo-2">Boleta de calificaciones</h6>
-                              <h6 class="col-sm-6 mt-auto mb-auto titulo-2">'.$rowh->CICLOESCOLAR.'</h6>
+                              <h6 class="col-sm-6 mt-auto mb-auto titulo-2" id="ciclo-escolar">'.$rowh->CICLOESCOLAR.'</h6>
                             </div>
                           </th>
                         </tr>
@@ -71,8 +75,22 @@
                         <button id="btn-imprimir" class="btn btn-primary" type="submit">Imprimir Boleta</button>
                       </div>
                     </div>';
+          
+          $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+          $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LA BOLETA DE CALIFICACIONES DEL CICLO ESCOLAR '.$Ciclo.' DEL ALUMNO: '.
+                                                    $Matricula);
+          $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+          
+          $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
+
           echo $output;
         } else {
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LA BOLETA DE CALIFICACIONES DEL CICLO ESCOLAR '.$Ciclo.' DEL ALUMNO: '.
+                                                      $Matricula);
+            $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+            
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
             $output .= 'Tu boleta de calificaciones aún no esta disponible';
             echo $output;
         }

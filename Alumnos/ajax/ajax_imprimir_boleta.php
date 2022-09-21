@@ -1,8 +1,10 @@
 <?php
   require ("../../fpdf/fpdf.php");
   include ("../clases/boleta_calificaciones.php");
+  include ("../clases/seguridad_usuario.php");
 
   $boleta_calificaciones = new boleta_calificaciones();
+  $seguridad_usuario = new seguridad_usuario();
 
   $Matricula = '';
   $result = false;
@@ -13,12 +15,14 @@
   $promedio = 0.00;
 
   if(isset($_POST) && !empty($_POST)) {
+    $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
     $Matricula = $boleta_calificaciones->sanitize_str($_POST['Matricula']);
     $IdCiclo = $boleta_calificaciones->sanitize_int($_POST['IdCiclo']);
+    $Ciclo = $boleta_calificaciones->sanitize_str($_POST['Ciclo']);
 
     $result = $boleta_calificaciones->consultar_calificaciones($Matricula, $IdCiclo);
 
-    $count = $result->columnCount();
+    $count = $result->rowCount();
     if ($count > 0) {
       $rowh=$result->fetchObject();
       $pdf = new FPDF();
@@ -128,6 +132,13 @@
       }
       
       $pdf->Output("F","../impresiones/Boleta de calificaciones - ".$rowh->MATRICULA.".pdf");
+
+      $TipoMovimiento = $seguridad_usuario->sanitize_str('IMPRESION');
+      $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA IMPRESION DE LA BOLETA DE CALIFICACIONES DEL CICLO ESCOLAR '.$Ciclo.' DEL ALUMNO: '.
+                                                $Matricula);
+      $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+          
+      $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
 
       echo "Boleta de calificaciones - ".$rowh->MATRICULA.".pdf";
     } else {
