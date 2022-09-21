@@ -89,7 +89,7 @@
 
       while ($rowb = $result_2->fetchObject()) {
         $data = array($rowb->CLAVE, $rowb->MATERIA, $rowb->CURSO, $rowb->FINAL);
-        $pdf->SetFont('Times', '', 9);
+        $pdf->SetFont('Times', '', 7);
         foreach($data as $col) {
           if ($col != $rowb->MATERIA) {
             $pdf->Cell(30,7,$col,1,0,"C");

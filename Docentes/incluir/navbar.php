@@ -14,9 +14,9 @@
       <li class="nav-item">
         <a class="nav-link <?php echo $registrar_calificaciones; ?>" href="Registrar_Calificaciones.php">Registrar Calificaciones</a>
       </li>
-      <!--<li class="nav-item ">
-        <a class="nav-link" href="#">otro boton </a>
-      </li>-->
+      <li class="nav-item ">
+        <a class="nav-link <?php echo $cambiar_contraseña; ?>" href="Cambio_de_contraseña_primera_vez.php">Cambiar Contraseña</a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto text-center">
       <li class="dropdown nav-item  ml-auto mr-auto ">

@@ -38,6 +38,7 @@
     <?php
         $inicio = "active";
         $subir_calificaciones = "";
+        $cambiar_contraseña = "";
         
         include("incluir/header.php");
         include("incluir/navbar.php");
