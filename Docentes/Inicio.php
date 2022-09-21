@@ -38,7 +38,8 @@
         <?php
             $inicio = "active";
             $registrar_calificaciones = "";
-
+            $cambiar_contraseña = "";
+            
             include("incluir/header.php");
             include("incluir/navbar.php");
         ?>

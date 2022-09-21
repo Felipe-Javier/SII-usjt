@@ -33,12 +33,18 @@
         <?php
             include("../incluir/scripts.php");
         ?>
-        <script type="text/javascript" src="js/cambiar_contraseña.js"></script>
+       <script type="text/javascript" src="js/cambiar_contraseña.js"></script>
     </head>
     <body>
         <?php
+            $inicio = "";
+            $subir_calificaciones = "";
+            $cambiar_contraseña = "active";
+            
             include("incluir/header.php");
+            include("incluir/navbar.php");
         ?>
+        <!--
         <nav class="navbar navbar-expand-lg navbar-light" >
             <a class="navbar-brand" href="#">En Linea</a>
             <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -60,6 +66,7 @@
                 </ul>
             </div>
         </nav>
+-->
         <div class="container mt-5">
             <div  class="row justify-content-center">
                 <div class="fondo-general col-sm-5 p-4">
@@ -73,8 +80,8 @@
                             <input type="text" class="form-control text-center" id="user-name" value="<?php echo $_SESSION['Usuario'] ?>"
                             idusuario="<?php echo $_SESSION['IdUsuario'] ?>" disabled>
                         </div>
-                        <div class="form-group">
-                            <label for="validationCustom">Contraseña</label>
+                        <div class="mb-3 form-group">
+                            <label for="validationCustom">Nueva Contraseña</label>
                             <div class="input-group" id="show_password">
                                 <input type="password" class="form-control text-center border-input" id="password" value="" required>
                                 <button type="button" class="verPassword input-group-addon" id="btn-show-Pass">
