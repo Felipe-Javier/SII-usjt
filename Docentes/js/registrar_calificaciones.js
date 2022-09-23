@@ -2,14 +2,16 @@ $(document).ready(function () {
 
     "use strict";
 
+    var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
+    var Docente = $("#barra #datos-usuario").html();
     var IdPersona = $("#barra #datos-usuario").attr("IdPersona");
     var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
 
     setTimeout(function() {
-        load_años_por_grupos(IdPersona, IdInstructor);
+        load_años_por_grupos(IdUsuario, Docente, IdPersona, IdInstructor);
     }, 100);
 
-    function load_años_por_grupos(IdPersona, IdInstructor) {
+    function load_años_por_grupos(IdUsuario, Docente, IdPersona, IdInstructor) {
         var Opcion = 'Traer_anios_por_grupos';
         $.ajax({
             url: "ajax/ajax_ver_grupos.php",
@@ -17,6 +19,8 @@ $(document).ready(function () {
             async: true,
             data: {
                 Opcion: Opcion,
+                IdUsuario: IdUsuario, 
+                Docente: Docente, 
                 IdPersona: IdPersona,
                 IdInstructor: IdInstructor
             },

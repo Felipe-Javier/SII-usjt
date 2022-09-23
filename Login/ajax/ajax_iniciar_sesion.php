@@ -1,6 +1,6 @@
 <?php
-    include("../clases/login.php");
-    $iniciar_sesion = new iniciar_sesion();
+    include("../clases/seguridad_usuario.php");
+    $seguridad_usuario = new seguridad_usuario();
     
     session_start();
 
@@ -12,13 +12,15 @@
     $output = "";
 
     if (isset($_POST) && !empty($_POST)) {
-            $tipo_identificacion = $iniciar_sesion->sanitize_str($_POST['tipo_identificacion']);
-            $usuario = $iniciar_sesion->sanitize_str($_POST['usuario']);
-            $contraseña = $iniciar_sesion->sanitize_str($_POST['contraseña']);
+        $tipo_identificacion = $seguridad_usuario->sanitize_str($_POST['tipo_identificacion']);
+        $usuario = $seguridad_usuario->sanitize_str($_POST['usuario']);
+        $contraseña = $seguridad_usuario->sanitize_str($_POST['contraseña']);
 
-            $result = $iniciar_sesion->sing_in($tipo_identificacion, $usuario, md5($contraseña));
+        $result = $seguridad_usuario->sing_in($tipo_identificacion, $usuario, md5($contraseña));
+
+        if ($result == true) {
             $count = $result->columnCount();
-            if ($count >= 1) {
+            if ($count > 0) {
                 $data = $result->fetchObject();
 
                 $_SESSION['active'] = true;
@@ -47,7 +49,10 @@
                     }
                 }
 
-                $output .= json_encode($data);
+                $seguridad_usuario->registro_bitacora(intval($_SESSION['IdUsuario']), strval('INICIO DE SESION DEL USUARIO '.$_SESSION['Usuario']),
+                                                      strval($_SESSION['Rol'].': '.$_SESSION['Usuario']), strval('SISTEMA WEB'));
+
+                $output .= json_encode($data, JSON_UNESCAPED_UNICODE);
                 echo $output;
             } elseif ($result->errorInfo()) {
                 $msg = $result->errorInfo();
@@ -62,10 +67,15 @@
                         }
                     }
                 }
+
                 echo $output;
                 session_destroy();
             }
         } else {
-            echo 'error';
+            $output .= 'Hubo un error al iniciar sesion';
+            echo $output;
         }
+    } else {
+        echo 'error';
+    }
 ?>

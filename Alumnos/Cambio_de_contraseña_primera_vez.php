@@ -83,7 +83,7 @@
                         <div class="mb-3 form-group">
                             <label for="validationCustom">Nueva Contraseña</label>
                             <div class="input-group" id="show_password">
-                                <input type="password" class="form-control text-center" id="password" value="" required>
+                                <input type="password" class="form-control text-center border-input" id="password" value="" required>
                                 <button type="button" class="verPassword input-group-addon" id="btn-show-Pass">
                                     <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                                 </button>
@@ -92,13 +92,13 @@
                         <div class="form-group">
                             <label for="password-confirm">Confirmar nueva contraseña</label>
                             <div class="input-group" id="show_password_confirm">
-                                <input type="password" class="form-control text-center" id="password-confirm" value="" required>
+                                <input type="password" class="form-control text-center border-input" id="password-confirm" value="" required>
                                 <button type="button" class="verPassword input-group-addon" id="btn-show-passConfirm">
                                     <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
-                        <div class="form-group text-center mb-1">
+                        <div class="form-group text-center mt-5">
                             <button type="submit" class="btn btn-primary" id="btn-continuar">Continuar</button>
                         </div>
                     </form>
