@@ -42,3 +42,11 @@
 	font-weight: bold;
 	color: #333;
 }
+
+#datos {
+	display: flex;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
+}

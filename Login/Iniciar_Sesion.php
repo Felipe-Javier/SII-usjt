@@ -59,9 +59,9 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block" id="button_entrar">Entrar</button>
-                    <div class="form-footer">
+                    <!--<div class="form-footer">
                         <p><a href="/" class="">¿Olvidó su contraseña?</a></p>
-                    </div>
+                    </div>-->
                 </form>
             </section>
         </section>

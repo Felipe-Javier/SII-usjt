@@ -37,10 +37,23 @@
             <p class="nomAlumno"> 
                 <?php echo $_SESSION['Alumno'] ?>
             </p>
-            <p class="msjMatricula">Matricula</p>
-            <p class="numMatricula" mat="<?php echo $_SESSION['Usuario'] ?>">
-                <?php echo $_SESSION['Usuario'] ?>
-            </p>
+            <div id="datos">
+                <div>
+                    <p class="msjMatricula">Carrera</p>
+                    <p class="numMatricula">Ciencias Policiales</p>
+                </div>
+                <div>
+                    <p class="msjMatricula">Matricula</p>
+                    <p class="numMatricula" mat="<?php echo $_SESSION['Usuario'] ?>">
+                        <?php echo $_SESSION['Usuario'] ?>
+                    </p>
+                </div>
+                <div>
+                    <p class="msjMatricula">Modalidad</p>
+                    <p class="numMatricula">Mixta</p>
+                </div>
+                
+            </div>
         </div>
     </div>
 </body>

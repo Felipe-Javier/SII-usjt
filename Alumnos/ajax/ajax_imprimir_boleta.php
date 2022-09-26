@@ -107,9 +107,9 @@
       }
 
       $promedio = doubleval($suma / $num_filas);
-      $prom = array('PROMEDIO FINAL:', round($promedio,2));
+      $prom = array('PROMEDIO CUATRIMESTRAL:', round($promedio,2));
       foreach($prom as $col_prom) {
-        if ($col_prom != 'PROMEDIO FINAL:') {
+        if ($col_prom != 'PROMEDIO CUATRIMESTRAL:') {
           $pdf->SetFont('Times', '', 9);
           $pdf->Cell(30,7,$col_prom,1,0,"C");
         } else {
@@ -130,6 +130,23 @@
           $pdf->Cell(95,7,$col_fech,0,0,"R");
         }
       }
+
+      $pdf->SetFont('Times','B',9);
+      $pdf->SetXY(10,130);
+      $pdf->Cell(50,5,"Nomenclatura: ",0,0,"L");
+      $pdf->SetFont('Times','',9);
+      $pdf->SetXY(10,137);
+      $pdf->Cell(50,5,"Ext = Extraordinario ",0,0,"L");
+      $pdf->SetXY(10,144);
+      $pdf->Cell(50,5,"Ord = Ordinario ",0,0,"L");
+      $pdf->SetXY(10,151);
+      $pdf->Cell(50,5,utf8_decode("NA = No Aprobó"),0,0,"L");
+      $pdf->SetXY(10,158);
+      $pdf->Cell(50,5,utf8_decode("Rep = Repetición"),0,0,"L");
+
+      $pdf->SetFont('Times','B',9);
+      $pdf->SetXY(40, 270);
+      $pdf->Cell(120,5,'"ESTE DOCUMENTO NO TIENE VALIDEZ, SOLO ES DE CARACTER INFORMATIVO"',0,0,"L");
       
       $pdf->Output("F","../impresiones/Boleta de calificaciones - ".$rowh->MATRICULA.".pdf");
 
