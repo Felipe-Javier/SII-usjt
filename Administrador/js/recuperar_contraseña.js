@@ -5,12 +5,13 @@ $(document).ready(function () {
     load_roles_usuario();
 
     function load_roles_usuario() {
+        var IdUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdUsuario");
         var Action = 'Consultar_Roles_Usuario';
 
         $.ajax({
             url:"ajax/ajax_recuperar_contraseña.php",
             method: "POST",
-            data:{Action: Action},
+            data:{Action: Action, IdUsuario: IdUsuario},
             
             success: function(response) {
                 if (response == 'Error al realizar la consulta' || 
@@ -27,7 +28,7 @@ $(document).ready(function () {
                     var output = '';
                     var numRows = info.length;
                     for (var i=0; i<numRows; i++) {
-                        output = '<option value="'+info[i].IdRol+'">'+info[i].Rol+' --- '+info[i].Clave+'</option>';
+                        output = '<option value="'+info[i].IdRol+'" NomRolUsuario="'+info[i].Clave+'">'+info[i].Rol+' --- '+info[i].Clave+'</option>';
                         $('#form-recpass #RolUsuario').append(output);
                     }
                 }
@@ -148,14 +149,15 @@ $(document).ready(function () {
                         });
                     } else {
                         var Usuario = form.querySelector('#Usuario').value;
-                        var IdRolUsuario = form.querySelector('#RolUsuario').value;
+                        var IdRolUsuario = form.querySelector('#RolUsuario option:checked').value;
+                        var NomRolUsuario = form.querySelector('#RolUsuario option:checked').getAttribute('NomRolUsuario');
                         var IdUsuarioAct = form.querySelector('#UsuarioActualiza').getAttribute('IdUsuarioAct');
-                        
+
                         if (IdRolUsuario == 9) {
-                            recuperar_contraseña(Usuario, IdRolUsuario, NumEmpleado=null, Pass_Confirm, IdUsuarioAct);
+                            recuperar_contraseña(Usuario, IdRolUsuario, NomRolUsuario, NumEmpleado=null, Pass_Confirm, IdUsuarioAct);
                         } else {
                             var NumEmpleado = form.querySelector('#NoEmpleado').value;
-                            recuperar_contraseña(Usuario, IdRolUsuario, NumEmpleado, Pass_Confirm, IdUsuarioAct);
+                            recuperar_contraseña(Usuario, IdRolUsuario, NomRolUsuario, NumEmpleado, Pass_Confirm, IdUsuarioAct);
                         }
                     }
                 }
@@ -163,7 +165,7 @@ $(document).ready(function () {
         }, false);
     });
 
-    function recuperar_contraseña(Usuario, IdRolUsuario, NumEmpleado, Pass_Confirm, IdUsuarioAct) {
+    function recuperar_contraseña(Usuario, IdRolUsuario, NomRolUsuario, NumEmpleado, Pass_Confirm, IdUsuarioAct) {
         var Action = "Recuperar_Contrasenia";
 
         $.ajax({
@@ -171,7 +173,7 @@ $(document).ready(function () {
             method: "POST",
             async: true,
             data: {Action, Action, Usuario: Usuario, Password: Pass_Confirm, IdRolUsuario: IdRolUsuario, 
-                   NumEmpleado: NumEmpleado, IdUsuarioAct: IdUsuarioAct},
+                   NomRolUsuario: NomRolUsuario, NumEmpleado: NumEmpleado, IdUsuarioAct: IdUsuarioAct},
 
             beforeSend: function() {
                 $.confirm({

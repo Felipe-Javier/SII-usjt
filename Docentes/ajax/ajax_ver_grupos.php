@@ -8,19 +8,20 @@
     $Opcion = '';
     $IdInstructor = '';
     $IdPersona = '';
+    $IdUsuario = '';
     $result = false;
     $row = '';
     $count = 0;
     $output = '';
 
     if (isset($_POST) && !empty($_POST)) {
-        $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
-        $Docente = $seguridad_usuario->sanitize_str($_POST['Docente']);
         $Opcion = $procesar_calificaciones->sanitize_str($_POST['Opcion']);
         $IdInstructor = $procesar_calificaciones->sanitize_int($_POST['IdInstructor']);
         $IdPersona = $procesar_calificaciones->sanitize_int($_POST['IdPersona']);
-        //echo $Opcion;
+        
         if ($Opcion == 'Traer_anios_por_grupos') {
+            $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
+            $Docente = $seguridad_usuario->sanitize_str($_POST['Docente']);
             $Anio = NULL; $IdCiclo = NULL; $IdGrupo = NULL;
 
             $result = $procesar_calificaciones->consultar_grupos_por_docente($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo);
@@ -46,6 +47,7 @@
                     }
                     $output .= '</ul>
                             </nav>';
+                    echo $output;
 
                     $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
                     $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS GRUPOS ASIGNADOS Y LAS MATERIAS ASIGNADAS AL DOCENTE: '.
@@ -53,8 +55,6 @@
                     $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                         
                     $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
-
-                    echo $output;
                 } else {
                     $output .= '<div class="text-center grupos-ciclos">GRUPOS</div> 
                                     <nav class="sidebar card py-2 mb-4" >
@@ -161,7 +161,7 @@
                                                 data-target="#MG-'.$row['IDPLANMATERIA'].'" 
                                                 aria-controls="MG-'.$row['IDPLANMATERIA'].'" aria-expanded="false"
                                                 aria-label="Toggle navigation" IdPlanMateria="'.$row['IDPLANMATERIA'].'"
-                                                IdGrupo="'.$row['IDGRUPO'].'"
+                                                IdGrupo="'.$row['IDGRUPO'].'" Grupo="'.$row['GRUPO'].'"
                                                 FIE_P1="'.$row['FECHAINICIOEVALUACION_PARCIAL1'].'"
                                                 FTE_P1="'.$row['FECHATERMINOEVALUACION_PARCIAL1'].'"
                                                 FIE_P2="'.$row['FECHAINICIOEVALUACION_PARCIAL2'].'"

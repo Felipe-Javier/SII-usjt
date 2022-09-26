@@ -3,7 +3,7 @@ $(document).ready(function () {
     "use strict";
 
     var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
-    var Docente = $("#barra #datos-usuario").html();
+    var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
     var IdPersona = $("#barra #datos-usuario").attr("IdPersona");
     var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
 
@@ -20,7 +20,7 @@ $(document).ready(function () {
             data: {
                 Opcion: Opcion,
                 IdUsuario: IdUsuario, 
-                Docente: Docente, 
+                Docente: Docente,
                 IdPersona: IdPersona,
                 IdInstructor: IdInstructor
             },
@@ -41,11 +41,6 @@ $(document).ready(function () {
                 } else {
                     output = response;
                     $("#contenido-cuerpo #grupos").html(output);
-                    /*$("ul .nav-item .ciclos.nav-link").each(function() {
-                        var Año = $(this).attr('IdAño');
-                        console.log(Año);
-                        load_cuatrimestres_por_años(IdPersona, IdInstructor, Año);
-                    });*/
                 }
             },
 
@@ -59,7 +54,6 @@ $(document).ready(function () {
         load_cuatrimestres_por_años(IdPersona, IdInstructor);
         $("ul .nav-item .ciclos.nav-link").each(function() {
             var Anio = $(this).attr('Anio');
-            console.log(IdPersona, IdInstructor, Anio);
             load_cuatrimestres_por_años(IdPersona, IdInstructor, Anio);
         });
     }, 200);
@@ -218,8 +212,11 @@ $(document).ready(function () {
 	});
 
     $("body").on("click", "ul .nav-item .materias.nav-link", function () {
+        var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
+        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
         var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
         var IdGrupo = $(this).attr("IdGrupo");
+        var Grupo = $(this).attr("Grupo");
         var IdPlanMateria = $(this).attr("IdPlanMateria");
         var Materia = $(this).html();
         var FIE_P1 = $(this).attr("FIE_P1");
@@ -228,23 +225,31 @@ $(document).ready(function () {
         var FTE_P2 = $(this).attr("FTE_P2");
         var FIE_F = $(this).attr("FIE_F");
         var FTE_F = $(this).attr("FTE_F");
-        console.log("FIE_P1: "+FIE_P1);
+        /*console.log("FIE_P1: "+FIE_P1);
         console.log("FTE_P1: "+FTE_P1);
         console.log("FIE_P2: "+FIE_P2);
         console.log("FTE_P2: "+FTE_P2);
         console.log("FIE_F: "+FIE_F);
         console.log("FTE_F: "+FTE_F);
-        console.log(IdPlanMateria);
+        console.log(IdUsuario);
+        console.log(Docente);
+        console.log(IdInstructor);
         console.log(IdGrupo);
+        console.log(IdPlanMateria);
+        console.log(Materia);*/
         
         $.ajax({
             url: "ajax/ajax_ver_alumnos.php",
             method: "POST",
             async: true,
             data: {
+                IdUsuario: IdUsuario,
+                Docente: Docente,
                 IdInstructor: IdInstructor,
                 IdGrupo: IdGrupo,
-                IdPlanMateria: IdPlanMateria
+                Grupo: Grupo,
+                IdPlanMateria: IdPlanMateria,
+                Materia: Materia
             },
 
             success: function (response) {
@@ -277,8 +282,8 @@ $(document).ready(function () {
                         $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria", IdPlanMateria);
                         $("#contenido-cuerpo #Nombre_Materia").html(Materia);
                     }
-                    load_CatTipoCorte();
-                    load_CatTipoCalificacion();
+                    load_CatTipoCorte(IdUsuario, Docente, Grupo, Materia);
+                    load_CatTipoCalificacion(IdUsuario, Docente, Grupo, Materia);
                     deshabilitar_habilitar_por_fechas(FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F);
                 }
             },
@@ -289,13 +294,22 @@ $(document).ready(function () {
         });
     });
 
-    function load_CatTipoCorte() {
+    function load_CatTipoCorte(IdUsuario, Docente, Grupo, Materia) {
+        /*var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
+        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
+        var Grupo = $("ul .nav-item .materias.nav-link").attr("Grupo");
+        var Materia = $("ul .nav-item .materias.nav-link").html();*/
+
         $.ajax({
             url: "ajax/ajax_ver_CatTipoCorte_CatTipoCalificacion.php",
             method: "POST",
             async: true,
             data: {
-                Action: 'VerCatTipoCorte'
+                Action: 'VerCatTipoCorte',
+                IdUsuario: IdUsuario,
+                Docente: Docente,
+                Grupo: Grupo,
+                Materia: Materia
             },
 
             success: function (response) {
@@ -390,13 +404,22 @@ $(document).ready(function () {
         });
     }
 
-    function load_CatTipoCalificacion() {
+    function load_CatTipoCalificacion(IdUsuario, Docente, Grupo, Materia) {
+        /*var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
+        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
+        var Grupo = $("ul .nav-item .materias.nav-link").attr("Grupo");
+        var Materia = $("ul .nav-item .materias.nav-link").html();*/
+
         $.ajax({
             url: "ajax/ajax_ver_CatTipoCorte_CatTipoCalificacion.php",
             method: "POST",
             async: true,
             data: {
-                Action: 'VerCatTipoCalificacion'
+                Action: 'VerCatTipoCalificacion',
+                IdUsuario: IdUsuario,
+                Docente: Docente,
+                Grupo: Grupo,
+                Materia: Materia
             },
 
             success: function (response) {

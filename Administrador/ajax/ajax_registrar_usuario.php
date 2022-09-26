@@ -11,7 +11,44 @@
 
   if(isset($_POST) && !empty($_POST)) {
     $Action = $seguridad_usuario->sanitize_str($_POST['Action']);
-    if ($Action == 'Buscar empleado o alumno') {
+
+    if ($Action == 'Consultar_Roles_Usuario') {
+      $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
+
+      $result = $seguridad_usuario->consultar_roles_usuario();
+      
+      if ($result == true) {
+        $count = $result->rowCount();
+        if ($count > 0) {
+          $output .= json_encode($result->fetchAll(PDO::FETCH_ASSOC), JSON_UNESCAPED_UNICODE);
+          echo $output;
+
+          $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+          $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS ROLES DE USUARIO EXISTENTES');
+          $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                              
+          $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
+
+          exit;
+        } else {
+          $output .= 'No se encontraron roles de usuario';
+          echo $output;
+
+          $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+          $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS ROLES DE USUARIO EXISTENTES');
+          $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                              
+          $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
+
+          exit;
+        }
+      } else {
+        $output .= 'No se han podido consultar los roles de usuario';
+        echo $output;
+        exit;
+      }
+    } elseif ($Action == 'Buscar empleado o alumno') {
+      $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);    
       $Clave = $seguridad_usuario->sanitize_str($_POST['Clave']);
       $TipoPersona = $seguridad_usuario->sanitize_str($_POST['TipoPersona']);
       
@@ -22,16 +59,35 @@
         $count = count($Array, COUNT_NORMAL);
         if ($count > 0) {
           $output .= json_encode($Array, JSON_UNESCAPED_UNICODE);
+          echo $output;
+
+          $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+          $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DEL EMPLEADO/ALUMNO CON NUMERO DE EMPLEADO/MATRICULA: '.$Clave);
+          $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                        
+          $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
+
+          exit;
         } else {
           $output .= 'No se encontraron empleados/alumnos registrados con los datos ingresados';
+          echo $output;
+
+          $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+          $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DEL EMPLEADO/ALUMNO CON NUMERO DE EMPLEADO/MATRICULA: '.$Clave);
+          $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                        
+          $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
+
+          exit;
         }
       } else {
         $output .= 'No se ha podido buscar el empleado/alumno con los datos ingresados';
+        echo $output;
+        exit;
       }
-      echo $output;
-      exit;
     } elseif ($Action == 'Registrar usuario') {
       $IdRolUsuario = $seguridad_usuario->sanitize_int($_POST['IdRolUsuario']);
+      $NomRolUsuario = $seguridad_usuario->sanitize_str($_POST['NomRolUsuario']);
       $Nombres = $seguridad_usuario->sanitize_str($_POST['Nombres']);
       $ApellidoPaterno = $seguridad_usuario->sanitize_str($_POST['ApellidoPaterno']);
       $ApellidoMaterno = $seguridad_usuario->sanitize_str($_POST['ApellidoMaterno']);
@@ -52,8 +108,19 @@
                                                         $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, $IdRolUsuario, $IdUsuarioRegistra);
         if ($result == true) {
           $output .= 'El usuario ha sido registrado exitosamente';
+          echo $output;
+          
+          $TipoMovimiento = $seguridad_usuario->sanitize_str('REGISTRO');
+          $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ EL REGISTRO DEL NUEVO USUARIO: '.$NomRolUsuario.' - '.$Usuario);
+          $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                              
+          $seguridad_usuario->registro_bitacora($IdUsuarioRegistra, $TipoMovimiento, $Valor, $TipoSistema);
+
+          exit;
         } else {
           $output .= 'No se ha podido registrar el usuario';
+          echo $output;
+          exit;
         }
       } else if ($IdRolUsuario == 8) {
         $NumEmpleado = $seguridad_usuario->sanitize_int($_POST['NumEmpleado']);
@@ -65,8 +132,19 @@
                                                         $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, $IdRolUsuario, $IdUsuarioRegistra);
         if ($result == true) {
           $output .= 'El usuario ha sido registrado exitosamente';
+          echo $output;
+          
+          $TipoMovimiento = $seguridad_usuario->sanitize_str('REGISTRO');
+          $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ EL REGISTRO DEL NUEVO USUARIO: '.$NomRolUsuario.' - '.$Usuario);
+          $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                              
+          $seguridad_usuario->registro_bitacora($IdUsuarioRegistra, $TipoMovimiento, $Valor, $TipoSistema);
+
+          exit;
         } else {
           $output .= 'No se ha podido registrar el usuario';
+          echo $output;
+          exit;
         }
       } else if ($IdRolUsuario != 8 && $IdRolUsuario != 9) {
         $NumEmpleado = $seguridad_usuario->sanitize_int($_POST['NumEmpleado']);
@@ -78,13 +156,21 @@
                                                         $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, $IdRolUsuario, $IdUsuarioRegistra);
         if ($result == true) {
           $output .= 'El usuario ha sido registrado exitosamente';
+          echo $output;
+          
+          $TipoMovimiento = $seguridad_usuario->sanitize_str('REGISTRO');
+          $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ EL REGISTRO DEL NUEVO USUARIO: '.$NomRolUsuario.' - '.$Usuario);
+          $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                              
+          $seguridad_usuario->registro_bitacora($IdUsuarioRegistra, $TipoMovimiento, $Valor, $TipoSistema);
+
+          exit;
         } else {
           $output .= 'No se ha podido registrar el usuario';
+          echo $output;
+          exit;
         }
       }
-
-      echo $output;
-      exit;
     }
   } else {
     $output .= 'Error al registrar el usuario';

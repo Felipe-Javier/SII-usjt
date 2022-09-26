@@ -12,10 +12,10 @@
         <a class="nav-link <?php echo $inicio; ?>" href="Inicio.php">Inicio </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link <?php echo $subir_calificaciones; ?>" href="Boleta_Calificaciones.php">Boleta de Calificaciones</a>
+        <a class="nav-link <?php echo $boleta_calificaciones; ?>" href="Boleta_Calificaciones.php">Boleta de Calificaciones</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link <?php echo $cambiar_contraseña; ?>" href="Cambio_de_contraseña_primera_vez.php">Cambiar Contraseña</a>
+        <a class="nav-link <?php echo $cambiar_contraseña; ?>" href="Cambio_de_contraseña_general.php">Cambiar Contraseña</a>
       </li>
     </ul>
 

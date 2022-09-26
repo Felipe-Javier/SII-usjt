@@ -1,7 +1,9 @@
 <?php  
-  include ("../clases/procesar_calificaciones.php");
+  include("../clases/procesar_calificaciones.php");
+  include ("../clases/seguridad_usuario.php");
 
   $procesar_calificaciones = new procesar_calificaciones();
+  $seguridad_usuario = new seguridad_usuario();
 
   $Action = '';
   $result = false;
@@ -10,7 +12,11 @@
   $output = '';
 
     if(isset($_POST) && !empty($_POST)) {
-        $Action = $_POST['Action'];
+        $Action = $procesar_calificaciones->sanitize_str($_POST['Action']);
+        $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
+        $Docente = $seguridad_usuario->sanitize_str($_POST['Docente']);
+        $Grupo = $seguridad_usuario->sanitize_str($_POST['Grupo']);
+        $Materia = $seguridad_usuario->sanitize_str($_POST['Materia']);
 
         if ($Action == 'VerCatTipoCorte') {
             $result = $procesar_calificaciones->consultar_CatTipoCorte();
@@ -27,9 +33,16 @@
             } else {
                 $output .= 'No se ha podido realizar la consulta';
             }
-            echo $output;  
+            echo $output;
+
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS TIPOS DE CORTE (PARCIAL) PARA EVALUACION DE LOS'.
+                                                      ' DE LOS ALUMNOS DE LA MATERIA '.$Materia.' DEL GRUPO '.$Grupo.' ASIGNADO AL DOCENTE: '.
+                                                      $Docente);
+            $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                        
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);  
         } elseif ($Action == 'VerCatTipoCalificacion') {
-            //$count = count($Matriculas, COUNT_RECURSIVE);
             $result = $procesar_calificaciones->consultar_CatTipoCalificacion();
             if ($result != false) {
                 $Count = $result->rowCount();
@@ -44,7 +57,15 @@
             } else {
                 $output .= 'No se ha podido realizar la consulta';
             }
-            echo $output;                
+            echo $output;
+            
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS TIPOS DE CALIFICACION PARA EVALUACION DE LOS'.
+                                                      ' DE LOS ALUMNOS DE LA MATERIA '.$Materia.' DEL GRUPO '.$Grupo.' ASIGNADO AL DOCENTE: '.
+                                                      $Docente);
+            $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                        
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
         }
 
         $Action = '';

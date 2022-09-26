@@ -5,12 +5,13 @@ $(document).ready(function () {
     load_roles_usuario();
 
     function load_roles_usuario() {
+        var IdUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdUsuario");
         var Action = 'Consultar_Roles_Usuario';
 
         $.ajax({
-            url:"ajax/ajax_ver_roles_usuario.php",
+            url:"ajax/ajax_registrar_usuario.php",
             method: "POST",
-            data:{Action: Action},
+            data:{Action: Action, IdUsuario: IdUsuario},
             
             success: function(response) {
                 if (response== 'Error al consultar los roles de usuario' || 
@@ -27,7 +28,7 @@ $(document).ready(function () {
                     var output = '';
                     var numRows = info.length;
                     for (var i=0; i<numRows; i++) {
-                        output = '<option value="'+info[i].IdRol+'">'+info[i].Rol+' --- '+info[i].Clave+'</option>';
+                        output = '<option value="'+info[i].IdRol+'" NomRolUsuario="'+info[i].Clave+'">'+info[i].Rol+' --- '+info[i].Clave+'</option>';
                         $('#form-reguser #Rol_Usuario').append(output);
                     }
                 }
@@ -42,6 +43,7 @@ $(document).ready(function () {
     }
 
     $("#search #buscar").on('click', function() {
+        var IdUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdUsuario");
         var Clave = $('#search #clave').val();
         var TipoPersona = $('#search #tipo_persona').val();
         var Action = 'Buscar empleado o alumno';
@@ -49,7 +51,7 @@ $(document).ready(function () {
         $.ajax({
             url:"ajax/ajax_registrar_usuario.php",
             method: "POST",
-            data:{Action: Action, Clave: Clave, TipoPersona: TipoPersona},
+            data:{Action: Action, IdUsuario: IdUsuario, Clave: Clave, TipoPersona: TipoPersona},
             
 
             success: function(response) {
@@ -203,7 +205,8 @@ $(document).ready(function () {
         var Nombres = $('#form-reguser #row-nomcompleto #Nombres').val();
         var ApellidoPaterno = $('#form-reguser #row-nomcompleto #Apellido_Paterno').val();
         var ApellidoMaterno = $('#form-reguser #row-nomcompleto #Apellido_Materno').val();
-        var IdRolUsuario = $('#form-reguser #Rol_Usuario').val();
+        var IdRolUsuario = $('#form-reguser #Rol_Usuario>option:selected').val();
+        var NomRolUsuario = $('#form-reguser #Rol_Usuario>option:selected').attr('NomRolUsuario');
         var Usuario = $('#form-reguser #Usuario').val();
         var Password = $('#form-reguser #Password').val();
         var PasswordTemp = $('#form-reguser input[name="PassTemp"]:checked').val();
@@ -217,7 +220,8 @@ $(document).ready(function () {
             
             var UserData = {Action: Action, IdPersona: IdPersona, IdAlumno: IdAlumno, Nombres: Nombres, ApellidoPaterno: ApellidoPaterno,
                             ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, ContraseniaTemp: PasswordTemp,
-                            Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, IdUsuarioRegistra: IdUserReg};
+                            Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, NomRolUsuario: NomRolUsuario, 
+                            IdUsuarioRegistra: IdUserReg};
         } else if (IdRolUsuario == 8) {
             var NumEmpleado = $('#form-reguser #row-claves-persona #NumEmpleado').val();
             var IdPersona = $('#form-reguser #row-claves-persona #IdPersona').val();
@@ -225,17 +229,17 @@ $(document).ready(function () {
             
             var UserData = {Action: Action, NumEmpleado: NumEmpleado, IdPersona: IdPersona, IdInstructor: IdInstructor, Nombres: Nombres, 
                             ApellidoPaterno: ApellidoPaterno, ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, 
-                        ContraseniaTemp: PasswordTemp, Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, IdUsuarioRegistra: IdUserReg};
+                            ContraseniaTemp: PasswordTemp, Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, 
+                            NomRolUsuario: NomRolUsuario, IdUsuarioRegistra: IdUserReg};
         } else if (IdRolUsuario != 9 && IdRolUsuario != 8) {
             var NumEmpleado = $('#form-reguser #row-claves-persona #NumEmpleado').val();
             var IdPersona = $('#form-reguser #row-claves-persona #IdPersona').val();
             
             var UserData = {Action: Action, NumEmpleado: NumEmpleado, IdPersona: IdPersona, Nombres: Nombres, 
-                ApellidoPaterno: ApellidoPaterno, ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, 
-                ContraseniaTemp: PasswordTemp, Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, IdUsuarioRegistra: IdUserReg};
+                            ApellidoPaterno: ApellidoPaterno, ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, 
+                            ContraseniaTemp: PasswordTemp, Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, 
+                            NomRolUsuario: NomRolUsuario, IdUsuarioRegistra: IdUserReg};
         }
-        
-        console.log(UserData);
 
         $.ajax({
             url: "ajax/ajax_registrar_usuario.php",
@@ -244,7 +248,6 @@ $(document).ready(function () {
             data: UserData,
             
             success: function(response) {
-                console.log(response);
                 if (response== 'Error al registrar el usuario' || 
                     response == 'No se ha podido registrar el usuario') {
                     $.confirm({

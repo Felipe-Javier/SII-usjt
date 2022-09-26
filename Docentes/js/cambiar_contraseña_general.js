@@ -34,6 +34,10 @@ $(document).ready(function () {
                 event.preventDefault();
                 event.stopPropagation();
                 form.classList.add('was-validated');
+                $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").removeClass("verPassword");
+                $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").addClass("validate-btn-danger");
+                $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").removeClass("verPassword");
+                $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").addClass("validate-btn-danger");
                 var output = "";
                 output = '<div class="col-12">'+
                             '<div class="alert alert-danger fade show text-center" role="alert">'+
@@ -54,6 +58,10 @@ $(document).ready(function () {
                         form.classList.remove('was-validated');
                         form.querySelector('#password').classList.add('is-invalid');
                         form.querySelector('#password-confirm').classList.add('is-invalid');
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").removeClass("verPassword");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").addClass("validate-btn-danger");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").removeClass("verPassword");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").addClass("validate-btn-danger");
                         var output = '<div class="col-12">'+
                             '<div class="alert alert-danger fade show text-center" role="alert">'+
                                 '<strong>¡Las contraseñas no coinciden, verifiquelas y vuelva a intentarlo!</strong>'+
@@ -63,6 +71,10 @@ $(document).ready(function () {
                         $("#result .alert").fadeTo(2000, 500);
                         $("#result .alert").slideUp(500);
                     } else {
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").removeClass("verPassword");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_Pass").addClass("validate-btn-success");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").removeClass("verPassword");
+                        $("#cambio-contraseña-primera-vez #show_password #btn_show_passConfirm").addClass("validate-btn-success");
                         var IdUsuario = form.querySelector('#user-name').getAttribute('idusuario');
                         var Usuario = form.querySelector('#user-name').value;
                         var IdRolUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdRol");
@@ -74,11 +86,13 @@ $(document).ready(function () {
     });
 
     function cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario) {
+        var Action = 'Actualizacion_general';
+        
         $.ajax({
             url: "ajax/ajax_cambiar_contraseña.php",
             method: "POST",
+            data: {Action: Action, IdUsuario: IdUsuario, Usuario: Usuario, Contrasenia: Pass_Confirm, IdRolUsuario: IdRolUsuario},
             async: true,
-            data: {IdUsuario: IdUsuario, Usuario: Usuario, Contrasenia: Pass_Confirm, IdRolUsuario: IdRolUsuario},
 
             beforeSend: function() {
                 var output = "";
@@ -94,7 +108,6 @@ $(document).ready(function () {
 
             success: function(response) {
                 console.log(response);
-                var output = "";
                 if (response=='Error al cambiar su contraseña' || response=='No se ha podido cambiar su contraseña') {
                     $.confirm({
                         title: 'Actualizando contraseña',
@@ -128,7 +141,6 @@ $(document).ready(function () {
                                     btnClass: 'btn btn-success',
                                     action: function () {
                                         $(this).fadeOut();
-                                        location.href = 'Inicio.php';
                                     }
                                 }
                             }

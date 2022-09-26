@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     session_start();
     if (!isset($_SESSION['active'])) {
         header('location: ../Login/Iniciar_Sesion.php');
@@ -17,33 +17,33 @@
 			include("../incluir/links.php");
     	?>
         <link rel="stylesheet" type="text/css" href="css/styles_principal.css">
-        <link rel="stylesheet" type="text/css" href="css/styles_inicio.css">
+        <link rel="stylesheet" type="text/css" href="css/styles_registrar_calificaciones.css">
         <?php
         	include("../incluir/scripts.php");
     	?>
     </head>
     <body>
         <?php
-            $inicio = "active";
+            $inicio = "";
             $registrar_calificaciones = "";
-            $control_asistencias = "";
+            $control_asistencias = "active";
             $cambiar_contraseña = "";
             
             include("incluir/header.php");
             include("incluir/navbar.php");
         ?>
-        
-        <div  class="row justify-content-center m-0 mt-4 mb-4">
-            <div class="cuadroBienvenida col-sm-6 text-center p-5">
-                <p class="msjBienvenida">Bienvenido</p>
-                <p class="nomDocente" id="datos-usuario" 
-                        IdUsuario="<?php echo $_SESSION['IdUsuario'] ?>" 
-                        IdPersona="<?php echo $_SESSION['IdPersona'] ?>"
-                        IdInstructor="<?php echo $_SESSION['IdInstructor'] ?>">
-                        <?php echo $_SESSION['Empleado'] ?>
-                </p>
-            </div>
-        </div>
-
+        <div class="container-fluid" id="contenido-barra" >
+	  		<div class="row pt-3 pb-3" id="barra">
+	    		<div class="col text-left">
+	    			<span class="text-bold">Docente: 
+	    				<span id="datos-usuario" class="text-nobold" IdUsuario="<?php echo $_SESSION['IdUsuario']; ?>" 
+						  IdPersona="<?php echo $_SESSION['IdPersona']; ?>" IdInstructor="<?php echo $_SESSION['IdInstructor']; ?>"
+						  NombreEmpleado="<?php echo $_SESSION['Empleado']; ?>">
+	    					<?php echo $_SESSION['Empleado']; ?>
+	    				</span>
+	    			</span>
+	    		</div>
+	  		</div>
+		</div>
     </body>
 </html>

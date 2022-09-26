@@ -86,10 +86,12 @@ $(document).ready(function () {
     });
 
     function cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario) {
+        var Action = 'Actualizacion_general';
+        
         $.ajax({
             url: "ajax/ajax_cambiar_contraseña.php",
             method: "POST",
-            data: {IdUsuario: IdUsuario, Usuario: Usuario, Contrasenia: Pass_Confirm, IdRolUsuario: IdRolUsuario},
+            data: {Action: Action, IdUsuario: IdUsuario, Usuario: Usuario, Contrasenia: Pass_Confirm, IdRolUsuario: IdRolUsuario},
             async: true,
 
             beforeSend: function() {
@@ -105,6 +107,7 @@ $(document).ready(function () {
             },
 
             success: function(response) {
+                console.log(response);
                 if (response=='Error al cambiar su contraseña' || response=='No se ha podido cambiar su contraseña') {
                     $.confirm({
                         title: 'Actualizando contraseña',
@@ -138,7 +141,6 @@ $(document).ready(function () {
                                     btnClass: 'btn btn-success',
                                     action: function () {
                                         $(this).fadeOut();
-                                        location.href = 'Inicio.php';
                                     }
                                 }
                             }

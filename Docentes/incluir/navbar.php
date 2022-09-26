@@ -1,21 +1,24 @@
 
 <nav class="navbar navbar-expand-lg navbar-light" >
   <a class="navbar-brand" href="#">En Linea</a>
-  <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+  <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent"
    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav text-center ml-auto" id="nav">
       <li class="nav-item">
         <a class="nav-link <?php echo $inicio; ?>" href="Inicio.php">Inicio </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link <?php echo $registrar_calificaciones; ?>" href="Registrar_Calificaciones.php">Registrar Calificaciones</a>
+        <a class="nav-link <?php echo $registrar_calificaciones; ?>" href="Registrar_calificaciones.php">Registrar Calificaciones</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link <?php echo $cambiar_contraseña; ?>" href="Cambio_de_contraseña_primera_vez.php">Cambiar Contraseña</a>
+        <a class="nav-link <?php echo $control_asistencias; ?>" href="Control_de_asistencias.php">Control de asistencias</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link <?php echo $cambiar_contraseña; ?>" href="Cambio_de_contraseña_general.php">Cambiar Contraseña</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto text-center">

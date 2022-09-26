@@ -1,7 +1,9 @@
 <?php
-  include ("../clases/procesar_calificaciones.php");
+  include("../clases/procesar_calificaciones.php");
+  include ("../clases/seguridad_usuario.php");
 
   $procesar_calificaciones = new procesar_calificaciones();
+  $seguridad_usuario = new seguridad_usuario();
 
   $IdInstructor= '';
   $IdGrupo='';
@@ -10,9 +12,13 @@
   $output = '';
 
     if(isset($_POST) && !empty($_POST)) {
-        $IdInstructor = intval($_POST['IdInstructor']);
-        $IdGrupo = intval($_POST['IdGrupo']);
-        $IdPlanMateria = intval($_POST['IdPlanMateria']);
+        $IdUsuario = $seguridad_usuario->sanitize_int($_POST['IdUsuario']);
+        $Docente = $seguridad_usuario->sanitize_str($_POST['Docente']);
+        $IdInstructor = $procesar_calificaciones->sanitize_int($_POST['IdInstructor']);
+        $IdGrupo = $procesar_calificaciones->sanitize_int($_POST['IdGrupo']);
+        $Grupo = $seguridad_usuario->sanitize_str($_POST['Grupo']);
+        $IdPlanMateria = $procesar_calificaciones->sanitize_int($_POST['IdPlanMateria']);
+        $Materia = $seguridad_usuario->sanitize_str($_POST['Materia']);
 
         $result = $procesar_calificaciones->consultar_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria);
 
@@ -111,6 +117,13 @@
                 </table>';
                 echo $output;
             }
+
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS ALUMNOS ACTIVOS EN LA MATERIA '.$Materia.' DEL GRUPO '.
+                                                      $Grupo.' ASIGNADO AL DOCENTE: '.$Docente);
+            $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                        
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
         } else {
             $output .= 'No se ha podido consutar los alumnos registrados';
             echo $output;
