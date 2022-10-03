@@ -31,15 +31,14 @@
 #contenido-cuerpo .modal-content span {
 	font-size: 15px;
 }
-
+/*
 #contenido-cuerpo #result {
-	height: 65vh;
 	background-image: url('../img/logo-usjt.png');
 	background-repeat: no-repeat;
 	background-position-x: center;
 	background-position-y: center;
 	background-size: 200px;
-}
+}*/
 
 
 /* TABLA */
@@ -67,7 +66,7 @@
 
 #contenido-cuerpo #table-subir-cal .tbody-subir-cal {
 	background-color: #EEEDED;
-	height: 70vh;
+	height: 60vh;
 	overflow-y: overlay;
 	display: block;
 	width: 100%;

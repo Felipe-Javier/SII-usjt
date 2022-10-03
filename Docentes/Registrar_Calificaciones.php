@@ -47,7 +47,7 @@
 	  		</div>
 		</div> 
 	    <div class="container-fluid mt-3 mb-3" id="contenido-cuerpo">
-	    	<div class="row align-items-center">
+	    	<div class="row">
 				<div class="col-sm-3">
 					<div class="modal-content" id="grupos"></div>
 				</div>  

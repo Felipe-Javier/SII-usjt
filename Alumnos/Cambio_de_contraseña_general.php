@@ -46,7 +46,7 @@
                             idusuario="<?php echo $_SESSION['IdUsuario'] ?>" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="validationCustom">Contraseña</label>
+                            <label for="validationCustom">Nueva contraseña</label>
                             <div class="input-group" id="show_password">
                                 <input type="password" class="form-control text-center border-input" id="password" value="" required>
                                 <button type="button" class="verPassword input-group-addon" id="btn-show-Pass">
