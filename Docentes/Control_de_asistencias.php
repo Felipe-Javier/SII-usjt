@@ -17,12 +17,12 @@
 			include("../incluir/links.php");
     	?>
 	    <link rel="stylesheet" type="text/css" href="css/styles_principal.css">
-	    <link rel="stylesheet" type="text/css" href="css/styles_registrar_calificaciones.css">
+	    <!--<link rel="stylesheet" type="text/css" href="css/styles_registrar_calificaciones.css">-->
         <link rel="stylesheet" type="text/css" href="css/styles_control_de_asistencias.css">
 		<?php
         	include("../incluir/scripts.php");
     	?>
-		<script src="js/registrar_calificaciones.js"></script>
+		<script src="js/registrar_asistencias.js"></script>
 	</head>
 	<body>
 		<?php
@@ -30,6 +30,8 @@
 	        $registrar_calificaciones = "";
 			$control_asistencias = "active";
 			$cambiar_contraseña = "";
+
+			include("modal/Registrar_asistencias.php");
 
 	        include("incluir/header.php");
 	        include("incluir/navbar.php");
@@ -53,10 +55,10 @@
 					<div class="modal-content mb-4" id="grupos"></div>
 				</div>  
 	    		<div class="col-sm-10">
-	    			<!--<div class="modal-content" id="result">
+	    			<div class="modal-content" id="result">
 	    				<p class="msj text-center">selecciona un grupo</p>
-					</div>-->
-                    <table class="table table-bordered table-responsive">
+					</div>
+                    <!--<table class="table table-bordered table-responsive">
                     <tr><th rowspan="3">No.
                         <th rowspan="3">Matricula
                         <th rowspan="3">Nombre del Estudiante
@@ -100,10 +102,10 @@
 
                         <td>0<td>3<td>2<td>5
                             
-                </table>
+                	</table>
 					<div class="div_button">
 						<button class="button ">Guardar</button>
-					</div>
+					</div>-->
 			</div>
 		</div>
 	</body>
