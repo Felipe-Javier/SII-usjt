@@ -75,10 +75,16 @@ ul .nav-link.selected {
 
 .table-bordered th {
     border: 1px solid #dee2e6;
-    vertical-align: middle;
+    vertical-align: middle !important;
     background-color: #0064a7;
     color: #f2f2f2;
     text-align: center;
+
+}
+
+.widthNombre {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
 }
 
 .table td {

@@ -25,6 +25,7 @@
             $AnioAsistencia = $procesar_asistencias->sanitize_int($_POST['AnioAsistencia']);
             $MesAsistencia = $procesar_asistencias->sanitize_str($_POST['MesAsistencia']);
             $NumList = 0;
+            $numColDias = 0;
 
             $result = $procesar_asistencias->consultar_asistencias_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria, $MesAsistencia, $AnioAsistencia);
 
@@ -36,8 +37,9 @@
                     $result->execute();
                     $output .= '
                     <div class="div_button">
-                        <button class="button" id="btnRegistrarAsistencia">Registrar asistencia</button>
+                        <button class="button" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">Registrar asistencia</button>
                     </div>
+                    <div>
                     <table class="table table-bordered table-responsive text-center" id="table-subir-cal">
                         <thead class="thead-subir-cal text-light">
                             <tr>
@@ -47,28 +49,38 @@
                                 <th colspan="31" class="nomenclatura" >
                                     Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente, AO = Alumno Oyente
                                 </th>
-                                <th colspan="4" rowspan="2">Totales</th>
+                                <th colspan="6" rowspan="2">Totales</th>
                                 <tr class="gris"><td>LUNES 12</td><td>MARTES 13</td><td>MIERCOLES 14</td></tr>-->';
 
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                         if ($NumList == 0) {
                             foreach($row as $key => $value) {
-                                if ($key == 'MATRICULA' || $key == 'NOMBRE_DEL_ESTUDIANTE') {                
-                                    $output .='<th rowspan="2">' . $key . '</th>';
+                                if ($key == 'MATRICULA' || $key == 'NOMBREALUMNO') {
+                                    if ($key == 'NOMBREALUMNO') {
+                                        $output .='<th rowspan="2" class="widthNombre">NOMBRE DEL ESTUDIANTE</th>';
+                                    } else {            
+                                        $output .='<th rowspan="2">' . $key . '</th>';
+                                    }
                                 }
                             }
-                            $output .= '<th class="nomenclatura" >
+                            foreach($row as $key => $value) {
+                                if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
+                                    $key != 'F' && $key != 'P' && $key != 'AO') {
+                                    $numColDias++;
+                                }
+                            }
+                            $output .= '<th colspan="'.$numColDias.'"class="nomenclatura" >
                                             Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente, AO = Alumno Oyente
                                         </th>
                                         <th colspan="6" rowspan="1">Totales</th>
                                     <tr class="gris">';
                             foreach($row as $key => $value) {
-                                if ($key != 'MATRICULA' && $key != 'NOMBRE_DEL_ESTUDIANTE' && $key != 'R' && $key != 'I' && $key != 'J' && 
+                                if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
                                     $key != 'F' && $key != 'P' && $key != 'AO') {
                                     $output .='<th>' . $key . '</th>';
                                 }
                             }
-                            $output .= '</tr>';
+                            $output .= '';
                             foreach($row as $key => $value) {
                                 if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
                                     $output .='<th>' . $key . '</th>';
@@ -82,13 +94,13 @@
                         $output .= '<tr>
                                         <td class="">'.$NumList.'</td>';
                         foreach($row as $key => $value) {
-                            if ($key == 'MATRICULA' || $key == 'NOMBRE_DEL_ESTUDIANTE') {
+                            if ($key == 'MATRICULA' || $key == 'NOMBREALUMNO') {
                                 $output .= '<td>'.$value.'</td>';
                             }
                         }
 
                         foreach($row as $key => $value) {
-                            if ($key != 'MATRICULA' && $key != 'NOMBRE_DEL_ESTUDIANTE' && $key != 'R' && $key != 'I' && $key != 'J' && 
+                            if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
                                 $key != 'F' && $key != 'P' && $key != 'AO') {
                                 $output .='<td>' . $value . '</td>';
                             }
@@ -109,7 +121,7 @@
                 } else {
                     $output .= 
                     '<div class="div_button">
-                        <button class="button" id="btnRegistrarAsistencia">Registrar asistencia</button>
+                        <button class="button" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">Registrar asistencia</button>
                     </div>
                     <table class="table table-bordered text-center table-responsive text-light" id="table-subir-cal">
                         <thead class="thead-subir-cal">
