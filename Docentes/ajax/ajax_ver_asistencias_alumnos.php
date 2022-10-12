@@ -86,38 +86,37 @@
                                     }
                                     $output .= '</tr>
                                             </thead>
-                                            <tbody class="tbody-asistencias">';
+                                            <tbody class="tbody-subir-cal">';
                                 }
                                 $NumList++; 
                                 $output .= '<tr>
-                                                <td class="">'.$NumList.'</td>';
+                                                <td class="tdLetra">'.$NumList.'</td>';
                                 foreach($row as $key => $value) {
                                     if ($key == 'MATRICULA' || $key == 'NOMBREALUMNO') {
-                                        $output .= '<td>'.$value.'</td>';
+                                        $output .= '<td class="tdLetra">'.$value.'</td>';
                                     }
                                 }
 
                                 foreach($row as $key => $value) {
                                     if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
                                         $key != 'F' && $key != 'P' && $key != 'AO') {
-                                        $output .='<td>' . $value . '</td>';
+                                        $output .='<td class="tdLetra">' . $value . '</td>';
                                     }
                                 }
 
                                 foreach($row as $key => $value) {
                                     if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
-                                        $output .='<td>' . $value . '</td>';
+                                        $output .='<td class="tdLetra">' . $value . '</td>';
                                     }
                                 }
-                                $output .= '</tr>';
                             }
-                    
-                    $output .= '</tbody>
-                            </table>
-                        </div>
-                    </div>';
+                            
+                            $output .= '</tbody>
+                                    </table>
+                                </div>
+                            </div>';
 
-                    echo $output;
+                            echo $output;
                 } else {
                     $output .= 
                     '<div class="div_button">

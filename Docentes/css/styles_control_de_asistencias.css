@@ -98,7 +98,7 @@ ul .nav-link.selected {
 .gris th, .gris td{
     color: #333;
     background-color: #f2f2f2 !important;
-    text-transform: capitalize;
+    font-size: 10px !important;
 }
 
 .nomenclatura {
@@ -137,6 +137,10 @@ td select:focus-visible {
 
 .td_datosAlumno {
     padding: 0.5rem !important;
+}
+
+.tdLetra {
+    font-size: 11px !important;
 }
 
 /* boton guardar*/
