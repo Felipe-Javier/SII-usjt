@@ -36,86 +36,86 @@
                 if ($count > 0) {
                     $result->execute();
                     $output .= '
-                    <div class="div_button">
-                        <button class="button" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">Registrar asistencia</button>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="div_button">
+                                <button class="button" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">Registrar asistencia</button>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                    <table class="table table-bordered table-responsive text-center" id="table-subir-cal">
-                        <thead class="thead-subir-cal text-light">
-                            <tr>
-                                <th rowspan="2">No.</th>
-                                <!--<th rowspan="3">Matricula</th>
-                                <th rowspan="3">Nombre del Estudiante</th>
-                                <th colspan="31" class="nomenclatura" >
-                                    Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente, AO = Alumno Oyente
-                                </th>
-                                <th colspan="6" rowspan="2">Totales</th>
-                                <tr class="gris"><td>LUNES 12</td><td>MARTES 13</td><td>MIERCOLES 14</td></tr>-->';
+                    <div class="row mt-2">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-responsive text-center" id="table-asistencias">
+                                <thead class="thead-asistencias text-light">
+                                    <tr>
+                                        <th rowspan="2">No.</th>';
 
-                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                        if ($NumList == 0) {
-                            foreach($row as $key => $value) {
-                                if ($key == 'MATRICULA' || $key == 'NOMBREALUMNO') {
-                                    if ($key == 'NOMBREALUMNO') {
-                                        $output .='<th rowspan="2" class="widthNombre">NOMBRE DEL ESTUDIANTE</th>';
-                                    } else {            
-                                        $output .='<th rowspan="2">' . $key . '</th>';
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                if ($NumList == 0) {
+                                    foreach($row as $key => $value) {
+                                        if ($key == 'MATRICULA' || $key == 'NOMBREALUMNO') {
+                                            if ($key == 'NOMBREALUMNO') {
+                                                $output .='<th rowspan="2" class="widthNombre">NOMBRE DEL ESTUDIANTE</th>';
+                                            } else {            
+                                                $output .='<th rowspan="2">' . $key . '</th>';
+                                            }
+                                        }
+                                    }
+                                    foreach($row as $key => $value) {
+                                        if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
+                                            $key != 'F' && $key != 'P' && $key != 'AO') {
+                                            $numColDias++;
+                                        }
+                                    }
+                                    $output .= '<th colspan="'.$numColDias.'"class="nomenclatura" >
+                                                    Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente, AO = Alumno Oyente
+                                                </th>
+                                                <th colspan="6" rowspan="1">Totales</th>
+                                            <tr class="gris">';
+                                    foreach($row as $key => $value) {
+                                        if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
+                                            $key != 'F' && $key != 'P' && $key != 'AO') {
+                                            $output .='<th>' . $key . '</th>';
+                                        }
+                                    }
+                                    $output .= '';
+                                    foreach($row as $key => $value) {
+                                        if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
+                                            $output .='<th>' . $key . '</th>';
+                                        }
+                                    }
+                                    $output .= '</tr>
+                                            </thead>
+                                            <tbody class="tbody-asistencias">';
+                                }
+                                $NumList++; 
+                                $output .= '<tr>
+                                                <td class="">'.$NumList.'</td>';
+                                foreach($row as $key => $value) {
+                                    if ($key == 'MATRICULA' || $key == 'NOMBREALUMNO') {
+                                        $output .= '<td>'.$value.'</td>';
                                     }
                                 }
-                            }
-                            foreach($row as $key => $value) {
-                                if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
-                                    $key != 'F' && $key != 'P' && $key != 'AO') {
-                                    $numColDias++;
-                                }
-                            }
-                            $output .= '<th colspan="'.$numColDias.'"class="nomenclatura" >
-                                            Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente, AO = Alumno Oyente
-                                        </th>
-                                        <th colspan="6" rowspan="1">Totales</th>
-                                    <tr class="gris">';
-                            foreach($row as $key => $value) {
-                                if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
-                                    $key != 'F' && $key != 'P' && $key != 'AO') {
-                                    $output .='<th>' . $key . '</th>';
-                                }
-                            }
-                            $output .= '';
-                            foreach($row as $key => $value) {
-                                if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
-                                    $output .='<th>' . $key . '</th>';
-                                }
-                            }
-                            $output .= '</tr>
-                                    </thead>
-                                    <tbody class="tbody-subir-cal">';
-                        }
-                        $NumList++; 
-                        $output .= '<tr>
-                                        <td class="">'.$NumList.'</td>';
-                        foreach($row as $key => $value) {
-                            if ($key == 'MATRICULA' || $key == 'NOMBREALUMNO') {
-                                $output .= '<td>'.$value.'</td>';
-                            }
-                        }
 
-                        foreach($row as $key => $value) {
-                            if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
-                                $key != 'F' && $key != 'P' && $key != 'AO') {
-                                $output .='<td>' . $value . '</td>';
-                            }
-                        }
+                                foreach($row as $key => $value) {
+                                    if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
+                                        $key != 'F' && $key != 'P' && $key != 'AO') {
+                                        $output .='<td>' . $value . '</td>';
+                                    }
+                                }
 
-                        foreach($row as $key => $value) {
-                            if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
-                                $output .='<td>' . $value . '</td>';
+                                foreach($row as $key => $value) {
+                                    if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
+                                        $output .='<td>' . $value . '</td>';
+                                    }
+                                }
+                                $output .= '</tr>';
                             }
-                        }
-                        $output .= '</tr>';
-                    }
                     
                     $output .= '</tbody>
-                                </table>';
+                            </table>
+                        </div>
+                    </div>';
 
                     echo $output;
                 } else {

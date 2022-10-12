@@ -256,33 +256,15 @@ $(document).ready(function () {
             '</div>'+
             '<div class="row">'+
                 '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">MODALIDAD: <span class="text-nobold" id="Grupo_Modalidad">'+Turno+'</span>'+
+                    '<span class="text-bold">MODALIDAD: <span class="text-nobold" id="Grupo_Modalidad"></span>'+
                 '</div>'+
                 '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">TURNO: <span class="text-nobold" id="Grupo_Turno"></span>'+
+                    '<span class="text-bold">TURNO: <span class="text-nobold" id="Grupo_Turno">'+Turno+'</span>'+
                 '</div>'+
             '</div>'
         );
 
         load_asistencias_alumnos(Action, IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, AnioAsistencia, MesAsistencia);
-
-        /*setTimeout(function() {
-            if (Materia == "null") {
-                $("#contenido-cuerpo #Nombre_Materia").html("No hay una materia activa en este grupo");
-            } else {
-                $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria", IdPlanMateria);
-                $("#contenido-cuerpo #Nombre_Materia").html(Materia);
-            }
-
-            $("#contenido-cuerpo #Mes_Asistencia").html(MesAsistencia);
-            $("#contenido-cuerpo #Anio_Escolar").html(AnioAsistencia);
-            $("#contenido-cuerpo #Grupo_Asistencia").html(Grupo);
-            $("#contenido-cuerpo #Grupo_Asistencia").attr("IdGrupoAsistencia", IdGrupo);
-            $("#contenido-cuerpo #Carrera_Grupo").html(Carrera);
-            $("#contenido-cuerpo #Grupo_Turno").html(Turno);
-            $("#contenido-cuerpo #Cuatrimestre_Grupo").attr("IdCicloEscolar", IdCicloEscolar);
-            $("#contenido-cuerpo #Cuatrimestre_Grupo").html(Cuatrimestre);
-        }, 100);*/
     });
 
     $("body").on("click", "#contenido-cuerpo #result #btnRegistrarAsistencia", function() {
