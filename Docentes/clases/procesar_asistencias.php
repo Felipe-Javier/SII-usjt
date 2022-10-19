@@ -27,8 +27,8 @@
 		public function consultar_grupos_por_docente ($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo) {
 			try {	
 			    $query = "EXEC spTraerGruposPorDocente ?, ?, ?, ?, ?, ?";
-				$options = array(PDO::SQLSRV_ATTR_ENCODING => PDO::SQLSRV_ENCODING_SYSTEM);
-				$result = $this->connection->connect_db()->prepare($query, $options);
+				/*$options = array(PDO::SQLSRV_ATTR_ENCODING => PDO::SQLSRV_ENCODING_SYSTEM);*/
+				$result = $this->connection->connect_db()->prepare($query, /*$options*/);
 				$result->bindValue(1, $Opcion, PDO::PARAM_STR);
 				$result->bindValue(2, $IdInstructor, PDO::PARAM_INT);
 				$result->bindValue(3, $IdPersona, PDO::PARAM_INT);

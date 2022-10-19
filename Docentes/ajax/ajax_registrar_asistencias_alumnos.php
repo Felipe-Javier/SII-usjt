@@ -28,15 +28,38 @@
         $IdsNomenclaturas = $procesar_asistencias->sanitize_array($_POST['IdsNomenclaturas']);
         $IdUsuario = $procesar_asistencias->sanitize_int($_POST['IdUsuario']);
         $RowCount = $procesar_asistencias->sanitize_int($_POST['RowCount']);
+        
+        $dateTimeZone = new DateTimeZone('America/Monterrey');
 
+        $dateTimeObject1 = date_create_from_format('U.u', microtime(TRUE));
+        $dateTimeObject1->setTimeZone($dateTimeZone);
+        $timeStart = $dateTimeObject1->format('H:i:s.u');
         for ($i=0; $i<$RowCount; $i++) { 
             $result = $procesar_asistencias->registrar_asistencias($IdsPersonas[$i], $IdsAlumnos[$i], $IdsAlumnosMatriculas[$i], $IdGrupo, 
             $IdsRelsGruposAlumnos[$i], $IdPlanMateria, $IdInstructor, $IdCicloEscolar, $IdDiaAsistencia, $FechaAsistencia, $IdsNomenclaturas[$i], 
             $IdUsuario);
         }
+        $dateTimeObject2 = date_create_from_format('U.u', microtime(TRUE));
+        $dateTimeObject2->setTimeZone($dateTimeZone);
+        $timeEnd = $dateTimeObject2->format('H:i:s.u');
 
         if ($result == true) {
-            $output .= 'Registro de asistencias realizado exitosamente';
+            //$output .= 'Registro de asistencias realizado exitosamente';
+            $difference = date_diff($dateTimeObject2, $dateTimeObject1);
+            
+            $hours = $difference->h;
+
+            $minutes = $difference->days * 24 * 60;
+            $minutes += $difference->h * 60;
+            $minutes += $difference->i;
+
+            $seconds = $difference->days * 24 * 60 * 60;
+            $seconds += $difference->h * 60 * 60;
+            $seconds += $difference->s;
+
+            $output .= 'Hora de inicio: '.$timeStart.'</br>';
+            $output .= 'Hora de finalizcion: '.$timeEnd.'</br>';
+            $output .= 'Tiempo total de ejecución: '.$hours.' horas, '.$minutes.' minutos y '.$seconds.' segundos';
         } elseif ($result == false) {
             $output .= 'No se han podido registrar las asistencias de los alumnos';
         }

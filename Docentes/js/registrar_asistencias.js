@@ -279,18 +279,20 @@ $(document).ready(function () {
         
         $(".modalRegistrarAsistencias").fadeIn();
         load_asistencias_alumnos(Action, IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, null, null);
-        load_CatDia(IdUsuario, Docente, Grupo, Materia);
+
+        if ($(".modalRegistrarAsistencias #Form-RegistrarAsistencias #Dia_Asistencia").empty()) {
+            load_CatDia(IdUsuario, Docente, Grupo, Materia);
+        }
     });
 
-    $(".modalRegistrarAsistencias #closeModalRegistrarAsistencia").on("click", function() {
+    $(".modalRegistrarAsistencias #closeModalRegistrarAsistencias").on("click", function() {
         $(".modalRegistrarAsistencias .input-group #Fecha_Asistencia").val("");
         $(".modalRegistrarAsistencias .input-group #Dia_Asistencia").empty();
-        $(".modalRegistrarAsistencias .input-group #Dia_Asistencia").append('<option value="" selected disabled>-- seleccione --</option>');
-        $(".modalRegistrarAsistencias #Form-RegistrarAsistencia #table-registrar-asistencia tbody .NomenAlumno").each(function () {
+        $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #table-registrar-asistencias tbody .NomenAlumno").each(function () {
             $(this).empty();
             $(this).append('<option value="" selected disabled>-- seleccione --</option>');
         });
-        $('.modalRegistrarAsistencias #Form-RegistrarAsistencia').removeClass("was-validated");
+        $('.modalRegistrarAsistencias #Form-RegistrarAsistencias').removeClass("was-validated");
         $(".modalRegistrarAsistencias").fadeOut();
     });
 
@@ -369,22 +371,25 @@ $(document).ready(function () {
                 if (response == 'Error al realizar la consulta' || response == 'No se ha podido realizar la consulta' || 
                     response == 'No hay elementos en el catalogo para mostrar') {
                     output = '<option value="" selected disabled>'+response+'</option>';
-                    $(".modalRegistrarAsistencias #Form-RegistrarAsistencia #Dia_Asistencia").append(output);
+                    $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #Dia_Asistencia").append(output);
                 } else {
                     var array = [];
                     var info = JSON.parse(response);
                     array = info;
                     var numRows = array.length;
+                    output = '<option value="" selected disabled>-- seleccione --</option>';
+                    $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #Dia_Asistencia").append(output);
+                    output = '';
                     for (var i=0; i<numRows; i++) {
                         output = '<option value="'+array[i].IdElementoInternoDetalle+'">'+array[i].ElementoCatalogo+'</option>';
-                        $(".modalRegistrarAsistencias #Form-RegistrarAsistencia #Dia_Asistencia").append(output);
+                        $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #Dia_Asistencia").append(output);
                     };
                 }
             },
 
             error: function (error) {
                 output = '<option value="" selected disabled>'+error+'</option>';
-                $(".modalRegistrarAsistencias #Form-RegistrarAsistencia #Dia_Asistencia").append(output);
+                $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #Dia_Asistencia").append(output);
             }
         });
     }
@@ -406,7 +411,7 @@ $(document).ready(function () {
                 var output = '';
                 if (response == 'Error al realizar la consulta' || response == 'No se ha podido realizar la consulta' || 
                     response == 'No hay elementos en el catalogo para mostrar') {
-                    $(".modalRegistrarAsistencias #Form-RegistrarAsistencia #table-registrar-asistencia tbody .NomenAlumno").each(function () {
+                    $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #table-registrar-asistencias tbody .NomenAlumno").each(function () {
                         output = '<option value="" selected disabled>'+response+'</option>';
                         $(this).append(output);
                     });
@@ -415,7 +420,7 @@ $(document).ready(function () {
                     var info = JSON.parse(response);
                     array = info;
                     var numRows = array.length;
-                    $(".modalRegistrarAsistencias #Form-RegistrarAsistencia #table-registrar-asistencia tbody .NomenAlumno").each(function () {
+                    $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #table-registrar-asistencias tbody .NomenAlumno").each(function () {
                         for (var i=0; i<numRows; i++) {
                             output = '<option value="'+array[i].IDNOMENCLATURA+'">'+array[i].NOMENCLATURA+'</option>';
                             $(this).append(output);
@@ -426,7 +431,7 @@ $(document).ready(function () {
             },
 
             error: function (error) {
-                $(".modalRegistrarAsistencias #Form-RegistrarAsistencia #table-registrar-asistencia tbody .NomenAlumno").each(function () {
+                $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #table-registrar-asistencias tbody .NomenAlumno").each(function () {
                     output = '<option value="" selected disabled>'+error+'</option>';
                     $(this).append(output);
                 });
@@ -434,9 +439,9 @@ $(document).ready(function () {
         });
     }
 
-    var formRegistrarAsistencia = $('.modalRegistrarAsistencias #Form-RegistrarAsistencia.needs-validation');
+    var formRegistrarAsistencias = $('.modalRegistrarAsistencias #Form-RegistrarAsistencias.needs-validation');
     
-    var validation_RegistrarAsistencia = Array.prototype.filter.call(formRegistrarAsistencia, function(form) {
+    var validation_RegistrarAsistencias = Array.prototype.filter.call(formRegistrarAsistencias, function(form) {
        form.addEventListener('submit', function(event) {
             if (form.checkValidity() == false) {
                 event.preventDefault();
@@ -500,10 +505,24 @@ $(document).ready(function () {
 
                     IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
 
-                    RowCount = $(".modalRegistrarAsistencias #Form-RegistrarAsistencia #table-registrar-asistencia tbody tr").length;
+                    RowCount = $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #table-registrar-asistencias tbody tr").length;
                     
                     registrar_asistencia (FechaAsistencia, IdDiaAsistencia, IdsRelsGruposAlumnos, IdsAlumnos, IdsAlumnosMatriculas,
                         IdsPersonas, IdGrupo, IdPlanMateria, IdInstructor, IdCicloEscolar, IdsNomenclaturas, IdUsuario, RowCount);
+
+                    /*console.log(FechaAsistencia);
+                    console.log(IdDiaAsistencia);
+                    console.log(IdsRelsGruposAlumnos);
+                    console.log(IdsAlumnos);
+                    console.log(IdsAlumnosMatriculas);
+                    console.log(IdsPersonas);
+                    console.log(IdGrupo);
+                    console.log(IdPlanMateria);
+                    console.log(IdInstructor);
+                    console.log(IdCicloEscolar);
+                    console.log(IdsNomenclaturas);
+                    console.log(RowCount);
+                    console.log(IdUsuario);*/
                 }
             }
         }, false);

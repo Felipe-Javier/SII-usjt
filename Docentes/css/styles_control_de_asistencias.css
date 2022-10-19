@@ -9,11 +9,11 @@
 }
 
 .text-bold {
-	font-weight: bold;
+	font-weight: bold !important;
 }
 
 .text-nobold {
-	font-weight: normal;
+	font-weight: normal !important;
 }
 
 #contenido-cuerpo .modal-content {
@@ -21,13 +21,27 @@
 }
 
 #contenido-cuerpo .modal-content span {
-	font-size: 15px;
+	font-size: 11px;
 }
+
+.modal-content#grupos {
+    width: 100%;
+}
+
+.modal-content#result {
+    width: 100%;
+}
+
+.modal-content#result .msj {
+    font-weight: bold;
+    color: #0064a7;
+}
+
 
 /* SIDEBAR */
 
 .ciclos {
-	font-size: 15px;
+	font-size: 11px;
 	font-weight: bold;
 }
 
@@ -38,10 +52,9 @@
 	font-family: sans-serif;
 	color: #f2f2f2;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 11px;
 	line-height: 20px;
 	padding-top: 10px;
-	
 }
 
 .sidebar {
@@ -49,11 +62,12 @@
 }
 
 .sidebar .has-submenu .submenu{
+    font-size: 11px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	padding-right: 1rem;
-	padding-left: 1rem;
+	padding-left: 0.3rem;
 }
 
 .sidebar ul .nav-link {
@@ -71,107 +85,152 @@ ul .nav-link.selected {
 	color: #f2f2f2;
 }
 
+
+
+/*general*/
+/*.col-sm-10 {
+    padding-right: 5px;
+    padding-left: 5px;
+}*/
+
+
+
 /* Tabla */
 
-.table-bordered th {
+.tableAsistencias-responsive {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: overlay;
+}
+
+#table-asistencias th, #table-registrar-asistencias th  {
     border: 1px solid #dee2e6;
-    vertical-align: middle !important;
     background-color: #0064a7;
     color: #f2f2f2;
     text-align: center;
-
+    vertical-align: middle !important;
 }
 
-.widthNombre {
-    padding-left: 3rem !important;
-    padding-right: 3rem !important;
+#table-asistencias td, #table-registrar-asistencias td {
+    vertical-align: middle !important;
 }
 
-.table td {
-    vertical-align: middle;
-    background-color: #FFF !important;
+#table-asistencias .thDescNomenclatura {
+    font-size: 12px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+#table-asistencias .thDia, #table-asistencias .thNomTotal {
+    background-color: #f2f2f2 !important;
+    font-size: 11px;
     color: #333 !important;
     text-transform: capitalize;
     text-align: center;
 }
 
-.gris th, .gris td{
-    color: #333;
-    background-color: #f2f2f2 !important;
-    font-size: 10px !important;
+#table-asistencias .thMatricula {
+    font-size: 11px;
 }
 
-.nomenclatura {
-    text-transform: capitalize;
-    text-align: center;
+#table-asistencias .thNombre {
+    font-size: 11px;
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
 }
 
-.col-sm-10 {
-    padding-right: 5px;
-    padding-left: 5px;
+#table-asistencias .thNum {
+    font-size: 11px;
 }
 
-.table td, .table th {
-    padding: 0.5rem;
-    vertical-align: middle;
-    border-top: 1px solid #dee2e6;
+#table-asistencias td .icon-circle {
+    font-size: 6px !important;
 }
 
-td select {
-    appearance: none;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    border: 0px;
+#table-asistencias td .icon-slash {
+    transform: rotate(90deg);
 }
 
-td select:focus-visible {
-    border: 0px;
-    outline: 0px;
-}
-
-.td_size td{
-    padding: 0px;
-    height: 0px;
-}
-
-.td_datosAlumno {
-    padding: 0.5rem !important;
-}
-
-.tdLetra {
+#table-asistencias .tdNum, #table-asistencias .tdMat, #table-asistencias .tdNombre {
     font-size: 11px !important;
 }
 
+#table-asistencias .tdNomenclatura {
+    font-size: 11px !important;
+    font-weight: 900;
+}
+
+#table-asistencias .tdNomTotal {
+    font-size: 11px !important;
+}
+
+
+
+
+#table-registrar-asistencias {
+    text-transform: uppercase;
+}
+
+#table-registrar-asistencias label {
+    margin-bottom: 0rem;
+}
+
+#table-registrar-asistencias .th-num, #table-registrar-asistencias .td-num {
+    width: 5%;
+}
+
+#table-registrar-asistencias .th-mat, #table-registrar-asistencias .td-mat {
+    width: 20%;
+}
+
+#table-registrar-asistencias .th-nombre, #table-registrar-asistencias .td-nombre {
+    width: 50%;
+}
+
+#table-registrar-asistencias .th-nomen, #table-registrar-asistencias .td-nomen {
+    width: 25%;
+}
+
+
+
 /* boton guardar*/
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 15px;
-  cursor: pointer;
-  text-align: center;	
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 9px #999;
-}
 
-.button:hover {background-color: #0064a7}
-
-.button:focus {outline: none;}
-
-.button:active {
-  background-color: #0064a7;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-.div_button {
+.align-buttonRegAsis {
     text-align: end;
 }
+
+.buttonRegAsis {
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 9px #999;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    height: 40px;
+    outline: none;
+    padding: 10px 20px;
+    text-align: center;	
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.buttonRegAsis:hover {
+    background-color: #0064a7
+}
+
+.buttonRegAsis:focus {
+    outline: none;
+}
+
+.buttonRegAsis:active {
+    background-color: #0064a7;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
 
 
 /* MODAL */
@@ -179,11 +238,26 @@ td select:focus-visible {
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.10);
+    background: rgba(0, 0, 0, 0.2);
 }
   
 .modalRegistrarAsistencias {
     display: none;
+}
+
+.modalRegistrarAsistencias .btn .size-icon {
+    font-size: 20px;
+}
+
+.modalRegistrarAsistencias .btnCustom {
+    font-size: 11px !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.modalRegistrarAsistencias .text-size {
+    font-size: 11px !important;
 }
   
 .bodyModal {
@@ -203,24 +277,34 @@ td select:focus-visible {
     padding-left: 35px;
     padding-right: 35px;
     padding-bottom: 0px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     font-size: 30px;
     text-transform: uppercase;
-    color: #FFFFFF;
+}
+
+.form-header .title {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     background-color: #0064A7;
+    color: #FFFFFF;
+    width: 100%;
 }
   
 .form-body {
+    background-color: #FFFFFF;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 11px;
     padding-top: 35px;
     padding-left: 35px;
     padding-right: 35px;
     padding-bottom: 35px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-color: #FFFFFF;
+    text-transform: uppercase;
 }

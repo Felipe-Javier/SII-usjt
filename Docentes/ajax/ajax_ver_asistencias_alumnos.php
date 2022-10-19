@@ -36,28 +36,31 @@
                 if ($count > 0) {
                     $result->execute();
                     $output .= '
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-sm-12">
-                            <div class="div_button">
-                                <button class="button" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">Registrar asistencia</button>
+                            <div class="align-buttonRegAsis">
+                                <button class="buttonRegAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">
+                                    <i class="fas fa-folder-plus mr-2"></i> Registrar asistencia
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-3">
                         <div class="col-sm-12">
-                            <table class="table table-bordered table-responsive text-center" id="table-asistencias">
+                        <div class="tableAsistencias-responsive">
+                            <table class="table table-bordered text-center" id="table-asistencias">
                                 <thead class="thead-asistencias text-light">
                                     <tr>
-                                        <th rowspan="2">No.</th>';
+                                        <th rowspan="2" class="thNum">No.</th>';
 
                             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                 if ($NumList == 0) {
                                     foreach($row as $key => $value) {
                                         if ($key == 'MATRICULA' || $key == 'NOMBREALUMNO') {
                                             if ($key == 'NOMBREALUMNO') {
-                                                $output .='<th rowspan="2" class="widthNombre">NOMBRE DEL ESTUDIANTE</th>';
-                                            } else {            
-                                                $output .='<th rowspan="2">' . $key . '</th>';
+                                                $output .='<th rowspan="2" class="thNombre">ESTUDIANTE</th>';
+                                            } else if ($key == 'MATRICULA') {            
+                                                $output .='<th rowspan="2" class="thMatricula">' . $key . '</th>';
                                             }
                                         }
                                     }
@@ -67,46 +70,56 @@
                                             $numColDias++;
                                         }
                                     }
-                                    $output .= '<th colspan="'.$numColDias.'"class="nomenclatura" >
+                                    $output .= '<th colspan="'.$numColDias.'"class="thDescNomenclatura" >
                                                     Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente, AO = Alumno Oyente
                                                 </th>
                                                 <th colspan="6" rowspan="1">Totales</th>
-                                            <tr class="gris">';
+                                            <tr>';
                                     foreach($row as $key => $value) {
                                         if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
                                             $key != 'F' && $key != 'P' && $key != 'AO') {
-                                            $output .='<th>' . $key . '</th>';
+                                            $output .='<th class="thDia">' . $key . '</th>';
                                         }
                                     }
                                     $output .= '';
                                     foreach($row as $key => $value) {
                                         if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
-                                            $output .='<th>' . $key . '</th>';
+                                            $output .='<th class="thNomTotal">' . $key . '</th>';
                                         }
                                     }
                                     $output .= '</tr>
                                             </thead>
-                                            <tbody class="tbody-subir-cal">';
+                                            <tbody class="tbody-asistencias">';
                                 }
                                 $NumList++; 
                                 $output .= '<tr>
-                                                <td class="tdLetra">'.$NumList.'</td>';
+                                                <td class="tdNum">'.$NumList.'</td>';
                                 foreach($row as $key => $value) {
                                     if ($key == 'MATRICULA' || $key == 'NOMBREALUMNO') {
-                                        $output .= '<td class="tdLetra">'.$value.'</td>';
+                                        if ($key == 'MATRICULA') {
+                                            $output .= '<td class="tdMat">'.$value.'</td>';
+                                        } else if ($key == 'NOMBREALUMNO') {
+                                            $output .= '<td class="tdNombre">'.$value.'</td>';
+                                        }
                                     }
                                 }
 
                                 foreach($row as $key => $value) {
                                     if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
                                         $key != 'F' && $key != 'P' && $key != 'AO') {
-                                        $output .='<td class="tdLetra">' . $value . '</td>';
+                                        if ($value == '.') {
+                                            $output .='<td class="tdNomenclatura"><i class="fas fa-circle icon-circle"></i></td>';
+                                        } else if ($value == '/') {
+                                            $output .='<td class="tdNomenclatura"><i class="fas fa-slash icon-slash"></i></td>';
+                                        } else {
+                                            $output .='<td class="tdNomenclatura">' . $value . '</td>';
+                                        }
                                     }
                                 }
 
                                 foreach($row as $key => $value) {
                                     if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
-                                        $output .='<td class="tdLetra">' . $value . '</td>';
+                                        $output .='<td class="tdNomTotal">' . $value . '</td>';
                                     }
                                 }
                             }
@@ -114,22 +127,35 @@
                             $output .= '</tbody>
                                     </table>
                                 </div>
-                            </div>';
+                            </div>
+                        </div>';
 
                             echo $output;
                 } else {
                     $output .= 
-                    '<div class="div_button">
-                        <button class="button" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">Registrar asistencia</button>
+                    '<div class="row mt-2">
+                        <div class="col-sm-12">
+                            <div class="align-buttonRegAsis">
+                                <button class="buttonRegAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">
+                                    <i class="fas fa-folder-plus mr-2"></i>Registrar asistencia
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <table class="table table-bordered text-center table-responsive text-light" id="table-subir-cal">
-                        <thead class="thead-subir-cal">
-                            <tr>
-                                <th class="th-td-mat">No se encontraron asistencias registradas en el mes de '.$MesAsistencia.'
-                                del año '.$AnioAsistencia.'</th>
-                            </tr>
-                        </thead>
-                    </table>';
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+                            <div class="tableAsistencias-responsive">
+                                <table class="table table-bordered text-center text-light" id="table-asistencias">
+                                    <thead class="thead-asistencias">
+                                        <tr>
+                                            <th class="thSinResultados">No se encontraron asistencias registradas en el mes de '.$MesAsistencia.'
+                                            del año '.$AnioAsistencia.'</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>';
                     echo $output;
                 }
 
@@ -163,38 +189,39 @@
                 
                 if ($count > 0) {
                     $result->execute();
-                    $output .= '<div class="col-sm-12">
-                    <table class="table table-bordered table-responsive text-center" id="table-registrar-asistencia">
-                        <thead class="thead-subir-cal text-light">
-                            <tr>
-                                <th>No.</th>
-                                <th>Matricula</th>
-                                <th>Nombre del Estudiante</th>
-                                <th>Nomenclatura</th>
-                            <tr>
-                        <thead>
-                        <tbody>';
+                    $output .= 
+                    '<div class="col-sm-12">
+                        <table class="table table-bordered table-responsive text-center" id="table-registrar-asistencias">
+                            <thead class="thead-reg-asistencias text-light">
+                                <tr>
+                                    <th class="th-num">No.</th>
+                                    <th class="th-mat">Matricula</th>
+                                    <th class="th-nombre">Nombre del Estudiante</th>
+                                    <th class="th-nomen">Nomenclatura</th>
+                                <tr>
+                            <thead>
+                            <tbody class="tbody-reg-asistencias">';
 
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                         $NumList++; 
                         $output .= '<tr>
-                                        <td>'.$NumList.'</td>
-                                        <td>
+                                        <td class="td-num">'.$NumList.'</td>
+                                        <td class="td-mat">
                                             <label class="DatosAlumno_C1" id="M-'.$row['MATRICULA'].'" IdRelGruAlu="'.$row['IDRELGRUPOALUMNO'].'"
                                             IdAlumno="'.$row['IDALUMNO'].'" IdAlumnoMatricula="'.$row['IDALUMNOMATRICULA'].'"
                                             IdPersona="'.$row['IDPERSONA'].'">'.
                                                 $row['MATRICULA']
                                             .'</label>
                                         </td>
-                                        <td>
+                                        <td class="td-nombre">
                                             <label class="DatosAlumno_C2" id="N-'.$row['MATRICULA'].'" IdGrupo="'.$row['IDGRUPO'].'"
                                             IdPlanMat="'.$row['IDPLANMATERIA'].'" IdInstructor="'.$row['IDINSTRUCTOR'].'"
                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'">'.
                                                 $row['NOMBREALUMNO']
                                             .'</label>
                                         </td>
-                                        <td>
-                                            <select class="NomenAlumno form-control custom-select" name="Nomen" id="Nomen-'.$row['MATRICULA'].'" required>
+                                        <td class="td-nomen">
+                                            <select class="NomenAlumno form-control custom-select text-size" name="Nomen" id="Nomen-'.$row['MATRICULA'].'" required>
                                                 <option value="" selected disabled>-- seleccione --</option>
                                             </select>
                                         </td>
@@ -208,21 +235,15 @@
                     echo $output;
                 } else {
                     $output .= 
-                    '<div class="row">
-                        <div class="col-sm-6 mb-2 text-center">
-                            <span class="text-bold">Lista de asistencias</span>
-                        </div>
-                        <div class="col-sm-6 mb-2 text-center">
-                            <span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia"></span></span>
-                        </div>
-                    </div>
-                    <table class="table table-bordered text-center table-responsive text-light" id="table-subir-cal">
-                        <thead class="thead-subir-cal">
-                            <tr>
-                                <th class="th-td-mat">No se encontraron alumnos activos en este grupo</th>
-                            </tr>
-                        </thead>
-                    </table>';
+                    '<div class="table-responsive">
+                        <table class="table table-bordered text-center text-light" id="table-registrar-asistencias">
+                            <thead class="thead-reg-asistencias">
+                                <tr>
+                                    <th>No se encontraron alumnos activos en este grupo</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    <div>';
                     echo $output;
                 }
 
