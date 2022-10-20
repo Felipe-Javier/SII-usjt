@@ -33,8 +33,8 @@
                 if ($count > 0) {
                     $result->execute();
                     $output .= '<div class="text-center grupos-ciclos">GRUPOS</div>
-                                    <nav class="sidebar card pt-2">
-                                        <ul class="nav flex-column pb-4">';
+                                    <nav class="sidebar card pt-2 pb-4">
+                                        <ul class="nav flex-column">';
                     
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                         $output .= '<li class="nav-item has-submenu" id="Año-'.$row['ANIOESCOLAR'].'">
@@ -57,8 +57,8 @@
                     $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
                 } else {
                     $output .= '<div class="text-center grupos-ciclos">GRUPOS</div> 
-                                    <nav class="sidebar card pt-2">
-                                        <ul class="nav flex-column pb-4">
+                                    <nav class="sidebar card pt-2 pb-4">
+                                        <ul class="nav flex-column">
                                             <li class="nav-item has-submenu" >
                                                 <a class="ciclos nav-link">No tiene grupos asignados</a> 
                                             </li> 
