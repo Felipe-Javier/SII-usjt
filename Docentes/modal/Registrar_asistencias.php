@@ -1,4 +1,4 @@
-<div class="modal fade modalRegistrarAsistencias" id="modalForm" role="dialog">
+<div class="modal fade modalRegistrarAsistencias" id="modalRegAsistencias" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">

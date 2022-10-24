@@ -224,42 +224,51 @@ $(document).ready(function () {
         var Cuatrimestre = $(this).attr("Cuatrimestre");
         var Turno = $(this).attr("Turno");
         var Carrera = $(this).attr("Carrera");
+        var Modalidad = $(this).attr("Modalidad");
         var AnioAsistencia = $(this).attr("AnioEscolar");
         var MesAsistencia = $(this).html();
-        
+
         $("#contenido-cuerpo #result").html(
-            '<div class="row ">'+
-                '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">CUATRIMESTRE: <span class="text-nobold" id="Cuatrimestre_Grupo" IdCicloEscolar="'+IdCicloEscolar+'">'+
-                    Cuatrimestre+'</span>'+
-                '</div>'+
-                '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">MES: <span class="text-nobold" id="Mes_Asistencia">'+MesAsistencia+'</span>'+
-                '</div>'+
-            '</div>'+
-            '<div class="row">'+
-                '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">Carrera: <span class="text-nobold" id="Carrera_Grupo">'+Carrera+'</span>'+
-                '</div>'+
-                '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">AÑO: <span class="text-nobold" id="Anio_Escolar">'+AnioAsistencia+'</span>'+
-                '</div>'+
-            '</div>'+
-            '<div class="row">'+
-                '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">Materia: <span class="text-nobold" id="Nombre_Materia" '+
-                    'IdPlanMateria="'+IdPlanMateria+'">'+Materia+'</span>'+
-                '</div>'+
-                '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">GRUPO: <span class="text-nobold" id="Grupo_Asistencia" IdGrupoAsistencia="'+IdGrupo+'">'+Grupo+'</span>'+
-                '</div>'+
-            '</div>'+
-            '<div class="row">'+
-                '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">MODALIDAD: <span class="text-nobold" id="Grupo_Modalidad"></span>'+
-                '</div>'+
-                '<div class="col-sm-6 mb-2 text-center">'+
-                    '<span class="text-bold">TURNO: <span class="text-nobold" id="Grupo_Turno">'+Turno+'</span>'+
+            '<div class="row justify-content-center">'+
+                '<div class="col-sm-9">'+
+                    '<div class="table-response">'+
+                        '<table class="table table-bordered" id="table-informacionGrupo">'+
+                            '<thead>'+
+                                '<tr>'+
+                                    '<th scope="row">CUATRIMESTRE:</th>'+
+                                    '<td>'+
+                                        '<span class="text-nobold" id="Cuatrimestre_Grupo" IdCicloEscolar="'+IdCicloEscolar+'">'+
+                                            Cuatrimestre+
+                                        '</span>'+
+                                    '</td>'+
+                                    '<th scope="row">MES:</th>'+
+                                    '<td><span class="text-nobold" id="Mes_Asistencia">'+MesAsistencia+'</td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<th scope="row">CARRERA:</th>'+
+                                    '<td><span class="text-nobold" id="Carrera_Grupo">'+Carrera+'</span></td>'+
+                                    '<th scope="row">AÑO:</th>'+
+                                    '<td><span class="text-nobold" id="Anio_Escolar">'+AnioAsistencia+'</span></td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<th scope="row">MATERIA:</th>'+
+                                    '<td>'+
+                                        '<span class="text-nobold" id="Nombre_Materia" IdPlanMateria="'+IdPlanMateria+'">'+
+                                            Materia+
+                                        '</span>'+
+                                    '</td>'+
+                                    '<th scope="row">GRUPO:</th>'+
+                                    '<td><span class="text-nobold" id="Grupo_Asistencia" IdGrupoAsistencia="'+IdGrupo+'">'+Grupo+'</span></td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<th scope="row">MODALIDAD:</th>'+
+                                    '<td><span class="text-nobold" id="Grupo_Modalidad">'+Modalidad+'</span></td>'+
+                                    '<th scope="row">TURNO:</th>'+
+                                    '<td><span class="text-nobold" id="Grupo_Turno">'+Turno+'</span></td>'+
+                                '</tr>'+
+                            '</thead'+
+                        '</table>'+
+                    '</div>'+
                 '</div>'+
             '</div>'
         );
@@ -278,21 +287,23 @@ $(document).ready(function () {
         var Materia = $("#contenido-cuerpo #Nombre_Materia").html();
         
         $(".modalRegistrarAsistencias").fadeIn();
-        load_asistencias_alumnos(Action, IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, null, null);
-
-        if ($(".modalRegistrarAsistencias #Form-RegistrarAsistencias #Dia_Asistencia").empty()) {
-            load_CatDia(IdUsuario, Docente, Grupo, Materia);
+        $(".modalRegistrarAsistencias .input-group #Fecha_Asistencia").val("");
+        $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #Dia_Asistencia").empty();
+        $(".modalRegistrarAsistencias .form-body #alumnos").html();
+        if ($(".modalRegistrarAsistencias #Form-RegistrarAsistencias").hasClass("was-validated")) {
+            $('.modalRegistrarAsistencias #Form-RegistrarAsistencias').removeClass("was-validated");
         }
+        load_CatDia(IdUsuario, Docente, Grupo, Materia);
+        load_asistencias_alumnos(Action, IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, null, null);
     });
 
     $(".modalRegistrarAsistencias #closeModalRegistrarAsistencias").on("click", function() {
         $(".modalRegistrarAsistencias .input-group #Fecha_Asistencia").val("");
         $(".modalRegistrarAsistencias .input-group #Dia_Asistencia").empty();
-        $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #table-registrar-asistencias tbody .NomenAlumno").each(function () {
-            $(this).empty();
-            $(this).append('<option value="" selected disabled>-- seleccione --</option>');
-        });
-        $('.modalRegistrarAsistencias #Form-RegistrarAsistencias').removeClass("was-validated");
+        $(".modalRegistrarAsistencias .form-body #alumnos").html();
+        if ($(".modalRegistrarAsistencias #Form-RegistrarAsistencias").hasClass("was-validated")) {
+            $('.modalRegistrarAsistencias #Form-RegistrarAsistencias').removeClass("was-validated");
+        }
         $(".modalRegistrarAsistencias").fadeOut();
     });
 
@@ -568,8 +579,8 @@ $(document).ready(function () {
                                 if (response == 'Error al realizar el registro de asistencias de los alumnos' || 
                                     response == 'No se han podido registrar las asistencias de los alumnos') {
                                     $.confirm({
-                                        title: 'Consultando alumnos de este grupo',
-                                        content: response,
+                                        title: 'Registrando asistencias',
+                                        content: '<strong>'+response+'</strong>',
                                         type: 'red',
                                         typeAnimated: true,
                                         draggable: true,
@@ -584,10 +595,28 @@ $(document).ready(function () {
                                             }
                                         }
                                     });
+                                } else if (response == 'Ya existe un registro previo de las asistencias con la fecha ingresada') {
+                                    $.confirm({
+                                        title: 'Registrando asistencias',
+                                        content: '<strong>'+response+'</strong>',
+                                        type: 'orange',
+                                        typeAnimated: true,
+                                        draggable: true,
+                                        dragWindowBorder: false,
+                                        buttons: {
+                                            aceptar: {
+                                                text: 'Aceptar',
+                                                btnClass: 'btn btn-warning',
+                                                action: function () {
+                                                    $(this).fadeOut();
+                                                }
+                                            }
+                                        }
+                                    });
                                 } else if (response == 'Registro de asistencias realizado exitosamente') {
                                     $.confirm({
-                                        title: 'Consultando alumnos de este grupo',
-                                        content: response,
+                                        title: 'Registrando asistencias',
+                                        content: '<strong>'+response+'</strong>',
                                         type: 'green',
                                         typeAnimated: true,
                                         draggable: true,
@@ -658,8 +687,8 @@ $(document).ready(function () {
 
                             error: function (error) {
                                 $.confirm({
-                                    title: 'Consultando alumnos de este grupo',
-                                    content: error,
+                                    title: 'Registrando asistencias',
+                                    content: '<strong>Error al registrar las asistencias. '+error+'</strong>',
                                     type: 'red',
                                     typeAnimated: true,
                                     draggable: true,

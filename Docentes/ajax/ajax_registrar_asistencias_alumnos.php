@@ -36,7 +36,12 @@
         }
 
         if ($result == true) {
-            $output .= 'Registro de asistencias realizado exitosamente';
+            $rowRegistradas = $result->rowCount();
+            if ($rowRegistradas == 0) {
+                $output .= 'Ya existe un registro previo de las asistencias con la fecha ingresada';
+            } elseif ($rowRegistradas > 0) {
+                $output .= 'Registro de asistencias realizado exitosamente';
+            }
         } elseif ($result == false) {
             $output .= 'No se han podido registrar las asistencias de los alumnos';
         }

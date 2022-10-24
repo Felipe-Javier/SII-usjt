@@ -171,25 +171,29 @@
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">ENERO</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'" 
+                                                            Modalidad="'.$row['MODALIDAD'].'">ENERO</a>'.
                                                             '<a class="meses nav-link" href="#" class="navbar-toggler" type="button"
                                                             aria-expanded="false" aria-label="Toggle navigation" Materia="'.$row['MATERIA'].'"
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">FEBRERO</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">FEBRERO</a>'.
                                                             '<a class="meses nav-link" href="#" class="navbar-toggler" type="button"
                                                             aria-expanded="false" aria-label="Toggle navigation" Materia="'.$row['MATERIA'].'"
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">MARZO</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">MARZO</a>'.
                                                             '<a class="meses nav-link" href="#" class="navbar-toggler" type="button"
                                                             aria-expanded="false" aria-label="Toggle navigation" Materia="'.$row['MATERIA'].'"
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">ABRIL</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">ABRIL</a>'.
                                                         '</li>'.
                                                     '</ul>';
                                                 } else if ($row['MESINICIO'] == 5) {
@@ -200,25 +204,29 @@
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">MAYO</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">MAYO</a>'.
                                                             '<a class="meses nav-link" href="#" class="navbar-toggler" type="button"
                                                             aria-expanded="false" aria-label="Toggle navigation" Materia="'.$row['MATERIA'].'"
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">JUNIO</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">JUNIO</a>'.
                                                             '<a class="meses nav-link" href="#" class="navbar-toggler" type="button"
                                                             aria-expanded="false" aria-label="Toggle navigation" Materia="'.$row['MATERIA'].'"
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">JULIO</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">JULIO</a>'.
                                                             '<a class="meses nav-link" href="#" class="navbar-toggler" type="button"
                                                             aria-expanded="false" aria-label="Toggle navigation" Materia="'.$row['MATERIA'].'"
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">AGOSTO</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">AGOSTO</a>'.
                                                         '</li>'.
                                                     '</ul>';
                                                 } else if ($row['MESINICIO'] == 9) {
@@ -229,25 +237,29 @@
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">SEPTIEMBRE</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">SEPTIEMBRE</a>'.
                                                             '<a class="meses nav-link" href="#" class="navbar-toggler" type="button"
                                                             aria-expanded="false" aria-label="Toggle navigation" Materia="'.$row['MATERIA'].'"
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">OCTUBRE</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">OCTUBRE</a>'.
                                                             '<a class="meses nav-link" href="#" class="navbar-toggler" type="button"
                                                             aria-expanded="false" aria-label="Toggle navigation" Materia="'.$row['MATERIA'].'"
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">NOVIEMBRE</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">NOVIEMBRE</a>'.
                                                             '<a class="meses nav-link" href="#" class="navbar-toggler" type="button"
                                                             aria-expanded="false" aria-label="Toggle navigation" Materia="'.$row['MATERIA'].'"
                                                             IdPlanMateria="'.$row['IDPLANMATERIA'].'" IdGrupo="'.$row['IDGRUPO'].'" 
                                                             Grupo="'.$row['GRUPO'].'" AnioEscolar="'.$row['ANIOESCOLAR'].'" 
                                                             IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
-                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'">DICIEMBRE</a>'.
+                                                            Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'"
+                                                            Modalidad="'.$row['MODALIDAD'].'">DICIEMBRE</a>'.
                                                         '</li>'.
                                                     '</ul>';
                                                 }

@@ -38,9 +38,12 @@
                     $output .= '
                     <div class="row mt-2">
                         <div class="col-sm-12">
-                            <div class="align-buttonRegAsis">
-                                <button class="buttonRegAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">
-                                    <i class="fas fa-folder-plus mr-2"></i> Registrar asistencia
+                            <div class="text-right">
+                                <button class="buttonAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalRegAsistencias">
+                                    <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
+                                </button>
+                                <button class="ml-3 buttonAsis" id="btnActualizarAsistencia" data-toggle="modal" data-target="#modalActAsistencias">
+                                    <i class="fas fa-edit h6 mr-2"></i>Editar asistencia
                                 </button>
                             </div>
                         </div>
@@ -66,24 +69,24 @@
                                     }
                                     foreach($row as $key => $value) {
                                         if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
-                                            $key != 'F' && $key != 'P' && $key != 'AO') {
+                                            $key != 'F' && $key != 'P') {
                                             $numColDias++;
                                         }
                                     }
                                     $output .= '<th colspan="'.$numColDias.'"class="thDescNomenclatura" >
-                                                    Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente, AO = Alumno Oyente
+                                                    Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente
                                                 </th>
-                                                <th colspan="6" rowspan="1">Totales</th>
+                                                <th colspan="5" rowspan="1">Totales</th>
                                             <tr>';
                                     foreach($row as $key => $value) {
                                         if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
-                                            $key != 'F' && $key != 'P' && $key != 'AO') {
+                                            $key != 'F' && $key != 'P') {
                                             $output .='<th class="thDia">' . $key . '</th>';
                                         }
                                     }
                                     $output .= '';
                                     foreach($row as $key => $value) {
-                                        if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
+                                        if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P') {
                                             $output .='<th class="thNomTotal">' . $key . '</th>';
                                         }
                                     }
@@ -106,7 +109,7 @@
 
                                 foreach($row as $key => $value) {
                                     if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
-                                        $key != 'F' && $key != 'P' && $key != 'AO') {
+                                        $key != 'F' && $key != 'P') {
                                         if ($value == '.') {
                                             $output .='<td class="tdNomenclatura"><i class="fas fa-circle icon-circle"></i></td>';
                                         } else if ($value == '/') {
@@ -118,7 +121,7 @@
                                 }
 
                                 foreach($row as $key => $value) {
-                                    if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P' || $key == 'AO') {
+                                    if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P') {
                                         $output .='<td class="tdNomTotal">' . $value . '</td>';
                                     }
                                 }
@@ -137,7 +140,7 @@
                         <div class="col-sm-12">
                             <div class="align-buttonRegAsis">
                                 <button class="buttonRegAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">
-                                    <i class="fas fa-folder-plus mr-2"></i>Registrar asistencia
+                                <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
                                 </button>
                             </div>
                         </div>
