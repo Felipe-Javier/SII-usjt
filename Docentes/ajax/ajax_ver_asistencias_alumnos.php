@@ -42,7 +42,7 @@
                                 <button class="buttonAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalRegAsistencias">
                                     <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
                                 </button>
-                                <button class="ml-3 buttonAsis" id="btnActualizarAsistencia" data-toggle="modal" data-target="#modalActAsistencias">
+                                <button class="ml-3 buttonAsis" id="btnEditarAsistencia" data-toggle="modal" data-target="#modalEditarAsistencias">
                                     <i class="fas fa-edit h6 mr-2"></i>Editar asistencia
                                 </button>
                             </div>

@@ -109,6 +109,32 @@
 				return false;
 			}
 		}
+
+		public function actualizar_asistencias ($IdPersona, $IdAlumno, $IdAlumnoMatricula, $IdGrupo, $IdRelGrupoAlumno, $IdPlanMateria, 
+		                                       $IdInstructor, $IdCicloEscolar, $IdCatDia, $Fecha_Asistencia, $IdCatNomenclaturaAsistencia, 
+											   $IdUsuario) {
+			try {
+				$query = "EXEC spActualizarAsistenciaAlumno ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
+				$result = $this->connection->connect_db()->prepare($query);
+				$result->bindValue(1, $IdPersona, PDO::PARAM_STR);
+				$result->bindValue(2, $IdAlumno, PDO::PARAM_INT);
+				$result->bindValue(3, $IdAlumnoMatricula, PDO::PARAM_INT);
+				$result->bindValue(4, $IdGrupo, PDO::PARAM_INT);
+				$result->bindValue(5, $IdRelGrupoAlumno, PDO::PARAM_INT);
+				$result->bindValue(6, $IdPlanMateria, PDO::PARAM_INT);
+				$result->bindValue(7, $IdInstructor, PDO::PARAM_INT);
+				$result->bindValue(8, $IdCicloEscolar, PDO::PARAM_INT);
+				$result->bindValue(9, $IdCatDia, PDO::PARAM_INT);
+				$result->bindValue(10, $Fecha_Asistencia, PDO::PARAM_STR);
+				$result->bindValue(11, $IdCatNomenclaturaAsistencia, PDO::PARAM_INT);
+				$result->bindValue(12, $IdUsuario, PDO::PARAM_INT);
+				$result->execute();
+					
+				return $result;
+			} catch(PDOException $exp) {
+				return false;
+			}
+		}
 	}
 
 ?>

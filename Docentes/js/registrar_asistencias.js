@@ -719,4 +719,24 @@ $(document).ready(function () {
         });
     }
 
+    $("body").on("click", "#contenido-cuerpo #result #btnEditarAsistencia", function() {
+        var Action = 'VerAlumnos';
+        var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
+        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
+        var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
+        var IdGrupo = $("#contenido-cuerpo #Grupo_Asistencia").attr("IdGrupoAsistencia");
+        var Grupo = $("#contenido-cuerpo #Grupo_Asistencia").html();
+        var IdPlanMateria = $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria");
+        var Materia = $("#contenido-cuerpo #Nombre_Materia").html();
+        
+        $(".modalEditarAsistencias").fadeIn();
+        $(".modalEditarAsistencias .input-group #Fecha_Asistencia").val("");
+        $(".modalEditarAsistencias #Form-EditarAsistencias #Dia_Asistencia").empty();
+        $(".modalEditarAsistencias .form-body #alumnos").html();
+        if ($(".modalEditarAsistencias #Form-EditarAsistencias").hasClass("was-validated")) {
+            $('.modalEditarAsistencias #Form-EditarAsistencias').removeClass("was-validated");
+        }
+        load_CatDia(IdUsuario, Docente, Grupo, Materia);
+    });
+
 });

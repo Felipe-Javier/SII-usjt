@@ -188,6 +188,9 @@ ul .nav-link.selected {
     width: 25%;
 }
 
+
+
+
 #table-informacionGrupo {
     font-size: 12px;
     text-transform: uppercase;
@@ -213,7 +216,7 @@ ul .nav-link.selected {
     text-align: end;
 }
 
-.buttonAsis {
+.buttonAsis, .btnSubmit, .btnCloseModal {
     background-color: #007bff;
     border: none;
     border-radius: 10px;
@@ -230,15 +233,15 @@ ul .nav-link.selected {
     text-transform: uppercase;
 }
 
-.buttonAsis:hover {
+.buttonAsis:hover, .btnSubmit:hover, .btnCloseModal:hover {
     background-color: #0064a7
 }
 
-.buttonAsis:focus {
+.buttonAsis:focus, .btnSubmit:focus, .btnCloseModal:focus {
     outline: none;
 }
 
-.buttonAsis:active {
+.buttonAsis:active, .btnSubmit:active, .btnCloseModal:active {
     background-color: #0064a7;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
@@ -253,24 +256,21 @@ ul .nav-link.selected {
     height: 100vh;
     background: rgba(0, 0, 0, 0.2);
 }
+
+.modalEditarAsistencias {
+    display: none;
+}
   
 .modalRegistrarAsistencias {
     display: none;
 }
 
-.modalRegistrarAsistencias .btn .size-icon {
+.size-icon {
     font-size: 20px;
 }
 
-.modalRegistrarAsistencias .btnCustom {
-    font-size: 11px !important;
-    font-weight: bold;
-    text-transform: uppercase;
-    width: 100%;
-}
-
-.modalRegistrarAsistencias .text-size {
-    font-size: 11px !important;
+.text-size {
+    font-size: 12px !important;
 }
   
 .bodyModal {
@@ -314,7 +314,7 @@ ul .nav-link.selected {
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    font-size: 11px;
+    font-size: 12px !important;
     padding-top: 35px;
     padding-left: 35px;
     padding-right: 35px;

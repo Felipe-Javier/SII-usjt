@@ -31,6 +31,7 @@
 			$cambiar_contraseña = "";
 
 			include("modal/Registrar_asistencias.php");
+			include("modal/Editar_asistencias.php");
 
 	        include("incluir/header.php");
 	        include("incluir/navbar.php");
