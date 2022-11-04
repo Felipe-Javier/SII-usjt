@@ -21,7 +21,7 @@
 		<?php
         	include("../incluir/scripts.php");
     	?>
-		<script src="js/registrar_asistencias.js"></script>
+		<script src="js/control_de_asistencias.js"></script>
 	</head>
 	<body>
 		<?php

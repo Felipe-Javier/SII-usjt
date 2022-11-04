@@ -239,7 +239,7 @@ $(document).ready(function () {
         console.log(Materia);*/
         
         $.ajax({
-            url: "ajax/ajax_ver_alumnos.php",
+            url: "ajax/ajax_ver_calificaciones_alumnos.php",
             method: "POST",
             async: true,
             data: {

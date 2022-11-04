@@ -15,41 +15,44 @@
   $output = '';
 
     if(isset($_POST) && !empty($_POST)) {
-        $FechaAsistencia = $procesar_asistencias->sanitize_str($_POST['FechaAsistencia']);
-        $IdDiaAsistencia = $procesar_asistencias->sanitize_int($_POST['IdDiaAsistencia']);
-        $IdsRelsGruposAlumnos = $procesar_asistencias->sanitize_array($_POST['IdsRelsGruposAlumnos']);
-        $IdsAlumnos = $procesar_asistencias->sanitize_array($_POST['IdsAlumnos']);
-        $IdsAlumnosMatriculas = $procesar_asistencias->sanitize_array($_POST['IdsAlumnosMatriculas']);
-        $IdsPersonas = $procesar_asistencias->sanitize_array($_POST['IdsPersonas']);
+        $Matricula = $procesar_asistencias->sanitize_str($_POST['Matricula']);
+        $Grupo = $procesar_asistencias->sanitize_str($_POST['Grupo']);
         $IdGrupo = $procesar_asistencias->sanitize_int($_POST['IdGrupo']);
+        $Materia = $procesar_asistencias->sanitize_str($_POST['Materia']);
         $IdPlanMateria = $procesar_asistencias->sanitize_int($_POST['IdPlanMateria']);
+        $Docente = $procesar_asistencias->sanitize_str($_POST['Docente']);
         $IdInstructor = $procesar_asistencias->sanitize_int($_POST['IdInstructor']);
-        $IdCicloEscolar = $procesar_asistencias->sanitize_int($_POST['IdCicloEscolar']);
-        $IdsNomenclaturas = $procesar_asistencias->sanitize_array($_POST['IdsNomenclaturas']);
+        $FechaAsistencia = $procesar_asistencias->sanitize_str($_POST['FechaAsistencia']);
+        $IdCatDiaAsistencia = $procesar_asistencias->sanitize_int($_POST['IdCatDiaAsistencia']);
+        $IdCatNomenclaturaAsistencia = $procesar_asistencias->sanitize_int($_POST['IdCatNomenclaturaAsistencia']);
         $IdUsuario = $procesar_asistencias->sanitize_int($_POST['IdUsuario']);
-        $RowCount = $procesar_asistencias->sanitize_int($_POST['RowCount']);
         
-        for ($i=0; $i<$RowCount; $i++) { 
-            $result = $procesar_asistencias->actualizar_asistencias($IdsPersonas[$i], $IdsAlumnos[$i], $IdsAlumnosMatriculas[$i], $IdGrupo, 
-            $IdsRelsGruposAlumnos[$i], $IdPlanMateria, $IdInstructor, $IdCicloEscolar, $IdDiaAsistencia, $FechaAsistencia, $IdsNomenclaturas[$i], 
-            $IdUsuario);
-        }
+        $result = $procesar_asistencias->actualizar_asistencias($Matricula, $IdGrupo, $IdPlanMateria, $IdInstructor, 
+        $FechaAsistencia, $IdCatDiaAsistencia, $IdCatNomenclaturaAsistencia, $IdUsuario);
 
         if ($result == true) {
-            $rowActualizadas = $result->rowCount();
-            if ($rowActualizadas == 0) {
-                $output .= 'No existen un registro previo de las asistencias con la fecha ingresada';
-            } elseif ($rowActualizadas > 0) {
-                $output .= 'Registro de asistencias realizado exitosamente';
+            $RowCount = $result->rowCount();
+            if ($RowCount > 0) {
+                $output .= 'La edición de asistencia del alumno con los datos ingresados se ha realizado exitosamente';
+
+                /*TipoMovimiento = $seguridad_usuario->sanitize_str('ACTUALIZACIÓN');
+
+                $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA ACTUALIZACIÓN DE LA ASISTENCIA CON FECHA'.$FechaAsistencia.
+                ' DEL ALUMNO CON MATRICULA: '.$Matricula.' EN LA MATERIA: '.$Materia.' DEL GRUPO: '.$Grupo.' IMPARTIDA POR EL DOCENTE: '.$Docente);
+                $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                                
+                $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);*/
+            } elseif ($RowCount == 0) {
+                $output .= 'No hay un registro de asistencia con los datos ingresados';
             }
         } elseif ($result == false) {
-            $output .= 'No se han podido registrar las asistencias de los alumnos';
+            $output .= 'No se ha podido editar la asistencia ingresada';
         }
 
         echo $output;
         exit;
     } else {
-        $output = 'Error al realizar el registro de asistencias de los alumnos';
+        $output = 'Error al realizar la edición';
         echo $output;
         exit;
     }
