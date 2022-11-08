@@ -38,13 +38,14 @@
                 <div class="col-sm-12">
                   <div class="row justify-content-center">
                     <div class="col-sm-3">
-                      <button type="submit" class="btn btn-primary btnCustom">
-                        <i class="far fa-save mr-2 size-icon"></i>Guardar
+                      <button type="submit" class="button-custom button-blue">
+                        <i class="far fa-save h6 mr-2"></i>Guardar
                       </button>
                     </div>
                     <div class="col-sm-3">
-                      <a href="#" class="btn btn-danger btnCustom" data-dismiss="modal" id="closeModalRegistrarAsistencias">
-                      <i class="far fa-window-close mr-2 size-icon"></i>Cerrar</a>
+                      <button class="button-custom button-red" data-dismiss="modal" id="closeModalRegistrarAsistencias">
+                        <i class="far fa-window-close h6 mr-2"></i>Cerrar
+                      </button>
                     </div>
                   </div>
                 </div>

@@ -27,7 +27,8 @@
             $NumList = 0;
             $numColDias = 0;
 
-            $result = $procesar_asistencias->consultar_asistencias_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria, $MesAsistencia, $AnioAsistencia);
+            $result = $procesar_asistencias->consultar_asistencias_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria, $MesAsistencia, 
+                                                                           $AnioAsistencia);
 
             if ($result != false) {
                 $it = new IteratorIterator($result);
@@ -38,16 +39,18 @@
                     $output .= '
                     <div class="row mt-2">
                         <div class="col-sm-12">
-                            <div class="text-right">
-                                <button class="buttonAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalRegAsistencias">
-                                    <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
-                                </button>
-                                <button class="ml-3 buttonAsis" id="btnEditarAsistencia" data-toggle="modal" data-target="#modalEditarAsistencias">
-                                    <i class="fas fa-edit h6 mr-2"></i>Editar asistencia
-                                </button>
-                                <button class="ml-3 buttonAsis" id="btnImprimir" type="submit">
-                                    <i class="h6 mr-2"></i>Imprimir
-                                </button>
+
+                            <div class="row justify-content-end">
+                                <div class="col-sm-3">
+                                    <button class="button-custom button-blue" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalRegAsistencias">
+                                        <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
+                                    </button>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="button-custom button-blue" id="btnEditarAsistencia" data-toggle="modal" data-target="#modalEditarAsistencias">
+                                        <i class="fas fa-edit h6 mr-2"></i>Editar asistencia
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -141,13 +144,13 @@
                     $output .= 
                     '<div class="row mt-2">
                         <div class="col-sm-12">
-                            <div class="text-right">
-                                <button class="buttonAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalRegAsistencias">
-                                    <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
-                                </button>
-                                <button class="ml-3 buttonAsis" id="btnEditarAsistencia" data-toggle="modal" data-target="#modalEditarAsistencias">
-                                    <i class="fas fa-edit h6 mr-2"></i>Editar asistencia
-                                </button>
+
+                            <div class="row justify-content-end">
+                                <div class="col-sm-3">
+                                    <button class="button-custom button-blue" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalRegAsistencias">
+                                        <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -190,7 +193,8 @@
             $AnioAsistencia = NULL;
             $NumList = 0;
 
-            $result = $procesar_asistencias->consultar_asistencias_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria, $MesAsistencia, $AnioAsistencia);
+            $result = $procesar_asistencias->consultar_asistencias_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria, 
+                                                                           $MesAsistencia, $AnioAsistencia);
 
             if ($result != false) {
                 $it = new IteratorIterator($result);

@@ -128,7 +128,7 @@ ul .nav-link.selected {
     overflow: overlay;
 }
 
-#table-asistencias th, #table-registrar-asistencias th  {
+#table-asistencias th, #table-registrar-asistencias th, #table-editar-asistencias th  {
     border: 1px solid #dee2e6;
     background-color: #0064a7;
     color: #f2f2f2;
@@ -136,7 +136,7 @@ ul .nav-link.selected {
     vertical-align: middle !important;
 }
 
-#table-asistencias td, #table-registrar-asistencias td {
+#table-asistencias td, #table-registrar-asistencias td, #table-editar-asistencias td {
     vertical-align: middle !important;
 }
 
@@ -214,9 +214,28 @@ ul .nav-link.selected {
     width: 25%;
 }
 
-.table-response {
-    text-align: -webkit-center;
+
+
+#table-editar-asistencias .th-mat, #table-editar-asistencias .td-mat {
+    width: 10%;
 }
+
+#table-editar-asistencias .th-nombre, #table-editar-asistencias .td-nombre {
+    width: 40%;
+}
+
+#table-editar-asistencias .th-fecha, #table-editar-asistencias .td-fecha {
+    width: 40%;
+}
+
+#table-editar-asistencias .th-nomen, #table-editar-asistencias .td-nomen {
+    width: 10%;
+}
+
+#table-editar-asistencias .DatosAlumno_C1, #table-editar-asistencias .DatosAlumno_C2 {
+    margin-bottom: 0rem;
+}
+
 
 #table-informacionGrupo {
     font-size: 12px;
@@ -241,12 +260,7 @@ ul .nav-link.selected {
 
 /* boton guardar*/
 
-.align-buttonRegAsis {
-    text-align: end;
-}
-
-.buttonAsis, .btnSubmit, .btnCloseModal {
-    background-color: #007bff;
+.button-custom {
     border: none;
     border-radius: 10px;
     box-shadow: 0 9px #999;
@@ -260,21 +274,49 @@ ul .nav-link.selected {
     text-align: center;	
     text-decoration: none;
     text-transform: uppercase;
+    width: 100%;
 }
 
-.buttonAsis:hover, .btnSubmit:hover, .btnCloseModal:hover {
+
+
+.button-blue {
     background-color: #0064a7
 }
 
-.buttonAsis:focus, .btnSubmit:focus, .btnCloseModal:focus {
+.button-blue:hover {
+    background-color: #0064a7
+}
+
+.button-blue:focus {
     outline: none;
 }
 
-.buttonAsis:active, .btnSubmit:active, .btnCloseModal:active {
+.button-blue:active {
     background-color: #0064a7;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+
+
+
+.button-red {
+    background-color: #dc3545
+}
+
+.button-red:hover {
+    background-color: #dc3545
+}
+
+.button-red:focus {
+    outline: none;
+}
+
+.button-red:active {
+    background-color: #dc3545;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
 
 
 
