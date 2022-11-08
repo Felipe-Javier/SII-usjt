@@ -45,6 +45,9 @@
                                 <button class="ml-3 buttonAsis" id="btnEditarAsistencia" data-toggle="modal" data-target="#modalEditarAsistencias">
                                     <i class="fas fa-edit h6 mr-2"></i>Editar asistencia
                                 </button>
+                                <button class="ml-3 buttonAsis" id="btnImprimir" type="submit">
+                                    <i class="h6 mr-2"></i>Imprimir
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -138,9 +141,12 @@
                     $output .= 
                     '<div class="row mt-2">
                         <div class="col-sm-12">
-                            <div class="align-buttonRegAsis">
-                                <button class="buttonRegAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalForm">
-                                <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
+                            <div class="text-right">
+                                <button class="buttonAsis" id="btnRegistrarAsistencia" data-toggle="modal" data-target="#modalRegAsistencias">
+                                    <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
+                                </button>
+                                <button class="ml-3 buttonAsis" id="btnEditarAsistencia" data-toggle="modal" data-target="#modalEditarAsistencias">
+                                    <i class="fas fa-edit h6 mr-2"></i>Editar asistencia
                                 </button>
                             </div>
                         </div>
