@@ -43,9 +43,24 @@
 			}
 		}
 
+		public function consultar_alumnos ($IdInstructor, $IdGrupo, $IdPlanMateria) {
+			try {
+				$query = "EXEC spTraerAlumnosAsistenciasPorMateriaGrupoDocente ?, ?, ?";
+				$result = $this->connection->connect_db()->prepare($query);
+				$result->bindValue(1, $IdInstructor, PDO::PARAM_INT);
+				$result->bindValue(2, $IdGrupo, PDO::PARAM_INT);
+				$result->bindValue(3, $IdPlanMateria, PDO::PARAM_INT);
+				$result->execute();
+					
+				return $result;
+			} catch(PDOException $exp) {
+				return false;
+			}
+		}
+
 		public function consultar_asistencias_alumnos ($IdInstructor, $IdGrupo, $IdPlanMateria, $MesAsistencia, $AnioAsistencia) {
 			try {
-				$query = "EXEC spTraerAlumnosAsistenciasPorMateriaGrupoDocente ?, ?, ?, ?, ?";
+				$query = "EXEC spTraerAsistenciasAlumnosPorGrupoMateriaDocente ?, ?, ?, ?, ?";
 				$result = $this->connection->connect_db()->prepare($query);
 				$result->bindValue(1, $IdInstructor, PDO::PARAM_INT);
 				$result->bindValue(2, $IdGrupo, PDO::PARAM_INT);

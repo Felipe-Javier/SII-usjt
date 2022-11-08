@@ -19,65 +19,6 @@
 			return $result;
 		}
 
-		/*public function consultar_años_por_grupos ($IdInstructor, $IdPersona) {
-			try {	
-			    $query = "EXEC spTraerAñosPorGruposDocente ?, ?";
-				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-				$result->bindValue(1, $IdInstructor, PDO::PARAM_INT);
-				$result->bindValue(2, $IdPersona, PDO::PARAM_INT);
-				$result->execute();
-
-				return $result;
-			} catch(PDOException $exp) {
-				return false;
-			}
-		}*/
-
-		/*public function consultar_cuatrimestres_por_años ($IdInstructor, $IdPersona, $Año) {
-			try {	
-			    $query = "EXEC spTraerCuatrimestresPorAñoDocente ?, ?, ?";
-				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-				$result->bindValue(1, $IdInstructor, PDO::PARAM_INT);
-				$result->bindValue(2, $IdPersona, PDO::PARAM_INT);
-				$result->bindValue(3, $Año, PDO::PARAM_STR);
-				$result->execute();
-
-				return $result;
-			} catch(PDOException $exp) {
-				return false;
-			}
-		}
-
-		public function consultar_grupos_por_cuatrimestre ($IdInstructor, $IdPersona, $IdCiclo) {
-			try {	
-			    $query = "EXEC spTraerGruposPorCuatrimestreDocente ?, ?, ?";
-				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-				$result->bindValue(1, $IdInstructor, PDO::PARAM_INT);
-				$result->bindValue(2, $IdPersona, PDO::PARAM_INT);
-				$result->bindValue(3, $IdCiclo, PDO::PARAM_INT);
-				$result->execute();
-
-				return $result;
-			} catch(PDOException $exp) {
-				return false;
-			}
-		}
-
-		public function consultar_materias_por_grupo ($IdInstructor, $IdPersona, $IdGrupo) {
-			try {	
-			    $query = "EXEC spTraerMateriasPorGrupoDocente ?, ?, ?";
-				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-				$result->bindValue(1, $IdInstructor, PDO::PARAM_INT);
-				$result->bindValue(2, $IdPersona, PDO::PARAM_INT);
-				$result->bindValue(3, $IdGrupo, PDO::PARAM_INT);
-				$result->execute();
-
-				return $result;
-			} catch(PDOException $exp) {
-				return false;
-			}
-		}*/
-
 		public function consultar_grupos_por_docente ($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo) {
 			try {	
 			    $query = "EXEC spTraerGruposPorDocente ?, ?, ?, ?, ?, ?";
@@ -97,9 +38,9 @@
 			}
 		}
 
-		public function consultar_alumnos ($IdInstructor, $IdGrupo, $IdPlanMateria) {
+		public function consultar_calificaciones_alumnos ($IdInstructor, $IdGrupo, $IdPlanMateria) {
 			try {
-				$query = "EXEC spTraerAlumnosPorGrupoMateriaDocente ?, ?, ?";
+				$query = "EXEC spTraerCalificacionesAlumnosPorGrupoMateriaDocente ?, ?, ?";
 				$result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 				$result->bindValue(1, $IdInstructor, PDO::PARAM_INT);
 				$result->bindValue(2, $IdGrupo, PDO::PARAM_INT);

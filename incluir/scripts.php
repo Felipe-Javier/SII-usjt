@@ -6,3 +6,4 @@
 <script type="text/javascript" src="../bootstrap-4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <!--<script src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.js" integrity="sha256-ofvu/Oqhm74vuZGlfF1/b4OUWkK/fzlVlAWxkgHr+S4=" crossorigin="anonymous"></script>-->
 <script type="text/javascript" src="../js/jquery-confirm.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../js/moment.js"></script>

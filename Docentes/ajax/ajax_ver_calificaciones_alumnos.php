@@ -20,7 +20,7 @@
         $IdPlanMateria = $procesar_calificaciones->sanitize_int($_POST['IdPlanMateria']);
         $Materia = $seguridad_usuario->sanitize_str($_POST['Materia']);
 
-        $result = $procesar_calificaciones->consultar_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria);
+        $result = $procesar_calificaciones->consultar_calificaciones_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria);
 
         if ($result != false) {
             $count = $result->rowCount();

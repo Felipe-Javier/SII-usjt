@@ -273,12 +273,11 @@ $(document).ready(function () {
             '</div>'
         );
 
-        load_asistencias_alumnos(Action, IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, AnioAsistencia, MesAsistencia);
+        load_asistencias_alumnos(IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, AnioAsistencia, MesAsistencia)
     });
 
     $("body").on("click", "#contenido-cuerpo #result #btnRegistrarAsistencia", function() {
         var Form = 'Registrar_Asistencias';
-        var Action = 'VerAlumnos';
         var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
         var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
         var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
@@ -295,7 +294,7 @@ $(document).ready(function () {
             $('.modalRegistrarAsistencias #Form-RegistrarAsistencias').removeClass("was-validated");
         }
         load_CatDia(Form, IdUsuario, Docente, Grupo, Materia);
-        load_asistencias_alumnos(Action, IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, null, null);
+        load_alumnos_GMD_registro_asistencias(IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia);
     });
 
     $(".modalRegistrarAsistencias #closeModalRegistrarAsistencias").on("click", function() {
@@ -308,29 +307,19 @@ $(document).ready(function () {
         $(".modalRegistrarAsistencias").fadeOut();
     });
 
-    function load_asistencias_alumnos(Action, IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, 
-                                      AnioAsistencia, MesAsistencia) {
-        if (Action == 'VerAsistencias') {
-            var dataGrupo = {Action: Action, IdUsuario: IdUsuario, Docente: Docente, IdInstructor: IdInstructor, IdGrupo: IdGrupo,
-                             Grupo: Grupo, IdPlanMateria: IdPlanMateria, Materia: Materia, AnioAsistencia: AnioAsistencia,
-                             MesAsistencia: MesAsistencia};
-        } else if (Action == 'VerAlumnos') {
-            var dataGrupo = {Action: Action, IdUsuario: IdUsuario, Docente: Docente, IdInstructor: IdInstructor, IdGrupo: IdGrupo,
-                             Grupo: Grupo, IdPlanMateria: IdPlanMateria, Materia: Materia};
-        }
-
+    function load_alumnos_GMD_registro_asistencias (IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia) {
+        var dataGrupo = {IdUsuario: IdUsuario, Docente: Docente, IdInstructor: IdInstructor, IdGrupo: IdGrupo,
+        Grupo: Grupo, IdPlanMateria: IdPlanMateria, Materia: Materia};
+        
         $.ajax({
-            url: "ajax/ajax_ver_asistencias_alumnos.php",
+            url: "ajax/ajax_ver_alumnos_GMD_registro_asistencias.php",
             method: "POST",
             async: true,
             data: dataGrupo,
 
             success: function (response) {
                 var output = "";
-                if (response == 'Error al realizar la consulta' || 
-                    response == 'No se han podido consutar las asistencias registradas' ||
-                    response == 'No se han podido consutar los alumnos asignados' ||
-                    response == 'No se ha podido consutar el alumno con los datos ingresados') {
+                if (response == 'Error al realizar la consulta' || response == 'No se han podido consutar los alumnos asignados') {
                     $.confirm({
                         title: 'Consultando asistencias de alumnos',
                         content: response,
@@ -358,6 +347,70 @@ $(document).ready(function () {
                         dragWindowBorder: false,
                         buttons: {
                             aceptar: {
+                            text: 'Aceptar',
+                            btnClass: 'btn btn-warning',
+                                action: function () {
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    output = response;
+                    $(".modalRegistrarAsistencias .form-body #alumnos").html(output);
+                    var Form = 'Registrar_Asistencias';
+                    load_CatNomenclaturaAsistencia(Form, IdUsuario, Docente, Grupo, Materia);
+                }
+            },
+
+            error: function (error) {
+                output = error;
+                $(".modalRegistrarAsistencias .form-body #alumnos").html(output);
+            }
+        });
+    }
+
+    function load_asistencias_alumnos (IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, AnioAsistencia, MesAsistencia) {
+        var dataGrupo = {IdUsuario: IdUsuario, Docente: Docente, IdInstructor: IdInstructor, IdGrupo: IdGrupo,
+                         Grupo: Grupo, IdPlanMateria: IdPlanMateria, Materia: Materia, AnioAsistencia: AnioAsistencia,
+                         MesAsistencia: MesAsistencia};
+
+        $.ajax({
+            url: "ajax/ajax_ver_asistencias_alumnos.php",
+            method: "POST",
+            async: true,
+            data: dataGrupo,
+
+            success: function (response) {
+                var output = "";
+                if (response == 'Error al realizar la consulta' || response == 'No se han podido consutar las asistencias registradas') {
+                    $.confirm({
+                        title: 'Consultando asistencias de alumnos',
+                        content: response,
+                        type: 'red',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-danger',
+                                action: function () {
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
+                } else if (response == 'No se encontraron asistencias registradas con los datos ingresados') {
+                    $.confirm({
+                        title: 'Consultando asistencias de alumnos',
+                        content: response,
+                        type: 'orange',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
                                 text: 'Aceptar',
                                 btnClass: 'btn btn-warning',
                                 action: function () {
@@ -367,25 +420,14 @@ $(document).ready(function () {
                         }
                     });
                 } else {
-                    if (Action == 'VerAsistencias') {
-                        output = response;
-                        $("#contenido-cuerpo #result").append(output);
-                    } else if (Action == 'VerAlumnos') {
-                        output = response;
-                        $(".modalRegistrarAsistencias .form-body #alumnos").html(output);
-                        var Form = 'Registrar_Asistencias';
-                        load_CatNomenclaturaAsistencia(Form, IdUsuario, Docente, Grupo, Materia);
-                    }
+                    output = response;
+                    $("#contenido-cuerpo #result").append(output);
                 }
             },
 
             error: function (error) {
                 output = error;
-                if (Action == 'VerAsistencias') {
-                    $("#contenido-cuerpo #result").append(output);
-                } else if (Action == 'VerAlumnos') {
-                    $(".modalRegistrarAsistencias .form-body #alumnos").html(output);
-                }
+                $("#contenido-cuerpo #result").append(output);
             }
         });
     }
@@ -742,8 +784,8 @@ $(document).ready(function () {
                                                         '</div>'
                                                     );
 
-                                                    load_asistencias_alumnos(Action, IdUsuario, Docente, IdInstructor, 
-                                                    IdGrupo, Grupo, IdPlanMateria, Materia, AnioAsistencia, MesAsistencia);
+                                                    load_asistencias_alumnos (IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, 
+                                                        IdPlanMateria, Materia, AnioAsistencia, MesAsistencia)
                                                     $(this).fadeOut();
                                                 }
                                             }
@@ -1057,7 +1099,6 @@ $(document).ready(function () {
                                                 text: 'Aceptar',
                                                 btnClass: 'btn btn-success',
                                                 action: function () {
-                                                    var Action = 'VerAsistencias';
                                                     var MesAsistencia = $("#contenido-cuerpo #Mes_Asistencia").html();
                                                     var AnioAsistencia = $("#contenido-cuerpo #Anio_Escolar").html();
                                                     var Carrera = $("#contenido-cuerpo #Carrera_Grupo").html();
@@ -1113,8 +1154,8 @@ $(document).ready(function () {
                                                         '</div>'
                                                     );
 
-                                                    load_asistencias_alumnos(Action, IdUsuario, Docente, IdInstructor, 
-                                                    IdGrupo, Grupo, IdPlanMateria, Materia, AnioAsistencia, MesAsistencia);
+                                                    load_asistencias_alumnos (IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, 
+                                                        IdPlanMateria, Materia, AnioAsistencia, MesAsistencia)
                                                     $(this).fadeOut();
                                                 }
                                             }
@@ -1155,6 +1196,39 @@ $(document).ready(function () {
                 }
             }
         });
+    }
+
+    diff_fechas();
+
+    function diff_fechas () {
+        var fechasAsistencias = function(fechaInicio, fechaFinalizacion) {
+            var dia_actual = fechaInicio;
+            var fechas = new Array();
+            while (dia_actual.isSameOrBefore(fechaFinalizacion)) {
+              fechas.push(dia_actual.format('DD-MM-YYYY'));
+                 dia_actual.add(1, 'days');
+            }
+            return fechas;
+        };
+
+        var fechaInicio = moment('2020-09-07');
+        var fechaFinalizacion = moment('2020-09-30');
+
+        var fechas_rango = fechasAsistencias(fechaInicio, fechaFinalizacion);
+        console.log(fechas_rango);
+
+        var output = '<table class="table table-bordered">'+
+                                                '<thead class="bg-primary text-light">'+
+                                                    '<tr>'+
+                                                        '<td>No</td>'+
+                                                        '<td>Nombre del estudiante</td>';
+        for (var i=0; i<fechas_rango.length; i++) {
+            output = output+'<td>'+fechas_rango[i]+'</td>';
+        }
+
+        output = output+('</tr></thead></table>');
+
+        $("#contenido-cuerpo #result").html(output);
     }
 
 });
