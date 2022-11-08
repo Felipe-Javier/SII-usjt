@@ -36,6 +36,7 @@
                 $output .= '
                     <div class="row mt-2">
                         <div class="col-sm-12">
+
                             <div class="row justify-content-end">
                                 <div class="col-sm-3">
                                     <button class="button-custom button-blue" id="btnRegistrarAsistencia" data-toggle="modal" 
@@ -144,6 +145,7 @@
                 $output .= 
                     '<div class="row mt-2">
                         <div class="col-sm-12">
+
                             <div class="row justify-content-end">
                                 <div class="col-sm-3">
                                     <button class="button-custom button-blue" id="btnRegistrarAsistencia" data-toggle="modal" 

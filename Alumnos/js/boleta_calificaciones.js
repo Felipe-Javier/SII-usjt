@@ -111,7 +111,7 @@ $(document).ready(function() {
                             }
                           }
                         }
-                      });
+                    });
                 } else {
                     window.open("impresiones/"+response,'_blank');
                 }

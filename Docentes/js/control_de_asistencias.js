@@ -229,8 +229,16 @@ $(document).ready(function () {
         var MesAsistencia = $(this).html();
 
         $("#contenido-cuerpo #result").html(
-            '<div class="row justify-content-center">'+
-                '<div class="col-sm-9">'+
+            '<div class="justify-content-center">'+
+                '<div class="btns-asistencia">'+
+                    '<a class="cont-registrar-asistencia">'+
+                        'registrar asistencia'+
+                    '</a>'+
+                    '<a class="cont-lista-asistencia">'+
+                        'Lista de asistencia'+
+                    '</a>'+
+                '</div>'+
+                '<div>'+
                     '<div class="table-response">'+
                         '<table class="table table-bordered" id="table-informacionGrupo">'+
                             '<thead>'+
@@ -267,13 +275,61 @@ $(document).ready(function () {
                                     '<td><span class="text-nobold" id="Grupo_Turno">'+Turno+'</span></td>'+
                                 '</tr>'+
                             '</thead'+
+                            '<span></span>'+
                         '</table>'+
                     '</div>'+
                 '</div>'+
             '</div>'
+            /*
+            '<div class="form-body col-sm-10 inputsAsistencia">'+
+                '<section class="row mt-2">'+
+                    '<div class="col-sm-5">'+
+                        '<div class="input-group">'+
+                            '<div class="input-group-prepend">'+
+                                '<span class="input-group-text text-bold text-size">'+
+                                    'Fecha Inicio'+
+                                '</span>'+
+                            '</div>'+
+                            '<input type="date" name="fechaInicio" id="fechaInicio" class="form-control rounded-right text-size" value required>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-sm-5">'+
+                        '<div class="input-group">'+
+                            '<div class="input-group-prepend">'+
+                                '<span class="input-group-text text-bold text-size">'+
+                                    'Fecha Final'+
+                                '</span>'+
+                            '</div>'+
+                            '<input type="date" name="fechaTermino" id="fechaTermino" class="form-control rounded-right text-size" value required>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-sm-2">'+
+                        '<div class="input-group">'+
+                            '<div class="input-group-prepend">'+
+                                '<button class="btnMostrarLista text-size"> Mostrar </button>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</section>'+
+            '</div>'*/
         );
 
         load_asistencias_alumnos(IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, AnioAsistencia, MesAsistencia)
+    });
+    $("body").on("click", ".btns-asistencia .cont-lista-asistencia", function() {
+        $(".inputsAsistencia").show();
+        $(".buttonAsis").hide();
+        $('#table-asistencias').hide();
+        $('.cont-lista-asistencia').css('backgroundColor', '#0064a7');
+        $('.cont-registrar-asistencia').css('backgroundColor', '#007bff');
+    });
+    
+    $("body").on("click", ".btns-asistencia .cont-registrar-asistencia", function() {
+        $(".inputsAsistencia").hide();
+        $(".buttonAsis").show();
+        $('#table-asistencias').show();
+        $('.cont-registrar-asistencia').css('backgroundColor', '#0064a7');
+        $('.cont-lista-asistencia').css('backgroundColor', '#007bff');
     });
 
     $("body").on("click", "#contenido-cuerpo #result #btnRegistrarAsistencia", function() {
@@ -1230,5 +1286,52 @@ $(document).ready(function () {
 
         $("#contenido-cuerpo #result").html(output);
     }
+
+    $("body").on("click", "#btnImprimir", function(event) {
+        event.preventDefault();
+
+        var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
+        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
+        var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
+        var IdGrupo = $("#contenido-cuerpo #Grupo_Asistencia").attr("IdGrupoAsistencia");
+        var Grupo = $("#contenido-cuerpo #Grupo_Asistencia").html();
+        var IdPlanMateria = $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria");
+        var Materia = $("#contenido-cuerpo #Nombre_Materia").html();
+
+        $.ajax({
+            url: "ajax/ajax_imprimir_asistencia.php",
+            method: "POST",
+            async: true,
+            data: {IdUsuario: IdUsuario, Docente: Docente, IdInstructor: IdInstructor, IdGrupo: IdGrupo, Grupo: Grupo, IdPlanMateria: IdPlanMateria, Materia: Materia},
+
+            success: function(response) {
+                var output = "";
+                if (response == 'No se ha podido generar la lista') {
+                    $.confirm({
+                        title: 'Generando lista',
+                        type: 'red',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-danger',
+                                action: function() {
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    window.open("impresiones/"+response,'_blank');
+                }
+            },
+            
+            error: function (error) {
+                $("#result").html(error);
+            }
+        });
+    });
 
 });
