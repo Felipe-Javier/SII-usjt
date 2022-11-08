@@ -1235,16 +1235,28 @@ $(document).ready(function () {
                 if (response == 'No se ha podido generar la lista') {
                     $.confirm({
                         title: 'Generando lista',
-                        action: function() {
-                            window.open("impresiones/"+response,'_blank');
+                        type: 'red',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-danger',
+                                action: function() {
+                                    $(this).fadeOut();
+                                }
+                            }
                         }
-                    }),
-        
-                    error: function (error) {
-                        $("#result").html(error);
-                    }
+                    });
+                } else {
+                    window.open("impresiones/"+response,'_blank');
                 }
+            },
+            
+            error: function (error) {
+                $("#result").html(error);
             }
-        })
-    })
-});
+        });
+    });
+})
