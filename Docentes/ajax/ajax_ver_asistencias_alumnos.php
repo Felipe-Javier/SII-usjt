@@ -50,6 +50,11 @@
                                         <i class="fas fa-edit h6 mr-2"></i>Editar asistencia
                                     </button>
                                 </div>
+                                <div class="col-sm-3">
+                                    <button class="button-custom button-blue" id="btnImprimir" type="submit">
+                                        <i class="h6 mr-2"></i>Imprimir
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

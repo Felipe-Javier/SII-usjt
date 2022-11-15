@@ -2,6 +2,13 @@
 
 /* utilities */
 
+:root {
+    --guindo: #ab0033;
+    --cafe: #bc955c;
+    --cafe-claro: #ddc9a3;
+    --gris: #54565a;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -27,7 +34,7 @@ li {
     display: flex;
     align-items: center;
     justify-content:space-around;
-    background-color: #0064a7;
+    background-color: var(--guindo);
     color: #fff;
     z-index: 10;
 }
@@ -49,7 +56,7 @@ li {
 }
 
 .menu li:hover {
-    background-color: #337ab7;
+    background-color:rgba(221, 201, 163,.9);
     transition: 0.3s ease;
     cursor: pointer;
 }
@@ -88,7 +95,7 @@ input[type=checkbox] {
     .menu {
         display: none;
         position: absolute;
-        background-color: #0064a7;
+        background-color: var(--guindo);
         right: 0;
         left: 0;
         text-align: center;
@@ -97,7 +104,7 @@ input[type=checkbox] {
 
     .menu li:hover {
         display: inline-block;
-        background-color: #337ab7;
+        background-color:  rgba(221, 201, 163,.9);
         transition: 0.3s ease;
         width: 100%;
     }
@@ -122,7 +129,8 @@ input[type=checkbox] {
     background-size: cover;
     background-position: center;
     height: auto;
-    width: 100%;   
+    width: 100%;  
+    filter: sepia(1); 
 }
 
 .oferta {
@@ -177,7 +185,7 @@ input[type=checkbox] {
 
 .oferta-item:hover {
     color: #fff;
-    background-color: rgba(0, 101, 191, 80%);
+    background-color: rgba(171, 0, 51, 80%);
 }
 
 
@@ -270,7 +278,7 @@ input[type=checkbox] {
 /* footer */
 
 .footer {
-    background-color: #0c5286;
+    background-color: var(--gris);
     color: #fff;
     text-align: center;
     font-size: .9em;
@@ -313,7 +321,7 @@ input[type=checkbox] {
 
 .footer li a:hover{
     text-decoration: underline;
-    color: hsla(0, 0%, 100%, .4);
+    color: hsla(0, 0%, 100%, 1);
 }
 
 #rds-sociales li{
@@ -331,7 +339,7 @@ input[type=checkbox] {
         height: auto;
     }
     .footer-box {
-        background-color: #0c5286;
+        background-color: var(--gris);
         float: none;
         width: 100%;
         padding-top: 10px;
