@@ -89,19 +89,19 @@ ul .nav-link.selected {
 
 /* botones de asistencia*/
 
-.btns-asistencia {
+.menu-asistencias {
     margin-right: auto;
     margin-left: -10px;
     margin-top: -2px;
     margin-bottom: 80px;
 }
 
-.btns-asistencia a {
-    background-color: #007bff;
+.menu-asistencias .btn-custom-menu {
+    background-color: #0064a7;
     color: #f2f2f2 !important;
     border: none;
     padding: 20px 20px;
-    border-radius: 2px;
+    border-radius: 0px;
     font-size: 12px;
     height: 39px;
     text-transform: uppercase;
@@ -111,13 +111,24 @@ ul .nav-link.selected {
     text-decoration: none;
 }
 
-.btns-asistencia a:hover {
-    background-color:  #0064a7 !important;
+.menu-asistencias .btn-custom-menu:hover {
+    background-color:  #3a94cf !important;
 }
-/*.btns-asistencia a.active {
-    background-color: #E4DFDE !important;
-    color: #fff !important;
-}*/
+
+.menu-asistencias #registrar-editar-asistencias {
+    border-top-left-radius: 2px;
+}
+
+.menu-asistencias .btn-custom-menu.active {
+    background-color: #999 !important;
+    color: #000 !important;
+    
+}
+
+.menu-asistencias .btn-custom-menu.active:hover {
+    background-color:  #3a94cf !important;
+    color: #f2f2f2 !important;
+}
 
 /* Tabla */
 
@@ -128,7 +139,7 @@ ul .nav-link.selected {
     overflow: overlay;
 }
 
-#table-asistencias th, #table-registrar-asistencias th, #table-editar-asistencias th  {
+#table-asistencias th, #table-registrar-asistencias th, #table-editar-asistencias th, #table-formato-asistencias th  {
     border: 1px solid #dee2e6;
     background-color: #0064a7;
     color: #f2f2f2;
@@ -136,8 +147,9 @@ ul .nav-link.selected {
     vertical-align: middle !important;
 }
 
-#table-asistencias td, #table-registrar-asistencias td, #table-editar-asistencias td {
+#table-asistencias td, #table-registrar-asistencias td, #table-editar-asistencias td, #table-formato-asistencias td {
     vertical-align: middle !important;
+    text-align: center;
 }
 
 #table-asistencias .thDescNomenclatura {
@@ -240,7 +252,7 @@ ul .nav-link.selected {
 #table-informacionGrupo {
     font-size: 12px;
     text-transform: uppercase;
-    width: 90%;
+    width: 100%;
     text-align: center;
 }
 
@@ -388,19 +400,24 @@ ul .nav-link.selected {
 }
 
 /* Formato de Asistencia */
-
+.modal-content #formato-asistencias {
+    display: none;
+}
 .btnMostrarLista {
+    background-color: #0064a7;
+    border: 0;
     border-radius: 5px;
     color: #fff;
-    background-color: #007BFF;
-    border: 0;
+    height: 32px;
     outline: none;
+    padding: 0.375rem 0.75rem;
     text-transform: uppercase;
-    padding: 10px 20px;
+    width: 100%;
 }
 
 .btnMostrarLista:hover {
-    background-color: #0064A7;
+    background-color:  #3a94cf !important;
+    color: #f2f2f2 !important;
 }
 
 .btnMostrarLista:focus {

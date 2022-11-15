@@ -7,3 +7,5 @@
 <!--<script src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.4/dist/jquery-confirm.min.js" integrity="sha256-ofvu/Oqhm74vuZGlfF1/b4OUWkK/fzlVlAWxkgHr+S4=" crossorigin="anonymous"></script>-->
 <script type="text/javascript" src="../js/jquery-confirm.min.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="../js/moment.js"></script>
+<script type="text/javascript" src="../jspdf/dist/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>

@@ -212,7 +212,6 @@ $(document).ready(function () {
 	});
 
     $("body").on("click", "ul .nav-item .meses.nav-link", function () {
-        var Action = 'VerAsistencias';
         var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
         var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
         var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
@@ -229,107 +228,165 @@ $(document).ready(function () {
         var MesAsistencia = $(this).html();
 
         $("#contenido-cuerpo #result").html(
-            '<div class="justify-content-center">'+
-                '<div class="btns-asistencia">'+
-                    '<a class="cont-registrar-asistencia">'+
-                        'registrar asistencia'+
-                    '</a>'+
-                    '<a class="cont-lista-asistencia">'+
-                        'Lista de asistencia'+
-                    '</a>'+
+                '<div class="menu-asistencias">'+
+                    '<a class="btn-custom-menu active" id="registrar-editar-asistencias">Registrar/Editar Asistencias</a>'+
+                    '<a class="btn-custom-menu" id="generar-formato-asistencias">Formato de lista de asistencias</a>'+
                 '</div>'+
-                '<div>'+
-                    '<div class="table-response">'+
-                        '<table class="table table-bordered" id="table-informacionGrupo">'+
-                            '<thead>'+
-                                '<tr>'+
-                                    '<th scope="row">CUATRIMESTRE:</th>'+
-                                    '<td>'+
-                                        '<span class="text-nobold" id="Cuatrimestre_Grupo" IdCicloEscolar="'+IdCicloEscolar+'">'+
-                                            Cuatrimestre+
-                                        '</span>'+
-                                    '</td>'+
-                                    '<th scope="row">MES:</th>'+
-                                    '<td><span class="text-nobold" id="Mes_Asistencia">'+MesAsistencia+'</td>'+
-                                '</tr>'+
-                                '<tr>'+
-                                    '<th scope="row">CARRERA:</th>'+
-                                    '<td><span class="text-nobold" id="Carrera_Grupo">'+Carrera+'</span></td>'+
-                                    '<th scope="row">AÑO:</th>'+
-                                    '<td><span class="text-nobold" id="Anio_Escolar">'+AnioAsistencia+'</span></td>'+
-                                '</tr>'+
-                                '<tr>'+
-                                    '<th scope="row">MATERIA:</th>'+
-                                    '<td>'+
-                                        '<span class="text-nobold" id="Nombre_Materia" IdPlanMateria="'+IdPlanMateria+'">'+
-                                            Materia+
-                                        '</span>'+
-                                    '</td>'+
-                                    '<th scope="row">GRUPO:</th>'+
-                                    '<td><span class="text-nobold" id="Grupo_Asistencia" IdGrupoAsistencia="'+IdGrupo+'">'+Grupo+'</span></td>'+
-                                '</tr>'+
-                                '<tr>'+
-                                    '<th scope="row">MODALIDAD:</th>'+
-                                    '<td><span class="text-nobold" id="Grupo_Modalidad">'+Modalidad+'</span></td>'+
-                                    '<th scope="row">TURNO:</th>'+
-                                    '<td><span class="text-nobold" id="Grupo_Turno">'+Turno+'</span></td>'+
-                                '</tr>'+
-                            '</thead'+
-                            '<span></span>'+
-                        '</table>'+
+                '<div class="row justify-content-center" id="InformacionGrupo">'+
+                    '<div class="col-sm-9">'+
+                        '<div class="table-responsive">'+
+                            '<table class="table table-bordered" id="table-informacionGrupo">'+
+                                '<thead>'+
+                                    '<tr>'+
+                                        '<th scope="row">CUATRIMESTRE:</th>'+
+                                        '<td>'+
+                                            '<span class="text-nobold" id="Cuatrimestre_Grupo" IdCicloEscolar="'+IdCicloEscolar+'">'+
+                                                Cuatrimestre+
+                                            '</span>'+
+                                        '</td>'+
+                                        '<th scope="row">MES:</th>'+
+                                        '<td><span class="text-nobold" id="Mes_Asistencia">'+MesAsistencia+'</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                        '<th scope="row">CARRERA:</th>'+
+                                        '<td><span class="text-nobold" id="Carrera_Grupo">'+Carrera+'</span></td>'+
+                                        '<th scope="row">AÑO:</th>'+
+                                        '<td><span class="text-nobold" id="Anio_Escolar">'+AnioAsistencia+'</span></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                        '<th scope="row">MATERIA:</th>'+
+                                        '<td>'+
+                                            '<span class="text-nobold" id="Nombre_Materia" IdPlanMateria="'+IdPlanMateria+'">'+
+                                                Materia+
+                                            '</span>'+
+                                        '</td>'+
+                                        '<th scope="row">GRUPO:</th>'+
+                                        '<td><span class="text-nobold" id="Grupo_Asistencia" IdGrupoAsistencia="'+IdGrupo+'">'+Grupo+'</span></td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                        '<th scope="row">MODALIDAD:</th>'+
+                                        '<td><span class="text-nobold" id="Grupo_Modalidad">'+Modalidad+'</span></td>'+
+                                        '<th scope="row">TURNO:</th>'+
+                                        '<td><span class="text-nobold" id="Grupo_Turno">'+Turno+'</span></td>'+
+                                    '</tr>'+
+                                '</thead>'+
+                            '</table>'+
+                        '</div>'+
                     '</div>'+
                 '</div>'+
-            '</div>'
-            /*
-            '<div class="form-body col-sm-10 inputsAsistencia">'+
-                '<section class="row mt-2">'+
-                    '<div class="col-sm-5">'+
-                        '<div class="input-group">'+
-                            '<div class="input-group-prepend">'+
-                                '<span class="input-group-text text-bold text-size">'+
-                                    'Fecha Inicio'+
-                                '</span>'+
-                            '</div>'+
-                            '<input type="date" name="fechaInicio" id="fechaInicio" class="form-control rounded-right text-size" value required>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div class="col-sm-5">'+
-                        '<div class="input-group">'+
-                            '<div class="input-group-prepend">'+
-                                '<span class="input-group-text text-bold text-size">'+
-                                    'Fecha Final'+
-                                '</span>'+
-                            '</div>'+
-                            '<input type="date" name="fechaTermino" id="fechaTermino" class="form-control rounded-right text-size" value required>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div class="col-sm-2">'+
-                        '<div class="input-group">'+
-                            '<div class="input-group-prepend">'+
-                                '<button class="btnMostrarLista text-size"> Mostrar </button>'+
+                '<div id="formato-asistencias">'+
+                    '<form action="" method="post" class="row justify-content-center mt-3 needs-validation" id="form-GenerarFormatoListaAsistencias" novalidate>'+
+                        '<div class="col-sm-4">'+
+                            '<div class="input-group">'+
+                                '<div class="input-group-prepend">'+
+                                    '<span class="input-group-text text-bold text-size">Fecha Inicio</span>'+
+                                '</div>'+
+                                '<input type="date" name="fechaInicio" id="fechaInicio" class="form-control rounded-right text-size" value required>'+
                             '</div>'+
                         '</div>'+
-                    '</div>'+
-                '</section>'+
-            '</div>'*/
+                        '<div class="col-sm-4">'+
+                            '<div class="input-group">'+
+                                '<div class="input-group-prepend">'+
+                                    '<span class="input-group-text text-bold text-size">Fecha Final</span>'+
+                                '</div>'+
+                                '<input type="date" name="fechaTermino" id="fechaTermino" class="form-control rounded-right text-size" value required>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="col-sm-2">'+
+                            '<button type="submit" class="btnMostrarLista text-size" Id="btnGenerarFormatoListaAsistencias">'+
+                                '<i class="fas fa-spinner h6 mr-2"></i>Generar'+
+                            '</button>'+
+                        '</div>'+
+                        '<div class="col-sm-2">'+
+                            '<button type="submit" class="btnMostrarLista text-size" Id="btnImprimirFormatoListaAsistencias">'+
+                                '<i class="fas fa-print h6 mr-2"></i>Imprimir'+
+                            '</button>'+
+                        '</div>'+
+                    '</form>'+
+                    '<div id="result-formato"></div>'+
+                '</div>'
         );
 
         load_asistencias_alumnos(IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, AnioAsistencia, MesAsistencia)
     });
-    $("body").on("click", ".btns-asistencia .cont-lista-asistencia", function() {
-        $(".inputsAsistencia").show();
-        $(".buttonAsis").hide();
-        $('#table-asistencias').hide();
-        $('.cont-lista-asistencia').css('backgroundColor', '#0064a7');
-        $('.cont-registrar-asistencia').css('backgroundColor', '#007bff');
+
+    $("body").on("click", "#btnGenerarFormatoListaAsistencias", function(event) {
+        event.preventDefault();
+        var fechaInicio = $('#contenido-cuerpo #result #form-GenerarFormatoListaAsistencias #fechaInicio').val();
+        var fechaFinalizacion = $('#contenido-cuerpo #result #form-GenerarFormatoListaAsistencias #fechaTermino').val();
+        if ((fechaInicio == '' && fechaFinalizacion == '') || (fechaInicio == '' || fechaFinalizacion == '')) {
+            $('#contenido-cuerpo #result #form-GenerarFormatoListaAsistencias').addClass('was-validated');
+
+            $.confirm({
+                title: 'Registrando asistencias',
+                content: '<strong>¡Atención: Ingrese los datos de registro para continuar!</strong>',
+                type: 'red',
+                typeAnimated: true,
+                draggable: true,
+                dragWindowBorder: false,
+                buttons: {
+                    aceptar: {
+                        text: 'Aceptar',
+                        btnClass: 'btn btn-danger',
+                        action: function () {
+                            $(this).fadeOut();
+                        }
+                    }
+                }
+            });
+        } else if (fechaInicio != '' && fechaFinalizacion != '') {
+            $('#contenido-cuerpo #result #form-GenerarFormatoListaAsistencias').addClass('was-validated');
+            var IdGrupo = $("#contenido-cuerpo #Grupo_Asistencia").attr("IdGrupoAsistencia");
+            var Grupo = $("#contenido-cuerpo #Grupo_Asistencia").html();
+            var IdPlanMateria = $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria");
+            var Materia = $("#contenido-cuerpo #Nombre_Materia").html();
+            var CicloEscolar = $("#contenido-cuerpo #Cuatrimestre_Grupo").html();
+            generar_formato_lista_asistencias(IdUsuario, IdInstructor, Docente, IdGrupo, Grupo, IdPlanMateria, Materia, 
+                CicloEscolar, fechaInicio, fechaFinalizacion);
+        }
+    });
+
+    $("body").on("click", "#btnImprimirFormatoListaAsistencias", function(event) {
+        event.preventDefault();
+        if ($("#contenido-cuerpo #result #formato-asistencias #result-formato").html() == '') {
+            $.confirm({
+                title: 'Imprimiendo Formato de Lista de Asistencias',
+                content: '<strong>¡Atención: No se ha generado ningun Formato de Lista de Asistencias!</strong>',
+                type: 'red',
+                typeAnimated: true,
+                draggable: true,
+                dragWindowBorder: false,
+                buttons: {
+                    aceptar: {
+                        text: 'Aceptar',
+                        btnClass: 'btn btn-danger',
+                        action: function () {
+                            $(this).fadeOut();
+                        }
+                    }
+                }
+            });
+        } else {
+            imprimir_formato_lista_asistencias();
+        }
     });
     
-    $("body").on("click", ".btns-asistencia .cont-registrar-asistencia", function() {
-        $(".inputsAsistencia").hide();
-        $(".buttonAsis").show();
-        $('#table-asistencias').show();
-        $('.cont-registrar-asistencia').css('backgroundColor', '#0064a7');
-        $('.cont-lista-asistencia').css('backgroundColor', '#007bff');
+    $("body").on("click", ".menu-asistencias #registrar-editar-asistencias", function() {
+        $('#control-asistencias').show();
+        $("#formato-asistencias").hide();
+        $('#registrar-editar-asistencias').addClass('active');
+        if($('#generar-formato-asistencias').hasClass('active')){
+            $('#generar-formato-asistencias').removeClass('active');
+        }
+    });
+
+    $("body").on("click", ".menu-asistencias #generar-formato-asistencias", function() {
+        $('#control-asistencias').hide();
+        $("#formato-asistencias").show();
+        if($('#registrar-editar-asistencias').hasClass('active')) {
+            $('#registrar-editar-asistencias').removeClass('active');
+        }
+        $('#generar-formato-asistencias').addClass('active');
     });
 
     $("body").on("click", "#contenido-cuerpo #result #btnRegistrarAsistencia", function() {
@@ -796,9 +853,13 @@ $(document).ready(function () {
                                                     $("#contenido-cuerpo #result").html("");
 
                                                     $("#contenido-cuerpo #result").html(
-                                                        '<div class="row justify-content-center">'+
+                                                        '<div class="menu-asistencias">'+
+                                                            '<a class="btn-custom-menu active" id="registrar-editar-asistencias">Registrar/Editar Asistencias</a>'+
+                                                            '<a class="btn-custom-menu" id="generar-formato-asistencias">Formato de lista de asistencias</a>'+
+                                                        '</div>'+
+                                                        '<div class="row justify-content-center" id="InformacionGrupo">'+
                                                             '<div class="col-sm-9">'+
-                                                                '<div class="table-response">'+
+                                                                '<div class="table-responsive">'+
                                                                     '<table class="table table-bordered" id="table-informacionGrupo">'+
                                                                         '<thead>'+
                                                                             '<tr>'+
@@ -837,6 +898,37 @@ $(document).ready(function () {
                                                                     '</table>'+
                                                                 '</div>'+
                                                             '</div>'+
+                                                        '</div>'+
+                                                        '<div id="formato-asistencias">'+
+                                                            '<form action="" method="post" class="row justify-content-center mt-3 needs-validation" id="form-GenerarFormatoListaAsistencias" novalidate>'+
+                                                                '<div class="col-sm-4">'+
+                                                                    '<div class="input-group">'+
+                                                                        '<div class="input-group-prepend">'+
+                                                                            '<span class="input-group-text text-bold text-size">Fecha Inicio</span>'+
+                                                                        '</div>'+
+                                                                        '<input type="date" name="fechaInicio" id="fechaInicio" class="form-control rounded-right text-size" value required>'+
+                                                                    '</div>'+
+                                                                '</div>'+
+                                                                '<div class="col-sm-4">'+
+                                                                    '<div class="input-group">'+
+                                                                        '<div class="input-group-prepend">'+
+                                                                            '<span class="input-group-text text-bold text-size">Fecha Final</span>'+
+                                                                        '</div>'+
+                                                                        '<input type="date" name="fechaTermino" id="fechaTermino" class="form-control rounded-right text-size" value required>'+
+                                                                    '</div>'+
+                                                                '</div>'+
+                                                                '<div class="col-sm-2">'+
+                                                                    '<button type="submit" class="btnMostrarLista text-size" Id="btnGenerarFormatoListaAsistencias">'+
+                                                                        '<i class="fas fa-spinner h6 mr-2"></i>Generar'+
+                                                                    '</button>'+
+                                                                '</div>'+
+                                                                '<div class="col-sm-2">'+
+                                                                    '<button type="submit" class="btnMostrarLista text-size" Id="btnImprimirFormatoListaAsistencias">'+
+                                                                        '<i class="fas fa-print h6 mr-2"></i>Imprimir'+
+                                                                    '</button>'+
+                                                                '</div>'+
+                                                            '</form>'+
+                                                            '<div id="result-formato"></div>'+
                                                         '</div>'
                                                     );
 
@@ -1166,9 +1258,13 @@ $(document).ready(function () {
                                                     $("#contenido-cuerpo #result").html("");
 
                                                     $("#contenido-cuerpo #result").html(
-                                                        '<div class="row justify-content-center">'+
+                                                        '<div class="menu-asistencias">'+
+                                                            '<a class="btn-custom-menu active" id="registrar-editar-asistencias">Registrar/Editar Asistencias</a>'+
+                                                            '<a class="btn-custom-menu" id="generar-formato-asistencias">Formato de lista de asistencias</a>'+
+                                                        '</div>'+
+                                                        '<div class="row justify-content-center" id="InformacionGrupo">'+
                                                             '<div class="col-sm-9">'+
-                                                                '<div class="table-response">'+
+                                                                '<div class="table-responsive">'+
                                                                     '<table class="table table-bordered" id="table-informacionGrupo">'+
                                                                         '<thead>'+
                                                                             '<tr>'+
@@ -1207,6 +1303,37 @@ $(document).ready(function () {
                                                                     '</table>'+
                                                                 '</div>'+
                                                             '</div>'+
+                                                        '</div>'+
+                                                        '<div id="formato-asistencias">'+
+                                                            '<form action="" method="post" class="row justify-content-center mt-3 needs-validation" id="form-GenerarFormatoListaAsistencias" novalidate>'+
+                                                                '<div class="col-sm-4">'+
+                                                                    '<div class="input-group">'+
+                                                                        '<div class="input-group-prepend">'+
+                                                                            '<span class="input-group-text text-bold text-size">Fecha Inicio</span>'+
+                                                                        '</div>'+
+                                                                        '<input type="date" name="fechaInicio" id="fechaInicio" class="form-control rounded-right text-size" value required>'+
+                                                                    '</div>'+
+                                                                '</div>'+
+                                                                '<div class="col-sm-4">'+
+                                                                    '<div class="input-group">'+
+                                                                        '<div class="input-group-prepend">'+
+                                                                            '<span class="input-group-text text-bold text-size">Fecha Final</span>'+
+                                                                        '</div>'+
+                                                                        '<input type="date" name="fechaTermino" id="fechaTermino" class="form-control rounded-right text-size" value required>'+
+                                                                    '</div>'+
+                                                                '</div>'+
+                                                                '<div class="col-sm-2">'+
+                                                                    '<button type="submit" class="btnMostrarLista text-size" Id="btnGenerarFormatoListaAsistencias">'+
+                                                                        '<i class="fas fa-spinner h6 mr-2"></i>Generar'+
+                                                                    '</button>'+
+                                                                '</div>'+
+                                                                '<div class="col-sm-2">'+
+                                                                    '<button type="submit" class="btnMostrarLista text-size" Id="btnImprimirFormatoListaAsistencias">'+
+                                                                        '<i class="fas fa-print h6 mr-2"></i>Imprimir'+
+                                                                    '</button>'+
+                                                                '</div>'+
+                                                            '</form>'+
+                                                            '<div id="result-formato"></div>'+
                                                         '</div>'
                                                     );
 
@@ -1254,61 +1381,102 @@ $(document).ready(function () {
         });
     }
 
-    diff_fechas();
+    function generar_formato_lista_asistencias (IdUsuario, IdInstructor, Docente, IdGrupo, Grupo, IdPlanMateria, Materia,
+         CicloEscolar, fechaInicio, fechaFinalizacion) {
+        var FI = moment(fechaInicio);
+        var FF = moment(fechaFinalizacion);
 
-    function diff_fechas () {
-        var fechasAsistencias = function(fechaInicio, fechaFinalizacion) {
-            var dia_actual = fechaInicio;
-            var fechas = new Array();
-            while (dia_actual.isSameOrBefore(fechaFinalizacion)) {
-              fechas.push(dia_actual.format('DD-MM-YYYY'));
-                 dia_actual.add(1, 'days');
+        if ((FI.format('MMMM')==FF.format('MMMM')) && (FI.format('YYYY')==FF.format('YYYY'))) {
+            var numDiaFechas = new Array();
+            var nomDiaFechas = new Array();
+
+            while (FI.isSameOrBefore(FF)) {
+                numDiaFechas.push(FI.format('DD'));
+                if (FI.format('dddd') == 'Monday') {
+                    nomDiaFechas.push('LU');
+                } else if (FI.format('dddd') == 'Tuesday') {
+                    nomDiaFechas.push('MA');
+                } else if (FI.format('dddd') == 'Wednesday') {
+                    nomDiaFechas.push('MI');
+                } else if (FI.format('dddd') == 'Thursday') {
+                    nomDiaFechas.push('JU');
+                } else if (FI.format('dddd') == 'Friday') {
+                    nomDiaFechas.push('VI');
+                } else if (FI.format('dddd') == 'Saturday') {
+                    nomDiaFechas.push('SA');
+                } else if (FI.format('dddd') == 'Sunday') {
+                    nomDiaFechas.push('DO');
+                }
+                FI.add(1, 'days');
             }
-            return fechas;
-        };
 
-        var fechaInicio = moment('2020-09-07');
-        var fechaFinalizacion = moment('2020-09-30');
+            $.ajax({
+                url: "ajax/ajax_generar_formato_asistencias.php",
+                method: "POST",
+                async: true,
+                data: {
+                    IdUsuario: IdUsuario,
+                    IdInstructor: IdInstructor,
+                    Docente: Docente,
+                    IdGrupo: IdGrupo,
+                    Grupo: Grupo,
+                    IdPlanMateria: IdPlanMateria,
+                    Materia: Materia,
+                    CicloEscolar: CicloEscolar,
+                    NumDiaFechas: numDiaFechas, 
+                    NomDiaFechas: nomDiaFechas
+                },
 
-        var fechas_rango = fechasAsistencias(fechaInicio, fechaFinalizacion);
-        console.log(fechas_rango);
+                success: function (response) {
+                    var output = '';
+                    if (response == 'Error al generar el formato de lista asistencias' || 
+                        response == 'No se han podido consultar los alumnos registrados en la materia '+Materia+' del grupo '+Grupo) {
+                        $.confirm({
+                            title: 'Generando Formato de Lista de Asistencias',
+                            content: '<strong>'+response+'</strong>',
+                            type: 'red',
+                            typeAnimated: true,
+                            draggable: true,
+                            dragWindowBorder: false,
+                            buttons: {
+                                aceptar: {
+                                    text: 'Aceptar',
+                                    btnClass: 'btn btn-danger',
+                                    action: function () {
+                                        $(this).fadeOut();
+                                    }
+                                }
+                            }
+                        });
+                    } else if (response == 'No se encontraron alumnos registrados en la materia '+Materia+' del grupo '+Grupo) {
+                        $.confirm({
+                            title: 'Generando Formato de Lista de Asistencias',
+                            content: '<strong>'+response+'</strong>',
+                            type: 'orange',
+                            typeAnimated: true,
+                            draggable: true,
+                            dragWindowBorder: false,
+                            buttons: {
+                                aceptar: {
+                                    text: 'Aceptar',
+                                    btnClass: 'btn btn-warning',
+                                    action: function () {
+                                        $(this).fadeOut();
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        output = response;
+                        $("#contenido-cuerpo #result #formato-asistencias #result-formato").html('');
+                        $("#contenido-cuerpo #result #formato-asistencias #result-formato").html(output);
+                    }
+                },
 
-        var output = '<table class="table table-bordered">'+
-                                                '<thead class="bg-primary text-light">'+
-                                                    '<tr>'+
-                                                        '<td>No</td>'+
-                                                        '<td>Nombre del estudiante</td>';
-        for (var i=0; i<fechas_rango.length; i++) {
-            output = output+'<td>'+fechas_rango[i]+'</td>';
-        }
-
-        output = output+('</tr></thead></table>');
-
-        $("#contenido-cuerpo #result").html(output);
-    }
-
-    $("body").on("click", "#btnImprimir", function(event) {
-        event.preventDefault();
-
-        var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
-        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
-        var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
-        var IdGrupo = $("#contenido-cuerpo #Grupo_Asistencia").attr("IdGrupoAsistencia");
-        var Grupo = $("#contenido-cuerpo #Grupo_Asistencia").html();
-        var IdPlanMateria = $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria");
-        var Materia = $("#contenido-cuerpo #Nombre_Materia").html();
-
-        $.ajax({
-            url: "ajax/ajax_imprimir_asistencia.php",
-            method: "POST",
-            async: true,
-            data: {IdUsuario: IdUsuario, Docente: Docente, IdInstructor: IdInstructor, IdGrupo: IdGrupo, Grupo: Grupo, IdPlanMateria: IdPlanMateria, Materia: Materia},
-
-            success: function(response) {
-                var output = "";
-                if (response == 'No se ha podido generar la lista') {
+                error: function (error) {
                     $.confirm({
-                        title: 'Generando lista',
+                        title: 'Generando Formato de Lista de Asistencias',
+                        content: '<strong>Error al generar el formato de lista de asistencias. '+error+'</strong>',
                         type: 'red',
                         typeAnimated: true,
                         draggable: true,
@@ -1317,21 +1485,83 @@ $(document).ready(function () {
                             aceptar: {
                                 text: 'Aceptar',
                                 btnClass: 'btn btn-danger',
-                                action: function() {
+                                action: function () {
                                     $(this).fadeOut();
                                 }
                             }
                         }
                     });
-                } else {
-                    window.open("impresiones/"+response,'_blank');
                 }
-            },
-            
-            error: function (error) {
-                $("#result").html(error);
+            });
+        } else {
+            $.confirm({
+                title: 'Generando formato de lista de asistencias',
+                content: '<strong>El mes y/o el año de ambas fechas no coincide. Las fechas tienen que contener '+
+                         'el mismo mes y el mismo año.</strong>',
+                type: 'orange',
+                typeAnimated: true,
+                draggable: true,
+                dragWindowBorder: false,
+                buttons: {
+                    aceptar: {
+                        text: 'Aceptar',
+                        btnClass: 'btn btn-warning',
+                        action: function () {
+                            $(this).fadeOut();
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function imprimir_formato_lista_asistencias() {
+        var doc = new jsPDF(
+            {
+                orientation: "lanscape",
+                format: "letter"
+            }
+        );
+        
+        doc.setFontStyle('normal');
+        doc.setFontStyle('bold');
+        doc.setFontSize(12);
+        doc.text(150, 10, 'LISTA DE ASISTENCIAS');
+
+        var img = new Image();
+        img.src = 'img/logo-usjt.png';
+        doc.addImage(img, 'PNG', 25, 15, 35, 25);
+
+        doc.autoTable({
+            html: '#contenido-cuerpo #result #table-informacionGrupo',
+            styles: {halign: 'center', valign: 'middle', fillColor: [194, 197, 204], textColor: [0, 0, 0], lineColor: [0, 0, 0], lineWidth: 0.35, 
+            fontSize: 6},
+            margin: {
+                top: 15,
+                bottom: 5,
+                left: 80,
+                right: 5
             }
         });
-    });
+
+        doc.setFontStyle('normal');
+        doc.setFontStyle('bold');
+        doc.setFontSize(8);
+        doc.autoTable({
+            html: '#contenido-cuerpo #result #table-formato-asistencias',
+            styles: {halign: 'center', valign: 'middle', textColor: [0, 0, 0], lineColor: [0, 0, 0], lineWidth: 0.35, fontSize: 5.5},
+            headStyles: {fillColor: [194, 197, 204]},
+            alternateRowStyles: {valign: 'middle', fillColor: [255, 253, 252]},
+            bodyStyles: {valign: 'middle', fillColor: [255, 253, 252]},
+            margin: {
+                top: 10,
+                bottom: 10,
+                left: 5,
+                right: 5
+            }
+        });
+
+        doc.save('FormatoListaAsistencia.pdf');
+    }
 
 });
