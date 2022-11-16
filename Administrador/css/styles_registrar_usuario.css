@@ -1,3 +1,10 @@
+:root {
+    --guindo: #ab0033;
+    --cafe: #bc955c;
+    --cafe-claro: #ddc9a3;
+    --gris: #54565a;
+}
+
 .fondoGeneral, #form-reguser.fondoGeneral {
 	background-color: #fff;
 	width: 60%;
@@ -14,7 +21,7 @@
 }
 
 #form-reguser .registrarUsuario {
-	background-color: #0064a7;
+	background-color: var(--cafe);
     border-radius: 10px;
     color: #f2f2f2;
 	font-size: 18px;
@@ -29,7 +36,7 @@
     border-radius: 0px 0.25rem 0.25rem 0px;
     border-left: solid 0px;
     outline: none;
-	color: #0064a7;
+	color: var(--cafe);
 	cursor: pointer;
 }
 
@@ -48,4 +55,18 @@
 
 #form-reguser .form-control:focus {
     box-shadow: none;
+}
+
+/*Botones*/
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    border-color: var(--gris);
+    background-color: var(--gris);
 }

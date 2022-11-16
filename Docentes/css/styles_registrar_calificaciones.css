@@ -145,13 +145,13 @@
 }
 
 .sidebar .nav-item .nav-link:hover {
-	background-color: var(--cafe-claro);
+	background-color: var(--guindo);
 	color: #f2f2f2;
 	
 }
 
 ul .nav-link.selected {
-	background-color: var(--cafe-claro);
+	background-color: var(--guindo);
 	color: #f2f2f2;
 }
 
