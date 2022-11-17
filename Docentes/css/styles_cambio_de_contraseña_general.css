@@ -62,6 +62,14 @@
 	font-weight: bold;
 }
 
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+
 /* ver password*/
 
 .verPassword {
@@ -84,6 +92,8 @@
 	outline: none;
 }
 
+/* Boton */
+
 .btn-primary {
     color: #fff;
     background-color: var(--cafe);
@@ -92,6 +102,19 @@
 
 .btn-primary:hover {
     color: #fff;
-    background-color: var(--gris);
-    border-color: var(--gris);
+    background-color: var(--cafe-claro);
+    border-color: var(--cafe-claro);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+}
+
+.btn-primary:focus {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+	box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
 }

@@ -68,6 +68,7 @@ form {
 
 .status:focus{
     border-color: var(--guindo);
+    box-shadow: none;
 }
 
 .verPassword {

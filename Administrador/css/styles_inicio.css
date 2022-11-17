@@ -1,3 +1,10 @@
+:root {
+    --guindo: #ab0033;
+    --cafe: #bc955c;
+    --cafe-claro: #ddc9a3;
+    --gris: #54565a;
+}
+
 #contenido {
 	font-family: sans-serif;
 	text-transform: uppercase;
@@ -17,7 +24,7 @@
 .msjBienvenida {
 	font-family: sans-serif;
 	font-size: 20px;
-	color: #0064a7;
+	color: #333;
 	text-transform: uppercase;
 	font-weight: bold;
 }

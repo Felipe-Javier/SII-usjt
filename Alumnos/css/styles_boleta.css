@@ -1,13 +1,20 @@
+:root {
+    --guindo: #ab0033;
+    --cafe: #bc955c;
+    --cafe-claro: #ddc9a3;
+    --gris: #54565a;
+}
+
 #cont-pag {
 	font-family: sans-serif;
 	text-transform: uppercase;
 	font-size: 12px;
 }
-
+/*
 #cont-pag h6.titulo-1 {
 	background-color: rgba(0, 100, 167,.9);
 	color: #333;
-}
+}*/
 
 #cont-pag button {
 	text-transform: uppercase;
@@ -26,7 +33,7 @@
 }
 
 .table-periodo {
-	background-color: rgba(0, 100, 167,.9);
+	background-color: var(--cafe);
 	color: #333;
 	font-weight:lighter;
 }
@@ -37,7 +44,7 @@
 }
 
 .table-periodo .thead-periodo, .table-boleta .thead-boleta {
-	background-color: rgba(0, 100, 167,.9);
+	background-color: var(--cafe);
 	color: #f2f2f2;	
 }
 
@@ -46,7 +53,7 @@
 }
 
 .table-boleta .thead-boleta #titulo-table-boleta {
-	background-color: rgba(0, 100, 167,.9)!important;
+	background-color: var(--cafe)!important;
 	
 }
 
@@ -73,3 +80,29 @@
 	padding: 0;
 }
 
+/* Boton */
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: var(--cafe-claro);
+    border-color: var(--cafe-claro);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+}
+
+.btn-primary:focus {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+	box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
+}
