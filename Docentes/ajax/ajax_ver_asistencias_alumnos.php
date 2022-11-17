@@ -51,20 +51,20 @@
                                     </button>
                                 </div>
                                 <div class="col-sm-3">
-                                    <button class="button-custom button-blue" id="btnImprimir" type="submit">
-                                        <i class="h6 mr-2"></i>Imprimir
+                                    <button class="button-custom button-blue" id="btnImprimirReporteListaAsistencias">
+                                    <i class="fas fa-print h6 mr-2"></i>Imprimir
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
+                    <div class="row mt-3" id="reporte-asistencias">
                         <div class="col-sm-12">
                             <div class="tableAsistencias-responsive">
                                 <table class="table table-bordered text-center" id="table-asistencias">
                                     <thead class="thead-asistencias text-light">
                                         <tr>
-                                            <th rowspan="2" class="thNum">No.</th>';
+                                            <th rowspan="2" class="thNum">NO</th>';
 
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                         if ($NumList == 0) {
@@ -84,9 +84,9 @@
                                 }
                             }
                             $output .= '<th colspan="'.$numColDias.'"class="thDescNomenclatura" >
-                                            Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente
+                                            Nomenclatura:  R==Retardo, I==Injustificado, J==Justificado, P==Presente, F==Falta
                                         </th>
-                                        <th colspan="5" rowspan="1">Totales</th>
+                                        <th colspan="5" rowspan="1">TOTALES</th>
                                     <tr>';
                             foreach($row as $key => $value) {
                                 if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
@@ -94,14 +94,13 @@
                                     $output .='<th class="thDia">' . $key . '</th>';
                                 }
                             }
-                            $output .= '';
                             foreach($row as $key => $value) {
                                 if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P') {
                                     $output .='<th class="thNomTotal">' . $key . '</th>';
                                 }
                             }
-                            $output .= 
-                                    '</tr>
+                            $output .= '</tr>
+                                    </tr>
                                 </thead>
                                 <tbody class="tbody-asistencias">';
                         }
@@ -121,19 +120,20 @@
                         foreach($row as $key => $value) {
                             if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
                                 $key != 'F' && $key != 'P') {
-                                if ($value == '.') {
+                                /*if ($value == '.') {
                                     $output .='<td class="tdNomenclatura"><i class="fas fa-circle icon-circle"></i></td>';
                                 } else if ($value == '/') {
                                     $output .='<td class="tdNomenclatura"><i class="fas fa-slash icon-slash"></i></td>';
                                 } else {
                                     $output .='<td class="tdNomenclatura">' . $value . '</td>';
-                                }
+                                }*/
+                                $output .='<td class="tdNomenclatura">'.$value.'</td>';
                             }
                         }
 
                         foreach($row as $key => $value) {
                             if ($key == 'R' || $key == 'I' || $key == 'J' || $key == 'F' || $key == 'P') {
-                                $output .='<td class="tdNomTotal">' . $value . '</td>';
+                                $output .='<td class="tdNomTotal">'.$value.'</td>';
                             }
                         }
                         $output .= '</tr>';
@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row mt-3" id="reporte-asistencias">
                             <div class="col-sm-12">
                                 <div class="tableAsistencias-responsive">
                                     <table class="table table-bordered text-center text-light" id="table-asistencias">

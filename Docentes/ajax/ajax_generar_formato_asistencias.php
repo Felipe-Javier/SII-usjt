@@ -44,7 +44,7 @@
                                             '<th rowspan="3">MATRICULA</th>'.
                                             '<th rowspan="3">NOMBRE DEL ESTUDIANTE</th>'.
                                             '<th rowspan="1" colspan="'.$countArray.'" class="thDescNomenclatura">'.
-                                                'Nomenclatura: R = Retardo, I = Injustificado, J = Justificado, punto(.) = Presente'.
+                                                'Nomenclatura:  R==Retardo, I==Injustificado, J==Justificado, P==Presente, F==Falta'.
                                             '</th>'.
                                             '<th colspan="5" rowspan="2">TOTALES</th>'.
                                             '<tr>';

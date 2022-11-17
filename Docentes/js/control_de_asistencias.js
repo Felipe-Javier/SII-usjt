@@ -309,6 +309,88 @@ $(document).ready(function () {
 
         load_asistencias_alumnos(IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, AnioAsistencia, MesAsistencia)
     });
+    
+    $("body").on("click", ".menu-asistencias #registrar-editar-asistencias", function() {
+        $('#control-asistencias').show();
+        $("#formato-asistencias").hide();
+        $('#registrar-editar-asistencias').addClass('active');
+        if($('#generar-formato-asistencias').hasClass('active')){
+            $('#generar-formato-asistencias').removeClass('active');
+        }
+    });
+
+    $("body").on("click", ".menu-asistencias #generar-formato-asistencias", function() {
+        $('#control-asistencias').hide();
+        $("#formato-asistencias").show();
+        if($('#registrar-editar-asistencias').hasClass('active')) {
+            $('#registrar-editar-asistencias').removeClass('active');
+        }
+        $('#generar-formato-asistencias').addClass('active');
+    });
+
+    $("body").on("click", "#contenido-cuerpo #result #btnRegistrarAsistencia", function() {
+        var Form = 'Registrar_Asistencias';
+        var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
+        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
+        var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
+        var IdGrupo = $("#contenido-cuerpo #Grupo_Asistencia").attr("IdGrupoAsistencia");
+        var Grupo = $("#contenido-cuerpo #Grupo_Asistencia").html();
+        var IdPlanMateria = $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria");
+        var Materia = $("#contenido-cuerpo #Nombre_Materia").html();
+        
+        $(".modalRegistrarAsistencias").fadeIn();
+        $(".modalRegistrarAsistencias .input-group #Fecha_Asistencia").val("");
+        $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #Dia_Asistencia").empty();
+        $(".modalRegistrarAsistencias .form-body #alumnos").html();
+        if ($(".modalRegistrarAsistencias #Form-RegistrarAsistencias").hasClass("was-validated")) {
+            $('.modalRegistrarAsistencias #Form-RegistrarAsistencias').removeClass("was-validated");
+        }
+        load_CatDia(Form, IdUsuario, Docente, Grupo, Materia);
+        load_alumnos_GMD_registro_asistencias(IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia);
+    });
+
+    $(".modalRegistrarAsistencias #closeModalRegistrarAsistencias").on("click", function() {
+        $(".modalRegistrarAsistencias .input-group #Fecha_Asistencia").val("");
+        $(".modalRegistrarAsistencias .input-group #Dia_Asistencia").empty();
+        $(".modalRegistrarAsistencias .form-body #alumnos").html();
+        if ($(".modalRegistrarAsistencias #Form-RegistrarAsistencias").hasClass("was-validated")) {
+            $('.modalRegistrarAsistencias #Form-RegistrarAsistencias').removeClass("was-validated");
+        }
+        $(".modalRegistrarAsistencias").fadeOut();
+    });
+
+    $("body").on("click", "#contenido-cuerpo #result #btnEditarAsistencia", function() {
+        var Form = 'Editar_Asistencias';
+        var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
+        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
+        var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
+        var IdGrupo = $("#contenido-cuerpo #Grupo_Asistencia").attr("IdGrupoAsistencia");
+        var Grupo = $("#contenido-cuerpo #Grupo_Asistencia").html();
+        var IdPlanMateria = $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria");
+        var Materia = $("#contenido-cuerpo #Nombre_Materia").html();
+
+        $(".modalEditarAsistencias").fadeIn();
+        $(".modalEditarAsistencias .input-group #Fecha_Asistencia").val("");
+        $(".modalEditarAsistencias #Form-EditarAsistencias #Dia_Asistencia").empty();
+        $(".modalEditarAsistencias .input-group #Clave_Busqueda").val("");
+        $(".modalEditarAsistencias .form-body #alumno").html("");
+        if ($(".modalEditarAsistencias #Form-EditarAsistencias").hasClass("was-validated")) {
+            $('.modalEditarAsistencias #Form-EditarAsistencias').removeClass("was-validated");
+        }
+
+        load_CatDia(Form, IdUsuario, Docente, Grupo, Materia);
+    });
+
+    $(".modalEditarAsistencias #closeModalEditarAsistencias").on("click", function() {
+        $(".modalEditarAsistencias .input-group #Fecha_Asistencia").val("");
+        $(".modalEditarAsistencias .input-group #Dia_Asistencia").empty();
+        $(".modalEditarAsistencias .input-group #Clave_Busqueda").val("");
+        $(".modalEditarAsistencias .form-body #alumno").html("");
+        if ($(".modalEditarAsistencias #Form-EditarAsistencias").hasClass("was-validated")) {
+            $('.modalEditarAsistencias #Form-EditarAsistencias').removeClass("was-validated");
+        }
+        $(".modalRegistrarAsistencias").fadeOut();
+    });
 
     $("body").on("click", "#btnGenerarFormatoListaAsistencias", function(event) {
         event.preventDefault();
@@ -370,54 +452,10 @@ $(document).ready(function () {
             imprimir_formato_lista_asistencias();
         }
     });
-    
-    $("body").on("click", ".menu-asistencias #registrar-editar-asistencias", function() {
-        $('#control-asistencias').show();
-        $("#formato-asistencias").hide();
-        $('#registrar-editar-asistencias').addClass('active');
-        if($('#generar-formato-asistencias').hasClass('active')){
-            $('#generar-formato-asistencias').removeClass('active');
-        }
-    });
 
-    $("body").on("click", ".menu-asistencias #generar-formato-asistencias", function() {
-        $('#control-asistencias').hide();
-        $("#formato-asistencias").show();
-        if($('#registrar-editar-asistencias').hasClass('active')) {
-            $('#registrar-editar-asistencias').removeClass('active');
-        }
-        $('#generar-formato-asistencias').addClass('active');
-    });
-
-    $("body").on("click", "#contenido-cuerpo #result #btnRegistrarAsistencia", function() {
-        var Form = 'Registrar_Asistencias';
-        var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
-        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
-        var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
-        var IdGrupo = $("#contenido-cuerpo #Grupo_Asistencia").attr("IdGrupoAsistencia");
-        var Grupo = $("#contenido-cuerpo #Grupo_Asistencia").html();
-        var IdPlanMateria = $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria");
-        var Materia = $("#contenido-cuerpo #Nombre_Materia").html();
-        
-        $(".modalRegistrarAsistencias").fadeIn();
-        $(".modalRegistrarAsistencias .input-group #Fecha_Asistencia").val("");
-        $(".modalRegistrarAsistencias #Form-RegistrarAsistencias #Dia_Asistencia").empty();
-        $(".modalRegistrarAsistencias .form-body #alumnos").html();
-        if ($(".modalRegistrarAsistencias #Form-RegistrarAsistencias").hasClass("was-validated")) {
-            $('.modalRegistrarAsistencias #Form-RegistrarAsistencias').removeClass("was-validated");
-        }
-        load_CatDia(Form, IdUsuario, Docente, Grupo, Materia);
-        load_alumnos_GMD_registro_asistencias(IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia);
-    });
-
-    $(".modalRegistrarAsistencias #closeModalRegistrarAsistencias").on("click", function() {
-        $(".modalRegistrarAsistencias .input-group #Fecha_Asistencia").val("");
-        $(".modalRegistrarAsistencias .input-group #Dia_Asistencia").empty();
-        $(".modalRegistrarAsistencias .form-body #alumnos").html();
-        if ($(".modalRegistrarAsistencias #Form-RegistrarAsistencias").hasClass("was-validated")) {
-            $('.modalRegistrarAsistencias #Form-RegistrarAsistencias').removeClass("was-validated");
-        }
-        $(".modalRegistrarAsistencias").fadeOut();
+    $("body").on("click", "#btnImprimirReporteListaAsistencias", function(event) {
+        event.preventDefault();
+        imprimir_reporte_lista_asistencias();
     });
 
     function load_alumnos_GMD_registro_asistencias (IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia) {
@@ -976,39 +1014,6 @@ $(document).ready(function () {
         });
     }
 
-    $("body").on("click", "#contenido-cuerpo #result #btnEditarAsistencia", function() {
-        var Form = 'Editar_Asistencias';
-        var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
-        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
-        var IdInstructor = $("#barra #datos-usuario").attr("IdInstructor");
-        var IdGrupo = $("#contenido-cuerpo #Grupo_Asistencia").attr("IdGrupoAsistencia");
-        var Grupo = $("#contenido-cuerpo #Grupo_Asistencia").html();
-        var IdPlanMateria = $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria");
-        var Materia = $("#contenido-cuerpo #Nombre_Materia").html();
-
-        $(".modalEditarAsistencias").fadeIn();
-        $(".modalEditarAsistencias .input-group #Fecha_Asistencia").val("");
-        $(".modalEditarAsistencias #Form-EditarAsistencias #Dia_Asistencia").empty();
-        $(".modalEditarAsistencias .input-group #Clave_Busqueda").val("");
-        $(".modalEditarAsistencias .form-body #alumno").html("");
-        if ($(".modalEditarAsistencias #Form-EditarAsistencias").hasClass("was-validated")) {
-            $('.modalEditarAsistencias #Form-EditarAsistencias').removeClass("was-validated");
-        }
-
-        load_CatDia(Form, IdUsuario, Docente, Grupo, Materia);
-    });
-
-    $(".modalEditarAsistencias #closeModalEditarAsistencias").on("click", function() {
-        $(".modalEditarAsistencias .input-group #Fecha_Asistencia").val("");
-        $(".modalEditarAsistencias .input-group #Dia_Asistencia").empty();
-        $(".modalEditarAsistencias .input-group #Clave_Busqueda").val("");
-        $(".modalEditarAsistencias .form-body #alumno").html("");
-        if ($(".modalEditarAsistencias #Form-EditarAsistencias").hasClass("was-validated")) {
-            $('.modalEditarAsistencias #Form-EditarAsistencias').removeClass("was-validated");
-        }
-        $(".modalRegistrarAsistencias").fadeOut();
-    });
-
     var formEditarAsistencias = $('.modalEditarAsistencias #Form-EditarAsistencias.needs-validation');
 
     var IdButton = '';
@@ -1519,6 +1524,7 @@ $(document).ready(function () {
         var doc = new jsPDF(
             {
                 orientation: "lanscape",
+                unit: "mm",
                 format: "letter"
             }
         );
@@ -1528,9 +1534,9 @@ $(document).ready(function () {
         doc.setFontSize(12);
         doc.text(150, 10, 'LISTA DE ASISTENCIAS');
 
-        var img = new Image();
+        var img = new Image(); 
         img.src = 'img/logo-usjt.png';
-        doc.addImage(img, 'PNG', 25, 15, 35, 25);
+        doc.addImage(img, 'PNG', 25, 15, 35, 25, 'SLOW');
 
         doc.autoTable({
             html: '#contenido-cuerpo #result #table-informacionGrupo',
@@ -1560,8 +1566,69 @@ $(document).ready(function () {
                 right: 5
             }
         });
+        img.onload = function () {
+            /*doc.addImage(img, 'png', 25, 15, 35, 25, 'SLOW');*/
+            doc.setProperties({
+                title: "FormatoListaAsistencias"
+            });
+            var openfile = doc.output("bloburl");
+            window.open(openfile,'_blank');
+        }
+    }
 
-        doc.save('FormatoListaAsistencia.pdf');
+    function imprimir_reporte_lista_asistencias() {
+        var doc = new jsPDF(
+            {
+                orientation: "lanscape",
+                format: "legal"
+            }
+        );
+        
+        doc.setFontStyle('normal');
+        doc.setFontStyle('bold');
+        doc.setFontSize(12);
+        doc.text(150, 10, 'REPORTE DE ASISTENCIAS');
+
+        var img = new Image();
+        img.src = 'img/logo-usjt.png';
+        doc.addImage(img, 'PNG', 25, 15, 35, 25);
+
+        doc.autoTable({
+            html: '#contenido-cuerpo #result #table-informacionGrupo',
+            styles: {halign: 'center', valign: 'middle', fillColor: [194, 197, 204], textColor: [0, 0, 0], lineColor: [0, 0, 0], lineWidth: 0.35, 
+            fontSize: 6},
+            margin: {
+                top: 15,
+                bottom: 5,
+                left: 80,
+                right: 5
+            }
+        });
+
+        doc.setFontStyle('normal');
+        doc.setFontStyle('bold');
+        doc.setFontSize(8);
+        doc.autoTable({
+            html: '#contenido-cuerpo #result #table-asistencias',
+            styles: {halign: 'center', valign: 'middle', textColor: [0, 0, 0], lineColor: [0, 0, 0], lineWidth: 0.35, fontSize: 5.5},
+            headStyles: {fillColor: [194, 197, 204]},
+            alternateRowStyles: {valign: 'middle', fillColor: [255, 253, 252], fontWeight: 900},
+            bodyStyles: {valign: 'middle', fillColor: [255, 253, 252], fontWeight: 900},
+            margin: {
+                top: 10,
+                bottom: 10,
+                left: 5,
+                right: 5
+            }
+        });
+
+        img.onload = function () {
+            doc.setProperties({
+                title: "ReporteListaAsistencias"
+            });
+            var openfile = doc.output("bloburl");
+            window.open(openfile,'_blank');
+        }
     }
 
 });
