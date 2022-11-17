@@ -62,6 +62,14 @@
 	font-weight: bold;
 }
 
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+
 /* ver password*/
 
 .verPassword {

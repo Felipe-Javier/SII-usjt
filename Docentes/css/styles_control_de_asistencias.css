@@ -407,6 +407,20 @@ ul .nav-link.selected {
     text-transform: uppercase;
 }
 
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+
+.custom-select:focus {
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+
 /* Formato de Asistencia */
 .modal-content #formato-asistencias {
     display: none;
