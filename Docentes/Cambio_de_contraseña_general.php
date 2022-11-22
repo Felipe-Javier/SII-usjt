@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="form-group text-center mt-5">
-                            <button type="submit" class="btn btn-primary" id="btn-continuar">Continuar</button>
+                            <button type="submit" class="btn btn-brown" id="btn-continuar">Continuar</button>
                         </div>
                     </form>
                 </div>

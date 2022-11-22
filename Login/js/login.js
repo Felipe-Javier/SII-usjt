@@ -22,8 +22,6 @@ $(document).ready(function() {
                 event.preventDefault();
                 event.stopPropagation();
                 form.classList.add('was-validated');
-                /*$("#show_password #btn_show_password").removeClass("verPassword");
-                $("#show_password #btn_show_password").addClass("validate-btn-danger");*/
                 var output = "";
                 output = '<div class="col-12">'+
                             '<div class="alert alert-danger fade show text-center" role="alert">'+
@@ -38,8 +36,6 @@ $(document).ready(function() {
                     event.preventDefault();
                     event.stopPropagation();
                     form.classList.add('was-validated');
-                    /*$("#show_password #btn_show_password").removeClass("verPassword");
-                    $("#show_password #btn_show_password").addClass("validate-btn-success");*/
                     Iniciar_Sesion();
                 }
             }
@@ -60,7 +56,7 @@ $(document).ready(function() {
             beforeSend: function() {
                 var output = "";
                 output = '<div class="col-12">'+
-                            '<div class="alert alert-primary fade show text-center" role="alert">'+
+                            '<div class="alert alert-secondary fade show text-center" role="alert">'+
                                 '<strong class="text-center">Iniciando Sesion</strong>'+
                             '</div>'+
                          '</div>';

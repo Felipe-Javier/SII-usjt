@@ -15,7 +15,7 @@
         <a class="nav-link <?php echo $boleta_calificaciones; ?>" href="Boleta_Calificaciones.php">Boleta de Calificaciones</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link <?php echo $cambiar_contraseña; ?>" href="Cambio_de_contraseña_general.php">Cambiar Contraseña</a>
+        <a class="nav-link <?php echo $cambiar_contraseña; ?>" href="Cambio_de_contraseña_general.php">Cambiar mi Contraseña</a>
       </li>
     </ul>
 
@@ -27,6 +27,11 @@
           <i class="icon-user fas fa-user "></i>Bienvenido!, <?php echo $_SESSION['Rol'] ?>
         </a>
         <div class="no-hover dropdown-menu" id="navbarDropdown" role="menu" aria-labelledby="navbarDropdown" aria-expanded="false">
+          <span class="dropdown-item-text" IdUsuario="<?php echo $_SESSION['IdUsuario']; ?>" Usuario='<?php echo $_SESSION['Alumno']; ?>'
+            RolUsuario='<?php echo $_SESSION['Rol']; ?>'>
+            <?php echo $_SESSION['Alumno']; ?>
+          </span>
+          <hr class="dropdown-divider">
           <a class="dropdown-item text-center" href="../Login/ajax/ajax_cerrar_sesion.php">Cerrar Sesion</a>
         </div>
       </li>

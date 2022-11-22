@@ -66,7 +66,7 @@ body {
 .navbar a.active {
 	color: #f2f2f2 !important;
 	height: 100%;
-	background-color:var(--cafe);
+	background-color: var(--cafe);
 	border-radius: 2px;
 }
 
@@ -81,12 +81,13 @@ body {
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
 }
 
-.no-hover a:hover{
+.dropdown .dropdown-menu a.dropdown-item:hover {
+	background-color: var(--cafe-claro) !important;
 	color: var(--guindo) !important;
 }
 
 .navbar-light{
-	background-color: var(--guindo);
+	background-color: var(--guindo) !important;
 }
 
 .icon-user {
@@ -105,4 +106,13 @@ a.dropdown-item {
 	height: 30px;
 	padding: 7px !important;
 	margin-top: 0px;
+	background-color: var(--cafe) !important;
+	color: #f2f2f2 !important;
+}
+
+.navbar .dropdown .dropdown-item-text {
+	font-family:sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	color: var(--cafe) !important;
 }

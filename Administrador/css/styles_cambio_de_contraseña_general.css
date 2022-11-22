@@ -1,3 +1,10 @@
+:root {
+    --guindo: #ab0033;
+    --cafe: #bc955c;
+    --cafe-claro: #ddc9a3;
+    --gris: #54565a;
+}
+
 #contenido {
 	font-family: sans-serif;
 	text-transform: uppercase;
@@ -12,9 +19,11 @@
 }
 
 .msj-general {
+    background-color: var(--cafe);
+    border-radius: 10px;
+    color: #f2f2f2;
 	font-family: sans-serif;
-	font-size: 11px;
-	color: var(--cafe);
+	font-size: 16px;
 	text-transform: uppercase;
 	font-weight: bold;
 }
@@ -35,20 +44,30 @@
 }
 
 .form-cambio-password #user-name {
-	border-radius: 5px 5px 5px 5px;
+	border: solid 1px #ced4da;
 	text-transform: uppercase;
 }
 
-.form-cambio-password #password, .form-cambio-password #password-confirm {
+.form-cambio-password .border-input {
+	border: solid 1px #ced4da;
 	border-radius: 5px 0px 0px 5px;
 	border-right: 0px;
 }
 
+.form-cambio-password #btn-continuar {
+	font-family: sans-serif;
+	font-size: 12px;
+	color: #fcfcfc;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
 .form-control:focus {
-    color: var(--cafe);
-    border-color: var(--cafe);
-    box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
-	outline: 0;
+    color: #495057;
+    background-color: #fff;
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
 }
 
 /* ver password*/
@@ -75,35 +94,27 @@
 
 /* Boton */
 
-.btn {
-	font-family: sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.btn-brown {
+.btn-primary {
+    color: #fff;
     background-color: var(--cafe);
     border-color: var(--cafe);
-	color: #f2f2f2;
 }
 
-.btn-brown:hover {
+.btn-primary:hover {
+    color: #fff;
     background-color: var(--cafe-claro);
     border-color: var(--cafe-claro);
-	color: var(--gris);
 }
 
-.btn-brown:active {
-    background-color: var(--cafe-claro);
-    border-color: var(--gris);
-	box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
-	color: var(--gris);
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
 }
 
-.btn-brown:focus {
-    background-color: var(--cafe-claro);
-    border-color: var(--gris);
+.btn-primary:focus {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
 	box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
-	color: var(--gris);
 }

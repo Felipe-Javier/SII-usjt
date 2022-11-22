@@ -33,6 +33,12 @@
             $result = $procesar_asistencias->registrar_asistencias($IdsPersonas[$i], $IdsAlumnos[$i], $IdsAlumnosMatriculas[$i], $IdGrupo, 
             $IdsRelsGruposAlumnos[$i], $IdPlanMateria, $IdInstructor, $IdCicloEscolar, $IdDiaAsistencia, $FechaAsistencia, $IdsNomenclaturas[$i], 
             $IdUsuario);
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('REGISTRO');
+            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ EL REGISTRO DE ASISTENCIAS DE LOS ALUMNO CON MATRICULA: '.$Matriculas[$i]
+                                                      ', DE LA MATERIA: '.$Materia.', DEL GRUPO: '.$Grupo.', ASIGNADOS AL DOCENTE: '.$Docente);
+            $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                            
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
         }
 
         if ($result == true) {

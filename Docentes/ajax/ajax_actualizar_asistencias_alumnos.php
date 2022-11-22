@@ -35,13 +35,13 @@
             if ($RowCount > 0) {
                 $output .= 'La edición de asistencia del alumno con los datos ingresados se ha realizado exitosamente';
 
-                /*TipoMovimiento = $seguridad_usuario->sanitize_str('ACTUALIZACIÓN');
+                $TipoMovimiento = $seguridad_usuario->sanitize_str('ACTUALIZACIÓN');
 
                 $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA ACTUALIZACIÓN DE LA ASISTENCIA CON FECHA'.$FechaAsistencia.
                 ' DEL ALUMNO CON MATRICULA: '.$Matricula.' EN LA MATERIA: '.$Materia.' DEL GRUPO: '.$Grupo.' IMPARTIDA POR EL DOCENTE: '.$Docente);
                 $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                                 
-                $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);*/
+                $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
             } elseif ($RowCount == 0) {
                 $output .= 'No hay un registro de asistencia con los datos ingresados';
             }

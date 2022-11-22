@@ -154,13 +154,13 @@ ul .nav-link.selected {
     text-align: center;
 }
 
-#table-asistencias .thDescNomenclatura {
+#table-asistencias .thDescNomenclatura, #table-formato-asistencias .thDescNomenclatura {
     font-size: 12px;
     text-transform: capitalize;
     text-align: center;
 }
 
-#table-asistencias .thDia, #table-asistencias .thNomTotal {
+#table-asistencias .thDia, #table-asistencias .thNomTotal, #table-formato-asistencias .thDia, #table-formato-asistencias .thNomTotal {
     background-color: #f2f2f2 !important;
     font-size: 12px;
     color: #333 !important;
@@ -172,7 +172,7 @@ ul .nav-link.selected {
     font-size: 12px;
 }
 
-#table-asistencias .thNombre {
+#table-asistencias .thNombre, #table-formato-asistencias .thNombre {
     font-size: 12px;
     padding-left: 6rem !important;
     padding-right: 6rem !important;
@@ -208,7 +208,7 @@ ul .nav-link.selected {
     text-transform: uppercase;
 }
 
-#table-registrar-asistencias label {
+#table-registrar-asistencias label, #table-formato-asistencias label {
     margin-bottom: 0rem;
 }
 

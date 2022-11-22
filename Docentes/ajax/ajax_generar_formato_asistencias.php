@@ -42,7 +42,7 @@
                                         '<tr>'.
                                             '<th rowspan="3">NO</th>'.
                                             '<th rowspan="3">MATRICULA</th>'.
-                                            '<th rowspan="3">NOMBRE DEL ESTUDIANTE</th>'.
+                                            '<th rowspan="3" class="thNombre">ESTUDIANTE</th>'.
                                             '<th rowspan="1" colspan="'.$countArray.'" class="thDescNomenclatura">'.
                                                 'Nomenclatura:  R==Retardo, I==Injustificado, J==Justificado, P==Presente, F==Falta'.
                                             '</th>'.
@@ -50,16 +50,22 @@
                                             '<tr>';
                 
                 for ($i=0; $i<$countArray; $i++) {
-                    $output .= '<th rowspan="1">'.$NomDiaFechas[$i].'</th>';
+                    $output .= '<th rowspan="1" class="thDia">'.$NomDiaFechas[$i].'</th>';
                 }
 
-                $output .= '</tr><tr>';
+                $output .= '</tr>
+                            <tr>';
 
                 for ($i=0; $i<$countArray; $i++) {
-                    $output .= '<th rowspan="1">'.$NumDiaFechas[$i].'</th>';
+                    $output .= '<th rowspan="1" class="thDia">'.$NumDiaFechas[$i].'</th>';
                 }
 
-                $output .= '<th>R</th><th>I</th><th>J</th><th>F</th><th>P</th></tr>
+                    $output .= '<th class="thNomTotal">R</th>
+                                <th class="thNomTotal">I</th>
+                                <th class="thNomTotal">J</th>
+                                <th class="thNomTotal">F</th>
+                                <th class="thNomTotal">P</th>
+                            </tr>
                         </tr>'.
                     '</thead>'.
                     '<tbody class="">';
@@ -82,11 +88,11 @@
                                                 $row['NOMBREALUMNO']
                                         .'</label>
                                     </td>';
-                                    for ($i=0; $i<$countArray; $i++) {
+                                    for ($i=0; $i<$countArray+5; $i++) {
                                         $output .= '<td></td>';
                                     }
 
-                                $output .= '<td></td><td></td><td></td><td></td><td></td></tr>';
+                                $output .= '</tr>';
                 }
                         
                     $output .= '</tbody>

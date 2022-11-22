@@ -35,13 +35,13 @@
             }
             echo $output;
 
-            /*$TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
             $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DEL CATALOGO DE NOMENCLATURA PARA EL REGISTRO DE ASISTENCIA'.
-                                                      ' DE LOS ALUMNOS DE LA MATERIA '.$Materia.' DEL GRUPO '.$Grupo.' ASIGNADO AL DOCENTE: '.
+                                                      ' DE LOS ALUMNOS DE LA MATERIA: '.$Materia.', DEL GRUPO: '.$Grupo.', ASIGNADO AL DOCENTE: '.
                                                       $Docente);
             $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                         
-            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);*/ 
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
         } elseif ($Action == 'VerCatNomenclaturaAsistencia') {
             $result = $procesar_asistencias->consultar_CatNomenclaturaAsistencia();
             if ($result != false) {
@@ -59,13 +59,13 @@
             }
             echo $output;
             
-            /*$TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
             $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DEL CATALOGO DE DIAS PARA EL REGISTRO DE ASISTENCIA'.
-                                                      ' DE LOS ALUMNOS DE LA MATERIA '.$Materia.' DEL GRUPO '.$Grupo.' ASIGNADO AL DOCENTE: '.
+                                                      ' DE LOS ALUMNOS DE LA MATERIA; '.$Materia.', DEL GRUPO: '.$Grupo.', ASIGNADO AL DOCENTE: '.
                                                       $Docente);
             $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                         
-            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);*/
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
         }
 
         $Action = '';

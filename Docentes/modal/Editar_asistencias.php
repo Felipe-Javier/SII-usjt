@@ -13,8 +13,8 @@
                         </section>
                     </div>
                     <div class="form-body">
-                        <section class="row mt-2">
-                            <div class="col-sm-6">
+                        <section class="row">
+                            <div class="col-sm-6 mt-2">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text text-bold text-size">Fecha de asistencia</span>
@@ -23,7 +23,7 @@
                                      value="" required>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 mt-2">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text text-bold text-size">Dia de asistencia</span>
@@ -46,15 +46,15 @@
                             </div>
                         </section>
                         <section class="row mt-2" id="alumno"></section>
-                        <section class="row mt-3">
+                        <section class="row">
                             <div class="col-sm-12">
                                 <div class="row justify-content-center">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 mt-3">
                                         <button type="submit" class="button-custom button-blue" id="btn-editar">
                                             <i class="far fa-save h6 mr-2"></i>Guardar
                                         </button>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 mt-3">
                                         <button class="button-custom button-red" data-dismiss="modal" id="closeModalEditarAsistencias">
                                             <i class="far fa-window-close h6 mr-2"></i>Cerrar
                                         </button>

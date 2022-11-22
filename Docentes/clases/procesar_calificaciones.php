@@ -19,6 +19,11 @@
 			return $result;
 		}
 
+		public function sanitize_array ($Value) {
+			$result = filter_var_array($Value, FILTER_SANITIZE_STRING);
+			return $result;
+		}
+
 		public function consultar_grupos_por_docente ($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo) {
 			try {	
 			    $query = "EXEC spTraerGruposPorDocente ?, ?, ?, ?, ?, ?";
@@ -80,7 +85,7 @@
 		public function registrar_calificaciones ($Matricula, $IdRelGrupoAlumno, $Calificacion, $IdTipoCorte, $IdTipoCalificacion,
 		                                          $IdPlanMateria, $IdUsuario) {
 			try {
-				$query = "EXEC spGuardarModificarCalsMatsAlumsMat ?, ?, ?, ?, ?, ?, ?";
+				$query = "EXEC spGuardarModificarCalificacionesAlumnosPorMateriaGrupo ?, ?, ?, ?, ?, ?, ?";
 				$result = $this->connection->connect_db()->prepare($query);
 				$result->bindValue(1, $Matricula, PDO::PARAM_STR);
 				$result->bindValue(2, $IdRelGrupoAlumno, PDO::PARAM_INT);

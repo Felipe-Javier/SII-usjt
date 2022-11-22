@@ -36,40 +36,49 @@ body {
     padding-top: 2vh;
 }
 
-form {
-    background: #fff;
-}
-
-.btn-primary {
-    background-color: var(--gris);
-    border-color: var(--gris);
-}
+/* Formulario */
 
 .form-container {
-    margin-top: 10px;
-    border-top: solid 10px var(--guindo);
-    border-right: solid 10px var(--guindo);
+    background: var(--cafe-claro);
     border-bottom: solid 40px var(--guindo);
     border-left: solid 10px var(--guindo);
+    border-right: solid 10px var(--guindo);
+    border-top: solid 10px var(--guindo);
     border-radius: 10px;
+    font-weight: bold;
+    margin-top: 10px;
     padding: 25px;
+    text-transform: uppercase;
 }
 
 .form-footer {
     padding-top: 15px;
 }
-
-/* ver password */
-
-.status{
+.custom-select {
     border: solid 3px var(--gris);
     border-radius: 5px;
 }
 
-.status:focus{
-    border-color: var(--guindo);
-    box-shadow: none;
+.custom-select:focus{
+    border-color: var(--gris);
+    box-shadow: 0 0 0 0.2rem rgb(84 86 90 / 50%);
 }
+
+.form-control {
+    border: solid 3px var(--gris);
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    border-color: var(--gris);
+    box-shadow: 0 0 0 0.2rem rgb(84 86 90 / 50%);
+}
+
+#password {
+    border-right: 0px !important;
+}
+
+/* ver password */
 
 .verPassword {
     background-color: #fff;
@@ -89,67 +98,31 @@ form {
 	outline: none;
 }
 
-#password {
-    border-right: 0px !important;
+/* btn entrar */
+
+.btn-gris {
+    background-color: rgb(84 86 90 / 65%);
+    border: solid 3px var(--gris);
+    color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.form-control:focus {
-    box-shadow: none;
+.btn-gris:hover {
+    background-color: rgb(84 86 90 / 40%); 
+    border-color: rgb(84 86 90 / 60%);
+    color: #f2f2f2;
 }
 
-.validate-btn-danger {
-    background-color: #fff;
-    border-radius: 0px 4px 4px 0px;
-    border: solid 3px #dc3545;
-    border-left: 0px;
-    color: #dc3545;
-    cursor: pointer;
-    outline: none;
+.btn-gris:not(:disabled):not(.disabled):active {
+    background-color: rgb(84 86 90 / 40%);
+    border-color: rgb(84 86 90 / 60%);
+    color: #f2f2f2;
 }
 
-.validate-btn-success {
-    background-color: #fff;
-    border-radius: 0px 4px 4px 0px;
-    border: solid 3px #28a745;
-    border-left: 0px;
-    color: #28a745;
-    cursor: pointer;
-    outline: none;
-}
-
-.validate-btn-danger:active {
-    border: solid 3px #dc3545;
-    border-left: 0px;
-}
-
-.validate-btn-success:active {
-    border: solid 3px #28a745;
-    border-left: 0px;
-}
-
-.validate-btn-danger:focus {
-    outline: none;
-}
-
-.validate-btn-success:focus {
-    outline: none;
-}
-
-.btn-primary:hover {
-    color: #fff;
-    background-color: var(--guindo);
-    border-color: var(--guindo);
-}
-
-.btn-primary:not(:disabled):not(.disabled):active {
-    color: #fff;
-    background-color: var(--gris);
-    border-color: var(--gris);
-}
-
-.btn-primary:focus {
-    color: #fff;
-    background-color: var(--guindo);
-    border-color: var(--guindo);
-    box-shadow: 0 0 0 0.2rem var(--guindo);
+.btn-gris:focus {
+    background-color: rgb(84 86 90 / 40%); 
+    border-color: rgb(84 86 90 / 60%);
+    color: #f2f2f2;
+    box-shadow: 0 0 0 0.2rem rgb(84 86 90 / 50%);
 }

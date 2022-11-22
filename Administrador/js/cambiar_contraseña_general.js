@@ -63,25 +63,18 @@ $(document).ready(function () {
                         $("#result .alert").fadeTo(2000, 500);
                         $("#result .alert").slideUp(500);
                     } else {
-                        if (form.querySelector('#password').classList.contains('is-invalid') || 
-                            form.querySelector('#password-confirm').classList.contains('is-invalid')) {
-                            form.querySelector('#password').classList.remove('is-invalid');
-                            form.querySelector('#password-confirm').classList.remove('is-invalid');
-                        }
-
                         var IdUsuario = form.querySelector('#user-name').getAttribute('idusuario');
                         var Usuario = form.querySelector('#user-name').value;
                         var IdRolUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdRol");
                         var RolUsuario = $('.navbar #navbarContent .dropdown .dropdown-item-text').attr('RolUsuario');
-
-                        cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario, RolUsuario);
+                        cambiar_contraseña(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario, RolUsuario);
                     }
                 }
             }
         }, false);
     });
 
-    function cambiar_contraseña_primera_vez(IdUsuario, Usuario, Contrasenia, IdRolUsuario, RolUsuario) {
+    function cambiar_contraseña(IdUsuario, Usuario, Contrasenia, IdRolUsuario, RolUsuario) {
         var ContraseniaTemp = 0;
         
         $.ajax({
@@ -104,8 +97,7 @@ $(document).ready(function () {
             },
 
             success: function(response) {
-                console.log(response);
-                if (response=='Error al realizar la consulta' || response=='No se ha podido cambiar su contraseña') {
+                if (response=='Error al cambiar su contraseña' || response=='No se ha podido cambiar su contraseña') {
                     $.confirm({
                         title: 'Cambiando contraseña',
                         content: '<strong>'+response+'</strong>',
@@ -118,7 +110,6 @@ $(document).ready(function () {
                                 text: 'Aceptar',
                                 btnClass: 'btn btn-danger',
                                 action: function () {
-                                    $('#cambio-contraseña-primera-vez.needs-validation').removeClass('was-validated');
                                     $(this).fadeOut();
                                 }
                             }
@@ -137,34 +128,29 @@ $(document).ready(function () {
                                 text: 'Aceptar',
                                 btnClass: 'btn btn-warning',
                                 action: function () {
-                                    $('#cambio-contraseña-primera-vez.needs-validation').removeClass('was-validated');
                                     $(this).fadeOut();
                                 }
                             }
                         }
                     });
-                } else {
-                    if (response == 'Su contraseña ha sido cambiada exitosamente') {
-                        $.confirm({
-                            title: 'Cambiando contraseña',
-                            content: '<strong>'+response+'</strong>',
-                            type: 'green',
-                            typeAnimated: true,
-                            draggable: true,
-                            dragWindowBorder: false,
-                            buttons: {
-                                aceptar: {
-                                    text: 'Aceptar',
-                                    btnClass: 'btn btn-success',
-                                    action: function () {
-                                        $('#cambio-contraseña-primera-vez.needs-validation').removeClass('was-validated');
-                                        $(this).fadeOut();
-                                        location.href = 'Inicio.php';
-                                    }
+                } else if (response == 'Su contraseña ha sido cambiada exitosamente') {
+                    $.confirm({
+                        title: 'Cambiando contraseña',
+                        content: '<strong>'+response+'</strong>',
+                        type: 'green',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-success',
+                                action: function () {
+                                    $(this).fadeOut();
                                 }
                             }
-                        });
-                    }
+                        }
+                    });
                 }
             },
     
@@ -181,7 +167,6 @@ $(document).ready(function () {
                             text: 'Aceptar',
                             btnClass: 'btn btn-danger',
                             action: function () {
-                                $('#cambio-contraseña-primera-vez.needs-validation').removeClass('was-validated');
                                 $(this).fadeOut();
                             }
                         }

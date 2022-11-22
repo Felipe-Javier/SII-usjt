@@ -39,7 +39,7 @@
                     <div class="row" id="result"></div>
                     <div class="form-group">
                         <label for="rol_usuario">¿Eres docente o eres alumno?</label>
-                        <select class="custom-select status text-center" name="tipo_identificacion" id="tipo_identificacion" required>
+                        <select class="custom-select text-center" name="tipo_identificacion" id="tipo_identificacion" required>
                             <option value="" selected disabled>SELECCIONA...</option>
                             <option value="PERSONAL">PERSONAL DE LA INSTITUCIÓN</option>
                             <option value="ALUMNOS">ALUMNOS</option>
@@ -47,18 +47,18 @@
                     </div>
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
-                        <input type="text" class="form-control status text-center" id="usuario" placeholder="Usuario" autocomplete="username" required> 
+                        <input type="text" class="form-control text-center" id="usuario" placeholder="Usuario" autocomplete="username" required> 
                     </div>
                     <div class="form-group">
                         <label for="InputPasswordAlumno">Contraseña</label>
                         <div class="input-group" id="show_password">
-                            <input type="password" class="form-control status text-center" id="password" placeholder="Contraseña" autocomplete="current-password" required>
+                            <input type="password" class="form-control text-center" id="password" placeholder="Contraseña" autocomplete="current-password" required>
                             <button type="button" class="verPassword input-group-addon" id="btn_show_password">
                                 <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block" id="button_entrar">Entrar</button>
+                    <button type="submit" class="btn btn-gris btn-block" id="button_entrar">Entrar</button>
                     <!--<div class="form-footer">
                         <p><a href="/" class="">¿Olvidó su contraseña?</a></p>
                     </div>-->

@@ -42,6 +42,11 @@
                             <i class="icon-user fas fa-user "></i>Bienvenido!, <?php echo $_SESSION['Rol']; ?>
                         </a>
                         <div class="no-hover dropdown-menu" id="navbarDropdown" role="menu" aria-labelledby="navbarDropdown" aria-expanded="false">
+                            <span class="dropdown-item-text" IdUsuario="<?php echo $_SESSION['IdUsuario']; ?>" Usuario='<?php echo $_SESSION['Empleado']; ?>'
+                             RolUsuario='<?php echo $_SESSION['Rol']; ?>'>
+                                <?php echo $_SESSION['Empleado']; ?>
+                            </span>
+                            <hr class="dropdown-divider">
                             <a class="dropdown-item text-center" href="../Login/ajax/ajax_cerrar_sesion.php">Cerrar Sesion</a>
                         </div>
                     </li>
@@ -80,7 +85,7 @@
                             </div>
                         </div>
                         <div class="form-group text-center mt-5">
-                            <button type="submit" class="btn btn-primary" id="btn-continuar">Continuar</button>
+                            <button type="submit" class="btn btn-brown" id="btn-continuar">Continuar</button>
                         </div>
                     </form>
                 </div>

@@ -35,22 +35,22 @@
                 $result->execute();
                 $output .= '
                 <div id="control-asistencias">
-                    <div class="row mt-2">
+                    <div class="row mt-3">
                         <div class="col-sm-12">
                             <div class="row justify-content-end">
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 mb-3">
                                     <button class="button-custom button-blue" id="btnRegistrarAsistencia" data-toggle="modal" 
                                      data-target="#modalRegAsistencias">
                                         <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
                                     </button>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 mb-3">
                                     <button class="button-custom button-blue" id="btnEditarAsistencia" data-toggle="modal" 
                                      data-target="#modalEditarAsistencias">
                                         <i class="fas fa-edit h6 mr-2"></i>Editar asistencia
                                     </button>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 mb-3">
                                     <button class="button-custom button-blue" id="btnImprimirReporteListaAsistencias">
                                     <i class="fas fa-print h6 mr-2"></i>Imprimir
                                     </button>
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3" id="reporte-asistencias">
+                    <div class="row" id="reporte-asistencias">
                         <div class="col-sm-12">
                             <div class="tableAsistencias-responsive">
                                 <table class="table table-bordered text-center" id="table-asistencias">
@@ -120,13 +120,6 @@
                         foreach($row as $key => $value) {
                             if ($key != 'MATRICULA' && $key != 'NOMBREALUMNO' && $key != 'R' && $key != 'I' && $key != 'J' && 
                                 $key != 'F' && $key != 'P') {
-                                /*if ($value == '.') {
-                                    $output .='<td class="tdNomenclatura"><i class="fas fa-circle icon-circle"></i></td>';
-                                } else if ($value == '/') {
-                                    $output .='<td class="tdNomenclatura"><i class="fas fa-slash icon-slash"></i></td>';
-                                } else {
-                                    $output .='<td class="tdNomenclatura">' . $value . '</td>';
-                                }*/
                                 $output .='<td class="tdNomenclatura">'.$value.'</td>';
                             }
                         }
@@ -180,12 +173,12 @@
                 echo $output;
             }
 
-            /*TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
-            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LAS ASISTENCIAS DE LOS ALUMNOS ACTIVOS EN LA MATERIA '.$Materia.
-                                                      ' DEL GRUPO'.$Grupo.' ASIGNADO AL DOCENTE: '.$Docente);
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LAS ASISTENCIAS DE LOS ALUMNOS ACTIVOS EN LA MATERIA: '.$Materia.
+                                                      ', DEL GRUPO: '.$Grupo.', ASIGNADOS AL DOCENTE: '.$Docente);
             $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                             
-            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);*/
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
         } else {
             $output .= 'No se han podido consutar las asistencias registradas';
             echo $output;

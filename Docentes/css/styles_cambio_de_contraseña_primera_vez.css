@@ -42,22 +42,20 @@
 }
 
 .form-cambio-password #user-name {
-	border: solid 1px #ced4da;
+	border-radius: 5px 5px 5px 5px;
 	text-transform: uppercase;
 }
 
-.form-cambio-password .border-input {
-	border: solid 1px #ced4da;
+.form-cambio-password #password, .form-cambio-password #password-confirm {
 	border-radius: 5px 0px 0px 5px;
 	border-right: 0px;
 }
 
-.form-cambio-password #btn-continuar {
-	font-family: sans-serif;
-	font-size: 12px;
-	color: #fcfcfc;
-	text-transform: uppercase;
-	font-weight: bold;
+.form-control:focus {
+    color: var(--cafe);
+    border-color: var(--cafe);
+    box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
+	outline: 0;
 }
 
 /* ver password*/
@@ -82,14 +80,37 @@
 	outline: none;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: var(--cafe);
-    border-color: var(--cafe);
+/* Boton */
+
+.btn {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
-.btn-primary:hover {
-    color: #fff;
-    background-color: var(--gris);
+.btn-brown {
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+	color: #f2f2f2;
+}
+
+.btn-brown:hover {
+    background-color: var(--cafe-claro);
+    border-color: var(--cafe-claro);
+	color: var(--gris);
+}
+
+.btn-brown:active {
+    background-color: var(--cafe-claro);
     border-color: var(--gris);
+	box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
+	color: var(--gris);
+}
+
+.btn-brown:focus {
+    background-color: var(--cafe-claro);
+    border-color: var(--gris);
+	box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
+	color: var(--gris);
 }

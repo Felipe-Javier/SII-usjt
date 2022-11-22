@@ -19,7 +19,7 @@
 		}
 
 	 	public function consultar_periodos ($Matricula) {
-			$query = "EXEC spTraerCiclosEscolaresPorMatricula ?";
+			$query = "EXEC spTraerCiclosEscolaresPorAlumnoMatricula ?";
             $result = $this->connection->connect_db()->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 			$result->bindValue(1, $Matricula, PDO::PARAM_STR);
             $result->execute();

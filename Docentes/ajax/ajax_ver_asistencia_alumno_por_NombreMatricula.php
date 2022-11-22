@@ -78,16 +78,27 @@
 
                 echo $output;
             } else {
-                $output .= 'No se encontró un registro de asistencia del alumno con los datos ingresados';
+                $output .= 
+                    '<div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-light" id="table-editar-asistencias">
+                                <thead class="thead-reg-asistencias">
+                                    <tr>
+                                        <th>No se encontró un registro de asistencia del alumno con los datos ingresados</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>';
                 echo $output;
             }
 
-            /*TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
-            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS ALUMNOS ACTIVOS EN LA MATERIA '.$Materia.' DEL GRUPO '.
-                                                        $Grupo.' ASIGNADO AL DOCENTE: '.$Docente);
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DEL ALUMNO: '.$ClaveBusqueda.', DE LA MATERIA: '.
+                                                      $Materia.' DEL GRUPO: '.$Grupo.', ASIGNADO AL DOCENTE: '.$Docente);
             $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                             
-            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);*/
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
         } else {
             $output .= 'No se han podido consutar la información del alumno';
             echo $output;

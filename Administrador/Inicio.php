@@ -38,6 +38,7 @@
       $inicio = "active";
       $registrar_usuario = "";
       $recuperar_contraseña = "";
+      $cambiar_contraseña = "";
 
       include("incluir/header.php");
       include("incluir/navbar.php");

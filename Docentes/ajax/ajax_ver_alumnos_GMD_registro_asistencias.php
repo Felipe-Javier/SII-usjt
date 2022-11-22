@@ -24,8 +24,6 @@
         $result = $alumnos_general->consultar_alumnos($IdInstructor, $IdGrupo, $IdPlanMateria);
 
         if ($result != false) {
-            /*$it = new IteratorIterator($result);
-            $count = iterator_count($it);*/
             $count = $result->rowCount();
                 
             if ($count > 0) {
@@ -88,12 +86,12 @@
                 echo $output;
             }
 
-            /*TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+            $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
             $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS ALUMNOS ACTIVOS EN LA MATERIA '.$Materia.' DEL GRUPO '.
                                                         $Grupo.' ASIGNADO AL DOCENTE: '.$Docente);
             $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                             
-            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);*/
+            $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
         } else {
             $output .= 'No se han podido consutar los alumnos activos';
             echo $output;

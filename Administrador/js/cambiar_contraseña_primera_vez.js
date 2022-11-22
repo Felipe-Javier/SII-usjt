@@ -42,7 +42,8 @@ $(document).ready(function () {
                         var IdUsuario = form.querySelector('#user-name').getAttribute('idusuario');
                         var Usuario = form.querySelector('#user-name').value;
                         var IdRolUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdRol");
-                        cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario);
+                        var RolUsuario = $('.navbar #navbarContent .dropdown .dropdown-item-text').attr('RolUsuario');
+                        cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario, RolUsuario);
 
                     }
                 }
@@ -50,18 +51,20 @@ $(document).ready(function () {
         }, false);
     });
 
-    function cambiar_contraseña_primera_vez(IdUsuario, Usuario, Pass_Confirm, IdRolUsuario) {
+    function cambiar_contraseña_primera_vez(IdUsuario, Usuario, Contrasenia, IdRolUsuario, RolUsuario) {
+        var ContraseniaTemp = 0;
         $.ajax({
             url: "ajax/ajax_cambiar_contraseña.php",
             method: "POST",
-            data: {IdUsuario: IdUsuario, Usuario: Usuario, Contrasenia: Pass_Confirm, IdRolUsuario: IdRolUsuario},
+            data: {IdUsuario: IdUsuario, Usuario: Usuario, Contrasenia: Contrasenia, ContraseniaTemp: ContraseniaTemp,
+                 IdRolUsuario: IdRolUsuario, RolUsuario: RolUsuario},
             async: true,
 
             beforeSend: function() {
                 var output = "";
                 output = '<div class="col-12">'+
-                            '<div class="alert alert-primary fade show text-center" role="alert">'+
-                                '<strong class="text-center">Actualizando contraseña</strong>'+
+                            '<div class="alert alert-secondary fade show text-center" role="alert">'+
+                                '<strong class="text-center">Cambiando contraseña</strong>'+
                             '</div>'+
                          '</div>';
                 $("#result").html(output);
@@ -72,10 +75,10 @@ $(document).ready(function () {
             success: function(response) {
                 console.log(response);
                 var output = "";
-                if (response=='Error al cambiar su contraseña' || response=='No se ha podido cambiar su contraseña') {
+                if (response=='Error al realizar la consulta' || response=='No se ha podido cambiar su contraseña') {
                     $.confirm({
-                        title: 'Actualizando contraseña',
-                        content: response,
+                        title: 'Cambiando contraseña',
+                        content: '<strong>'+response+'</strong>',
                         type: 'red',
                         typeAnimated: true,
                         draggable: true,
@@ -90,34 +93,50 @@ $(document).ready(function () {
                             }
                         }
                     });
-                } else {
-                    if (response == 'Su contraseña ha sido cambiada exitosamente') {
-                        $.confirm({
-                            title: 'Actualizando contraseña',
-                            content: response,
-                            type: 'green',
-                            typeAnimated: true,
-                            draggable: true,
-                            dragWindowBorder: false,
-                            buttons: {
-                                aceptar: {
-                                    text: 'Aceptar',
-                                    btnClass: 'btn btn-success',
-                                    action: function () {
-                                        $(this).fadeOut();
-                                        location.href = 'Inicio.php';
-                                    }
+                } else if (response=='No hay un registro de su cuenta de usuario o los datos son incorrectos') {
+                    $.confirm({
+                        title: 'Cambiando contraseña',
+                        content: '<strong>'+response+'</strong>',
+                        type: 'orange',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-warning',
+                                action: function () {
+                                    $(this).fadeOut();
                                 }
                             }
-                        });
-                    }
+                        }
+                    });
+                } else if (response == 'Su contraseña ha sido cambiada exitosamente') {
+                    $.confirm({
+                        title: 'Cambiando contraseña',
+                        content: '<strong>'+response+'</strong>',
+                        type: 'green',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-success',
+                                action: function () {
+                                    $(this).fadeOut();
+                                    location.href = 'Inicio.php';
+                                }
+                            }
+                        }
+                    });
                 }
             },
     
             error: function(error) {
                 $.confirm({
-                    title: 'Actualizando contraseña',
-                    content: 'Error al cambiar su contraseña. '+error,
+                    title: 'Cambiando contraseña',
+                    content: '<strong>Error al cambiar su contraseña. '+error+'</strong>',
                     type: 'red',
                     typeAnimated: true,
                     draggable: true,

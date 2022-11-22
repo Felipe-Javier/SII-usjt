@@ -49,12 +49,12 @@
                             </nav>';
                     echo $output;
 
-                    /*$TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+                    $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
                     $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ LA BUSQUEDA DE LOS GRUPOS ASIGNADOS Y LAS MATERIAS ASIGNADAS AL DOCENTE: '.
                                                                $Docente);
                     $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                         
-                    $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);*/
+                    $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
                 } else {
                     $output .= '<div class="text-center grupos-ciclos">GRUPOS</div> 
                                     <nav class="sidebar card pt-2 pb-4" >

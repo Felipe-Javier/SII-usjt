@@ -5,9 +5,9 @@ $(document).ready(function () {
     load_roles_usuario();
 
     function load_roles_usuario() {
-        var IdUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdUsuario");
+        var IdUsuario = $(".navbar #navbarContent .dropdown .dropdown-item-text").attr("IdUsuario");
         var Action = 'Consultar_Roles_Usuario';
-
+        
         $.ajax({
             url:"ajax/ajax_recuperar_contraseña.php",
             method: "POST",
@@ -89,10 +89,6 @@ $(document).ready(function () {
                 event.preventDefault();
                 event.stopPropagation();
                 form.classList.add('was-validated');
-                $("#show_password #btn-verPass").removeClass("verPassword");
-                $("#show_password_confirm #btn-verPassConfirm").removeClass("verPassword");
-                $("#show_password #btn-verPass").addClass("validate-btn-danger");
-                $("#show_password_confirm #btn-verPassConfirm").addClass("validate-btn-danger");
                 $.confirm({
                     title: 'Recuperación de contraseña',
                     content: '<strong>¡Por favor ingrese los datos solicitados para continuar!</strong>',
@@ -115,21 +111,12 @@ $(document).ready(function () {
                     event.preventDefault();
                     event.stopPropagation();
                     form.classList.add('was-validated');
-                    $("#show_password #btn-verPass").removeClass("validate-btn-danger");
-                    $("#show_password_confirm #btn-verPassConfirm").removeClass("validate-btn-danger");
-                    $("#show_password #btn-verPass").addClass("validate-btn-success");
-                    $("#show_password_confirm #btn-verPassConfirm").addClass("validate-btn-success");
                     var Pass = form.querySelector('#Pass').value;
                     var Pass_Confirm = form.querySelector("#PassConfirm").value;
                     if (Pass != Pass_Confirm) {
                         form.classList.remove('was-validated');
-                        form.querySelector('#Usuario').classList.add('is-valid');
                         form.querySelector('#Pass').classList.add('is-invalid');
                         form.querySelector('#PassConfirm').classList.add('is-invalid');
-                        $("#show_password #btn-verPass").removeClass("validate-btn-success");
-                        $("#show_password_confirm #btn-verPassConfirm").removeClass("validate-btn-success");
-                        $("#show_password #btn-verPass").addClass("validate-btn-danger");
-                        $("#show_password_confirm #btn-verPassConfirm").addClass("validate-btn-danger");
                         $.confirm({
                             title: 'Recuperación de contraseña',
                             content: '<strong>¡Las contraseñas no coinciden, verifiquelas y vuelva a intentarlo!</strong>',
@@ -148,16 +135,26 @@ $(document).ready(function () {
                             }
                         });
                     } else {
+                        if (form.querySelector('#Pass').classList.contains('is-invalid') || 
+                            form.querySelector('#PassConfirm').classList.contains('is-invalid')) {
+                            form.querySelector('#Pass').classList.remove('is-invalid');
+                            form.querySelector('#PassConfirm').classList.remove('is-invalid');
+                        }
+                        var IdUsuarioActualiza = form.querySelector('#UsuarioActualiza').getAttribute('IdUsuarioAct');
+                        var UsuarioActualiza = form.querySelector('#UsuarioActualiza').value;
+                        var RolUsuarioActualiza = $('.navbar #navbarContent .dropdown .dropdown-item-text').attr('RolUsuario');
                         var Usuario = form.querySelector('#Usuario').value;
+                        var PasswordTemp = form.querySelector('.custom-control-input[name="PassTemp"]:checked').value;
                         var IdRolUsuario = form.querySelector('#RolUsuario option:checked').value;
-                        var NomRolUsuario = form.querySelector('#RolUsuario option:checked').getAttribute('NomRolUsuario');
-                        var IdUsuarioAct = form.querySelector('#UsuarioActualiza').getAttribute('IdUsuarioAct');
+                        var RolUsuario = form.querySelector('#RolUsuario option:checked').getAttribute('NomRolUsuario');
 
                         if (IdRolUsuario == 9) {
-                            recuperar_contraseña(Usuario, IdRolUsuario, NomRolUsuario, NumEmpleado=null, Pass_Confirm, IdUsuarioAct);
+                            recuperar_contraseña(IdUsuarioActualiza, UsuarioActualiza, RolUsuarioActualiza, Usuario, Pass_Confirm, 
+                                                PasswordTemp, IdRolUsuario, RolUsuario, NumEmpleado=null);
                         } else {
                             var NumEmpleado = form.querySelector('#NoEmpleado').value;
-                            recuperar_contraseña(Usuario, IdRolUsuario, NomRolUsuario, NumEmpleado, Pass_Confirm, IdUsuarioAct);
+                            recuperar_contraseña(IdUsuarioActualiza, UsuarioActualiza, RolUsuarioActualiza, Usuario, Pass_Confirm, 
+                                                PasswordTemp, IdRolUsuario, RolUsuario, NumEmpleado);
                         }
                     }
                 }
@@ -165,43 +162,46 @@ $(document).ready(function () {
         }, false);
     });
 
-    function recuperar_contraseña(Usuario, IdRolUsuario, NomRolUsuario, NumEmpleado, Pass_Confirm, IdUsuarioAct) {
+    function recuperar_contraseña(IdUsuarioActualiza, UsuarioActualiza, RolUsuarioActualiza, Usuario, Password, PasswordTemp, 
+                                IdRolUsuario, RolUsuario, NumEmpleado) {
         var Action = "Recuperar_Contrasenia";
+        var data = new Array();
 
+        if (IdRolUsuario == 9) {
+            data = {Action: Action, IdUsuarioActualiza: IdUsuarioActualiza, UsuarioActualiza: UsuarioActualiza, 
+                RolUsuarioActualiza: RolUsuarioActualiza, Usuario: Usuario, Password: Password, PasswordTemp: PasswordTemp, 
+                IdRolUsuario: IdRolUsuario, RolUsuario: RolUsuario};
+        } else if (IdRolUsuario != 9) {
+            data = {Action: Action, IdUsuarioActualiza: IdUsuarioActualiza, UsuarioActualiza: UsuarioActualiza, 
+                RolUsuarioActualiza: RolUsuarioActualiza, Usuario: Usuario, Password: Password, PasswordTemp: PasswordTemp, 
+                IdRolUsuario: IdRolUsuario, RolUsuario: RolUsuario, NumEmpleado: NumEmpleado};
+        }
+        console.log(data);
         $.ajax({
             url: "ajax/ajax_recuperar_contraseña.php",
             method: "POST",
             async: true,
-            data: {Action, Action, Usuario: Usuario, Password: Pass_Confirm, IdRolUsuario: IdRolUsuario, 
-                   NomRolUsuario: NomRolUsuario, NumEmpleado: NumEmpleado, IdUsuarioAct: IdUsuarioAct},
+            data: data,
 
             beforeSend: function() {
-                $.confirm({
-                    title: 'Recuperación de contraseña',
-                    content: '<strong>¡Actualizando contraseña ...!</strong>',
-                    type: 'blue',
-                    typeAnimated: true,
-                    draggable: true,
-                    dragWindowBorder: false,
-                    buttons: {
-                        aceptar: {
-                            text: 'Aceptar',
-                            btnClass: 'btn btn-primary',
-                            action: function () {
-                                $(this).fadeOut();
-                            }
-                        }
-                    }
-                });
+                var output = "";
+                output = '<div class="col-12">'+
+                            '<div class="alert alert-secondary fade show text-center" role="alert">'+
+                                '<strong class="text-center">¡Recuperando contraseña ...!</strong>'+
+                            '</div>'+
+                         '</div>';
+                $("#result").html(output);
+                $("#result").fadeTo(2000, 500);
+                $("#result").slideUp(500);
             },
 
             success: function(response) {
                 console.log(response);
                 var output = "";
-                if (response=='Error al realizar la consulta' || response=='No se ha podido cambiar la contraseña') {
+                if (response=='Error al realizar la consulta' || response=='No se ha podido recuperar la contraseña') {
                     $.confirm({
-                        title: 'Actualizando contraseña',
-                        content: response,
+                        title: 'Recuperando contraseña',
+                        content: '<strong>'+response+'</strong>',
                         type: 'red',
                         typeAnimated: true,
                         draggable: true,
@@ -211,38 +211,57 @@ $(document).ready(function () {
                                 text: 'Aceptar',
                                 btnClass: 'btn btn-danger',
                                 action: function () {
+                                    $('#form-recpass.needs-validation').removeClass('was-validated');
                                     $(this).fadeOut();
                                 }
                             }
                         }
                     });
-                } else {
-                    if (response == 'La contraseña ha sido cambiada exitosamente') {
-                        $.confirm({
-                            title: 'Actualizando contraseña',
-                            content: response,
-                            type: 'green',
-                            typeAnimated: true,
-                            draggable: true,
-                            dragWindowBorder: false,
-                            buttons: {
-                                aceptar: {
-                                    text: 'Aceptar',
-                                    btnClass: 'btn btn-success',
-                                    action: function () {
-                                        $(this).fadeOut();
-                                    }
+                } else if (response=='El usuario al que intenta recuperar la contraseña no existe o los datos son incorrectos') {
+                    $.confirm({
+                        title: 'Recuperando contraseña',
+                        content: '<strong>'+response+'</strong>',
+                        type: 'orange',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-warning',
+                                action: function () {
+                                    $('#form-recpass.needs-validation').removeClass('was-validated');
+                                    $(this).fadeOut();
                                 }
                             }
-                        });
-                    }
+                        }
+                    });
+                } else if (response == 'La contraseña ha sido recuperada exitosamente') {
+                    $.confirm({
+                        title: 'Recuperando contraseña',
+                        content: '<strong>'+response+'</strong>',
+                        type: 'green',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-success',
+                                action: function () {
+                                    $('#form-recpass.needs-validation').removeClass('was-validated');
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
                 }
             },
     
             error: function(error) {
                 $.confirm({
-                    title: 'Actualizando contraseña',
-                    content: 'Error al cambiar su contraseña. '+error,
+                    title: 'Recuperando contraseña',
+                    content: '<strong>Error al cambiar su contraseña. '+error+'</strong>',
                     type: 'red',
                     typeAnimated: true,
                     draggable: true,
@@ -252,6 +271,7 @@ $(document).ready(function () {
                             text: 'Aceptar',
                             btnClass: 'btn btn-danger',
                             action: function () {
+                                $('#form-recpass.needs-validation').removeClass('was-validated');
                                 $(this).fadeOut();
                             }
                         }

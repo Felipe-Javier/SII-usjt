@@ -3,10 +3,10 @@
     if (!isset($_SESSION['active'])) {
         header('location: ../Login/Iniciar_Sesion.php');
     } else {
-        if ($_SESSION['Rol'] != 'ALUMNO') {
+        if ($_SESSION['Rol'] != 'ADMINISTRADOR DE SISTEMAS') {
             header('location: ../Login/Iniciar_Sesion.php');
         }
-    } 
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,8 @@
     <body>
         <?php
             $inicio = "";
-            $boleta_calificaciones = "";
+            $registrar_usuario = "";
+            $recuperar_contraseña = "";
             $cambiar_contraseña = "active";
             
             include("incluir/header.php");
@@ -48,7 +49,7 @@
                         <div class="form-group">
                             <label for="validationCustom">Nueva contraseña</label>
                             <div class="input-group" id="show_password">
-                                <input type="password" class="form-control text-center" id="password" value="" required>
+                                <input type="password" class="form-control text-center border-input" id="password" value="" required>
                                 <button type="button" class="verPassword input-group-addon" id="btn-show-Pass">
                                     <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                                 </button>
@@ -57,14 +58,14 @@
                         <div class="form-group">
                             <label for="password-confirm">Confirmar nueva contraseña</label>
                             <div class="input-group" id="show_password_confirm">
-                                <input type="password" class="form-control text-center" id="password-confirm" value="" required>
+                                <input type="password" class="form-control text-center border-input" id="password-confirm" value="" required>
                                 <button type="button" class="verPassword input-group-addon" id="btn-show-passConfirm">
                                     <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="form-group text-center mt-5">
-                            <button type="submit" class="btn btn-brown" id="btn-continuar">Continuar</button>
+                            <button type="submit" class="btn btn-primary" id="btn-continuar">Continuar</button>
                         </div>
                     </form>
                 </div>
