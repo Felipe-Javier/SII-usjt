@@ -1,0 +1,453 @@
+:root {
+    --guindo: #ab0033;
+    --cafe: #bc955c;
+    --cafe-claro: #ddc9a3;
+    --gris: #54565a;
+}
+
+#contenido-barra, #contenido-cuerpo {
+	font-family: sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+#contenido-barra #barra {
+	background-color: #FFFFFF;
+}
+
+.text-bold {
+	font-weight: bold !important;
+}
+
+.text-nobold {
+	font-weight: normal !important;
+}
+
+#contenido-cuerpo .modal-content {
+	padding: 20px 10px;
+}
+
+.modal-content#grupos {
+    width: 100%;
+}
+
+.modal-content#result {
+    width: 100%;
+}
+
+.modal-content#result .msj {
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* SIDEBAR */
+
+.ciclos {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.grupos-ciclos {
+	background-color: var(--guindo);
+	height: 40px;
+	width: 100%;
+	font-family: sans-serif;
+	color: #f2f2f2;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 20px;
+	padding-top: 10px;
+}
+
+.sidebar {
+	overflow: overlay;
+}
+
+.sidebar .has-submenu .submenu{
+    font-size: 12px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	padding-right: 1rem;
+	padding-left: 0.3rem;
+}
+
+.sidebar ul .nav-link {
+	color: #333;
+}
+
+.sidebar .nav-item .nav-link:hover {
+	background-color: var(--guindo);
+	color: #f2f2f2;
+	
+}
+
+ul .nav-link.selected {
+	background-color: var(--guindo);
+	color: #f2f2f2;
+}
+
+/* botones de asistencia*/
+
+.menu-asistencias {
+    margin-right: auto;
+    margin-left: -10px;
+    margin-top: -2px;
+    margin-bottom: 80px;
+}
+
+.menu-asistencias .btn-custom-menu {
+    background-color: var(--guindo);
+    color: #f2f2f2 !important;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 0px;
+    font-size: 12px;
+    height: 39px;
+    text-transform: uppercase;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menu-asistencias .btn-custom-menu:hover {
+    background-color:  var(--cafe-claro) !important;
+    color: #333 !important;
+}
+
+.menu-asistencias #registrar-editar-asistencias {
+    border-top-left-radius: 2px;
+}
+
+.menu-asistencias .btn-custom-menu.active {
+    background-color: var(--cafe-claro) !important;
+    color: #000 !important;
+    
+}
+
+.menu-asistencias .btn-custom-menu.active:hover {
+    background-color:  var(--cafe-claro) !important;
+    color: #333 !important;
+}
+
+/* Tabla */
+
+.tableAsistencias-responsive {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: overlay;
+}
+
+#table-asistencias th, #table-registrar-asistencias th, #table-editar-asistencias th, #table-formato-asistencias th  {
+    border: 1px solid #dee2e6;
+    background-color: var(--cafe-claro);
+    color: #333;
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+#table-asistencias td, #table-registrar-asistencias td, #table-editar-asistencias td, #table-formato-asistencias td {
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+#table-asistencias .thDescNomenclatura, #table-formato-asistencias .thDescNomenclatura {
+    font-size: 12px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+#table-asistencias .thDia, #table-asistencias .thNomTotal, #table-formato-asistencias .thDia, #table-formato-asistencias .thNomTotal {
+    background-color: #f2f2f2 !important;
+    font-size: 12px;
+    color: #333 !important;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+#table-asistencias .thMatricula {
+    font-size: 12px;
+}
+
+#table-asistencias .thNombre, #table-formato-asistencias .thNombre {
+    font-size: 12px;
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
+}
+
+#table-asistencias .thNum {
+    font-size: 12px;
+}
+
+#table-asistencias td .icon-circle {
+    font-size: 6px !important;
+}
+
+#table-asistencias td .icon-slash {
+    transform: rotate(90deg);
+}
+
+#table-asistencias .tdNum, #table-asistencias .tdMat, #table-asistencias .tdNombre {
+    font-size: 12px !important;
+}
+
+#table-asistencias .tdNomenclatura {
+    font-size: 12px !important;
+    font-weight: 900;
+}
+
+#table-asistencias .tdNomTotal {
+    font-size: 12px !important;
+}
+
+
+#table-registrar-asistencias {
+    text-transform: uppercase;
+}
+
+#table-registrar-asistencias label, #table-formato-asistencias label {
+    margin-bottom: 0rem;
+}
+
+#table-registrar-asistencias .th-num, #table-registrar-asistencias .td-num {
+    width: 5%;
+}
+
+#table-registrar-asistencias .th-mat, #table-registrar-asistencias .td-mat {
+    width: 20%;
+}
+
+#table-registrar-asistencias .th-nombre, #table-registrar-asistencias .td-nombre {
+    width: 50%;
+}
+
+#table-registrar-asistencias .th-nomen, #table-registrar-asistencias .td-nomen {
+    width: 25%;
+}
+
+
+
+#table-editar-asistencias .th-mat, #table-editar-asistencias .td-mat {
+    width: 10%;
+}
+
+#table-editar-asistencias .th-nombre, #table-editar-asistencias .td-nombre {
+    width: 40%;
+}
+
+#table-editar-asistencias .th-fecha, #table-editar-asistencias .td-fecha {
+    width: 40%;
+}
+
+#table-editar-asistencias .th-nomen, #table-editar-asistencias .td-nomen {
+    width: 10%;
+}
+
+#table-editar-asistencias .DatosAlumno_C1, #table-editar-asistencias .DatosAlumno_C2 {
+    margin-bottom: 0rem;
+}
+
+
+#table-informacionGrupo {
+    font-size: 12px;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+}
+
+#table-informacionGrupo th {
+    background-color: var(--cafe-claro);
+    color: #333;
+    vertical-align: middle;
+    width: 15%;
+}
+
+#table-informacionGrupo td {
+    background-color: #F2F2F2;
+    vertical-align: middle;
+    width: 35%;
+}
+
+
+/* botones*/
+
+.button-custom {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 9px #999;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    height: 40px;
+    outline: none;
+    padding: 10px 20px;
+    text-align: center;	
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.button-blue {
+    background-color: var(--cafe);
+}
+
+.button-blue:hover {
+    background-color: var(--cafe-claro) !important;
+    color: #333 !important;
+}
+
+.button-blue:focus {
+    outline: none;
+}
+
+.button-blue:active {
+    background-color: var(--cafe-claro);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.button-red {
+    background-color: #dc3545
+}
+
+.button-red:hover {
+    background-color: #f3495a
+}
+
+.button-red:focus {
+    outline: none;
+}
+
+.button-red:active {
+    background-color: #dc3545;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--gris);
+    border-color: var(--gris);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #97999b;
+    border-color: #97999b;
+}
+
+/* MODAL */
+
+.modalEditarAsistencias {
+    display: none;
+}
+  
+.modalRegistrarAsistencias {
+    display: none;
+}
+
+.size-icon {
+    font-size: 20px;
+}
+
+.text-size {
+    font-size: 12px !important;
+}
+  
+.bodyModal {
+    width: 100%;
+    height: 100%;
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flex;
+    display: -o-inline-flex;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.form-header {
+    padding-top: 0px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.form-header .title {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: var(--guindo);
+    color: #FFFFFF;
+    width: 100%;
+}
+  
+.form-body {
+    background-color: #FFFFFF;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 12px !important;
+    padding-top: 35px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 35px;
+    text-transform: uppercase;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+
+.custom-select:focus {
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+
+/* Formato de Asistencia */
+.modal-content #formato-asistencias {
+    display: none;
+}
+
+.btnMostrarLista {
+    background-color: var(--cafe);
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    height: 32px;
+    outline: none;
+    padding: 0.375rem 0.75rem;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.btnMostrarLista:hover {
+    background-color: var(--cafe-claro) !important;
+    color: #333 !important;
+}
+
+.btnMostrarLista:focus {
+    outline: none;
+}
+
+.inputsAsistencia {
+    align-self: center;
+    display: none;
+}
