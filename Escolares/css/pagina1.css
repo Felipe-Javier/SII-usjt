@@ -1,0 +1,190 @@
+:root {
+    --guindo: #ab0033;
+    --cafe: #bc955c;
+    --cafe-claro: #ddc9a3;
+    --gris: #54565a;
+}
+
+#contenido-barra, #contenido-cuerpo {
+	font-family: sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+#contenido-barra #barra {
+	background-color: #FFFFFF;
+}
+
+.text-bold {
+	font-weight: bold;
+}
+
+.text-nobold {
+	font-weight: normal;
+}
+
+#contenido-barra select {
+	border: solid 2px #0c5286;
+	border-radius: 5px;
+	margin-top: -12px;
+	margin-bottom: -10px;
+	text-transform: uppercase;
+}
+
+#contenido-cuerpo .modal-content {
+	padding: 20px 10px;
+}
+
+#contenido-cuerpo .modal-content span {
+	font-size: 12px;
+}
+/*
+#contenido-cuerpo #result {
+	background-image: url('../img/logo-usjt.png');
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: center;
+	background-size: 200px;
+}*/
+
+
+/* TABLA */
+
+
+#contenido-cuerpo #table-grupos .thead-grupos {
+	background-color: var(--guindo);
+}
+
+#contenido-cuerpo #table-grupos .tbody-grupos {
+	background-color: #EEEDED;
+}
+
+#contenido-cuerpo #table-subir-cal {
+	color: #333;
+	text-transform: uppercase;
+}
+
+#contenido-cuerpo #table-subir-cal .thead-subir-cal {
+	background-color: var(--cafe-claro);
+	color: #333 !important;
+	width: 100%;
+	display: table;
+}
+
+
+#contenido-cuerpo #table-subir-cal .tbody-subir-cal {
+	background-color: #EEEDED;
+	height: 60vh;
+	overflow-y: overlay;
+	display: block;
+	width: 100%;
+
+}
+
+#contenido-cuerpo #table-subir-cal .th-td-mat, #contenido-cuerpo #table-subir-cal .th-td-p1, 
+#contenido-cuerpo #table-subir-cal .th-td-p2, #contenido-cuerpo #table-subir-cal .th-td-p3 {
+	width: 15%;
+} 
+
+#contenido-cuerpo #table-subir-cal .th-td-nom {
+	width: 40%;
+}
+
+#contenido-cuerpo #table-subir-cal td input, #contenido-cuerpo #table-subir-cal td select {
+	border: solid 2px var(--cafe);
+	border-radius: 5px;
+	text-transform: uppercase;
+}
+
+.table td {
+	vertical-align: middle;
+}
+
+
+.msj{
+	font-weight: bold;
+	font-size: 12px;
+	color: #333;
+	line-height: 20px;
+}
+
+/* SIDEBAR */
+
+.ciclos {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.grupos-ciclos {
+	background-color: var(--guindo);
+	height: 40px;
+	width: 100%;
+	font-family: sans-serif;
+	color: #f2f2f2;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 20px;
+	padding-top: 10px;
+	
+}
+
+.sidebar {
+	overflow: overlay;
+}
+
+.sidebar .has-submenu .submenu {
+	font-size: 12px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	padding-right: 1rem;
+	padding-left: 1rem;
+}
+
+.sidebar ul .nav-link {
+	color: #333;
+}
+
+.sidebar .nav-item .nav-link:hover {
+	background-color: var(--guindo);
+	color: #f2f2f2;
+	
+}
+
+ul .nav-link.selected {
+	background-color: var(--guindo);
+	color: #f2f2f2;
+}
+
+/* Boton */
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--guindo);
+    border-color: var(--guindo);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+    box-shadow: 0 0 0 0.2rem var(--cafe);
+}
+
+
+
+
+
+  
