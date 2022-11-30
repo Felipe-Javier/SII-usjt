@@ -7,7 +7,7 @@
 
 body {
     font-family: sans-serif;
-    background-color: rgba(186, 186, 186, .8);
+    background-color: #f2f2f2;
 }
 
 #logo-tamps img {
@@ -16,7 +16,7 @@ body {
 }
 
 #logo-usjt img {
-	width: 140px;
+	width: 230px;
 	height: 110px;
 }
 

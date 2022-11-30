@@ -93,6 +93,7 @@ $(document).ready(function() {
             data: {IdUsuario: IdUsuario, Matricula: Matricula, IdCiclo: IdCiclo, Ciclo: Ciclo},
 
             success: function(response) {
+                console.log(response);
                 var output = "";
                 if (response=='No se ha podido generar su boleta de calificaciones') {
                     $.confirm({
