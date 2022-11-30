@@ -72,7 +72,7 @@
                     </table>
                     <div class="row">
                       <div class="col-sm-12 justify-content-center">
-                        <button id="btn-imprimir" class="btn btn-primary" type="submit">Imprimir Boleta</button>
+                        <button id="btn-imprimir" class="btn btn-primary" type="submit"><i class="fas fa-print h6 mr-2"></i>Imprimir Boleta</button>
                       </div>
                     </div>';
           
