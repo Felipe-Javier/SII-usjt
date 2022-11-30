@@ -86,7 +86,7 @@
                     IdUsuarioAct="<?php echo $_SESSION['IdUsuario'] ?>" required disabled>
                 </div>
                 <div class="form-group text-center mt-5">
-	  	            <button type="submit" class="btn btn-primary" id="btn-actualizar">Actualizar</button>
+	  	            <button type="submit" class="btn btn-brown" id="btn-actualizar">Actualizar</button>
                 </div>
             </form>
         <div>

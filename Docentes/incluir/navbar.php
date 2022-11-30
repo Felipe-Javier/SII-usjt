@@ -12,7 +12,7 @@
         <a class="nav-link <?php echo $inicio; ?>" href="Inicio.php">Inicio </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link <?php echo $registrar_calificaciones; ?>" href="Registrar_calificaciones.php">Registrar Calificaciones</a>
+        <a class="nav-link <?php echo $control_calificaciones; ?>" href="Control_de_calificaciones.php">Control de calificaciones</a>
       </li>
       <li class="nav-item ">
         <a class="nav-link <?php echo $control_asistencias; ?>" href="Control_de_asistencias.php">Control de asistencias</a>

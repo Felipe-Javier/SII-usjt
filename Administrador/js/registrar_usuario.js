@@ -5,21 +5,18 @@ $(document).ready(function () {
     load_roles_usuario();
 
     function load_roles_usuario() {
-        var IdUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdUsuario");
-        var Action = 'Consultar_Roles_Usuario';
+        var IdUsuario = $(".navbar #navbarContent .dropdown .dropdown-menu .dropdown-item-text").attr("IdUsuario");
+        var Usuario = $(".navbar #navbarContent .dropdown .dropdown-menu .dropdown-item-text").attr("Usuario");
 
         $.ajax({
-            url:"ajax/ajax_registrar_usuario.php",
+            url:"ajax/ajax_ver_roles_de_usuario_existentes.php",
             method: "POST",
-            data:{Action: Action, IdUsuario: IdUsuario},
+            data:{IdUsuario: IdUsuario, Usuario: Usuario},
             
             success: function(response) {
-                if (response== 'Error al consultar los roles de usuario' || 
-                    response == 'No se han podido consultar los roles de usuario') {
-                    var output = '';
-                    output = '<option value="" selected disabled>'+response+'</option>';
-                    $('#form-reguser #Rol_Usuario').append(output);
-                } else if (response == 'No se encontraron roles de usuario') {
+                if (response == 'Error al realizar la consulta' || 
+                    response == 'No se han podido consultar los roles de usuario' ||
+                    response == 'No se encontraron roles de usuario') {
                     var output = '';
                     output = '<option value="" selected disabled>'+response+'</option>';
                     $('#form-reguser #Rol_Usuario').append(output);
@@ -36,30 +33,64 @@ $(document).ready(function () {
 
             error: function(error) {
                 var output = '';
-                output = '<option value="" selected disabled>Error al consultar los roles de usuario. '+error+'</option>';
+                output = '<option value="" selected disabled>Error al realizar la consulta. '+error+'</option>';
                 $('#form-reguser #Rol_Usuario').append(output);
             }
         });
     }
 
-    $("#search #buscar").on('click', function() {
-        var IdUsuario = $(".navbar #navbarContent .dropdown .nav-link").attr("IdUsuario");
+    var FormSearchUser = $('#form-searchuser.needs-validation');
+    
+    var validation_SearchUser = Array.prototype.filter.call(FormSearchUser, function(form) {
+       form.addEventListener('submit', function(event) {
+            if (form.checkValidity() == false) {
+                event.preventDefault();
+                event.stopPropagation();
+                form.classList.add('was-validated');
+                $.confirm({
+                    title: 'Buscando empleado/alumno',
+                    content: '<Strong>Atención ingrese los datos de busqueda faltantes para continuar</Strong>',
+                    type: 'red',
+                    typeAnimated: true,
+                    draggable: true,
+                    dragWindowBorder: false,
+                    buttons: {
+                        aceptar: {
+                            text: 'Aceptar',
+                            btnClass: 'btn btn-danger',
+                            action: function () {
+                                $(this).fadeOut();
+                            }
+                        }
+                    }
+                });
+            } else if (form.checkValidity() == true) {
+                event.preventDefault();
+                event.stopPropagation();
+                form.classList.add('was-validated');
+                buscar_empleado_alumno();
+            }
+        }, false);
+    });
+
+    function buscar_empleado_alumno() {
+        var IdUsuario = $(".navbar #navbarContent .dropdown .dropdown-menu .dropdown-item-text").attr("IdUsuario");
+        var Usuario = $(".navbar #navbarContent .dropdown .dropdown-menu .dropdown-item-text").attr("Usuario");
         var Clave = $('#search #clave').val();
         var TipoPersona = $('#search #tipo_persona').val();
-        var Action = 'Buscar empleado o alumno';
         
         $.ajax({
-            url:"ajax/ajax_registrar_usuario.php",
+            url:"ajax/ajax_buscar_empleado_alumno_por_clave.php",
             method: "POST",
-            data:{Action: Action, IdUsuario: IdUsuario, Clave: Clave, TipoPersona: TipoPersona},
+            data:{IdUsuario: IdUsuario, Usuario: Usuario, Clave: Clave, TipoPersona: TipoPersona},
             
 
             success: function(response) {
-                if (response== 'Error al buscar el empleado/alumno' || 
+                if (response== 'Error al realizar la consulta' || 
                     response == 'No se ha podido buscar el empleado/alumno con los datos ingresados') {
                     $.confirm({
                         title: 'Buscando empleado/alumno',
-                        content: response,
+                        content: '<strong>'+response+'</strong>',
                         type: 'red',
                         typeAnimated: true,
                         draggable: true,
@@ -74,11 +105,12 @@ $(document).ready(function () {
                             }
                         }
                     });
-                } else {
-                    if (response == 'No se encontraron empleados/alumnos registrados con los datos ingresados') {
+                } else if (response == 'No se encontraron EMPLEADOS EN GENERAL registrados con los datos ingresados' ||
+                           response == 'No se encontraron DOCENTES registrados con los datos ingresados' ||
+                           response == 'No se encontraron ALUMNOS registrados con los datos ingresados') {
                         $.confirm({
                             title: 'Buscando empleado/alumno',
-                            content: response,
+                            content: '<strong>'+response+'</strong>',
                             type: 'orange',
                             typeAnimated: true,
                             draggable: true,
@@ -93,41 +125,44 @@ $(document).ready(function () {
                                 }
                             }
                         });
-                    } else {
-                        const info = JSON.parse(response);
-                        var output = '';
-                        $('#form-reguser #row-nomcompleto #Nombres').val(info[0].NOMBRES);
-                        $('#form-reguser #row-nomcompleto #Apellido_Paterno').val(info[0].APELLIDOPATERNO);
-                        $('#form-reguser #row-nomcompleto #Apellido_Materno').val(info[0].APELLIDOMATERNO);
-                        if (TipoPersona == 'PERSONAL') {
-                            var exists = info.includes(info[0], 'IDINSTRUCTOR');
-                            output = output + '<div class="col-md-4 mb-3">'+
-                                            '<label for="NumEmpleado">Número de empleado</label>'+
+                } else {
+                    const info = JSON.parse(response);
+                    var output = '';
+                    $('#form-reguser #row-nomcompleto #Nombres').val(info[0].NOMBRES);
+                    $('#form-reguser #row-nomcompleto #Apellido_Paterno').val(info[0].APELLIDOPATERNO);
+                    $('#form-reguser #row-nomcompleto #Apellido_Materno').val(info[0].APELLIDOMATERNO);
+                    if (TipoPersona == 'PERSONAL_GENERAL' || TipoPersona == 'DOCENTES') {
+                        var exists = info.includes(info[0], 'IDINSTRUCTOR');
+                        output = output + '<div class="col-md-4 mb-3">'+
+                                            '<label class="label-titles" for="NumEmpleado">Número de empleado</label>'+
                                             '<input type="number" class="form-control text-center" id="NumEmpleado" value="'+info[0].NOEMPLEADO+'" disabled required>'+
                                         '</div>'+
                                         '<div class="col-md-4 mb-3">'+
-                                            '<label for="IdPersona">Id de persona</label>'+
+                                            '<label class="label-titles" for="IdPersona">Id de persona</label>'+
                                             '<input type="number" class="form-control text-center" id="IdPersona" value="'+info[0].IDPERSONA+'" disabled required>'+
                                         '</div>';
                                     if (exists === true) {
                                         output = output + '<div class="col-md-4 mb-3">'+
-                                            '<label for="IdInstructor">Id de instructor</label>'+
+                                            '<label class="label-titles" for="IdInstructor">Id de instructor</label>'+
                                             '<input type="number" class="form-control text-center" id="IdInstructor" value="'+info[0].IDINSTRUCTOR+'" disabled required>'+
                                         '</div>';
                                     }
-                            $('#form-reguser #row-claves-persona').html(output);
-                        } else if (TipoPersona == 'ALUMNOS') {
-                            output =    '<div class="col-md-4 mb-3">'+
-                                            '<label for="IdPersona">Id de persona</label>'+
-                                            '<input type="number" class="form-control text-center" id="IdPersona" value="'+info[0].IDPERSONA+'" disabled required>'+
-                                        '</div>'+
-                                        '<div class="col-md-4 mb-3">'+
-                                            '<label for="IdAlumno">Id de alumno</label>'+
-                                            '<input type="number" class="form-control text-center" id="IdAlumno" value="'+info[0].IDALUMNO+'" disabled required>'+
-                                        '</div>';
-                            $('#form-reguser #row-claves-persona').html(output);
-                            $('#form-reguser #Usuario').val(info[0].MATRICULA);
-                        }
+                        $('#form-reguser #row-claves-persona').html(output);
+                    } else if (TipoPersona == 'ALUMNOS') {
+                        output =    '<div class="col-md-4 mb-3">'+
+                                        '<label class="label-titles" for="IdPersona">Id de persona</label>'+
+                                        '<input type="number" class="form-control text-center" id="IdPersona" value="'+info[0].IDPERSONA+'" disabled required>'+
+                                    '</div>'+
+                                    '<div class="col-md-4 mb-3">'+
+                                        '<label class="label-titles" for="IdAlumno">Id de alumno</label>'+
+                                        '<input type="number" class="form-control text-center" id="IdAlumno" value="'+info[0].IDALUMNO+'" disabled required>'+
+                                    '</div>'+
+                                    '<div class="col-md-4 mb-3">'+
+                                        '<label class="label-titles" for="IdAlumnoMatricula">Id de alumno matricula</label>'+
+                                        '<input type="number" class="form-control text-center" id="IdAlumnoMatricula" value="'+info[0].IDALUMNOMATRICULA+'" disabled required>'+
+                                    '</div>';
+                        $('#form-reguser #row-claves-persona').html(output);
+                        $('#form-reguser #Usuario').val(info[0].MATRICULA);
                     }
                 }
             },
@@ -135,7 +170,7 @@ $(document).ready(function () {
             error: function(error) {
                 $.confirm({
                     title: 'Buscando empleado/alumno',
-                    content: 'Error al buscar el empleado/alumno. '+error,
+                    content: '<strong>Error al realizar la consulta. '+error+'</strong>',
                     type: 'red',
                     typeAnimated: true,
                     draggable: true,
@@ -152,7 +187,7 @@ $(document).ready(function () {
                 });
             }
         });
-    });
+    }
 
     $("#show_password #btn-showPassword").on('click', function() {
         if ($('#show_password #Password').attr("type") == "text") {
@@ -201,7 +236,7 @@ $(document).ready(function () {
     });
 
     function registrar_usuario() {
-        var Action = 'Registrar usuario';
+        var TipoIdentificacion = $('#form-searchuser #tipo_persona>option:selected').val();;
         var Nombres = $('#form-reguser #row-nomcompleto #Nombres').val();
         var ApellidoPaterno = $('#form-reguser #row-nomcompleto #Apellido_Paterno').val();
         var ApellidoMaterno = $('#form-reguser #row-nomcompleto #Apellido_Materno').val();
@@ -213,34 +248,37 @@ $(document).ready(function () {
         var Activo = $('#form-reguser input[name="ActInact"]:checked').val();
         var Bloqueado = $('#form-reguser input[name="BloqDesbloq"]:checked').val();
         var IdUserReg = $('#form-reguser #UsuarioReg').attr('IdUsuarioReg');
+        var NombreUserReg = $('#form-reguser #UsuarioReg').val();
 
         if (IdRolUsuario == 9) {
             var IdPersona = $('#form-reguser #row-claves-persona #IdPersona').val();
             var IdAlumno = $('#form-reguser #row-claves-persona #IdAlumno').val();
+            var IdAlumnoMatricula = $('#form-reguser #row-claves-persona #IdAlumnoMatricula').val();
             
-            var UserData = {Action: Action, IdPersona: IdPersona, IdAlumno: IdAlumno, Nombres: Nombres, ApellidoPaterno: ApellidoPaterno,
-                            ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, ContraseniaTemp: PasswordTemp,
-                            Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, NomRolUsuario: NomRolUsuario, 
-                            IdUsuarioRegistra: IdUserReg};
+            var UserData = {TipoIdentificacion: TipoIdentificacion, IdPersona: IdPersona, IdAlumno: IdAlumno, IdAlumnoMatricula: IdAlumnoMatricula,
+                            Nombres: Nombres, ApellidoPaterno: ApellidoPaterno, ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, 
+                            ContraseniaTemp: PasswordTemp, Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, 
+                            NomRolUsuario: NomRolUsuario, IdUsuarioRegistra: IdUserReg, NombreUsuarioRegistra: NombreUserReg};
+            
         } else if (IdRolUsuario == 8) {
             var NumEmpleado = $('#form-reguser #row-claves-persona #NumEmpleado').val();
             var IdPersona = $('#form-reguser #row-claves-persona #IdPersona').val();
             var IdInstructor = $('#form-reguser #row-claves-persona #IdInstructor').val();
             
-            var UserData = {Action: Action, NumEmpleado: NumEmpleado, IdPersona: IdPersona, IdInstructor: IdInstructor, Nombres: Nombres, 
-                            ApellidoPaterno: ApellidoPaterno, ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, 
-                            ContraseniaTemp: PasswordTemp, Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, 
-                            NomRolUsuario: NomRolUsuario, IdUsuarioRegistra: IdUserReg};
+            var UserData = {TipoIdentificacion: TipoIdentificacion, NumEmpleado: NumEmpleado, IdPersona: IdPersona, IdInstructor: IdInstructor, 
+                            Nombres: Nombres, ApellidoPaterno: ApellidoPaterno, ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, 
+                            Contrasenia: Password, ContraseniaTemp: PasswordTemp, Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, 
+                            NomRolUsuario: NomRolUsuario, IdUsuarioRegistra: IdUserReg, NombreUsuarioRegistra: NombreUserReg};
         } else if (IdRolUsuario != 9 && IdRolUsuario != 8) {
             var NumEmpleado = $('#form-reguser #row-claves-persona #NumEmpleado').val();
             var IdPersona = $('#form-reguser #row-claves-persona #IdPersona').val();
             
-            var UserData = {Action: Action, NumEmpleado: NumEmpleado, IdPersona: IdPersona, Nombres: Nombres, 
+            var UserData = {TipoIdentificacion: TipoIdentificacion, NumEmpleado: NumEmpleado, IdPersona: IdPersona, Nombres: Nombres, 
                             ApellidoPaterno: ApellidoPaterno, ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, 
                             ContraseniaTemp: PasswordTemp, Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, 
-                            NomRolUsuario: NomRolUsuario, IdUsuarioRegistra: IdUserReg};
+                            NomRolUsuario: NomRolUsuario, IdUsuarioRegistra: IdUserReg, NombreUsuarioRegistra: NombreUserReg};
         }
-
+        
         $.ajax({
             url: "ajax/ajax_registrar_usuario.php",
             method: "POST",
@@ -248,11 +286,11 @@ $(document).ready(function () {
             data: UserData,
             
             success: function(response) {
-                if (response== 'Error al registrar el usuario' || 
+                if (response== 'Error al realizar el registro' || 
                     response == 'No se ha podido registrar el usuario') {
                     $.confirm({
                         title: 'Registrando usuario',
-                        content: response,
+                        content: '<strong>'+response+'</strong>',
                         type: 'red',
                         typeAnimated: true,
                         draggable: true,
@@ -267,10 +305,31 @@ $(document).ready(function () {
                             }
                         }
                     });
+                } else if (response == 'Ya existe una cuenta con el mismo nombre de usuario' ||
+                           response == 'La persona a la que se le esta creando una cuenta de usuario no es ALUMNO' ||
+                           response == 'La persona a la que se le esta creando una cuenta de usuario no es DOCENTE' ||
+                           response == 'La persona a la que se le esta creando una cuenta de usuario no es EMPLEADO EN GENERAL') {
+                    $.confirm({
+                        title: 'Registrando usuario',
+                        content: '<strong>'+response+'</strong>',
+                        type: 'orange',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-warning',
+                                action: function () {
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
                 } else if (response == 'El usuario ha sido registrado exitosamente') {
                     $.confirm({
                         title: 'Registrando usuario',
-                        content: response,
+                        content: '<strong>'+response+'</strong>',
                         type: 'green',
                         typeAnimated: true,
                         draggable: true,
@@ -291,7 +350,7 @@ $(document).ready(function () {
             error: function(error) {
                 $.confirm({
                     title: 'Registrando usuario',
-                    content: 'Error al buscar el empleado/alumno. '+error,
+                    content: '<strong>Error al realizar el registro. '+error+'</strong>',
                     type: 'red',
                     typeAnimated: true,
                     draggable: true,

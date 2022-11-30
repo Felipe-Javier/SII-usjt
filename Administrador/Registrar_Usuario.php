@@ -49,23 +49,25 @@
       include("incluir/navbar.php");
     ?>
 	<div class=" row justify-content-center m-0 mt-4 mb-2">
-		<div class="fondoGeneral">
+		<form id="form-searchuser" class="fondoGeneral col-md-8 needs-validation" novalidate>
+			<p class="text-center mb-4 registrarUsuario">Busqueda de Empleado/Alumno</p>
 			<div class="input-group" id="search">
-				<input name="clave" type="search" 
-				class="form-control col-md-8" id="clave" placeholder="Ingrese el número de empleado o la matricula segun sea el caso"/>
-				<select name="tipo_persona" id="tipo_persona" class="form-control col-md-4">
+				<input name="clave" type="search" class="form-control col-md-8" id="clave" placeholder="Número de empleado o matricula"
+				  required />
+				<select name="tipo_persona" id="tipo_persona" class="custom-select col-md-4" required>
 					<option value="" selected disabled>-- Tipo de persona --</option>
-					<option value="PERSONAL">Personal de la institución</option>
+					<option value="PERSONAL_GENERAL">Personal en general</option>
+					<option value="DOCENTES">Docentes</option>
 					<option value="ALUMNOS">Alumnos</option>
 				</select>
 				<div class="input-group-append">
-					<button type="button" class="input-text form-control btn btn-primary" id="buscar">Buscar</button>
+					<button type="submit" class="input-text btn btn-brown" id="buscar">Buscar</button>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
     <div class=" row justify-content-center m-0 mt-2 mb-4">
-		<form id="form-reguser" class="fondoGeneral needs-validation" novalidate>
+		<form id="form-reguser" class="fondoGeneral col-md-8 needs-validation" novalidate>
 			<p class="text-center mb-4 registrarUsuario">Registro de Usuario</p>
 			<div class="form-row" id="row-nomcompleto">
 				<div class="col-md-4 mb-3">
@@ -105,11 +107,11 @@
 					<div class="form-inline justify-content-center">
 						<div class="custom-control custom-radio">
 							<input type="radio" class="custom-control-input PassTemp" name="PassTemp" id="PassTemp_1" value="1" required>
-							<label class="custom-control-label" for="PassTemp_1">Sí</label>
+							<label class="custom-control-label label-text" for="PassTemp_1">Sí</label>
 						</div>
 						<div class="ml-5 custom-control custom-radio">
 							<input type="radio" class="custom-control-input PassTemp" name="PassTemp" id="PassTemp_0" value="0" required>
-							<label class="custom-control-label" for="PassTemp_0">No</label>
+							<label class="custom-control-label label-text" for="PassTemp_0">No</label>
 						</div>
 					</div>
 				</div>
@@ -122,25 +124,25 @@
 				<div class="col-md-4 text-center mb-3">
 					<label class="label-titles" for="status">Status</label>
 					<div class="form-inline justify-content-center">
-						<label name="status" for="ActInact">Activo</label>
-						<div class="ml-3 custom-control custom-radio">
+						<label class="label-text" name="status" for="ActInact">Activo</label>
+						<div class="ml-3 custom-control custom-radio custom-control-inline">
 							<input type="radio" class="custom-control-input ActInact" name="ActInact" id="Activo" value="1" required>
-							<label class="custom-control-label" for="Activo">Sí</label>
+							<label class="custom-control-label label-text" for="Activo">Sí</label>
 						</div>
-						<div class="ml-3 custom-control custom-radio">
+						<div class="ml-3 custom-control custom-radio custom-control-inline">
 							<input type="radio" class="custom-control-input ActInact" name="ActInact" id="Inactivo" value="0" required>
-							<label class="custom-control-label" for="Inactivo">No</label>
+							<label class="custom-control-label label-text" for="Inactivo">No</label>
 						</div>
 					</div>
 					<div class="form-inline justify-content-center">
-						<label name="status" for="BloqDesbloq">Bloqueado</label>
-						<div class="ml-3 custom-control custom-radio">
+						<label class="label-text" name="status" for="BloqDesbloq">Bloqueado</label>
+						<div class="ml-3 custom-control custom-radio custom-control-inline">
 							<input type="radio" class="custom-control-input BloqDesbloq" name="BloqDesbloq" id="Bloqueado" value="1" required>
-							<label class="custom-control-label" for="Bloqueado">Sí</label>
+							<label class="custom-control-label label-text" for="Bloqueado">Sí</label>
 						</div>
-						<div class="ml-3 custom-control custom-radio">
+						<div class="ml-3 custom-control custom-radio custom-control-inline">
 							<input type="radio" class="custom-control-input BloqDesbloq" name="BloqDesbloq" id="Desbloqueado" value="0" required>
-							<label class="custom-control-label" for="Desbloqueado">No</label>
+							<label class="custom-control-label label-text" for="Desbloqueado">No</label>
 						</div>
 					</div>
 				</div>
@@ -153,7 +155,7 @@
 				</div>
 			</div>
 			<div class="form-row justify-content-center">
-				<button class="btn btn-primary" type="submit">Guardar</button>
+				<button class="btn btn-brown" type="submit">Guardar</button>
 			</div>
 		</form>
 	</div>

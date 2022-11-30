@@ -6,20 +6,17 @@ $(document).ready(function () {
 
     function load_roles_usuario() {
         var IdUsuario = $(".navbar #navbarContent .dropdown .dropdown-item-text").attr("IdUsuario");
-        var Action = 'Consultar_Roles_Usuario';
-        
+        var Usuario = $(".navbar #navbarContent .dropdown .dropdown-menu .dropdown-item-text").attr("Usuario");
+
         $.ajax({
-            url:"ajax/ajax_recuperar_contraseña.php",
+            url:"ajax/ajax_ver_roles_de_usuario_existentes.php",
             method: "POST",
-            data:{Action: Action, IdUsuario: IdUsuario},
+            data:{IdUsuario: IdUsuario, Usuario: Usuario},
             
             success: function(response) {
                 if (response == 'Error al realizar la consulta' || 
-                    response == 'No se han podido consultar los roles de usuario') {
-                    var output = '';
-                    output = '<option value="" selected disabled>'+response+'</option>';
-                    $('#form-recpass #RolUsuario').append(output);
-                } else if (response == 'No se encontraron roles de usuario') {
+                    response == 'No se han podido consultar los roles de usuario' ||
+                    response == 'No se encontraron roles de usuario') {
                     var output = '';
                     output = '<option value="" selected disabled>'+response+'</option>';
                     $('#form-recpass #RolUsuario').append(output);
@@ -36,7 +33,7 @@ $(document).ready(function () {
 
             error: function(error) {
                 var output = '';
-                output = '<option value="" selected disabled>Error al consultar los roles de usuario. '+error+'</option>';
+                output = '<option value="" selected disabled>Error al realizar la consulta. '+error+'</option>';
                 $('#form-recpass #RolUsuario').append(output);
             }
         });
@@ -164,19 +161,18 @@ $(document).ready(function () {
 
     function recuperar_contraseña(IdUsuarioActualiza, UsuarioActualiza, RolUsuarioActualiza, Usuario, Password, PasswordTemp, 
                                 IdRolUsuario, RolUsuario, NumEmpleado) {
-        var Action = "Recuperar_Contrasenia";
         var data = new Array();
 
         if (IdRolUsuario == 9) {
-            data = {Action: Action, IdUsuarioActualiza: IdUsuarioActualiza, UsuarioActualiza: UsuarioActualiza, 
+            data = {IdUsuarioActualiza: IdUsuarioActualiza, UsuarioActualiza: UsuarioActualiza, 
                 RolUsuarioActualiza: RolUsuarioActualiza, Usuario: Usuario, Password: Password, PasswordTemp: PasswordTemp, 
                 IdRolUsuario: IdRolUsuario, RolUsuario: RolUsuario};
         } else if (IdRolUsuario != 9) {
-            data = {Action: Action, IdUsuarioActualiza: IdUsuarioActualiza, UsuarioActualiza: UsuarioActualiza, 
+            data = {IdUsuarioActualiza: IdUsuarioActualiza, UsuarioActualiza: UsuarioActualiza, 
                 RolUsuarioActualiza: RolUsuarioActualiza, Usuario: Usuario, Password: Password, PasswordTemp: PasswordTemp, 
                 IdRolUsuario: IdRolUsuario, RolUsuario: RolUsuario, NumEmpleado: NumEmpleado};
         }
-        console.log(data);
+        
         $.ajax({
             url: "ajax/ajax_recuperar_contraseña.php",
             method: "POST",
@@ -196,8 +192,6 @@ $(document).ready(function () {
             },
 
             success: function(response) {
-                console.log(response);
-                var output = "";
                 if (response=='Error al realizar la consulta' || response=='No se ha podido recuperar la contraseña') {
                     $.confirm({
                         title: 'Recuperando contraseña',

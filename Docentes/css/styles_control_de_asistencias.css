@@ -422,9 +422,9 @@ ul .nav-link.selected {
 }
 
 /* Formato de Asistencia */
-.modal-content #formato-asistencias {
+/*.modal-content #formato-asistencias {
     display: none;
-}
+}*/
 
 .btnMostrarLista {
     background-color: var(--cafe);

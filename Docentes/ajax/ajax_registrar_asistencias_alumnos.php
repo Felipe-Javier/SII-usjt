@@ -1,7 +1,9 @@
 <?php
   include ("../clases/procesar_asistencias.php");
+  include ("../clases/seguridad_usuario.php");
 
   $procesar_asistencias = new procesar_asistencias();
+  $seguridad_usuario = new seguridad_usuario();
 
   $Matricula = '';
   $IdRelGrupoAlumno= '';
@@ -20,10 +22,15 @@
         $IdsRelsGruposAlumnos = $procesar_asistencias->sanitize_array($_POST['IdsRelsGruposAlumnos']);
         $IdsAlumnos = $procesar_asistencias->sanitize_array($_POST['IdsAlumnos']);
         $IdsAlumnosMatriculas = $procesar_asistencias->sanitize_array($_POST['IdsAlumnosMatriculas']);
+        $MatriculasAlumnos = $procesar_asistencias->sanitize_array($_POST['MatriculasAlumnos']);
         $IdsPersonas = $procesar_asistencias->sanitize_array($_POST['IdsPersonas']);
+        $NombresAlumnos = $procesar_asistencias->sanitize_array($_POST['NombresAlumnos']);
         $IdGrupo = $procesar_asistencias->sanitize_int($_POST['IdGrupo']);
+        $Grupo = $procesar_asistencias->sanitize_str($_POST['Grupo']);
         $IdPlanMateria = $procesar_asistencias->sanitize_int($_POST['IdPlanMateria']);
+        $Materia = $procesar_asistencias->sanitize_str($_POST['Materia']);
         $IdInstructor = $procesar_asistencias->sanitize_int($_POST['IdInstructor']);
+        $Docente = $procesar_asistencias->sanitize_str($_POST['Docente']);
         $IdCicloEscolar = $procesar_asistencias->sanitize_int($_POST['IdCicloEscolar']);
         $IdsNomenclaturas = $procesar_asistencias->sanitize_array($_POST['IdsNomenclaturas']);
         $IdUsuario = $procesar_asistencias->sanitize_int($_POST['IdUsuario']);
@@ -34,8 +41,9 @@
             $IdsRelsGruposAlumnos[$i], $IdPlanMateria, $IdInstructor, $IdCicloEscolar, $IdDiaAsistencia, $FechaAsistencia, $IdsNomenclaturas[$i], 
             $IdUsuario);
             $TipoMovimiento = $seguridad_usuario->sanitize_str('REGISTRO');
-            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ EL REGISTRO DE ASISTENCIAS DE LOS ALUMNO CON MATRICULA: '.$Matriculas[$i]
-                                                      ', DE LA MATERIA: '.$Materia.', DEL GRUPO: '.$Grupo.', ASIGNADOS AL DOCENTE: '.$Docente);
+            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ EL REGISTRO DE ASISTENCIA CON FECHA: '.$FechaAsistencia.
+                ' DEL ALUMNO: '.$NombresAlumnos[$i].' CON MATRICULA: '.$MatriculasAlumnos[$i].', DE LA MATERIA: '.$Materia.
+                ', DEL GRUPO: '.$Grupo.', ASIGNADO AL DOCENTE: '.$Docente);
             $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                             
             $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);

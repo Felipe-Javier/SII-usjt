@@ -48,65 +48,6 @@
 }*/
 
 
-/* TABLA */
-
-
-#contenido-cuerpo #table-grupos .thead-grupos {
-	background-color: var(--guindo);
-}
-
-#contenido-cuerpo #table-grupos .tbody-grupos {
-	background-color: #EEEDED;
-}
-
-#contenido-cuerpo #table-subir-cal {
-	color: #333;
-	text-transform: uppercase;
-}
-
-#contenido-cuerpo #table-subir-cal .thead-subir-cal {
-	background-color: var(--guindo);
-	width: 100%;
-	display: table;
-}
-
-
-#contenido-cuerpo #table-subir-cal .tbody-subir-cal {
-	background-color: #EEEDED;
-	height: 60vh;
-	overflow-y: overlay;
-	display: block;
-	width: 100%;
-
-}
-
-#contenido-cuerpo #table-subir-cal .th-td-mat, #contenido-cuerpo #table-subir-cal .th-td-p1, 
-#contenido-cuerpo #table-subir-cal .th-td-p2, #contenido-cuerpo #table-subir-cal .th-td-p3 {
-	width: 15%;
-} 
-
-#contenido-cuerpo #table-subir-cal .th-td-nom {
-	width: 40%;
-}
-
-#contenido-cuerpo #table-subir-cal td input, #contenido-cuerpo #table-subir-cal td select {
-	border: solid 2px var(--cafe);
-	border-radius: 5px;
-	text-transform: uppercase;
-}
-
-.table td {
-	vertical-align: middle;
-}
-
-
-.msj{
-	font-weight: bold;
-	font-size: 12px;
-	color: #333;
-	line-height: 20px;
-}
-
 /* SIDEBAR */
 
 .ciclos {
@@ -153,6 +94,91 @@
 ul .nav-link.selected {
 	background-color: var(--guindo);
 	color: #f2f2f2;
+}
+
+
+/* TABLA CONTENIDO-CUERPO */
+
+#contenido-cuerpo #table-grupos .thead-grupos {
+	background-color: var(--guindo);
+}
+
+#contenido-cuerpo #table-grupos .tbody-grupos {
+	background-color: #EEEDED;
+}
+
+#contenido-cuerpo #table-subir-cal {
+	color: #333;
+	text-transform: uppercase;
+}
+
+#contenido-cuerpo #table-subir-cal .thead-subir-cal {
+	background-color: var(--guindo);
+	width: 100%;
+	display: table;
+}
+
+
+#contenido-cuerpo #table-subir-cal .tbody-subir-cal {
+	background-color: #EEEDED;
+	height: 60vh;
+	overflow-y: overlay;
+	display: block;
+	width: 100%;
+
+}
+
+#contenido-cuerpo #table-subir-cal .th-td-mat, #contenido-cuerpo #table-subir-cal .th-td-p1, 
+#contenido-cuerpo #table-subir-cal .th-td-p2, #contenido-cuerpo #table-subir-cal .th-td-p3 {
+	width: 15%;
+} 
+
+#contenido-cuerpo #table-subir-cal .th-td-nom {
+	width: 40%;
+}
+
+#contenido-cuerpo #table-subir-cal td .form-control:focus, #contenido-cuerpo #table-subir-cal td .custom-select:focus {
+	border: solid 2px var(--cafe);
+	border-color: var(--cafe);
+	border-radius: 5px;
+    box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
+	outline: 0;
+	text-transform: uppercase;
+}
+
+.table td {
+	vertical-align: middle;
+}
+
+
+.msj{
+	font-weight: bold;
+	font-size: 12px;
+	color: #333;
+	line-height: 20px;
+}
+
+
+/* TABLA INFORMACION GRUPO */
+
+#table-informacionGrupo {
+    font-size: 12px;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+}
+
+#table-informacionGrupo th {
+    background-color: var(--cafe-claro);
+    color: #333;
+    vertical-align: middle;
+    width: 15%;
+}
+
+#table-informacionGrupo td {
+    background-color: #F2F2F2;
+    vertical-align: middle;
+    width: 35%;
 }
 
 /* Boton */

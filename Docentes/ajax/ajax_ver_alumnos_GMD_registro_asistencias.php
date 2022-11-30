@@ -30,16 +30,17 @@
                 $result->execute();
                 $output .= 
                     '<div class="col-sm-12">
-                        <table class="table table-bordered table-responsive text-center" id="table-registrar-asistencias">
-                            <thead class="thead-reg-asistencias text-light">
-                                <tr>
-                                    <th class="th-num">No.</th>
-                                    <th class="th-mat">Matricula</th>
-                                    <th class="th-nombre">Nombre del Estudiante</th>
-                                    <th class="th-nomen">Nomenclatura</th>
-                                <tr>
-                            <thead>
-                            <tbody class="tbody-reg-asistencias">';
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center" id="table-registrar-asistencias">
+                                <thead class="thead-reg-asistencias text-light">
+                                    <tr>
+                                        <th class="th-num">No.</th>
+                                        <th class="th-mat">Matricula</th>
+                                        <th class="th-nombre">Nombre del Estudiante</th>
+                                        <th class="th-nomen">Nomenclatura</th>
+                                    <tr>
+                                <thead>
+                                <tbody class="tbody-reg-asistencias">';
 
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     $NumList++; 
@@ -48,14 +49,14 @@
                                     <td class="td-mat">
                                         <label class="DatosAlumno_C1" id="M-'.$row['MATRICULA'].'" IdRelGruAlu="'.$row['IDRELGRUPOALUMNO'].'"
                                         IdAlumno="'.$row['IDALUMNO'].'" IdAlumnoMatricula="'.$row['IDALUMNOMATRICULA'].'"
-                                        IdPersona="'.$row['IDPERSONA'].'">'.
+                                        Matricula="'.$row['MATRICULA'].'" IdPersona="'.$row['IDPERSONA'].'">'.
                                             $row['MATRICULA']
                                         .'</label>
                                     </td>
                                     <td class="td-nombre">
-                                        <label class="DatosAlumno_C2" id="N-'.$row['MATRICULA'].'" IdGrupo="'.$row['IDGRUPO'].'"
-                                        IdPlanMat="'.$row['IDPLANMATERIA'].'" IdInstructor="'.$row['IDINSTRUCTOR'].'"
-                                        IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'">'.
+                                        <label class="DatosAlumno_C2" id="N-'.$row['MATRICULA'].'" Nombre="'.$row['NOMBREALUMNO'].'"
+                                         IdGrupo="'.$row['IDGRUPO'].'" IdPlanMat="'.$row['IDPLANMATERIA'].'"
+                                         dInstructor="'.$row['IDINSTRUCTOR'].'" IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'">'.
                                             $row['NOMBREALUMNO']
                                         .'</label>
                                     </td>
@@ -69,20 +70,26 @@
                     
                 $output .= '</tbody>
                         </table>
-                    </div>';
+                    </div>
+                </div>';
 
                 echo $output;
             } else {
                 $output .= 
-                    '<div class="table-responsive">
-                        <table class="table table-bordered text-center text-light" id="table-registrar-asistencias">
-                            <thead class="thead-reg-asistencias">
-                                <tr>
-                                    <th>No se encontraron alumnos activos en este grupo</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    <div>';
+                    '<div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center" id="table-registrar-asistencias">
+                                <thead class="thead-reg-asistencias text-light">
+                                    <tr>
+                                        <th>
+                                            No se encontraron alumnos activos en la materia: '.$Materia.',
+                                            del grupo: '.$Grupo.' 
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        <div>
+                    </div>';
                 echo $output;
             }
 

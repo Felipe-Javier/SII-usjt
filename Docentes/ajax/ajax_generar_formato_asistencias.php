@@ -38,7 +38,7 @@
                         '<div class="col-sm-12">'.
                             '<div class="table-responsive">'.
                                 '<table class="table table-bordered" id="table-formato-asistencias">'.
-                                    '<thead class="">'.
+                                    '<thead>'.
                                         '<tr>'.
                                             '<th rowspan="3">NO</th>'.
                                             '<th rowspan="3">MATRICULA</th>'.
@@ -101,16 +101,37 @@
                     </div>
                 </div>';
                 echo $output;
-            } else {
-                $output .= 'No se encontraron alumnos registrados en la materia '.$Materia.' del grupo '.$Grupo;
+
+                $TipoMovimiento = $seguridad_usuario->sanitize_str('BUSQUEDA');
+                $Valor = $seguridad_usuario->sanitize_str('SE REALIZO LA BUSQUEDA LOS ALUMNOS REGISTRADOS EN LA MATERIA: '.$Materia.', '.
+                'DEL GRUPO: '.$Grupo.', DEL DOCENTE: '.$Docente.', DEL CICLO ESCOLAR: '.$CicloEscolar);
+                $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
+                                                                                                            
+                $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
+            } else { 
+                $output .= '<div class="row mt-3">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center text-light" id="table-formato-asistencias">
+                                            <thead>
+                                                <tr>
+                                                    <th>No se encontraron alumnos registrados en la materia: '.$Materia.', '.
+                                                    'del grupo: '.$Grupo.', del ciclo escolar: '.$CicloEscolar.'</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    <div>
+                                </div>
+                            </div>';
                 echo $output;
             }
         } else {
-            $output .= 'No se han podido consultar los alumnos registrados en la materia '.$Materia.' del grupo '.$Grupo;
+            $output .= 'No se han podido consultar los alumnos registrados en la materia '.$Materia.
+                       ', del grupo: '.$Grupo.', del ciclo escolar: '.$CicloEscolar;
             echo $output;
         }
     } else {
-        $output = 'Error al generar el formato de lista asistencias';
+        $output = 'Error al realizar la consulta';
         echo $output;
         exit;
     }

@@ -162,6 +162,8 @@
                                                 aria-controls="MG-'.$row['IDPLANMATERIA'].'" aria-expanded="false"
                                                 aria-label="Toggle navigation" IdPlanMateria="'.$row['IDPLANMATERIA'].'"
                                                 IdGrupo="'.$row['IDGRUPO'].'" Grupo="'.$row['GRUPO'].'"
+                                                IdCicloEscolar="'.$row['IDCICLOESCOLAR'].'" Cuatrimestre="'.$row['CUATRIMESTRE'].'"
+                                                Turno="'.$row['TURNO'].'" Carrera="'.$row['CARRERA'].'" Modalidad="'.$row['MODALIDAD'].'"
                                                 FIE_P1="'.$row['FECHAINICIOEVALUACION_PARCIAL1'].'"
                                                 FTE_P1="'.$row['FECHATERMINOEVALUACION_PARCIAL1'].'"
                                                 FIE_P2="'.$row['FECHAINICIOEVALUACION_PARCIAL2'].'"

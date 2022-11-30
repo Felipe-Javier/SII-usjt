@@ -14,7 +14,7 @@ $(document).ready(function () {
     function load_años_por_grupos(IdUsuario, Docente, IdPersona, IdInstructor) {
         var Opcion = 'Traer_anios_por_grupos';
         $.ajax({
-            url: "ajax/ajax_ver_grupos.php",
+            url: "ajax/ajax_ver_grupos_calificaciones.php",
             method: "POST",
             async: true,
             data: {
@@ -61,7 +61,7 @@ $(document).ready(function () {
     function load_cuatrimestres_por_años(IdPersona, IdInstructor, Anio) {
         var Opcion = 'Traer_cuatrimestres_por_anio';
         $.ajax({
-            url: "ajax/ajax_ver_grupos.php",
+            url: "ajax/ajax_ver_grupos_calificaciones.php",
             method: "POST",
             async: true,
             data: {
@@ -108,7 +108,7 @@ $(document).ready(function () {
     function load_grupos_por_cuatrimestre(IdPersona, IdInstructor, IdCuatrimestre) {
         var Opcion = 'Traer_grupos_por_cuatrimestre';
         $.ajax({
-            url: "ajax/ajax_ver_grupos.php",
+            url: "ajax/ajax_ver_grupos_calificaciones.php",
             method: "POST",
             async: true,
             data: {
@@ -155,7 +155,7 @@ $(document).ready(function () {
     function load_materias_por_grupos(IdPersona, IdInstructor, IdGrupo) {
         var Opcion = 'Traer_materias_por_grupo';
         $.ajax({
-            url: "ajax/ajax_ver_grupos.php",
+            url: "ajax/ajax_ver_grupos_calificaciones.php",
             method: "POST",
             async: true,
             data: {
@@ -219,341 +219,104 @@ $(document).ready(function () {
         var Grupo = $(this).attr("Grupo");
         var IdPlanMateria = $(this).attr("IdPlanMateria");
         var Materia = $(this).html();
+        var IdCicloEscolar = $(this).attr("IdCicloEscolar");
+        var Cuatrimestre = $(this).attr("Cuatrimestre");
+        var Turno = $(this).attr("Turno");
+        var Carrera = $(this).attr("Carrera");
+        var Modalidad = $(this).attr("Modalidad");
         var FIE_P1 = $(this).attr("FIE_P1");
         var FTE_P1 = $(this).attr("FTE_P1");
         var FIE_P2 = $(this).attr("FIE_P2");
         var FTE_P2 = $(this).attr("FTE_P2");
         var FIE_F = $(this).attr("FIE_F");
         var FTE_F = $(this).attr("FTE_F");
-        /*console.log("FIE_P1: "+FIE_P1);
-        console.log("FTE_P1: "+FTE_P1);
-        console.log("FIE_P2: "+FIE_P2);
-        console.log("FTE_P2: "+FTE_P2);
-        console.log("FIE_F: "+FIE_F);
-        console.log("FTE_F: "+FTE_F);
-        console.log(IdUsuario);
-        console.log(Docente);
-        console.log(IdInstructor);
-        console.log(IdGrupo);
-        console.log(IdPlanMateria);
-        console.log(Materia);*/
-        
-        $.ajax({
-            url: "ajax/ajax_ver_calificaciones_alumnos.php",
-            method: "POST",
-            async: true,
-            data: {
-                IdUsuario: IdUsuario,
-                Docente: Docente,
-                IdInstructor: IdInstructor,
-                IdGrupo: IdGrupo,
-                Grupo: Grupo,
-                IdPlanMateria: IdPlanMateria,
-                Materia: Materia
-            },
 
-            success: function (response) {
-                var output = "";
-                if (response == 'Ingrese los datos de usuario para ver los grupos asignados' || 
-                    response == 'No se ha podido consutar los alumnos registrados') {
-                    $.confirm({
-                        title: 'Consultando alumnos de este grupo',
-                        content: response,
-                        type: 'red',
-                        typeAnimated: true,
-                        draggable: true,
-                        dragWindowBorder: false,
-                        buttons: {
-                            aceptar: {
-                                text: 'Aceptar',
-                                btnClass: 'btn btn-danger',
-                                action: function () {
-                                    $(this).fadeOut();
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    output = response;
-                    $("#contenido-cuerpo #result").html(output);
-                    if (Materia == "null") {
-                        $("#contenido-cuerpo #Nombre_Materia").html("No hay una materia activa en este grupo");
-                    } else {
-                        $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria", IdPlanMateria);
-                        $("#contenido-cuerpo #Nombre_Materia").html(Materia);
-                    }
-                    load_CatTipoCorte(IdUsuario, Docente, Grupo, Materia);
-                    load_CatTipoCalificacion(IdUsuario, Docente, Grupo, Materia);
-                    deshabilitar_habilitar_por_fechas(FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F);
-                }
-            },
+        $("#contenido-cuerpo #result").html(
+            '<div class="row justify-content-center mb-3" id="InformacionGrupo">'+
+                '<div class="col-sm-9">'+
+                    '<div class="table-responsive">'+
+                        '<table class="table table-bordered" id="table-informacionGrupo" FIE_P1="'+FIE_P1+'"'+
+                        ' FTE_P1="'+FTE_P1+'" FIE_P2="'+FIE_P2+'" FTE_P2="'+FTE_P2+'" FIE_F="'+FIE_F+'" FTE_F="'+FTE_F+'">'+
+                            '<thead>'+
+                                '<tr>'+
+                                    '<th scope="row">CUATRIMESTRE:</th>'+
+                                    '<td>'+
+                                        '<span class="text-nobold" id="Cuatrimestre_Grupo" IdCicloEscolar="'+IdCicloEscolar+'">'+
+                                            Cuatrimestre+
+                                        '</span>'+
+                                    '</td>'+
+                                    '<th scope="row">CARRERA:</th>'+
+                                    '<td><span class="text-nobold" id="Carrera_Grupo">'+Carrera+'</span></td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<th scope="row">MATERIA:</th>'+
+                                    '<td>'+
+                                        '<span class="text-nobold" id="Nombre_Materia" IdPlanMateria="'+IdPlanMateria+'">'+
+                                            Materia+
+                                        '</span>'+
+                                    '</td>'+
+                                    '<th scope="row">GRUPO:</th>'+
+                                    '<td><span class="text-nobold" id="Nombre_Grupo" IdGrupoAsistencia="'+IdGrupo+'">'+Grupo+'</span></td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<th scope="row">MODALIDAD:</th>'+
+                                    '<td><span class="text-nobold" id="Grupo_Modalidad">'+Modalidad+'</span></td>'+
+                                    '<th scope="row">TURNO:</th>'+
+                                    '<td><span class="text-nobold" id="Grupo_Turno">'+Turno+'</span></td>'+
+                                '</tr>'+
+                            '</thead>'+
+                        '</table>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="row" id="control-calificaciones"></div>'
+        );
 
-            error: function (error) {
-                $("#result").html(error);
-            }
-        });
+        ver_calificaciones_alumnos (IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, Cuatrimestre,
+        FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F);
     });
-
-    function load_CatTipoCorte(IdUsuario, Docente, Grupo, Materia) {
-        /*var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
-        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
-        var Grupo = $("ul .nav-item .materias.nav-link").attr("Grupo");
-        var Materia = $("ul .nav-item .materias.nav-link").html();*/
-
-        $.ajax({
-            url: "ajax/ajax_ver_CatTipoCorte_CatTipoCalificacion.php",
-            method: "POST",
-            async: true,
-            data: {
-                Action: 'VerCatTipoCorte',
-                IdUsuario: IdUsuario,
-                Docente: Docente,
-                Grupo: Grupo,
-                Materia: Materia
-            },
-
-            success: function (response) {
-                var output = "";
-                if (response == 'Error al realizar la consulta' || response == 'No se ha podido realizar la consulta') {
-                    $.confirm({
-                        title: 'Consultando los tipos de corte',
-                        content: response,
-                        type: 'red',
-                        typeAnimated: true,
-                        draggable: true,
-                        dragWindowBorder: false,
-                        buttons: {
-                            aceptar: {
-                                text: 'Aceptar',
-                                btnClass: 'btn btn-danger',
-                                action: function () {
-                                    $(this).fadeOut();
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    if (response == 'No hay tipos de corte para mostrar') {
-                        $.confirm({
-                            title: 'Consultando los tipos de corte',
-                            content: response,
-                            type: 'orange',
-                            typeAnimated: true,
-                            draggable: true,
-                            dragWindowBorder: false,
-                            buttons: {
-                                aceptar: {
-                                    text: 'Aceptar',
-                                    btnClass: 'btn btn-warning',
-                                    action: function () {
-                                        $(this).fadeOut();
-                                    }
-                                }
-                            }
-                        });
-                    } else {
-                        var array = [];
-                        var info = JSON.parse(response);
-                        array = info;
-                        var numRows = array.length;
-                        $("body #contenido-cuerpo #table-subir-cal tbody").each(function() {
-                            for (var i=0; i<numRows; i++) {
-                                output = array[i].IdElementoInternoDetalle;
-                                if (output == 2842) {
-                                    $(this).find(".th-td-p1").attr('IdTipocorte',output);
-                                    $(this).find(".th-td-p1 .input-cal").attr('IdTipocorte',output);
-                                    $(this).find(".th-td-p1 .tipo-cal").attr('IdTipocorte',output);
-                                } else {
-                                    if (output == 2843) {
-                                        $(this).find(".th-td-p2").attr('IdTipocorte',output);
-                                        $(this).find(".th-td-p2 .input-cal").attr('IdTipocorte',output);
-                                        $(this).find(".th-td-p2 .tipo-cal").attr('IdTipocorte',output);
-                                    } else {
-                                        if (output == 2844) {
-                                            $(this).find(".th-td-p3").attr('IdTipocorte',output);
-                                            $(this).find(".th-td-p3 .input-cal").attr('IdTipocorte',output);
-                                            $(this).find(".th-td-p3 .tipo-cal").attr('IdTipocorte',output);
-                                        }
-                                    }
-                                }
-                            }
-                        });
-                    }
-                }
-            },
-
-            error: function (error) {
-                $.confirm({
-                    title: 'Consultando los tipos de corte',
-                    content: 'Error al realizar la consulta. '+error,
-                    type: 'orange',
-                    typeAnimated: true,
-                    draggable: true,
-                    dragWindowBorder: false,
-                    buttons: {
-                        aceptar: {
-                            text: 'Aceptar',
-                            btnClass: 'btn btn-warning',
-                            action: function () {
-                                $(this).fadeOut();
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    }
-
-    function load_CatTipoCalificacion(IdUsuario, Docente, Grupo, Materia) {
-        /*var IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
-        var Docente = $("#barra #datos-usuario").attr("NombreEmpleado");
-        var Grupo = $("ul .nav-item .materias.nav-link").attr("Grupo");
-        var Materia = $("ul .nav-item .materias.nav-link").html();*/
-
-        $.ajax({
-            url: "ajax/ajax_ver_CatTipoCorte_CatTipoCalificacion.php",
-            method: "POST",
-            async: true,
-            data: {
-                Action: 'VerCatTipoCalificacion',
-                IdUsuario: IdUsuario,
-                Docente: Docente,
-                Grupo: Grupo,
-                Materia: Materia
-            },
-
-            success: function (response) {
-                var output = "";
-                if (response == 'Error al realizar la consulta' || response == 'No se ha podido realizar la consulta') {
-                    $.confirm({
-                        title: 'Consultando los tipos de calificacion',
-                        content: response,
-                        type: 'red',
-                        typeAnimated: true,
-                        draggable: true,
-                        dragWindowBorder: false,
-                        buttons: {
-                            aceptar: {
-                                text: 'Aceptar',
-                                btnClass: 'btn btn-danger',
-                                action: function () {
-                                    $(this).fadeOut();
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    if (response == 'No hay tipos de corte para mostrar') {
-                        $.confirm({
-                            title: 'Consultando los tipos de calificacion',
-                            content: response,
-                            type: 'orange',
-                            typeAnimated: true,
-                            draggable: true,
-                            dragWindowBorder: false,
-                            buttons: {
-                                aceptar: {
-                                    text: 'Aceptar',
-                                    btnClass: 'btn btn-warning',
-                                    action: function () {
-                                        $(this).fadeOut();
-                                    }
-                                }
-                            }
-                        });
-                    } else {
-                        var array = [];
-                        var info = JSON.parse(response);
-                        array = info;
-                        var numRows = array.length;
-                        $("body #contenido-cuerpo #table-subir-cal .tipo-cal").each(function() {
-                            var TipoCal = $(this).attr('TipoCal');
-                            for (var i=0; i<numRows; i++) {
-                                if (TipoCal == array[i].ElementoCatalogo) {
-                                    output = '<option value="'+array[i].IdElementoInternoDetalle+'" selected>'+array[i].ElementoCatalogo+'</option>';
-                                } else {
-                                    output = '<option value="'+array[i].IdElementoInternoDetalle+'">'+array[i].ElementoCatalogo+'</option>';
-                                }
-                                $(this).append(output);
-                            }
-                        });
-                    }   
-                }
-            },
-
-            error: function (error) {
-                $.confirm({
-                    title: 'Consultando los tipos de calificacion',
-                    content: 'Error al realizar la consulta. '+error,
-                    type: 'orange',
-                    typeAnimated: true,
-                    draggable: true,
-                    dragWindowBorder: false,
-                    buttons: {
-                        aceptar: {
-                            text: 'Aceptar',
-                            btnClass: 'btn btn-warning',
-                            action: function () {
-                                $(this).fadeOut();
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    }
-
-    function deshabilitar_habilitar_por_fechas(FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F) {
-        $("body #contenido-cuerpo #table-subir-cal tbody tr").each(function() {
-            let DateTime = new Date('2020-04-26 17:35:20.000');
-            let mxDateTime = DateTime.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-
-            let DateTimeFIE_P1 = new Date(FIE_P1);
-            let mxDateTimeFIE_P1 = DateTimeFIE_P1.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-
-            let DateTimeFTE_P1 = new Date(FTE_P1);
-            let mxDateTimeFTE_P1 = DateTimeFTE_P1.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-
-            let DateTimeFIE_P2 = new Date(FIE_P2);
-            let mxDateTimeFIE_P2 = DateTimeFIE_P2.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-
-            let DateTimeFTE_P2 = new Date(FTE_P2);
-            let mxDateTimeFTE_P2 = DateTimeFTE_P2.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-
-            let DateTimeFIE_F = new Date(FIE_F);
-            let mxDateTimeFIE_F = DateTimeFIE_F.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-
-            let DateTimeFTE_F = new Date(FTE_F);
-            let mxDateTimeFTE_F = DateTimeFTE_F.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
-            
-            if (mxDateTime < mxDateTimeFIE_P1 || mxDateTime > mxDateTimeFTE_P1) {
-                $(this).find(".th-td-p1 .input-cal").attr('disabled', true);
-                $(this).find(".th-td-p1 .tipo-cal").attr('disabled', true);
-            }
-
-            if (mxDateTime < mxDateTimeFIE_P2 || mxDateTime > mxDateTimeFTE_P2) {
-                $(this).find(".th-td-p2 .input-cal").attr('disabled', true);
-                $(this).find(".th-td-p2 .tipo-cal").attr('disabled', true);
-            }
-
-            if (mxDateTime < mxDateTimeFIE_F || mxDateTime > mxDateTimeFTE_F) {
-                $(this).find(".th-td-p3 .input-cal").attr('disabled', true);
-                $(this).find(".th-td-p3 .tipo-cal").attr('disabled', true);
-            }
-        });
-    }
 
     $("body").on("click", "#contenido-cuerpo #result #btn-reg-cal", function (event) {
         event.preventDefault();
 
         var Matriculas = new Array();
+        var NombresAlumnos = new Array();
         var IdsRelsGruposAlumnos = new Array();
         var Calificaciones = new Array();
         var IdsTiposCortes = new Array();
         var IdsTiposCalificaciones = new Array();
+        var Grupo = "";
         var IdPlanMateria = "";
+        var Materia = "";
+        var Cuatrimestre = "";
         var IdUsuario = "";
+        var FIE_P1 = "";
+        var FTE_P1 = "";
+        var FIE_P2 = "";
+        var FTE_P2 = "";
+        var FIE_F = "";
+        var FTE_F = "";
         
+        $("#contenido-cuerpo #table-subir-cal tbody tr").each(function () {
+            if ($(this).find(".th-td-nom .nom").attr("NombreAlumno") != "" && $(this).find(".th-td-p1 .input-cal").val() != "" 
+                && $(this).find('.th-td-p1 .input-cal').prop('disabled')==false && $(this).find(".th-td-p1 .tipo-cal").val() != "" &&
+                $(this).find('.th-td-p1 .tipo-cal').prop('disabled')==false) {
+                    NombresAlumnos.push($(this).find(".th-td-nom .nom").attr("NombreAlumno"));
+            } else {
+                if($(this).find(".th-td-nom .nom").attr("NombreAlumno") != "" && $(this).find(".th-td-p2 .input-cal").val() != "" 
+                    && $(this).find('.th-td-p2 .input-cal').prop('disabled')==false && $(this).find(".th-td-p2 .tipo-cal").val() != "" &&
+                    $(this).find('.th-td-p2 .tipo-cal').prop('disabled')==false) {
+                        NombresAlumnos.push($(this).find(".th-td-nom .nom").attr("NombreAlumno"));
+                } else {
+                    if($(this).find(".th-td-nom .nom").attr("NombreAlumno") != "" && $(this).find(".th-td-p3 .input-cal").val() != "" 
+                        && $(this).find('.th-td-p3 .input-cal').prop('disabled')==false && $(this).find(".th-td-p3 .tipo-cal").val() != "" &&
+                        $(this).find('.th-td-p3 .tipo-cal').prop('disabled')==false) {
+                            NombresAlumnos.push($(this).find(".th-td-nom .nom").attr("NombreAlumno"));
+                    }
+                }
+            }
+        });
+
         $("#contenido-cuerpo #table-subir-cal tbody tr").each(function () {
             if ($(this).find(".th-td-mat .mat").attr("matricula") != "" && $(this).find(".th-td-p1 .input-cal").val() != "" 
                 && $(this).find('.th-td-p1 .input-cal').prop('disabled')==false && $(this).find(".th-td-p1 .tipo-cal").val() != "" &&
@@ -706,19 +469,337 @@ $(document).ready(function () {
         
         if (Matriculas.length > 0 && IdsRelsGruposAlumnos.length > 0 && Calificaciones.length > 0
             && IdsTiposCortes.length && IdsTiposCalificaciones.length > 0) {
-            IdPlanMateria = $("#contenido-cuerpo #Nombre_Materia").attr("IdPlanMateria");
+            Grupo = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo #Nombre_Grupo").html();
+            IdPlanMateria = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo #Nombre_Materia").attr("IdPlanMateria");
+            Materia = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo #Nombre_Materia").html();
+            Cuatrimestre = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo #Cuatrimestre_Grupo").html();
             IdUsuario = $("#barra #datos-usuario").attr("IdUsuario");
+            FIE_P1 = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo").attr('FIE_P1');
+            FTE_P1 = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo").attr('FTE_P1');
+            FIE_P2 = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo").attr('FIE_P2');
+            FTE_P2 = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo").attr('FTE_P2');
+            FIE_F = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo").attr('FIE_F');
+            FTE_F = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo").attr('FTE_F');
         }
 
         console.log(Matriculas);
+        console.log(NombresAlumnos);
         console.log(IdsRelsGruposAlumnos);
         console.log(Calificaciones);
         console.log(IdsTiposCortes);
         console.log(IdsTiposCalificaciones);
+        console.log(Grupo);
         console.log(IdPlanMateria);
+        console.log(Materia);
+        console.log(Cuatrimestre);
         console.log(IdUsuario);
+        console.log(FIE_P1);
+        console.log(FTE_P1);
+        console.log(FIE_P2);
+        console.log(FTE_P2);
+        console.log(FIE_F);
+        console.log(FTE_F);
 
-        /*$.confirm({
+        /*registrar_calificaciones_alumnos (Matriculas, NombresAlumnos, IdsRelsGruposAlumnos, Calificaciones, IdsTiposCortes,
+        IdsTiposCalificaciones, Grupo, IdPlanMateria, Materia, Cuatrimestre, IdUsuario)*/
+    });
+
+    function ver_calificaciones_alumnos (IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, Cuatrimestre, 
+                                        FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F) {
+        $.ajax({
+            url: "ajax/ajax_ver_calificaciones_alumnos.php",
+            method: "POST",
+            async: true,
+            data: {
+                IdUsuario: IdUsuario,
+                Docente: Docente,
+                IdInstructor: IdInstructor,
+                IdGrupo: IdGrupo,
+                Grupo: Grupo,
+                IdPlanMateria: IdPlanMateria,
+                Materia: Materia,
+                Cuatrimestre: Cuatrimestre
+            },
+
+            success: function (response) {
+                var output = "";
+                if (response == 'Ingrese los datos de usuario para ver los grupos asignados' || 
+                    response == 'No se ha podido consutar los alumnos registrados') {
+                    $.confirm({
+                        title: 'Consultando alumnos de este grupo',
+                        content: response,
+                        type: 'red',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-danger',
+                                action: function () {
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    output = response;
+                    $("#contenido-cuerpo #result #control-calificaciones").html(output);
+                    load_CatTipoCorte(IdUsuario, Docente, Grupo, Materia);
+                    load_CatTipoCalificacion(IdUsuario, Docente, Grupo, Materia);
+                    deshabilitar_habilitar_por_fechas(FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F);
+                }
+            },
+
+            error: function (error) {
+                $("#result").html(error);
+            }
+        });
+    }
+
+    function load_CatTipoCorte(IdUsuario, Docente, Grupo, Materia) {
+        $.ajax({
+            url: "ajax/ajax_ver_CatTipoCorte_CatTipoCalificacion.php",
+            method: "POST",
+            async: true,
+            data: {
+                Action: 'VerCatTipoCorte',
+                IdUsuario: IdUsuario,
+                Docente: Docente,
+                Grupo: Grupo,
+                Materia: Materia
+            },
+
+            success: function (response) {
+                var output = "";
+                if (response == 'Error al realizar la consulta' || response == 'No se ha podido realizar la consulta') {
+                    $.confirm({
+                        title: 'Consultando los tipos de corte',
+                        content: response,
+                        type: 'red',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-danger',
+                                action: function () {
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    if (response == 'No hay tipos de corte para mostrar') {
+                        $.confirm({
+                            title: 'Consultando los tipos de corte',
+                            content: response,
+                            type: 'orange',
+                            typeAnimated: true,
+                            draggable: true,
+                            dragWindowBorder: false,
+                            buttons: {
+                                aceptar: {
+                                    text: 'Aceptar',
+                                    btnClass: 'btn btn-warning',
+                                    action: function () {
+                                        $(this).fadeOut();
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        var array = [];
+                        var info = JSON.parse(response);
+                        array = info;
+                        var numRows = array.length;
+                        $("body #contenido-cuerpo #table-subir-cal tbody").each(function() {
+                            for (var i=0; i<numRows; i++) {
+                                output = array[i].IdElementoInternoDetalle;
+                                if (output == 2842) {
+                                    $(this).find(".th-td-p1").attr('IdTipocorte',output);
+                                    $(this).find(".th-td-p1 .input-cal").attr('IdTipocorte',output);
+                                    $(this).find(".th-td-p1 .tipo-cal").attr('IdTipocorte',output);
+                                } else {
+                                    if (output == 2843) {
+                                        $(this).find(".th-td-p2").attr('IdTipocorte',output);
+                                        $(this).find(".th-td-p2 .input-cal").attr('IdTipocorte',output);
+                                        $(this).find(".th-td-p2 .tipo-cal").attr('IdTipocorte',output);
+                                    } else {
+                                        if (output == 2844) {
+                                            $(this).find(".th-td-p3").attr('IdTipocorte',output);
+                                            $(this).find(".th-td-p3 .input-cal").attr('IdTipocorte',output);
+                                            $(this).find(".th-td-p3 .tipo-cal").attr('IdTipocorte',output);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            },
+
+            error: function (error) {
+                $.confirm({
+                    title: 'Consultando los tipos de corte',
+                    content: 'Error al realizar la consulta. '+error,
+                    type: 'orange',
+                    typeAnimated: true,
+                    draggable: true,
+                    dragWindowBorder: false,
+                    buttons: {
+                        aceptar: {
+                            text: 'Aceptar',
+                            btnClass: 'btn btn-warning',
+                            action: function () {
+                                $(this).fadeOut();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function load_CatTipoCalificacion(IdUsuario, Docente, Grupo, Materia) {
+        $.ajax({
+            url: "ajax/ajax_ver_CatTipoCorte_CatTipoCalificacion.php",
+            method: "POST",
+            async: true,
+            data: {
+                Action: 'VerCatTipoCalificacion',
+                IdUsuario: IdUsuario,
+                Docente: Docente,
+                Grupo: Grupo,
+                Materia: Materia
+            },
+
+            success: function (response) {
+                var output = "";
+                if (response == 'Error al realizar la consulta' || response == 'No se ha podido realizar la consulta') {
+                    $.confirm({
+                        title: 'Consultando los tipos de calificacion',
+                        content: response,
+                        type: 'red',
+                        typeAnimated: true,
+                        draggable: true,
+                        dragWindowBorder: false,
+                        buttons: {
+                            aceptar: {
+                                text: 'Aceptar',
+                                btnClass: 'btn btn-danger',
+                                action: function () {
+                                    $(this).fadeOut();
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    if (response == 'No hay tipos de corte para mostrar') {
+                        $.confirm({
+                            title: 'Consultando los tipos de calificacion',
+                            content: response,
+                            type: 'orange',
+                            typeAnimated: true,
+                            draggable: true,
+                            dragWindowBorder: false,
+                            buttons: {
+                                aceptar: {
+                                    text: 'Aceptar',
+                                    btnClass: 'btn btn-warning',
+                                    action: function () {
+                                        $(this).fadeOut();
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        var array = [];
+                        var info = JSON.parse(response);
+                        array = info;
+                        var numRows = array.length;
+                        $("body #contenido-cuerpo #table-subir-cal .tipo-cal").each(function() {
+                            var TipoCal = $(this).attr('TipoCal');
+                            for (var i=0; i<numRows; i++) {
+                                if (TipoCal == array[i].ElementoCatalogo) {
+                                    output = '<option value="'+array[i].IdElementoInternoDetalle+'" selected>'+array[i].ElementoCatalogo+'</option>';
+                                } else {
+                                    output = '<option value="'+array[i].IdElementoInternoDetalle+'">'+array[i].ElementoCatalogo+'</option>';
+                                }
+                                $(this).append(output);
+                            }
+                        });
+                    }   
+                }
+            },
+
+            error: function (error) {
+                $.confirm({
+                    title: 'Consultando los tipos de calificacion',
+                    content: 'Error al realizar la consulta. '+error,
+                    type: 'orange',
+                    typeAnimated: true,
+                    draggable: true,
+                    dragWindowBorder: false,
+                    buttons: {
+                        aceptar: {
+                            text: 'Aceptar',
+                            btnClass: 'btn btn-warning',
+                            action: function () {
+                                $(this).fadeOut();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function deshabilitar_habilitar_por_fechas(FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F) {
+        $("body #contenido-cuerpo #table-subir-cal tbody tr").each(function() {
+            //let DateTime = new Date('2020-04-26 17:35:20.000');
+            let DateTime = new Date();
+            let mxDateTime = DateTime.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
+
+            let DateTimeFIE_P1 = new Date(FIE_P1);
+            let mxDateTimeFIE_P1 = DateTimeFIE_P1.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
+
+            let DateTimeFTE_P1 = new Date(FTE_P1);
+            let mxDateTimeFTE_P1 = DateTimeFTE_P1.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
+
+            let DateTimeFIE_P2 = new Date(FIE_P2);
+            let mxDateTimeFIE_P2 = DateTimeFIE_P2.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
+
+            let DateTimeFTE_P2 = new Date(FTE_P2);
+            let mxDateTimeFTE_P2 = DateTimeFTE_P2.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
+
+            let DateTimeFIE_F = new Date(FIE_F);
+            let mxDateTimeFIE_F = DateTimeFIE_F.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
+
+            let DateTimeFTE_F = new Date(FTE_F);
+            let mxDateTimeFTE_F = DateTimeFTE_F.toLocaleString('es-MX', { timeZone: "America/Monterrey" });
+            
+            if (mxDateTime < mxDateTimeFIE_P1 || mxDateTime > mxDateTimeFTE_P1) {
+                $(this).find(".th-td-p1 .input-cal").attr('disabled', true);
+                $(this).find(".th-td-p1 .tipo-cal").attr('disabled', true);
+            }
+
+            if (mxDateTime < mxDateTimeFIE_P2 || mxDateTime > mxDateTimeFTE_P2) {
+                $(this).find(".th-td-p2 .input-cal").attr('disabled', true);
+                $(this).find(".th-td-p2 .tipo-cal").attr('disabled', true);
+            }
+
+            if (mxDateTime < mxDateTimeFIE_F || mxDateTime > mxDateTimeFTE_F) {
+                $(this).find(".th-td-p3 .input-cal").attr('disabled', true);
+                $(this).find(".th-td-p3 .tipo-cal").attr('disabled', true);
+            }
+        });
+    }
+
+    function registrar_calificaciones_alumnos (Matriculas, NombresAlumnos, IdsRelsGruposAlumnos, Calificaciones, IdsTiposCortes,
+                                               IdsTiposCalificaciones, Grupo, IdPlanMateria, Materia, Cuatrimestre, IdUsuario) {
+        $.confirm({
             title: 'Registrando calificaciones de los alumnos',
             content: 'Se registraran las calificaciones en el sistema. ¿Esta seguro que desea continuar?',
             type: 'blue',
@@ -736,11 +817,16 @@ $(document).ready(function () {
                             async: true,
                             data: {
                                 Matriculas: Matriculas,
+                                NombresAlumnos: NombresAlumnos,
                                 IdsRelsGruposAlumnos: IdsRelsGruposAlumnos,
                                 Calificaciones: Calificaciones,
                                 IdsTiposCortes: IdsTiposCortes,
                                 IdsTiposCalificaciones: IdsTiposCalificaciones,
+                                Docente: Docente,
+                                Grupo: Grupo,
                                 IdPlanMateria: IdPlanMateria,
+                                Materia: Materia,
+                                Cuatrimestre: Cuatrimestre,
                                 IdUsuario: IdUsuario
                             },
 
@@ -822,8 +908,8 @@ $(document).ready(function () {
                     }
                 }
             }
-        });*/
-    });
+        });
+    }
     
 })
 

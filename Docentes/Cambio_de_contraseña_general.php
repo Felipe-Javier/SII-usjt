@@ -26,7 +26,7 @@
     <body>
         <?php
             $inicio = "";
-            $registrar_calificaciones = "";
+            $control_calificaciones = "";
             $control_asistencias = "";
             $cambiar_contraseña = "active";
             

@@ -1,7 +1,9 @@
 <?php
   include ("../clases/procesar_asistencias.php");
+  include ("../clases/seguridad_usuario.php");
 
   $procesar_asistencias = new procesar_asistencias();
+  $seguridad_usuario = new seguridad_usuario();
 
   $Matricula = '';
   $IdRelGrupoAlumno= '';

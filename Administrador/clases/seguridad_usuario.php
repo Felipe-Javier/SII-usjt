@@ -45,12 +45,16 @@
 			}
 		}
 
-		public function registrar_usuario($NumEmpleado, $IdPersona, $IdAlumno, $IdInstructor, $Nombres, $ApellidoPaterno, $ApellidoMaterno, 
-												 $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, $IdRolUsuario, $IdUsuarioRegistra) {
+		public function registrar_usuario($NumEmpleado, $IdPersona, $IdInstructor, $IdAlumno, $IdAlumnoMatricula, $Nombres, $ApellidoPaterno, 
+		$ApellidoMaterno, $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, $IdRolUsuario, $IdUsuarioRegistra) {
 			try {	
-				$query = "EXEC spRegistrarUsuarios ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
+				//$query = "EXEC spRegistrarUsuarios ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
+				$query = "EXEC spRegistrarUsuarios @NumEmpleado='$NumEmpleado', @IdPersona='$IdPersona', @IdAlumno='$IdAlumno', ".
+				"@IdAlumnoMatricula='$IdAlumnoMatricula', @IdInstructor='$IdInstructor', @Nombres='$Nombres', @ApellidoPaterno='$ApellidoPaterno', ".
+				"@ApellidoMaterno='$ApellidoMaterno', @Usuario='$Usuario', @Contrasenia='$Contrasenia', @ContraseniaTemp='$ContraseniaTemp', ".
+				"@Activo='$Activo', @Bloqueado='$Bloqueado', @IdRolUsuario='$IdRolUsuario', @IdUsuarioRegistra='$IdUsuarioRegistra'";
 				$result = $this->connection->connect_db()->prepare($query);
-				$result->bindValue(1, $NumEmpleado, PDO::PARAM_INT|PDO::PARAM_NULL);
+				/*$result->bindValue(1, $NumEmpleado, PDO::PARAM_INT|PDO::PARAM_NULL);
 				$result->bindValue(2, $IdPersona, PDO::PARAM_INT);
 				$result->bindValue(3, $IdAlumno, PDO::PARAM_INT);
 				$result->bindValue(4, $IdInstructor, PDO::PARAM_INT|PDO::PARAM_NULL);
@@ -63,7 +67,7 @@
 				$result->bindValue(11, $Activo, PDO::PARAM_INT);
 				$result->bindValue(12, $Bloqueado, PDO::PARAM_INT);
 				$result->bindValue(13, $IdRolUsuario, PDO::PARAM_INT);
-				$result->bindValue(14, $IdUsuarioRegistra, PDO::PARAM_INT);
+				$result->bindValue(14, $IdUsuarioRegistra, PDO::PARAM_INT);*/
 				$result->execute();
 										
 				return $result;

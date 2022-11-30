@@ -13,6 +13,15 @@
 	padding: 30px;
 }
 
+#form-searchuser .registrarUsuario, #form-reguser .registrarUsuario {
+	background-color: var(--cafe);
+    border-radius: 10px;
+    color: #f2f2f2;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
 #form-reguser .label-titles {
 	font-family: sans-serif;
 	font-size: 14px;
@@ -20,13 +29,35 @@
     text-transform: uppercase;
 }
 
-#form-reguser .registrarUsuario {
-	background-color: var(--cafe);
-    border-radius: 10px;
-    color: #f2f2f2;
-	font-size: 18px;
-	font-weight: bold;
-	text-transform: uppercase;
+#form-reguser .label-text {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.custom-select {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.custom-select:focus {
+    background-color: #fff;
+    border-color: var(--cafe);
+    box-shadow: 0 0 0 0.16rem rgb(188 149 92 / 30%) !important;
+}
+
+.form-control {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.form-control:focus {
+    background-color: #fff;
+    border-color: var(--cafe);
+    box-shadow: 0 0 0 0.16rem rgb(188 149 92 / 30%) !important;
+}
+
+#form-reguser #Usuario, #form-reguser #Password {
+    text-transform: none !important;
 }
 
 /* ver password */
@@ -53,13 +84,9 @@
     border-right: 0px !important;
 }
 
-#form-reguser .form-control:focus {
-    box-shadow: none;
-}
-
 /*Botones*/
 
-.btn-primary {
+/*.btn-primary {
     color: #fff;
     background-color: var(--cafe);
     border-color: var(--cafe);
@@ -69,4 +96,37 @@
     color: #fff;
     border-color: var(--gris);
     background-color: var(--gris);
+}*/
+
+.btn {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.btn-brown {
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+	color: #f2f2f2;
+}
+
+.btn-brown:hover {
+    background-color: var(--cafe-claro);
+    border-color: var(--cafe-claro);
+	color: var(--gris);
+}
+
+.btn-brown:active {
+    background-color: var(--cafe-claro);
+    border-color: var(--gris);
+	box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
+	color: var(--gris);
+}
+
+.btn-brown:focus {
+    background-color: var(--cafe-claro);
+    border-color: var(--gris);
+	box-shadow: 0 0 0 0.2rem rgb(221 201 163 / 80%);
+	color: var(--gris);
 }

@@ -34,7 +34,6 @@
             if ($count > 0) {
                 $result->execute();
                 $output .= '
-                <div id="control-asistencias">
                     <div class="row mt-3">
                         <div class="col-sm-12">
                             <div class="row justify-content-end">
@@ -136,37 +135,34 @@
                             </table>
                         </div>
                     </div>
-                </div>
                 </div>';
 
                 echo $output;
             } else {
                 $output .= 
-                    '<div id="control-asistencias">
-                        <div class="row mt-2">
-                            <div class="col-sm-12">
-                                <div class="row justify-content-end">
-                                    <div class="col-sm-3">
-                                        <button class="button-custom button-blue" id="btnRegistrarAsistencia" data-toggle="modal" 
-                                        data-target="#modalRegAsistencias">
-                                            <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
-                                        </button>
-                                    </div>
+                    '<div class="row mt-2">
+                        <div class="col-sm-12">
+                            <div class="row justify-content-end">
+                                <div class="col-sm-3">
+                                    <button class="button-custom button-blue" id="btnRegistrarAsistencia" data-toggle="modal" 
+                                     data-target="#modalRegAsistencias">
+                                        <i class="fas fa-plus-square h6 mr-2"></i>Registrar asistencia
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3" id="reporte-asistencias">
-                            <div class="col-sm-12">
-                                <div class="tableAsistencias-responsive">
-                                    <table class="table table-bordered text-center text-light" id="table-asistencias">
-                                        <thead class="thead-asistencias">
-                                            <tr>
-                                                <th class="thSinResultados">No se encontraron asistencias registradas en el mes de '.$MesAsistencia.'
-                                                del año '.$AnioAsistencia.'</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
+                    </div>
+                    <div class="row mt-3" id="reporte-asistencias">
+                        <div class="col-sm-12">
+                            <div class="tableAsistencias-responsive">
+                                <table class="table table-bordered text-center text-light" id="table-asistencias">
+                                    <thead class="thead-asistencias">
+                                        <tr>
+                                            <th class="thSinResultados">No se encontraron asistencias registradas en el mes de '.$MesAsistencia.'
+                                             del año '.$AnioAsistencia.'</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>';

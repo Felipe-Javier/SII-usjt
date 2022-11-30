@@ -17,16 +17,16 @@
 			include("../incluir/links.php");
     	?>
 	    <link rel="stylesheet" type="text/css" href="css/styles_principal.css">
-	    <link rel="stylesheet" type="text/css" href="css/styles_registrar_calificaciones.css">
+	    <link rel="stylesheet" type="text/css" href="css/styles_control_calificaciones.css">
 		<?php
         	include("../incluir/scripts.php");
     	?>
-		<script src="js/registrar_calificaciones.js"></script>
+		<script src="js/control_calificaciones.js"></script>
 	</head>
 	<body>
 		<?php
 			$inicio = "";
-	        $registrar_calificaciones = "active";
+	        $control_calificaciones = "active";
 			$control_asistencias = "";
 			$cambiar_contraseña = "";
 

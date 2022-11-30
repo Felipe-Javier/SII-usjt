@@ -2,6 +2,30 @@ $(document).ready(function () {
 
     "use strict";
 
+    $("#show_password #btn-show-Pass").on('click', function() {
+        if ($('#show_password #password').attr("type") == "text"){
+            $('#show_password #password').attr('type', 'password');
+            $('#show_password #btn-show-Pass i').addClass( "fa-eye-slash" );
+            $('#show_password #btn-show-Pass i').removeClass( "fa-eye" );
+        } else if ($('#show_password #password').attr("type") == "password"){
+            $('#show_password #password').attr('type', 'text');
+            $('#show_password #btn-show-Pass i').removeClass( "fa-eye-slash" );
+            $('#show_password #btn-show-Pass i').addClass( "fa-eye" );
+        }
+    });
+
+    $("#show_password_confirm #btn-show-passConfirm").on('click', function() {  
+        if ($('#show_password_confirm #password-confirm').attr("type") == "text"){
+            $('#show_password_confirm #password-confirm').attr('type', 'password');
+            $('#show_password_confirm #btn-show-passConfirm i').addClass( "fa-eye-slash" );
+            $('#show_password_confirm #btn-show-passConfirm i').removeClass( "fa-eye" );
+        } else if ($('#show_password_confirm #password-confirm').attr("type") == "password"){
+                $('#show_password_confirm #password-confirm').attr('type', 'text');
+                $('#show_password_confirm #btn-show-passConfirm i').removeClass( "fa-eye-slash" );
+                $('#show_password_confirm #btn-show-passConfirm i').addClass( "fa-eye" );
+        }
+    });
+
     var formCambioContraseñaPrimeraVez = $('#cambio-contraseña-primera-vez.needs-validation');
     
     var validation_CambioContraseñaPrimeraVez = Array.prototype.filter.call(formCambioContraseñaPrimeraVez, function(form) {
