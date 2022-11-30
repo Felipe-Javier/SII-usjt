@@ -146,8 +146,12 @@ ul .nav-link.selected {
 	text-transform: uppercase;
 }
 
-.table td {
+#contenido-cuerpo th, #contenido-cuerpo td {
 	vertical-align: middle;
+}
+
+#contenido-cuerpo #table-subir-cal .tbody-subir-cal label {
+	margin-bottom: 0rem;
 }
 
 

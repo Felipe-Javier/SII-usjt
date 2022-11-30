@@ -256,7 +256,7 @@ $(document).ready(function () {
                                         '</span>'+
                                     '</td>'+
                                     '<th scope="row">GRUPO:</th>'+
-                                    '<td><span class="text-nobold" id="Nombre_Grupo" IdGrupoAsistencia="'+IdGrupo+'">'+Grupo+'</span></td>'+
+                                    '<td><span class="text-nobold" id="Nombre_Grupo" IdGrupo="'+IdGrupo+'">'+Grupo+'</span></td>'+
                                 '</tr>'+
                                 '<tr>'+
                                     '<th scope="row">MODALIDAD:</th>'+
@@ -285,6 +285,7 @@ $(document).ready(function () {
         var Calificaciones = new Array();
         var IdsTiposCortes = new Array();
         var IdsTiposCalificaciones = new Array();
+        var IdGrupo = "";
         var Grupo = "";
         var IdPlanMateria = "";
         var Materia = "";
@@ -469,6 +470,7 @@ $(document).ready(function () {
         
         if (Matriculas.length > 0 && IdsRelsGruposAlumnos.length > 0 && Calificaciones.length > 0
             && IdsTiposCortes.length && IdsTiposCalificaciones.length > 0) {
+            IdGrupo = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo #Nombre_Grupo").attr('IdGrupo');
             Grupo = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo #Nombre_Grupo").html();
             IdPlanMateria = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo #Nombre_Materia").attr("IdPlanMateria");
             Materia = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo #Nombre_Materia").html();
@@ -482,26 +484,8 @@ $(document).ready(function () {
             FTE_F = $("#contenido-cuerpo #InformacionGrupo #table-informacionGrupo").attr('FTE_F');
         }
 
-        console.log(Matriculas);
-        console.log(NombresAlumnos);
-        console.log(IdsRelsGruposAlumnos);
-        console.log(Calificaciones);
-        console.log(IdsTiposCortes);
-        console.log(IdsTiposCalificaciones);
-        console.log(Grupo);
-        console.log(IdPlanMateria);
-        console.log(Materia);
-        console.log(Cuatrimestre);
-        console.log(IdUsuario);
-        console.log(FIE_P1);
-        console.log(FTE_P1);
-        console.log(FIE_P2);
-        console.log(FTE_P2);
-        console.log(FIE_F);
-        console.log(FTE_F);
-
-        /*registrar_calificaciones_alumnos (Matriculas, NombresAlumnos, IdsRelsGruposAlumnos, Calificaciones, IdsTiposCortes,
-        IdsTiposCalificaciones, Grupo, IdPlanMateria, Materia, Cuatrimestre, IdUsuario)*/
+        registrar_calificaciones_alumnos (Matriculas, NombresAlumnos, IdsRelsGruposAlumnos, Calificaciones, IdsTiposCortes,
+        IdsTiposCalificaciones, IdGrupo, Grupo, IdPlanMateria, Materia, Cuatrimestre, IdUsuario, FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F);
     });
 
     function ver_calificaciones_alumnos (IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, Materia, Cuatrimestre, 
@@ -798,7 +782,8 @@ $(document).ready(function () {
     }
 
     function registrar_calificaciones_alumnos (Matriculas, NombresAlumnos, IdsRelsGruposAlumnos, Calificaciones, IdsTiposCortes,
-                                               IdsTiposCalificaciones, Grupo, IdPlanMateria, Materia, Cuatrimestre, IdUsuario) {
+                                               IdsTiposCalificaciones, IdGrupo, Grupo, IdPlanMateria, Materia, Cuatrimestre, IdUsuario,
+                                               FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F) {
         $.confirm({
             title: 'Registrando calificaciones de los alumnos',
             content: 'Se registraran las calificaciones en el sistema. ¿Esta seguro que desea continuar?',
@@ -831,8 +816,6 @@ $(document).ready(function () {
                             },
 
                             success: function (response) {
-                                console.log(response);
-                                var output = "";
                                 if (response == 'Es necesario ingresar los datos requeridos para continuar' ||
                                     response == 'No se han podido registrar las calificaciones de los alumnos') {
                                     $.confirm({
@@ -867,6 +850,9 @@ $(document).ready(function () {
                                                     btnClass: 'btn btn-success',
                                                     action: function () {
                                                         $(this).fadeOut();
+                                                        $("#contenido-cuerpo #result #control-calificaciones").html("");
+                                                        ver_calificaciones_alumnos (IdUsuario, Docente, IdInstructor, IdGrupo, Grupo, IdPlanMateria, 
+                                                            Materia, Cuatrimestre, FIE_P1, FTE_P1, FIE_P2, FTE_P2, FIE_F, FTE_F);
                                                     }
                                                 }
                                             }

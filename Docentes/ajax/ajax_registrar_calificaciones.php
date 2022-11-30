@@ -1,5 +1,6 @@
 <?php
   include ("../clases/procesar_calificaciones.php");
+  include ("../clases/seguridad_usuario.php");
 
   $procesar_calificaciones = new procesar_calificaciones();
   $seguridad_usuario = new seguridad_usuario();
@@ -33,10 +34,11 @@
         for ($i=0; $i<$count; $i++) { 
             $result = $procesar_calificaciones->registrar_calificaciones(strval($Matriculas[$i]), intval($IdsRelsGruposAlumnos[$i]), 
             intval($Calificaciones[$i]), intval($IdsTiposCortes[$i]), intval($IdsTiposCalificaciones[$i]), $IdPlanMateria, $IdUsuario);
+
             $TipoMovimiento = $seguridad_usuario->sanitize_str('REGISTRO');
-            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ EL REGISTRO DE CALIFICACIONES DEL ALUMNO '.$NombresAlumnos[$i].
+            $Valor = $seguridad_usuario->sanitize_str('SE REALIZÓ EL REGISTRO DE CALIFICACIÓN DEL ALUMNO '.$NombresAlumnos[$i].
             ' CON MATRICULA: '.$Matriculas[$i].', DE LA MATERIA: '.$Materia.', DEL GRUPO: '.$Grupo.', ASIGNADO AL DOCENTE: '.$Docente.
-            ' EN EL CUATRIMESTRE: '.$Cuatrimestre);
+            ', EN EL CUATRIMESTRE: '.$Cuatrimestre);
             $TipoSistema = $seguridad_usuario->sanitize_str('SISTEMA WEB');
                                                                                             
             $seguridad_usuario->registro_bitacora($IdUsuario, $TipoMovimiento, $Valor, $TipoSistema);
