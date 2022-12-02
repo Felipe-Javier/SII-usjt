@@ -27,45 +27,44 @@
       $rowh=$result->fetchObject();
       $pdf = new FPDF();
       $pdf->AddPage();
-      $pdf->Image("../img/logo-usjt.png",8,2,40);
+      $pdf->Image("../img/logo-usjt.jpeg",8,10,50,25);
 
       $pdf->SetFont('Times','B',9);
-      $pdf->SetXY(70,5);
+      $pdf->SetXY(80,5);
       $pdf->Cell(97,5,"UNIVERSIDAD DE SEGURIDAD Y JUSTICIA DE TAMAULIPAS",0,0,"C");
-      $pdf->SetXY(93,12);
+      $pdf->SetXY(103,12);
       $pdf->Cell(49,5,"BOLETA DE CALIFICACIONES",0,0,"C");
 
       $pdf->SetFont('Times','B',9);
-      $pdf->SetXY(50,23);
+      $pdf->SetXY(65,23);
       $pdf->Cell(18,5,"ALUMNO:",0,0,"L");
 
       $pdf->SetFont('Times','',9);
-      $pdf->SetXY(69,23);
+      $pdf->SetXY(84,23);
       $pdf->Cell(73,5,$rowh->ALUMNO,0,0,"L");
 
       $pdf->SetFont('Times','B',9);
-      $pdf->SetXY(147,23);
+      $pdf->SetXY(155,23);
       $pdf->Cell(23,5,"MATRICULA:",0,0,"L");
 
       $pdf->SetFont('Times','',9);
-      $pdf->SetXY(171,23);
+      $pdf->SetXY(179,23);
       $pdf->Cell(30,5,$rowh->MATRICULA,0,0,"L");      
 
       $pdf->SetFont('Times','B',9);
-      $pdf->SetXY(50,30);
+      $pdf->SetXY(65,30);
       $pdf->Cell(29,5,"CUATRIMESTRE:",0,0,"L");
 
       $pdf->SetFont('Times','',9);
-      $pdf->SetXY(80,30);
+      $pdf->SetXY(96,30);
       $pdf->Cell(62,5,$rowh->CUATRIMESTRE." ".$rowh->CICLOESCOLAR,0,0,"L");
 
       $pdf->SetFont('Times','B',9);
-      $pdf->SetXY(171,23);
-      $pdf->SetXY(147,30);
+      $pdf->SetXY(155,30);
       $pdf->Cell(23,5,"MODALIDAD:",0,0,"L");
 
       $pdf->SetFont('Times','',9);
-      $pdf->SetXY(171,30);
+      $pdf->SetXY(179,30);
       $pdf->Cell(30,5,$rowh->MODALIDAD,0,0,"L");
 
       $pdf->SetFont('Times','B',9);

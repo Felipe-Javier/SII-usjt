@@ -25,7 +25,9 @@ $(document).ready(function () {
                     var output = '';
                     var numRows = info.length;
                     for (var i=0; i<numRows; i++) {
-                        output = '<option value="'+info[i].IdRol+'" NomRolUsuario="'+info[i].Clave+'">'+info[i].Rol+' --- '+info[i].Clave+'</option>';
+                        output = '<option value="'+info[i].IdRol+'" NomRolUsuario="'+info[i].Clave+'">'+
+                                    info[i].Rol+' --- '+info[i].Clave+
+                                '</option>';
                         $('#form-reguser #Rol_Usuario').append(output);
                     }
                 }
@@ -135,31 +137,42 @@ $(document).ready(function () {
                         var exists = info.includes(info[0], 'IDINSTRUCTOR');
                         output = output + '<div class="col-md-4 mb-3">'+
                                             '<label class="label-titles" for="NumEmpleado">Número de empleado</label>'+
-                                            '<input type="number" class="form-control text-center" id="NumEmpleado" value="'+info[0].NOEMPLEADO+'" disabled required>'+
+                                            '<input type="number" class="form-control text-center" id="NumEmpleado" '+
+                                            'value="'+info[0].NOEMPLEADO+'" disabled required>'+
                                         '</div>'+
                                         '<div class="col-md-4 mb-3">'+
                                             '<label class="label-titles" for="IdPersona">Id de persona</label>'+
-                                            '<input type="number" class="form-control text-center" id="IdPersona" value="'+info[0].IDPERSONA+'" disabled required>'+
+                                            '<input type="number" class="form-control text-center" id="IdPersona" '+
+                                            'value="'+info[0].IDPERSONA+'" disabled required>'+
                                         '</div>';
                                     if (exists === true) {
                                         output = output + '<div class="col-md-4 mb-3">'+
                                             '<label class="label-titles" for="IdInstructor">Id de instructor</label>'+
-                                            '<input type="number" class="form-control text-center" id="IdInstructor" value="'+info[0].IDINSTRUCTOR+'" disabled required>'+
+                                            '<input type="number" class="form-control text-center" id="IdInstructor" '+
+                                            'value="'+info[0].IDINSTRUCTOR+'" disabled required>'+
                                         '</div>';
                                     }
                         $('#form-reguser #row-claves-persona').html(output);
                     } else if (TipoPersona == 'ALUMNOS') {
-                        output =    '<div class="col-md-4 mb-3">'+
-                                        '<label class="label-titles" for="IdPersona">Id de persona</label>'+
-                                        '<input type="number" class="form-control text-center" id="IdPersona" value="'+info[0].IDPERSONA+'" disabled required>'+
+                        output =    '<div class="col-md-3 mb-3">'+
+                                        '<label class="label-titles" for="IdPersona">Id persona</label>'+
+                                        '<input type="number" class="form-control text-center" id="IdPersona" '+
+                                        'value="'+info[0].IDPERSONA+'" disabled required>'+
                                     '</div>'+
-                                    '<div class="col-md-4 mb-3">'+
-                                        '<label class="label-titles" for="IdAlumno">Id de alumno</label>'+
-                                        '<input type="number" class="form-control text-center" id="IdAlumno" value="'+info[0].IDALUMNO+'" disabled required>'+
+                                    '<div class="col-md-3 mb-3">'+
+                                        '<label class="label-titles" for="IdAlumno">Id alumno</label>'+
+                                        '<input type="number" class="form-control text-center" id="IdAlumno" '+
+                                        'value="'+info[0].IDALUMNO+'" disabled required>'+
                                     '</div>'+
-                                    '<div class="col-md-4 mb-3">'+
-                                        '<label class="label-titles" for="IdAlumnoMatricula">Id de alumno matricula</label>'+
-                                        '<input type="number" class="form-control text-center" id="IdAlumnoMatricula" value="'+info[0].IDALUMNOMATRICULA+'" disabled required>'+
+                                    '<div class="col-md-3 mb-3">'+
+                                        '<label class="label-titles" for="IdAlumnoMatricula">Id alumno matricula</label>'+
+                                        '<input type="number" class="form-control text-center" id="IdAlumnoMatricula" '+
+                                        'value="'+info[0].IDALUMNOMATRICULA+'" disabled required>'+
+                                    '</div>'+
+                                    '<div class="col-md-3 mb-3">'+
+                                        '<label class="label-titles" for="IdProcesoAspirante">Id proceso aspirante</label>'+
+                                        '<input type="number" class="form-control text-center" id="IdProcesoAspirante" '+
+                                          'value="'+info[0].IDPROCESOASPIRANTE+'" disabled required>'+
                                     '</div>';
                         $('#form-reguser #row-claves-persona').html(output);
                         $('#form-reguser #Usuario').val(info[0].MATRICULA);
@@ -254,11 +267,13 @@ $(document).ready(function () {
             var IdPersona = $('#form-reguser #row-claves-persona #IdPersona').val();
             var IdAlumno = $('#form-reguser #row-claves-persona #IdAlumno').val();
             var IdAlumnoMatricula = $('#form-reguser #row-claves-persona #IdAlumnoMatricula').val();
+            var IdProcesoAspirante = $('#form-reguser #row-claves-persona #IdProcesoAspirante').val();
             
             var UserData = {TipoIdentificacion: TipoIdentificacion, IdPersona: IdPersona, IdAlumno: IdAlumno, IdAlumnoMatricula: IdAlumnoMatricula,
-                            Nombres: Nombres, ApellidoPaterno: ApellidoPaterno, ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, 
-                            ContraseniaTemp: PasswordTemp, Activo: Activo, Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, 
-                            NomRolUsuario: NomRolUsuario, IdUsuarioRegistra: IdUserReg, NombreUsuarioRegistra: NombreUserReg};
+                            IdProcesoAspirante: IdProcesoAspirante, Nombres: Nombres, ApellidoPaterno: ApellidoPaterno, 
+                            ApellidoMaterno: ApellidoMaterno, Usuario: Usuario, Contrasenia: Password, ContraseniaTemp: PasswordTemp, Activo: Activo, 
+                            Bloqueado: Bloqueado, IdRolUsuario: IdRolUsuario, NomRolUsuario: NomRolUsuario, IdUsuarioRegistra: IdUserReg, 
+                            NombreUsuarioRegistra: NombreUserReg};
             
         } else if (IdRolUsuario == 8) {
             var NumEmpleado = $('#form-reguser #row-claves-persona #NumEmpleado').val();

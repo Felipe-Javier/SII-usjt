@@ -28,11 +28,12 @@
             $NumEmpleado = NULL;
             $IdAlumno = $seguridad_usuario->sanitize_int($_POST['IdAlumno']);
             $IdAlumnoMatricula = $seguridad_usuario->sanitize_int($_POST['IdAlumnoMatricula']);
+            $IdProcesoAspirante = $seguridad_usuario->sanitize_int($_POST['IdProcesoAspirante']);
             $IdInstructor = NULL;
 
             $result = $seguridad_usuario->registrar_usuario($NumEmpleado, $IdPersona, $IdInstructor, $IdAlumno, $IdAlumnoMatricula,
-            $Nombres, $ApellidoPaterno, $ApellidoMaterno, $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, $IdRolUsuario, 
-            $IdUsuarioRegistra);
+            $IdProcesoAspirante, $Nombres, $ApellidoPaterno, $ApellidoMaterno, $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, 
+            $IdRolUsuario, $IdUsuarioRegistra);
 
             if ($result == true) {
                 $count = $result->rowCount();
@@ -71,8 +72,8 @@
             $IdInstructor = $seguridad_usuario->sanitize_int($_POST['IdInstructor']);
 
             $result = $seguridad_usuario->registrar_usuario($NumEmpleado, $IdPersona, $IdInstructor, $IdAlumno, $IdAlumnoMatricula,
-            $Nombres, $ApellidoPaterno, $ApellidoMaterno, $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, $IdRolUsuario, 
-            $IdUsuarioRegistra);
+            $IdProcesoAspirante, $Nombres, $ApellidoPaterno, $ApellidoMaterno, $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, 
+            $IdRolUsuario, $IdUsuarioRegistra);
 
             if ($result == true) {
                 $count = $result->rowCount();
@@ -114,8 +115,9 @@
             $IdAlumnoMatricula = NULL;
             $IdInstructor = NULL;
 
-            $result = $seguridad_usuario->registrar_usuario($NumEmpleado, $IdPersona, $IdInstructor, $IdAlumno, $IdAlumnoMatricula, $Nombres, 
-            $ApellidoPaterno, $ApellidoMaterno, $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, $IdRolUsuario, $IdUsuarioRegistra);
+            $result = $seguridad_usuario->registrar_usuario($NumEmpleado, $IdPersona, $IdInstructor, $IdAlumno, $IdAlumnoMatricula,
+            $IdProcesoAspirante, $Nombres, $ApellidoPaterno, $ApellidoMaterno, $Usuario, $Contrasenia, $ContraseniaTemp, $Activo, $Bloqueado, 
+            $IdRolUsuario, $IdUsuarioRegistra);
 
             if ($result == true) {
                 $count = $result->rowCount();

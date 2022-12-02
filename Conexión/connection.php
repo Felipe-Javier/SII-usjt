@@ -10,19 +10,19 @@
 		*/
 
 		    // -- SERVIDOR DE PRUEBA USJT --
-		
+		/*
 		private $HOST = '10.8.155.252';
 		private $USERNAME = 'prueba';
 		private $PASSWORD = 'Usjt01';
 		private $DB_NAME = 'USJT_20';
-			
+		*/
 
 		    // -- SERVIDOR OFICIAL USJT --
 		
-		/*private $HOST = '10.8.155.251';
+		private $HOST = '10.8.155.251';
 		private $USERNAME = 'DanielLerma';
 		private $PASSWORD = 'daniel.01';
-		private $DB_NAME = 'USJT_20';*/
+		private $DB_NAME = 'USJT_20';
 		
 		
 		
