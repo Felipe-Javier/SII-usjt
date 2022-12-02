@@ -27,6 +27,7 @@
       $rowh=$result->fetchObject();
       $pdf = new FPDF();
       $pdf->AddPage();
+
       $pdf->Image("../img/logo-sin-fondo.png",8,8,50,25);
 
       $pdf->SetFont('Times','B',9);

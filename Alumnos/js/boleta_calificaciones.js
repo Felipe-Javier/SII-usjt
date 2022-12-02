@@ -85,7 +85,7 @@ $(document).ready(function() {
         var Matricula = $("#Matricula").attr("mat");
         var IdCiclo = $("body #boleta .table-boleta").attr("IdCiclo");
         var Ciclo = $('body #boleta .table-boleta .thead-boleta #ciclo-escolar').html();
-        
+
         $.ajax({
             url: "ajax/ajax_imprimir_boleta.php",
             method: "POST",
@@ -93,7 +93,6 @@ $(document).ready(function() {
             data: {IdUsuario: IdUsuario, Matricula: Matricula, IdCiclo: IdCiclo, Ciclo: Ciclo},
 
             success: function(response) {
-                console.log(response);
                 var output = "";
                 if (response=='No se ha podido generar su boleta de calificaciones') {
                     $.confirm({

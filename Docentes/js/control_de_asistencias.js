@@ -1359,7 +1359,7 @@ $(document).ready(function () {
 
         var img = new Image(); 
         img.src = 'img/logo-usjt.png';
-        doc.addImage(img, 'PNG', 25, 15, 35, 25, 'SLOW');
+        doc.addImage(img, 'PNG', 25, 15, 50, 25, 'SLOW');
 
         doc.autoTable({
             html: '#contenido-cuerpo #result #table-informacionGrupo',
@@ -1413,7 +1413,7 @@ $(document).ready(function () {
 
         var img = new Image();
         img.src = 'img/logo-usjt.png';
-        doc.addImage(img, 'PNG', 25, 15, 35, 25);
+        doc.addImage(img, 'PNG', 25, 15, 50, 25);
 
         doc.autoTable({
             html: '#contenido-cuerpo #result #table-informacionGrupo',
