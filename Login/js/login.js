@@ -93,9 +93,17 @@ $(document).ready(function() {
                             }
                         } else if (info.Rol == 'ADMINISTRADOR DE SISTEMAS') {
                             if (info.ContraseniaTemp == 0) {
-                                location.href = '../Administrador/Inicio.php';
+                                location.href = '../Administrador_de_Sistemas/Inicio.php';
                             } else if (info.ContraseniaTemp == 1) {
-                                location.href = '../Administrador/Cambio_de_contraseña_primera_vez.php';
+                                location.href = '../Administrador_de_Sistemas/Cambio_de_contraseña_primera_vez.php';
+                            }
+                        } else if (info.Rol == 'ADMINISTRADOR DE SUB-DEPARTAMENTO') {
+                            if (info.Departamento == 'DIRECCION ACADEMICA' && info.SubDepartamento == 'DEPARTAMENTO DE SERVICIOS ESCOLARES') {
+                                if (info.ContraseniaTemp == 0) {
+                                    location.href = '../Administrador_de_SubDepartamento/Direccion_Academica/Servicios_Escolares/Inicio.php';
+                                } else if (info.ContraseniaTemp == 1) {
+                                    location.href = '../Administrador_de_SubDepartamento/Direccion_Academica/Servicios_Escolares/Cambio_de_contraseña_primera_vez.php';
+                                }
                             }
                         }
                     }

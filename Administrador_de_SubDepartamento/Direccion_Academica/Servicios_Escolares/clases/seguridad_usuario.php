@@ -1,6 +1,6 @@
 <?php 
 	
-	require_once ('../../Conexión/connection.php');
+	require_once ('../../../../Conexión/connection.php');
 
 	class seguridad_usuario extends connection { //  <-- agregar para instanciar una clase dentro de otra clase
 		private $connection;

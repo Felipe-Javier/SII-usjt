@@ -1,25 +1,35 @@
 <?php
-	/*session_start();
+	session_start();
     if (!isset($_SESSION['active'])) {
-        header('location: ../Login/Iniciar_Sesion.php');
+        header('location: ../../../Login/Iniciar_Sesion.php');
     } else {
-        if ($_SESSION['Rol'] != 'DOCENTE') {
-            header('location: ../Login/Iniciar_Sesion.php');
+        if ($_SESSION['Rol'] != 'ADMINISTRADOR DE SUB-DEPARTAMENTO' && $_SESSION['Departamento'] != 'DIRECCION ACADEMICA'
+            && $_SESSION['SubDepartamento'] != 'DEPARTAMENTO DE SERVICIOS ESCOLARES') {
+            header('location: ../../../Login/Iniciar_Sesion.php');
+        } else if ($_SESSION['Rol'] == 'ADMINISTRADOR DE SUB-DEPARTAMENTO' && $_SESSION['Departamento'] != 'DIRECCION ACADEMICA'
+                   && $_SESSION['SubDepartamento'] != 'DEPARTAMENTO DE SERVICIOS ESCOLARES') {
+            header('location: ../../../Login/Iniciar_Sesion.php');
+        } else if ($_SESSION['Rol'] != 'ADMINISTRADOR DE SUB-DEPARTAMENTO' && $_SESSION['Departamento'] == 'DIRECCION ACADEMICA'
+                   && $_SESSION['SubDepartamento'] != 'DEPARTAMENTO DE SERVICIOS ESCOLARES') {
+            header('location: ../../../Login/Iniciar_Sesion.php');
+        } else if ($_SESSION['Rol'] != 'ADMINISTRADOR DE SUB-DEPARTAMENTO' && $_SESSION['Departamento'] != 'DIRECCION ACADEMICA'
+                   && $_SESSION['SubDepartamento'] == 'DEPARTAMENTO DE SERVICIOS ESCOLARES') {
+            header('location: ../../../Login/Iniciar_Sesion.php');
         }
-    }*/
+    }
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>SII</title>
 		<?php
-			include("../incluir/metas.php");
-			include("../incluir/links.php");
+			include("../../incluir/metas.php");
+			include("../../incluir/links.php");
     	?>
 	    <link rel="stylesheet" type="text/css" href="css/styles_principal.css">
         <link rel="stylesheet" type="text/css" href="css/pagina2.css">
 		<?php
-        	include("../incluir/scripts.php");
+        	include("../../incluir/scripts.php");
     	?>
 	</head>
 	<body>

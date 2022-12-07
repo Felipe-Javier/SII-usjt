@@ -52,7 +52,6 @@
                     <p class="msjMatricula">Modalidad</p>
                     <p class="numMatricula">Mixta</p>
                 </div>
-                
             </div>
         </div>
     </div>

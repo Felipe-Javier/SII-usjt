@@ -1,15 +1,15 @@
 <?php
 
-    require_once ('../../Conexión/connection.php');
+    require_once ('../../../../Conexión/connection.php');
 
-    class control_calificaciones extends connection {
+    class alumnos extends connection {
         private $connection;
 
         public function __construct() {
             $this->connection = $this;
         }
 
-        public function sanitize_str ($value) {
+        public function sanitize_str ($Value) {
             $result = filter_var($Value, FILTER_SANITIZE_STRING);
             return $result;
         }
@@ -19,22 +19,15 @@
             return $result;
         }
 
-        public function sanitize_int ($Value) {
-            $result = filter_var($Value, FILTER_SANITIZE_STRING);
-            return $result;
-        }
-
-        public function consultar_grupos_por_docente ($Opcion, $IdInstructor, $IdPersona, $Anio, $IdCiclo, $IdGrupo) {
+        public function consultar_grupos_general ($Opcion, $AnioEscolar, $IdCicloEscolar, $IdInstructor, $IdGrupo) {
             try {
-                $query = "EXEC spTraerGruposPorDocente ?, ?, ?, ?, ?, ?";
-                $options = array(PDO::SQLSRV_ATTR_ENCONDING => PDO::SQLSRV_ENCONDING_SYSTEM);
-                $result = $this->connection->connect_db()->prepare($query, $options);
-                $result->bindValue(1, $Option, PDO::PARAM_STR);
-                $result->bindValue(2, $IdInstructor, PDO::PARAM_INT);
-                $result->bindValue(3, $IdPersona, PDO::PARAM_INT);
-                $result->bindValue(4, $Anio, PDO::PARAM_STR|PDO::PARAM_NULL);
-                $result->bindValue(5, $IdCiclo, PDO::PARAM_INT|PDO::PARAM_NULL);
-                $result->bindValue(6, $IdGrupo, PDO::PARAM_INT|PDO::PARAM_NULL);
+                $query = "EXEC spTraerGruposGeneral ?, ?, ?, ?, ?";
+                $result = $this->connection->connect_db()->prepare($query);
+                $result->bindValue(1, $Opcion, PDO::PARAM_STR);
+                $result->bindValue(2, $AnioEscolar, PDO::PARAM_STR|PDO::PARAM_NULL);
+                $result->bindValue(3, $IdCicloEscolar, PDO::PARAM_INT|PDO::PARAM_NULL);
+                $result->bindValue(4, $IdInstructor, PDO::PARAM_INT|PDO::PARAM_NULL);
+                $result->bindValue(5, $IdGrupo, PDO::PARAM_INT|PDO::PARAM_NULL);
                 $result->execute();
 
                 return $result;  

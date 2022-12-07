@@ -39,13 +39,15 @@
                         $_SESSION['IdRol'] = $data->IdRol;
                         $_SESSION['Rol'] = $data->Rol;
                     } else {
-                        if ($data->Rol == 'ADMINISTRADOR DE SISTEMAS') {
-                            $_SESSION['IdPersona'] = $data->IdPersona;
-                            $_SESSION['Empleado'] = $data->EMPLEDO;
-                            $_SESSION['Usuario'] = $data->Usuario;
-                            $_SESSION['IdRol'] = $data->IdRol;
-                            $_SESSION['Rol'] = $data->Rol;
-                        }
+                        $_SESSION['IdPersona'] = $data->IdPersona;
+                        $_SESSION['Empleado'] = $data->EMPLEDO;
+                        $_SESSION['Usuario'] = $data->Usuario;
+                        $_SESSION['IdRol'] = $data->IdRol;
+                        $_SESSION['Rol'] = $data->Rol;
+                        $_SESSION['IdDepartamento'] = $data->IdDepartamento;
+                        $_SESSION['Departamento'] = $data->Departamento;
+                        $_SESSION['IdSubDepartamento'] = $data->IdSubDepartamento;
+                        $_SESSION['SubDepartamento'] = $data->SubDepartamento;
                     }
                 }
 
